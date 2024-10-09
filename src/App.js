@@ -18,7 +18,7 @@ function App() {
       setLoading(false);
     }, 3000);
   }, [pathname]);
-
+//added tests
   return (
     <>
       {loading && <Loader loading={loading} />}
