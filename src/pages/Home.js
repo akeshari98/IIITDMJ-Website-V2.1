@@ -155,6 +155,7 @@ function Home() {
     <div>
       <main>
         {/* Hero section */}
+        <hr></hr>
         <div className="w-full px-0 mt-0">
           <Marquee data={notices} />
         </div>
