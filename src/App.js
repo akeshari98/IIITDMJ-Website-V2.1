@@ -43,17 +43,14 @@ const NavLink = [
     id: "01",
     name: "Home",
     link: [
-      { "Faculty": "/club" },
-      { "Courses": "/courses" },
-      { "About": "/about" },
-      { "Contact": "/contact" },
-      { "Gallery": "/" },
+      { "About": "/about" }
     ],
   },
   {
     id: "02",
     name: "Administration",
     link: [
+      { "Board of Governers": "/boardofgoverners" },
       { "Faculty": "/club" },
       { "Courses": "/courses" },
       { "About": "/about" },
