@@ -14,6 +14,33 @@ import Marquee from "./Marquee";
 import Marquee2 from "./Marquee2";
 import ImageSlider from "./ImageSlider";
 import ImageGallery from "../components/ImageGallery";
+const slides = [
+  {
+    image: college_img1,
+    text: {
+      title: "Innovative Solutions",
+      description: "We provide cutting-edge solutions tailored to your needs.",
+    },
+    readMoreUrl:'#'
+  },
+  {
+    image: college_img2,
+    text: {
+      title: "Advanced Technologies",
+      description: "Harness the power of technology for your business growth.",
+    },
+    readMoreUrl:'#'
+  },
+  {
+    image: college_img3,
+    text: {
+      title: "Future-Ready Strategies",
+      description: "Prepare for tomorrow with our forward-thinking strategies.",
+    },
+    readMoreUrl:'#'
+  },
+];
+
 const achievements = [
   "Achievement 1",
   "Achievement 2",
@@ -22,14 +49,7 @@ const achievements = [
   "Achievement 5",
   "Achievement 6",
 ];
-const news = [
-  "News 1",
-  "News 2",
-  "News 3",
-  "News 4",
-  "News 5",
-  "News 6",
-];
+const news = ["News 1", "News 2", "News 3", "News 4", "News 5", "News 6"];
 const notice = [
   "Notice 1",
   "Notice 2",
@@ -42,18 +62,18 @@ const updates = [
   {
     title: "Achievements",
     announcements: achievements,
-    bgColor: "#0384C1"
+    bgColor: "#0384C1",
   },
   {
     title: "News & Events",
     announcements: news,
-    bgColor: "#0384C1"
+    bgColor: "#0384C1",
   },
   {
     title: "Notices",
     announcements: notice,
-    bgColor: "#0384C1"
-  }
+    bgColor: "#0384C1",
+  },
 ];
 const notices = [
   {
@@ -83,12 +103,7 @@ const notis = [
     to: "#",
   },
 ];
-const images = [
-  college_img1,
-  college_img2,
-  college_img3,
-  college_img4,
-];
+const images = [college_img1, college_img2, college_img3, college_img4];
 const photos = [
   college_img1,
   college_img2,
@@ -103,12 +118,12 @@ const CellArrayData = [
   {
     title: "International Relations",
     subTitle: "Collaberation with JAPAN",
-    photos: photos
+    photos: photos,
   },
   {
     title: "A glimpse of institute activities",
     subTitle: "Students/Events/Visits",
-    photos: photos
+    photos: photos,
   },
 ];
 
@@ -158,8 +173,8 @@ function Home() {
         <div className="border-2 w-full px-0 mt-0">
           <Marquee data={notices} />
         </div>
-        <div className="App">
-          <ImageSlider images={images} />
+        <div>
+          <ImageSlider slides={slides} />
         </div>
         <br></br>
         <div className="flex flex-row items-center w-[90vw] ml-auto mr-auto">
@@ -173,18 +188,22 @@ function Home() {
 
         <section className="px-8 pt-6 pb-2 text-center md:py-16">
           <div className="mx-auto max-w-6xl">
-            <div className="flex flex-col items-center" >
+            <div className="flex flex-col items-center">
               {/* ProductHunt badge - Product of the month - 1st */}
 
               <img className="aspect-square w-1/6" src={Logo} alt="logo" />
 
               <h1 className="text-center text-3xl font-semibold text-heading md:max-w-4xl lg:text-5xl xl:text-6xl">
-                Indian Institute Of Informtion Techonology Design And Manufacturing Jabalpur.
+                Indian Institute Of Informtion Techonology Design And
+                Manufacturing Jabalpur.
               </h1>
               <p className="mt-6 max-w-3xl text-xl">
-              IIIT Jabalpur fosters a vibrant and dynamic learning environment where students pursue degrees in various engineering disciplines, including Computer Science, Electronics, Mechanical, and Information Technology.
+                IIIT Jabalpur fosters a vibrant and dynamic learning environment
+                where students pursue degrees in various engineering
+                disciplines, including Computer Science, Electronics,
+                Mechanical, and Information Technology.
               </p>
-              
+
               {/* <form className="mt-6 flex flex-col gap-2 sm:flex-row">
                 <div>
                   <label
@@ -226,145 +245,152 @@ function Home() {
             </div> */}
           </div>
           <div className="container px-5 pt-2 mx-auto mt-10">
-      <div className="flex flex-col text-center w-full">
-        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-          Latest Updates
-        </h1>
-        <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-          Get all the latest information here
-        </p>
-      </div>
-      <div className="w-full p-4">
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {updates.map((update, index) => (
-      <div key={index} className="border border-gray-300 rounded-lg shadow-lg">
-        <div
-          className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center"
-          style={{ backgroundColor: update.bgColor }}
-        >
-          {/* Conditionally render different SVG icons */}
-          {update.title === "Achievements" && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="white"
-              className="bi bi-award w-6 h-6 mr-3 inline-block"
-              viewBox="0 0 16 16"
-            >
-              <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702z"/>
-  <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/>
-</svg>
-          )}
-          {update.title === "News & Events" && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="white"
-              className="bi bi-calendar w-6 h-6 mr-3 inline-block"
-              viewBox="0 0 16 16"
-            >
-              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-1h12a1 1 0 0 1 1 1v1H1V4a1 1 0 0 1 1-1z" />
-            </svg>
-          )}
-          {update.title === "Notices" && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="white"
-              className="bi bi-newspaper w-6 h-6 mr-3 inline-block"
-              viewBox="0 0 16 16"
-            >
-              <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5z"/>
-              <path d="M2 3h10v2H2zm0 3h4v3H2zm0 4h4v1H2zm0 2h4v1H2zm5-6h2v1H7zm3 0h2v1h-2zM7 8h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2z"/>
-            </svg>
-          )}
-          {update.title}
-        </div>
-        <div className="h-64 overflow-y-auto p-4 bg-gray-100 rounded-b-lg space-y-2">
-          {update.announcements.map((announcement, i) => (
-            <a
-              key={i}
-              href="#"
-              className="no-underline text-black bg-white p-2 rounded block cursor-pointer hover:bg-gray-300"
-            >
-              {announcement}
-            </a>
-          ))}
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
+            <div className="flex flex-col text-center w-full">
+              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+                Latest Updates
+              </h1>
+              <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+                Get all the latest information here
+              </p>
+            </div>
+            <div className="w-full p-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {updates.map((update, index) => (
+                  <div
+                    key={index}
+                    className="border border-gray-300 rounded-lg shadow-lg"
+                  >
+                    <div
+                      className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center"
+                      style={{ backgroundColor: update.bgColor }}
+                    >
+                      {/* Conditionally render different SVG icons */}
+                      {update.title === "Achievements" && (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="white"
+                          className="bi bi-award w-6 h-6 mr-3 inline-block"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702z" />
+                          <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z" />
+                        </svg>
+                      )}
+                      {update.title === "News & Events" && (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="white"
+                          className="bi bi-calendar w-6 h-6 mr-3 inline-block"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-1h12a1 1 0 0 1 1 1v1H1V4a1 1 0 0 1 1-1z" />
+                        </svg>
+                      )}
+                      {update.title === "Notices" && (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="white"
+                          className="bi bi-newspaper w-6 h-6 mr-3 inline-block"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5z" />
+                          <path d="M2 3h10v2H2zm0 3h4v3H2zm0 4h4v1H2zm0 2h4v1H2zm5-6h2v1H7zm3 0h2v1h-2zM7 8h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2z" />
+                        </svg>
+                      )}
+                      {update.title}
+                    </div>
+                    <div className="h-64 overflow-y-auto p-4 bg-gray-100 rounded-b-lg space-y-2">
+                      {update.announcements.map((announcement, i) => (
+                        <a
+                          key={i}
+                          href="#"
+                          className="no-underline text-black bg-white p-2 rounded block cursor-pointer hover:bg-gray-300"
+                        >
+                          {announcement}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-      <div className="flex flex-col md:flex-row w-full p-4 gap-6">
-  {/* <!-- First Card (30% width) --> */}
-  <div className="border border-gray-200 rounded-lg shadow-lg w-full md:w-[30%]">
-  <div className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center" style={{backgroundColor:"#0384C1"}}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="white"
-        className="bi bi-mic w-6 h-6 mr-3"
-        viewBox="0 0 16 16"
-      >
-        <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
-  <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3"/>
-</svg>
-      Director's Desk
-    </div>
-    <div className="p-2 bg-gray-100 rounded-b-lg flex flex-col md:flex-row">
-      <div className="w-full h-64 overflow-hidden p-2 bg-gray-100 rounded-b-lg">
-        <img 
-          src="https://via.placeholder.com/300" 
-          alt="Image for Card 2" 
-          className="w-full h-full object-cover rounded-lg"
-        />
-      </div>
-    </div>
-  </div>
+            <div className="flex flex-col md:flex-row w-full p-4 gap-6">
+              {/* <!-- First Card (30% width) --> */}
+              <div className="border border-gray-200 rounded-lg shadow-lg w-full md:w-[30%]">
+                <div
+                  className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center"
+                  style={{ backgroundColor: "#0384C1" }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="white"
+                    className="bi bi-mic w-6 h-6 mr-3"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5" />
+                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3" />
+                  </svg>
+                  Director's Desk
+                </div>
+                <div className="p-2 bg-gray-100 rounded-b-lg flex flex-col md:flex-row">
+                  <div className="w-full h-64 overflow-hidden p-2 bg-gray-100 rounded-b-lg">
+                    <img
+                      src="https://via.placeholder.com/300"
+                      alt="Image for Card 2"
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                  </div>
+                </div>
+              </div>
 
-  {/* <!-- Second Card (70% width) --> */}
-  <div className="border border-gray-100 rounded-lg shadow-lg w-full h-full md:w-[70%]">
-  <div className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center" style={{backgroundColor:"#0384C1"}}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="white"
-        className="bi bi-people w-6 h-6 mr-3"
-        viewBox="0 0 16 16"
-      >
-        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
-        </svg>
-      Card 2
-    </div>
-    <div className="p-2 bg-gray-100 rounded-b-lg flex flex-col md:flex-row">
-      {/* Image Section */}
-      <div className="w-full md:w-1/2 h-64 overflow-hidden p-2 bg-gray-100 rounded-b-lg">
-        <img 
-          src="https://via.placeholder.com/300" 
-          alt="Image for Card 2" 
-          className="w-full h-full object-cover rounded-lg"
-        />
-      </div>
-      {/* Text Section */}
-      <div className="w-full md:w-1/2 p-4">
-        <p className="text-gray-700">
-          This is the text info for the second card. On smaller screens, the content will be stacked in a column, while on larger screens it will appear side by side with the image.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-    </div>
+              {/* <!-- Second Card (70% width) --> */}
+              <div className="border border-gray-100 rounded-lg shadow-lg w-full h-full md:w-[70%]">
+                <div
+                  className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center"
+                  style={{ backgroundColor: "#0384C1" }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="white"
+                    className="bi bi-people w-6 h-6 mr-3"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                  </svg>
+                  Card 2
+                </div>
+                <div className="p-2 bg-gray-100 rounded-b-lg flex flex-col md:flex-row">
+                  {/* Image Section */}
+                  <div className="w-full md:w-1/2 h-64 overflow-hidden p-2 bg-gray-100 rounded-b-lg">
+                    <img
+                      src="https://via.placeholder.com/300"
+                      alt="Image for Card 2"
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                  </div>
+                  {/* Text Section */}
+                  <div className="w-full md:w-1/2 p-4">
+                    <p className="text-gray-700">
+                      This is the text info for the second card. On smaller
+                      screens, the content will be stacked in a column, while on
+                      larger screens it will appear side by side with the image.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Testimonial section */}
@@ -379,20 +405,23 @@ function Home() {
                 diverse range of undergraduate programs! We offer the{" "}
                 <Link
                   to="/courses/bcom"
-                  className="text-indigo-500 hover:underline font-semibold">
+                  className="text-indigo-500 hover:underline font-semibold"
+                >
                   {" "}
                   Bachelors of Technology (B-Tech)
                 </Link>{" "}
                 for a comprehensive understanding of business, the{" "}
                 <Link
                   to="/courses/bca"
-                  className="text-indigo-500 hover:underline font-semibold">
+                  className="text-indigo-500 hover:underline font-semibold"
+                >
                   Masters of Technology (M-Tech)
                 </Link>{" "}
                 for mastering the world of technology, and the{" "}
                 <Link
                   to="/courses/bba"
-                  className="text-indigo-500 hover:underline font-semibold">
+                  className="text-indigo-500 hover:underline font-semibold"
+                >
                   Doctor of Philosophy (PHD){" "}
                 </Link>
                 to hone your leadership and management skills. Choose your path
@@ -409,7 +438,8 @@ function Home() {
                     height="16"
                     fill="currentColor"
                     className="bi bi-calculator text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16">
+                    viewBox="0 0 16 16"
+                  >
                     <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                     <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                   </svg>
@@ -428,7 +458,8 @@ function Home() {
                     height="16"
                     fill="currentColor"
                     className="bi bi-briefcase text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16">
+                    viewBox="0 0 16 16"
+                  >
                     <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5" />
                   </svg>
                   <h2 className="title-font font-medium text-3xl text-gray-900">
@@ -445,7 +476,8 @@ function Home() {
                     height="16"
                     fill="currentColor"
                     className="bi bi-laptop text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16">
+                    viewBox="0 0 16 16"
+                  >
                     <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
                   </svg>
                   <h2 className="title-font font-medium text-3xl text-gray-900">
@@ -462,7 +494,8 @@ function Home() {
                     height="16"
                     fill="currentColor"
                     className="bi bi-laptop text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16">
+                    viewBox="0 0 16 16"
+                  >
                     <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
                   </svg>
                   <h2 className="title-font font-medium text-3xl text-gray-900">
@@ -479,7 +512,8 @@ function Home() {
                     height="16"
                     fill="currentColor"
                     className="bi bi-laptop text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16">
+                    viewBox="0 0 16 16"
+                  >
                     <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
                   </svg>
                   <h2 className="title-font font-medium text-3xl text-gray-900">
@@ -497,7 +531,8 @@ function Home() {
                     strokeLinejoin="round"
                     strokeWidth="2"
                     className="text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                   </svg>
                   <h2 className="title-font font-medium text-3xl text-gray-900">
@@ -587,10 +622,10 @@ function Home() {
                   incorporating a live social feed aggregator on the home page.
                   This feature should aggregate posts, photos, and updates from
                   various social media platforms using relevant hashtags or user
-                  mentions associated with IIITDMJ. By curating content
-                  directly from students' social media accounts, the website can
-                  provide an authentic and dynamic glimpse into campus life.
-                  This real-time feed not only showcases the students' daily
+                  mentions associated with IIITDMJ. By curating content directly
+                  from students' social media accounts, the website can provide
+                  an authentic and dynamic glimpse into campus life. This
+                  real-time feed not only showcases the students' daily
                   experiences but also promotes a sense of connectivity and
                   inclusivity among the college community. Ensure that the feed
                   is moderated to maintain a positive and supportive online
