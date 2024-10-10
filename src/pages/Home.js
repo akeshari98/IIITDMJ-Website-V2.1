@@ -155,19 +155,17 @@ function Home() {
     <div>
       <main>
         {/* Hero section */}
-        <hr></hr>
-        <div className="w-full px-0 mt-0">
+        <div className="border-2 w-full px-0 mt-0">
           <Marquee data={notices} />
         </div>
-        <hr></hr>
         <div className="App">
           <ImageSlider images={images} />
         </div>
         <br></br>
         <div className="flex flex-row items-center w-[90vw] ml-auto mr-auto">
-          <h2 className="h-8 w-auto whitespace-nowrap font-semibold">
+          <h4 className="h-8 w-auto whitespace-nowrap font-semibold">
             Course Update:
-          </h2>
+          </h4>
           <div className="w-full px-0 mt-0 ml-4">
             <Marquee2 data={notis} />
           </div>
@@ -285,12 +283,12 @@ function Home() {
           )}
           {update.title}
         </div>
-        <div className="h-64 overflow-y-auto p-4 bg-gray-200 rounded-b-lg space-y-2">
+        <div className="h-64 overflow-y-auto p-4 bg-gray-100 rounded-b-lg space-y-2">
           {update.announcements.map((announcement, i) => (
             <a
               key={i}
               href="#"
-              className="bg-white p-2 rounded block cursor-pointer hover:bg-gray-400"
+              className="no-underline text-black bg-white p-2 rounded block cursor-pointer hover:bg-gray-300"
             >
               {announcement}
             </a>
@@ -303,7 +301,7 @@ function Home() {
 
       <div className="flex flex-col md:flex-row w-full p-4 gap-6">
   {/* <!-- First Card (30% width) --> */}
-  <div className="border border-gray-300 rounded-lg shadow-lg w-full md:w-[30%]">
+  <div className="border border-gray-200 rounded-lg shadow-lg w-full md:w-[30%]">
   <div className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center" style={{backgroundColor:"#0384C1"}}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -330,7 +328,7 @@ function Home() {
   </div>
 
   {/* <!-- Second Card (70% width) --> */}
-  <div className="border border-gray-300 rounded-lg shadow-lg w-full h-full md:w-[70%]">
+  <div className="border border-gray-100 rounded-lg shadow-lg w-full h-full md:w-[70%]">
   <div className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center" style={{backgroundColor:"#0384C1"}}>
       <svg
         xmlns="http://www.w3.org/2000/svg"

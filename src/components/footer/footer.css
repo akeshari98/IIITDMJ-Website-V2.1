@@ -199,3 +199,6 @@ p, ul li, ol li {
     width: 70%;
     margin-bottom: 59px;
 }
+a{
+    text-decoration: no;
+}
