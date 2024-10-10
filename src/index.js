@@ -27,6 +27,8 @@ import OtherAdministration from "./pages/more/administration/otheradministration
 import Senate from "./pages/more/administration/senate";
 import BuildingWorksCommittee from "./pages/more/administration/buildingworkscommittee";
 import AdministrativeStructure from "./pages/more/administration/administrativestructure";
+import DeanAcademics from "./pages/more/deans/deanacademics"
+import DeanStudents from "./pages/more/deans/deanstudents"
 import Club from "./pages/more/Club";
 import Event from "./pages/more/Event";
 import Gallery from "./pages/more/Gallery";
@@ -140,6 +142,14 @@ const router = createBrowserRouter([
       {
         path: "/administrativestructure",
         element: <AdministrativeStructure />,
+      },
+      {
+        path: "/deanacademics",
+        element: <DeanAcademics />,
+      },
+      {
+        path: "/deanstudents",
+        element: <DeanStudents />,
       },
       {
         path: "/event",

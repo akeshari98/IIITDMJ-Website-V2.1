@@ -48,11 +48,10 @@ const NavLink = [
     id: "05",
     name: "Deans",
     link: [
-      { "Faculty": "/club" },
-      { "Courses": "/courses" },
-      { "About": "/about" },
-      { "Contact": "/contact" },
-      { "Gallery": "/" },
+      { "Dean Academics": "/deanacademics" },
+      { "Dean Students": "/deanstudents" },
+      { "Dean RSPC": "/" },
+      { "Dean P&D": "/" },
     ],
   },
   {
@@ -91,7 +90,7 @@ const NavLink = [
   {
     id: "09",
     name: "Research",
-    link: [], // Ensure this is an empty array
+    link: [], 
   },
 ];
 
@@ -118,23 +117,26 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const linkListWidth = linkListRef.current ? linkListRef.current.scrollWidth : 0; // Total width of the link list
-      const navbarWidth = linkListRef.current ? linkListRef.current.parentElement.offsetWidth : 0; // Width of the navbar container
-  
+      const linkListWidth = linkListRef.current
+        ? linkListRef.current.scrollWidth
+        : 0; // Total width of the link list
+      const navbarWidth = linkListRef.current
+        ? linkListRef.current.parentElement.offsetWidth
+        : 0; // Width of the navbar container
+
       // Show hamburger menu if the link list width exceeds the available navbar width
-      if (linkListWidth > navbarWidth) {
+      if (linkListWidth> navbarWidth) {
         setIsMenuOpen(true); // Show hamburger menu
       } else {
         setIsMenuOpen(false); // Hide hamburger menu if there is enough space
         setOpenDropdowns([]); // Close all dropdowns
       }
     };
-  
+
     window.addEventListener("resize", handleResize);
     handleResize(); // Call it initially to set the correct state
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
 
   const closeMenuOnClick = () => {
     if (isMenuOpen) {
@@ -148,32 +150,45 @@ const Navbar = () => {
   return (
     <div className="relative sm:py-6 px-4 mx-auto lg:px-6">
       <nav className="relative flex items-center justify-between sm:h-12 sm:py-1 md:justify-center">
-        <div className="flex lg:w-auto w-full items-center flex-1 md:absolute md:inset-y-0 md:left-0">
-          <div className="flex items-center justify-between w-full lg:w-auto py-3 mr-8">
+        <div className="flex  w-full items-center flex-1 md:absolute md:inset-y-0 md:left-0">
+          <div className="flex items-center justify-between w-full  py-3 mr-8">
             {/* Left-side logo for Desktop */}
-            
-            <Link to="/" className="w-48" onClick={closeMenuOnClick}> {/* Added margin right */}
+
+            <Link to="/" className="w-48" onClick={closeMenuOnClick}>
+              {" "}
+              {/* Added margin right */}
               <span className="sr-only">IIITDMJ</span>
               <img className="w-48" src={Logo2} alt="logo" />
             </Link>
 
             {/* Right-side Links for Desktop */}
-            <div className="hidden lg:flex flex-1 justify-center items-center ml-5 space-x-3" ref={linkListRef}> {/* Reduced space between links */}
+            <div
+              className="hidden [@media(min-width:1400px)]:flex flex-1 justify-center items-center ml-5 space-x-3"
+              ref={linkListRef}
+            >
+              {" "}
+              {/* Reduced space between links */}
               {NavLink.map((item, index) => (
                 <div key={index} className="relative group">
                   <button className="flex items-center px-3 py-2 text-black hover:text-blue-600 focus:outline-none">
                     {item.name}
-                    {Array.isArray(item.link) && item.link.length > 0 && ( // Only render the SVG if there are sub-links
-                      <svg
-                        className="ml-1 h-4 w-4"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    )}
+                    {Array.isArray(item.link) &&
+                      item.link.length > 0 && ( // Only render the SVG if there are sub-links
+                        <svg
+                          className="ml-1 h-4 w-4"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      )}
                   </button>
                   {Array.isArray(item.link) && item.link.length > 0 && (
                     <ul className="absolute left-0 mt-0 bg-white text-black shadow-lg hidden group-hover:block z-50 w-auto min-w-max">
@@ -181,10 +196,17 @@ const Navbar = () => {
                         const subItemName = Object.keys(subItem)[0];
                         const subItemLink = subItem[subItemName];
                         return (
-                          <li key={subIndex} className="w-full hover:bg-gray-200 px-5 py-2">
+                          <li
+                            key={subIndex}
+                            className="w-full hover:bg-gray-200 px-5 py-2"
+                          >
                             <Link
                               to={subItemLink}
-                              className={`block no-underline ${isActive(subItemLink) ? "font-bold text-blue-600" : "text-black"}`}
+                              className={`block no-underline ${
+                                isActive(subItemLink)
+                                  ? "font-bold text-blue-600"
+                                  : "text-black"
+                              }`}
                             >
                               {subItemName}
                             </Link>
@@ -198,10 +220,11 @@ const Navbar = () => {
             </div>
 
             {/* Hamburger Menu for Mobile View */}
-            <div className="flex items-center md:hidden">
+            <div className="flex items-center">
               <button
                 onClick={toggleMenu}
-                className="text-black hover:text-blue-600 focus:outline-none"
+                className="text-black hover:text-blue-600 focus:outline-none
+      md:hidden [@media(max-width:1399px)]:block [@media(min-width:1400px)]:hidden"
               >
                 <svg
                   className="h-6 w-6"
@@ -214,7 +237,11 @@ const Navbar = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                    d={
+                      isMenuOpen
+                        ? "M6 18L18 6M6 6l12 12"
+                        : "M4 6h16M4 12h16M4 18h16"
+                    }
                   />
                 </svg>
               </button>
@@ -225,7 +252,12 @@ const Navbar = () => {
 
       {/* Mobile Sidebar Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-opacity-90 z-40 md:hidden flex flex-col w-64 p-4 overflow-y-auto" style={{ backgroundColor: "white" }}>
+        <div
+          className="fixed inset-0 bg-opacity-90 z-40 flex flex-col w-64 p-4 overflow-y-auto 
+        sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden
+        [@media(max-width:1399px)]:block [@media(min-width:1400px)]:hidden"
+          style={{ backgroundColor: "white" }}
+        >
           {/* Image above the list of links */}
           <div className="flex justify-center mb-4">
             <Link to="/" className="w-28" onClick={closeMenuOnClick}>
@@ -233,8 +265,12 @@ const Navbar = () => {
               <img className="w-full" src={Logo1} alt="logo" />
             </Link>
           </div>
-          <div className="flex items-start"> {/* Added this div to keep the logo and links together */}
-            <ul className="space-y-1 flex-1"> {/* Flex to occupy remaining space */}
+          <div className="flex items-start">
+            {" "}
+            {/* Added this div to keep the logo and links together */}
+            <ul className="space-y-1 flex-1">
+              {" "}
+              {/* Flex to occupy remaining space */}
               {NavLink.map((item, index) => (
                 <li key={index}>
                   <button
@@ -253,7 +289,11 @@ const Navbar = () => {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                        d={openDropdowns.includes(index) ? "M19 15l-7-7-7 7" : "M5 9l7 7 7-7"}
+                        d={
+                          openDropdowns.includes(index)
+                            ? "M19 15l-7-7-7 7"
+                            : "M5 9l7 7 7-7"
+                        }
                       />
                     </svg>
                   </button>
@@ -263,10 +303,18 @@ const Navbar = () => {
                         const subItemName = Object.keys(subItem)[0];
                         const subItemLink = subItem[subItemName];
                         return (
-                          <li key={subIndex} className="hover:bg-gray-200 px-4 py-1">
+                          <li
+                            key={subIndex}
+                            className="hover:bg-gray-200 px-4 py-1"
+                          >
                             <Link
                               to={subItemLink}
-                              className={`block no-underline ${isActive(subItemLink) ? "font-bold text-blue-600" : "text-black"}`}
+                              className={`block no-underline ${
+                                isActive(subItemLink)
+                                  ? "font-bold text-blue-600"
+                                  : "text-black"
+                              }`}
+                              onClick={closeMenuOnClick}
                             >
                               {subItemName}
                             </Link>
