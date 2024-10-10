@@ -20,7 +20,13 @@ import Register from "./pages/Register";
 import SignUpMessage from "./pages/test/SignUpMessage";
 
 //more pages
-import BoardOfGoverners from "./pages/more/boardofgoverners"
+import BoardOfGoverners from "./pages/more/administration/boardofgoverners";
+import FinanceCommittee from "./pages/more/administration/financecommittee";
+import GeneralAdministartion from "./pages/more/administration/generaladministration";
+import OtherAdministration from "./pages/more/administration/otheradministration";
+import Senate from "./pages/more/administration/senate";
+import BuildingWorksCommittee from "./pages/more/administration/buildingworkscommittee";
+import AdministrativeStructure from "./pages/more/administration/administrativestructure";
 import Club from "./pages/more/Club";
 import Event from "./pages/more/Event";
 import Gallery from "./pages/more/Gallery";
@@ -57,6 +63,7 @@ import Bca from "./pages/Bca";
 import Business from "./pages/Business";
 import Bcom from "./pages/Bcom";
 import Verification from "./modules/admin/components/Verification";
+import { isCompositeComponent } from "react-dom/test-utils";
 
 const router = createBrowserRouter([
   {
@@ -113,6 +120,26 @@ const router = createBrowserRouter([
       {
         path: "/boardofgoverners",
         element: <BoardOfGoverners />,
+      },
+      {
+        path: "/financecommittee",
+        element: <FinanceCommittee />,
+      },
+      {
+        path: "/generaladministration",
+        element: <GeneralAdministartion />,
+      },
+      {
+        path: "/otheradministration",
+        element: <OtherAdministration />,
+      },
+      {
+        path: "/buildingworkscommittee",
+        element: <BuildingWorksCommittee />,
+      },
+      {
+        path: "/administrativestructure",
+        element: <AdministrativeStructure />,
       },
       {
         path: "/event",

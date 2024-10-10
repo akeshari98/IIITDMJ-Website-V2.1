@@ -14,11 +14,12 @@ const NavLink = [
     name: "Administration",
     link: [
       { "Board of Governers": "/boardofgoverners" },
-      { "Faculty": "/club" },
-      { "Courses": "/courses" },
-      { "About": "/about" },
-      { "Contact": "/contact" },
-      { "Gallery": "/" },
+      { "Finance Committee": "/financecommittee" },
+      { "General Administration": "/generaladministration" },
+      { "Other Administration": "/otheradministration" },
+      { "Senate": "/senate" },
+      { "Building Works Committee": "/buildingworkscommittee" },
+      { "Administrative Structure": "/administrativestructure" },
     ],
   },
   {
@@ -175,12 +176,12 @@ const Navbar = () => {
                     )}
                   </button>
                   {Array.isArray(item.link) && item.link.length > 0 && (
-                    <ul className="p-2 absolute left-0 mt-0 bg-white text-black rounded-lg shadow-lg hidden group-hover:block z-50 w-auto min-w-max">
+                    <ul className="absolute left-0 mt-0 bg-white text-black shadow-lg hidden group-hover:block z-50 w-auto min-w-max">
                       {item.link.map((subItem, subIndex) => {
                         const subItemName = Object.keys(subItem)[0];
                         const subItemLink = subItem[subItemName];
                         return (
-                          <li key={subIndex} className="w-full hover:bg-gray-200 px-4 py-1">
+                          <li key={subIndex} className="w-full hover:bg-gray-200 px-5 py-2">
                             <Link
                               to={subItemLink}
                               className={`block no-underline ${isActive(subItemLink) ? "font-bold text-blue-600" : "text-black"}`}
