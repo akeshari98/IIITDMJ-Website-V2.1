@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Footer from "./components/footer/footer";
+// import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Loader from "./components/Loader";
 
@@ -18,7 +19,7 @@ function App() {
       setLoading(false);
     }, 3000);
   }, [pathname]);
-
+//added tests
   return (
     <>
       {loading && <Loader loading={loading} />}
@@ -42,35 +43,92 @@ const NavLink = [
   {
     id: "01",
     name: "Home",
-    link: "/",
+    link: [
+      { "About": "/about" }
+    ],
   },
   {
     id: "02",
-    name: "Courses",
-    link: "/courses",
+    name: "Administration",
+    link: [
+      { "Board of Governers": "/boardofgoverners" },
+      { "Faculty": "/club" },
+      { "Courses": "/courses" },
+      { "About": "/about" },
+      { "Contact": "/contact" },
+      { "Gallery": "/" },
+    ],
   },
   {
     id: "03",
-    name: "About",
-    link: "/about",
+    name: "Departments",
+    link: [
+      { "Faculty": "/club" },
+      { "Courses": "/courses" },
+      { "About": "/about" },
+      { "Contact": "/contact" },
+      { "Gallery": "/" },
+    ],
   },
   {
     id: "04",
-    name: "Contact",
-    link: "/contact",
+    name: "Academics",
+    link: [
+      { "Faculty": "/club" },
+      { "Courses": "/courses" },
+      { "About": "/about" },
+      { "Contact": "/contact" },
+      { "Gallery": "/" },
+    ],
   },
   {
     id: "05",
-    name: "More",
+    name: "Deans",
     link: [
       { "Faculty": "/club" },
-      { "Anti-Ragging Committee": "" },
-      { "Student Corner": "" },
-      { News: "" },
-      { Events: "" },
-      { Gallery: "/Gallery" },
-      // { Saptadhara: "/saptadhara" },
+      { "Courses": "/courses" },
+      { "About": "/about" },
+      { "Contact": "/contact" },
+      { "Gallery": "/" },
     ],
+  },
+  {
+    id: "06",
+    name: "People",
+    link: [
+      { "Faculty": "/club" },
+      { "Courses": "/courses" },
+      { "About": "/about" },
+      { "Contact": "/contact" },
+      { "Gallery": "/" },
+    ],
+  },
+  {
+    id: "07",
+    name: "Students",
+    link: [
+      { "Faculty": "/club" },
+      { "Courses": "/courses" },
+      { "About": "/about" },
+      { "Contact": "/contact" },
+      { "Gallery": "/" },
+    ],
+  },
+  {
+    id: "08",
+    name: "Deans",
+    link: [
+      { "Faculty": "/club" },
+      { "Courses": "/courses" },
+      { "About": "/about" },
+      { "Contact": "/contact" },
+      { "Gallery": "/" },
+    ],
+  },
+  {
+    id: "09",
+    name: "Research",
+    link:"/",
   },
 ];
 

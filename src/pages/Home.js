@@ -155,18 +155,17 @@ function Home() {
     <div>
       <main>
         {/* Hero section */}
-        <div className="w-full px-0 mt-0">
+        <div className="border-2 w-full px-0 mt-0">
           <Marquee data={notices} />
         </div>
-        <hr></hr>
         <div className="App">
           <ImageSlider images={images} />
         </div>
         <br></br>
         <div className="flex flex-row items-center w-[90vw] ml-auto mr-auto">
-          <h2 className="h-8 w-auto whitespace-nowrap font-semibold">
+          <h4 className="h-8 w-auto whitespace-nowrap font-semibold">
             Course Update:
-          </h2>
+          </h4>
           <div className="w-full px-0 mt-0 ml-4">
             <Marquee2 data={notis} />
           </div>
@@ -279,17 +278,17 @@ function Home() {
               viewBox="0 0 16 16"
             >
               <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5z"/>
-  <path d="M2 3h10v2H2zm0 3h4v3H2zm0 4h4v1H2zm0 2h4v1H2zm5-6h2v1H7zm3 0h2v1h-2zM7 8h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2z"/>
-</svg>
+              <path d="M2 3h10v2H2zm0 3h4v3H2zm0 4h4v1H2zm0 2h4v1H2zm5-6h2v1H7zm3 0h2v1h-2zM7 8h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2z"/>
+            </svg>
           )}
           {update.title}
         </div>
-        <div className="h-64 overflow-y-auto p-4 bg-gray-200 rounded-b-lg space-y-2">
+        <div className="h-64 overflow-y-auto p-4 bg-gray-100 rounded-b-lg space-y-2">
           {update.announcements.map((announcement, i) => (
             <a
               key={i}
               href="#"
-              className="bg-white p-2 rounded block cursor-pointer hover:bg-gray-400"
+              className="no-underline text-black bg-white p-2 rounded block cursor-pointer hover:bg-gray-300"
             >
               {announcement}
             </a>
@@ -302,7 +301,7 @@ function Home() {
 
       <div className="flex flex-col md:flex-row w-full p-4 gap-6">
   {/* <!-- First Card (30% width) --> */}
-  <div className="border border-gray-300 rounded-lg shadow-lg w-full md:w-[30%]">
+  <div className="border border-gray-200 rounded-lg shadow-lg w-full md:w-[30%]">
   <div className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center" style={{backgroundColor:"#0384C1"}}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -329,7 +328,7 @@ function Home() {
   </div>
 
   {/* <!-- Second Card (70% width) --> */}
-  <div className="border border-gray-300 rounded-lg shadow-lg w-full h-full md:w-[70%]">
+  <div className="border border-gray-100 rounded-lg shadow-lg w-full h-full md:w-[70%]">
   <div className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center" style={{backgroundColor:"#0384C1"}}>
       <svg
         xmlns="http://www.w3.org/2000/svg"

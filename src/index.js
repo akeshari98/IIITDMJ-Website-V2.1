@@ -20,6 +20,7 @@ import Register from "./pages/Register";
 import SignUpMessage from "./pages/test/SignUpMessage";
 
 //more pages
+import BoardOfGoverners from "./pages/more/boardofgoverners"
 import Club from "./pages/more/Club";
 import Event from "./pages/more/Event";
 import Gallery from "./pages/more/Gallery";
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: "/club",
         element: <Club />,
+      },
+      {
+        path: "/boardofgoverners",
+        element: <BoardOfGoverners />,
       },
       {
         path: "/event",
