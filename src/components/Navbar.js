@@ -58,11 +58,10 @@ const NavLink = [
     id: "06",
     name: "People",
     link: [
-      { "Faculty": "/club" },
-      { "Courses": "/courses" },
-      { "About": "/about" },
-      { "Contact": "/contact" },
-      { "Gallery": "/" },
+      { "Faculty": "/" },
+      { "Research Staff": "/researchstaff" },
+      { "Office Administration": "/officeadministration" },
+      { "Staff": "/staff" },
     ],
   },
   {

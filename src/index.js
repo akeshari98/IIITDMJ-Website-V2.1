@@ -44,6 +44,9 @@ import News from "./pages/more/News";
 import Saptadhara from "./pages/more/Saptadhara";
 import Step from "./pages/more/Step";
 import StudentCorner from "./pages/more/StudentCorner";
+import ResearchStaff from "./pages/more/people/researchstaff"
+import OfficeAdministration from "./pages/more/people/officeadministration"
+import Staff from "./pages/more/people/staff"
 
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
@@ -194,6 +197,18 @@ const router = createBrowserRouter([
       {
         path: "/deanstudents",
         element: <DeanStudents />,
+      },
+      {
+        path: "/researchstaff",
+        element: <ResearchStaff />,
+      },
+      {
+        path: "/officeadministration",
+        element: <OfficeAdministration />,
+      },
+      {
+        path: "/staff",
+        element: <Staff />,
       },
       {
         path: "/event",
