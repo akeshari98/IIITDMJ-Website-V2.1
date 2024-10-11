@@ -27,6 +27,14 @@ import OtherAdministration from "./pages/more/administration/otheradministration
 import Senate from "./pages/more/administration/senate";
 import BuildingWorksCommittee from "./pages/more/administration/buildingworkscommittee";
 import AdministrativeStructure from "./pages/more/administration/administrativestructure";
+import BOGminutes from "./pages/more/administration/bogminutes";
+import BOGagenda from "./pages/more/administration/bogagenda";
+import FCminutes from "./pages/more/administration/fcminutes";
+import FCagenda from "./pages/more/administration/fcagenda";
+import Senateminutes from "./pages/more/administration/senateminutes";
+import Senateagenda from "./pages/more/administration/senateagenda";
+import Buildingminutes from "./pages/more/administration/buildingminutes";
+import Buildingagenda from "./pages/more/administration/buildingagenda";
 import DeanAcademics from "./pages/more/deans/deanacademics"
 import DeanStudents from "./pages/more/deans/deanstudents"
 import Club from "./pages/more/Club";
@@ -36,6 +44,9 @@ import News from "./pages/more/News";
 import Saptadhara from "./pages/more/Saptadhara";
 import Step from "./pages/more/Step";
 import StudentCorner from "./pages/more/StudentCorner";
+import ResearchStaff from "./pages/more/people/researchstaff"
+import OfficeAdministration from "./pages/more/people/officeadministration"
+import Staff from "./pages/more/people/staff"
 
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
@@ -136,6 +147,10 @@ const router = createBrowserRouter([
         element: <OtherAdministration />,
       },
       {
+        path: "/senate",
+        element: <Senate />,
+      },
+      {
         path: "/buildingworkscommittee",
         element: <BuildingWorksCommittee />,
       },
@@ -144,12 +159,56 @@ const router = createBrowserRouter([
         element: <AdministrativeStructure />,
       },
       {
+        path: "/bogminutes",
+        element: <BOGminutes />,
+      },
+      {
+        path: "/bogagenda",
+        element: <BOGagenda />,
+      },
+      {
+        path: "/fcminutes",
+        element: <FCminutes />,
+      },
+      {
+        path: "/fcagenda",
+        element: <FCagenda />,
+      },
+      {
+        path: "/senateminutes",
+        element: <Senateminutes />,
+      },
+      {
+        path: "/senateagenda",
+        element: <Senateagenda />,
+      },
+      {
+        path: "/buildingminutes",
+        element: <Buildingminutes/>,
+      },
+      {
+        path: "/buildingagenda",
+        element: <Buildingagenda />,
+      },
+      {
         path: "/deanacademics",
         element: <DeanAcademics />,
       },
       {
         path: "/deanstudents",
         element: <DeanStudents />,
+      },
+      {
+        path: "/researchstaff",
+        element: <ResearchStaff />,
+      },
+      {
+        path: "/officeadministration",
+        element: <OfficeAdministration />,
+      },
+      {
+        path: "/staff",
+        element: <Staff />,
       },
       {
         path: "/event",

@@ -5,14 +5,21 @@ import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
 
+    const links = [
+        { name:"Link 1", href: "/" },
+        { name:"Link 2", href: "/" },
+        { name:"Link 3", href: "/" },
+        { name:"Link 4", href: "/" },
+      ];
+
   const quickLinks = [
     { name:"Board of Governers", href: "/boardofgoverners" },
-    { name:"Finance Committee", href: "/financecommittee" },
+    // { name:"Finance Committee", href: "/financecommittee" },
     // { name:"General Administration", href: "/generaladministration" },
     // { name:"Other Administration", href: "/otheradministration" },
     { name:"Senate", href: "/senate" },
     { name:"Building Works Committee", href: "/buildingworkscommittee" },
-    // { name:"Administrative Structure", href: "/administrativestructure" },
+    { name:"Administrative Structure", href: "/administrativestructure" },
   ];
 
 
@@ -24,7 +31,7 @@ const MainPage = () => {
         style={{ backgroundImage: `url(${college_img1})` }}
       >
         <h1 className="absolute inset-0 flex items-center justify-center text-white text-5xl font-bold">
-          Administrative Structure
+          Senate Agenda
         </h1>
       </div>
 
@@ -45,66 +52,23 @@ const MainPage = () => {
               <path d="M2 3h10v2H2zm0 3h4v3H2zm0 4h4v1H2zm0 2h4v1H2zm5-6h2v1H7zm3 0h2v1h-2zM7 8h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1H7zm-3 2h2v1H7zm3 0h2v1H7zm-3 2h2v1H7zm3 0h2v1H7z" />
             </svg>
             <h2 className="text-3xl font-semibold mb-4">
-              College Administrative Structure
+                Senate Agenda
             </h2>
           </div>
 
           {/* Text content area with formatted text and circular bullets */}
-        <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-        <p className="text-gray-700 mb-4 font-semibold">
-        The Institute was initially governed under MOA of the Institute, but after the enactment of the IIIT Act 2014, the Institute is now governed by it.  As per the said Act the following are authorities of the Institute:
-        </p>
-
-        {/* <h4 className="text-xl font-semibold mb-2">Key Points</h4> */}
-        <ul className="list-none ml-4 mb-4 font-semibold">
-            <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
-            Board of Governors
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
-            Senate
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
-            Finance Committee
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
-            Building and Works Committee
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
-            Research Council
-            </li>
-        </ul>
-        <p className="text-gray-700 mb-4 font-semibold">
-            The Board of Governors is the principle executive body of the Institute, with an eminent technologist or industrialist or educationist as its Chairman who is nominated by the Visitor. The other members of the Board consist of persons who are chosen as per clause 13 (2) of the said Act.
-        </p>
-        <p className="text-gray-700 mb-4 font-semibold">
-        The Board is responsible for the general superintendence, direction and control of the affairs of the Institute and possesses the power to frame, amend, modify or rescind the Statutes and Ordinances governing the affairs of the Institute. The Director apart from being the Executive and Academic Head of the Institute is also a member of the Board with Registrar as its ex-officio Secretary. The day-to-day administration of the Institute is to be looked after by the Director of the Institute and his administrative team comprising of:
-        </p>
-        {/* <h4 className="text-xl font-semibold mb-2">Responsibilities of the Administration</h4> */}
-        <ul className="list-none ml-4 mb-4">
-            <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
-            The Deputy Director  (to be nominated on appointment)
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
-            The Deans
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
-            The Heads of various disciplines
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
-            The Registrar
-            </li>
-        </ul>
-
-        </div>
+            <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
+                <ul className="list-disc ml-5">
+                    {links.map((link, index) => (
+                    <li key={index} className="flex items-start ml-3 mb-2">
+                        <span className="w-2 h-2 mt-2 mr-2 bg-black rounded-full"></span>
+                        <a href={link.href} className="-mt-1 text-xl font-semibold text-blue-500 no-underline">
+                        {link.name}
+                        </a>
+                    </li>
+                    ))}
+                </ul>
+            </div>
         
         </div>
 

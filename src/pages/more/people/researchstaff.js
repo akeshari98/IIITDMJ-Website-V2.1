@@ -1,87 +1,61 @@
-import React from "react";
-import Card from "../../../components/CardNew";
+import React from 'react';
+import Card from '../../../components/CardNew';
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
-const MainPage = () => {
+const research = () => {
   const cardsData = [
     {
       image: profile,
-      name: "Prof. Bhartendu Kumar  Singh",
-      designation: "Director",
-      role: "Chairperson (Ex-Officio)",
-      address:
-        "PDPM-IIITDM Jabalpur",
+      name: 'Mr. Aditya Sharma',
+      designation: 'Technical Officer',
+      role: 'Computer Science & Engineering',
+      address: '',
       contact: [],
-      mail: ["director@iiitdmj.ac.in"],
+      mail: ["adityasharma@iiitdmj.ac.in"],
     },
     {
       image: profile,
-      name: "Shri Atul Kumar Pandey",
-      designation: "Project Engineer-cum-Estate Officer",
-      role: "Member",
-      address:
-        "Indian Institute of Technology Indore Khandwa Road, Simrol Indore - 453 552",
+      name: 'Mr. Awadhesh K. Singh',
+      designation: 'Technical Officer',
+      role: 'Mechanical Engineering',
+      address: 'Design, Analysis and Development of Interdisciplinary Systems(Mechatronics, MEMS and NEMS)',
       contact: [],
-      mail: ["atul.pandey@iiti.ac.in"],
+      mail: ["aks@iiitdmj.ac.in"],
     },
     {
       image: profile,
-      name: "Er. Jayant K Gupta",
-      designation: "SE (Civil), CPWD, bhopal",
-      role: "Member",
-      address:
-        "",
+      name: 'Dr. Dada Saheb Ramteke',
+      designation: 'Technical Officer',
+      role: 'Mechanical Engineering',
+      address: 'Condition monitoring, gear fault diagnosis, noise and vibration, signal processing, and machine learning',
       contact: [],
-      mail: ["sebhopalcpwd@gmail.com"],
-    },
-    {
-      image: profile,
-      name: "Er. Sunil Trivedi",
-      designation: "SE (Electrical), MPPKVVCL",
-      role: "Member",
-      address:
-        "",
-      contact: [],
-      mail: ["secityjabalpur@gmail.com"],
-    },
-    {
-      image: profile,
-      name: "Mrs. Swapnali Gadekar",
-      designation: "Acting Registrar and Officer-In-Charge Estate",
-      role: "Secretary (Ex-Offico)",
-      address:
-        "PDPM IIITDM Jabalpur",
-      contact: [],
-      mail: ["registrar@iiitdmj.ac.in"],
+      mail: ["dsramteke@iiitdmj.ac.in"],
     },
   ];
 
   const quickLinks = [
-    { name:"Board of Governers", href: "/boardofgoverners" },
-    { name:"Finance Committee", href: "/financecommittee" },
-    // { name:"General Administration", href: "/generaladministration" },
-    // { name:"Other Administration", href: "/otheradministration" },
-    // { name:"Senate", href: "/senate" },
-    { name:"Building Works Committee", href: "/buildingworkscommittee" },
-    { name:"Administrative Structure", href: "/administrativestructure" },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Blog', href: '/blog' },
   ];
 
   // Downloads data
   const downloads = [
-    { name: "Building Works Committee Minutes", href: "/buildingminutes" },
-    { name: "Building Works Committee Agenda", href: "/buildingagenda" },
+    { name: 'Annual Report 2023', href: '/downloads/annual_report_2023.pdf' },
+    { name: 'Board Meeting Minutes', href: '/downloads/board_meeting_minutes.pdf' },
+    { name: 'Governors List', href: '/downloads/governors_list.pdf' },
+    { name: 'Policy Document', href: '/downloads/policy_document.pdf' },
   ];
 
   return (
     <div>
       {/* Full-width image with centered heading */}
-      <div
-        className="relative w-full h-96 bg-[length:100%_100%] bg-no-repeat bg-center"
-        style={{ backgroundImage: `url(${college_img1})` }}
-      >
+      <div className="relative w-full h-96 bg-[length:100%_100%] bg-no-repeat bg-center" style={{ backgroundImage: `url(${college_img1})` }}>
         <h1 className="absolute inset-0 flex items-center justify-center text-white text-5xl font-bold">
-          Building Works Committee
+        Research Staff of IIITDM
         </h1>
       </div>
 
@@ -89,21 +63,18 @@ const MainPage = () => {
       <div className="container mx-auto mt-8 mb-8 flex flex-col md:flex-row">
         {/* 70% section */}
         <div className="w-full md:w-9/12 px-4 mb-8 md:mb-0">
-          <div className="flex flex-row mb-4">
+          <div className="flex flex-row mb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
               fill="black"
-              className="bi bi-newspaper w-16 h-16 mr-5 -mt-2 inline-block"
+              className="bi bi-people w-16 h-16 mr-5 inline-block -mt-5"
               viewBox="0 0 16 16"
             >
-              <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5z" />
-              <path d="M2 3h10v2H2zm0 3h4v3H2zm0 4h4v1H2zm0 2h4v1H2zm5-6h2v1H7zm3 0h2v1h-2zM7 8h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1H7zm-3 2h2v1H7zm3 0h2v1H7zm-3 2h2v1H7zm3 0h2v1H7z" />
+              <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
             </svg>
-            <h2 className="text-3xl font-semibold mb-4">
-            Building & Works Committee
-            </h2>
+            <h2 className="text-3xl font-semibold mb-4">Research Staff of IIITDM</h2>
           </div>
 
           {/* Subheading for card section */}
@@ -119,6 +90,7 @@ const MainPage = () => {
           </div>
           {/* </div> */}
         </div>
+
 
         {/* 30% Quick Links section */}
         <div className="w-full md:w-3/12 px-4">
@@ -179,4 +151,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default research;
