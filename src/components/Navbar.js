@@ -170,7 +170,7 @@ const Navbar = () => {
               {/* Reduced space between links */}
               {NavLink.map((item, index) => (
                 <div key={index} className="relative group">
-                  <button className="flex items-center px-3 py-2 text-black hover:text-blue-600 focus:outline-none">
+                  <button className="font-semibold flex items-center px-3 py-2 text-black hover:text-blue-600 focus:outline-none">
                     {item.name}
                     {Array.isArray(item.link) &&
                       item.link.length > 0 && ( // Only render the SVG if there are sub-links
@@ -196,10 +196,7 @@ const Navbar = () => {
                         const subItemName = Object.keys(subItem)[0];
                         const subItemLink = subItem[subItemName];
                         return (
-                          <li
-                            key={subIndex}
-                            className="w-full hover:bg-gray-200 px-5 py-2"
-                          >
+                          
                             <Link
                               to={subItemLink}
                               className={`block no-underline ${
@@ -208,9 +205,13 @@ const Navbar = () => {
                                   : "text-black"
                               }`}
                             >
-                              {subItemName}
+                              <li
+                            key={subIndex}
+                            className="font-normal w-full hover:bg-blue-200 px-5 py-2"
+                          >{subItemName}</li>
+                              
                             </Link>
-                          </li>
+                          
                         );
                       })}
                     </ul>
@@ -261,7 +262,7 @@ const Navbar = () => {
           {/* Image above the list of links */}
           <div className="flex justify-center mb-4">
             <Link to="/" className="w-28" onClick={closeMenuOnClick}>
-              <span className="sr-only">G-Campus</span>
+              <span className="sr-only">IIITDMJ</span>
               <img className="w-full" src={Logo1} alt="logo" />
             </Link>
           </div>
@@ -303,10 +304,7 @@ const Navbar = () => {
                         const subItemName = Object.keys(subItem)[0];
                         const subItemLink = subItem[subItemName];
                         return (
-                          <li
-                            key={subIndex}
-                            className="hover:bg-gray-200 px-4 py-1"
-                          >
+                          
                             <Link
                               to={subItemLink}
                               className={`block no-underline ${
@@ -316,9 +314,12 @@ const Navbar = () => {
                               }`}
                               onClick={closeMenuOnClick}
                             >
-                              {subItemName}
+                              <li
+                            key={subIndex}
+                            className="font-normal hover:bg-blue-200 px-4 py-1"
+                          >{subItemName}</li>
+                              
                             </Link>
-                          </li>
                         );
                       })}
                     </ul>
