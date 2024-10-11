@@ -314,6 +314,7 @@ const Navbar = () => {
                                   ? "font-bold text-blue-600"
                                   : "text-black"
                               }`}
+                              onClick={closeMenuOnClick}
                             >
                               {subItemName}
                             </Link>

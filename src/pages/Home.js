@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { Newspaper } from "lucide-react";
 import axios from "axios";
 import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
 import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg";
@@ -14,6 +14,9 @@ import Marquee from "./Marquee";
 import Marquee2 from "./Marquee2";
 import ImageSlider from "./ImageSlider";
 import ImageGallery from "../components/ImageGallery";
+import NewsSlider from "../components/NewsSlider/NewsSlider";
+import Notices from "../components/Notices";
+import AboutAndVisitors from "../components/AboutAndVisitor";
 const slides = [
   {
     image: college_img1,
@@ -21,7 +24,7 @@ const slides = [
       title: "Innovative Solutions",
       description: "We provide cutting-edge solutions tailored to your needs.",
     },
-    readMoreUrl:'#'
+    readMoreUrl: "#",
   },
   {
     image: college_img2,
@@ -29,7 +32,7 @@ const slides = [
       title: "Advanced Technologies",
       description: "Harness the power of technology for your business growth.",
     },
-    readMoreUrl:'#'
+    readMoreUrl: "#",
   },
   {
     image: college_img3,
@@ -37,7 +40,7 @@ const slides = [
       title: "Future-Ready Strategies",
       description: "Prepare for tomorrow with our forward-thinking strategies.",
     },
-    readMoreUrl:'#'
+    readMoreUrl: "#",
   },
 ];
 
@@ -170,23 +173,23 @@ function Home() {
     <div>
       <main>
         {/* Hero section */}
-        <div className="border-2 w-full px-0 mt-0">
+        {/* <div className="border-2 w-full px-0 mt-0">
           <Marquee data={notices} />
-        </div>
+        </div> */}
         <div>
           <ImageSlider slides={slides} />
         </div>
         <br></br>
         <div className="flex flex-row items-center w-[90vw] ml-auto mr-auto">
           <h4 className="h-8 w-auto whitespace-nowrap font-semibold">
-            Course Update:
+            Impotant Updates:
           </h4>
           <div className="w-full px-0 mt-0 ml-4">
             <Marquee2 data={notis} />
           </div>
         </div>
 
-        <section className="px-8 pt-6 pb-2 text-center md:py-16">
+        <section className="px-8  pt-6 pb-2 text-center md:py-16">
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-col items-center">
               {/* ProductHunt badge - Product of the month - 1st */}
@@ -244,17 +247,58 @@ function Home() {
               />
             </div> */}
           </div>
-          <div className="container px-5 pt-2 mx-auto mt-10">
-            <div className="flex flex-col text-center w-full">
-              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-                Latest Updates
+          <div className="container  pt-2 mx-auto mt-10">
+            <div className="flex flex-col w-full text-left">
+              <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+                Latest <span style={{ color: "#008100" }}>Updates</span>
               </h1>
-              <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+              {/* Horizontal line */}
+
+              <p className="lg:w-2/3 leading-relaxed text-base">
                 Get all the latest information here
               </p>
+              <div className="w-12 h-1 bg-[#008100] my-2"></div>
             </div>
-            <div className="w-full p-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-gray-100">
+            <NewsSlider />
+            </div>
+            <div className="bg-gray-100 py-8">
+              <div className="max-w-7xl mx-auto">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <div className="flex flex-col w-full text-left">
+                      <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+                        Recent{" "}
+                        <span style={{ color: "#008100" }}>Announcements</span>
+                      </h1>
+                      {/* Horizontal line */}
+                      <div className="w-12 h-1 bg-[#008100] my-2"></div>
+                    </div>
+
+                    {/* <div className="w-12 h-1 bg-[#008100] my-2"></div> */}
+                    {/* <Newspaper className="w-6 h-6 sm:w-8 sm:h-8 text-red-600" /> */}
+                  </div>
+                </div>
+
+                <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
+                  <div className="lg:w-2/3">
+                    <div className="bg-white rounded-lg shadow-md ">
+                      <h3 className="text-xl font-semibold mb-4">
+                        Achievements
+                      </h3>
+                      <NewsSlider />
+                    </div>
+                  </div>
+                  <div className="lg:w-1/3">
+                    <div className="bg-white rounded-lg shadow-md pt-1">
+                      <Notices />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <div className="w-full p-4"> */}
+            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {updates.map((update, index) => (
                   <div
                     key={index}
@@ -264,7 +308,7 @@ function Home() {
                       className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center"
                       style={{ backgroundColor: update.bgColor }}
                     >
-                      {/* Conditionally render different SVG icons */}
+                      
                       {update.title === "Achievements" && (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -319,330 +363,22 @@ function Home() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row w-full p-4 gap-6">
-              {/* <!-- First Card (30% width) --> */}
-              <div className="border border-gray-200 rounded-lg shadow-lg w-full md:w-[30%]">
-                <div
-                  className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center"
-                  style={{ backgroundColor: "#0384C1" }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="white"
-                    className="bi bi-mic w-6 h-6 mr-3"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5" />
-                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3" />
-                  </svg>
-                  Director's Desk
-                </div>
-                <div className="p-2 bg-gray-100 rounded-b-lg flex flex-col md:flex-row">
-                  <div className="w-full h-64 overflow-hidden p-2 bg-gray-100 rounded-b-lg">
-                    <img
-                      src="https://via.placeholder.com/300"
-                      alt="Image for Card 2"
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* <!-- Second Card (70% width) --> */}
-              <div className="border border-gray-100 rounded-lg shadow-lg w-full h-full md:w-[70%]">
-                <div
-                  className="text-white text-lg font-bold p-4 rounded-t-lg flex items-center justify-center"
-                  style={{ backgroundColor: "#0384C1" }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="white"
-                    className="bi bi-people w-6 h-6 mr-3"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
-                  </svg>
-                  Card 2
-                </div>
-                <div className="p-2 bg-gray-100 rounded-b-lg flex flex-col md:flex-row">
-                  {/* Image Section */}
-                  <div className="w-full md:w-1/2 h-64 overflow-hidden p-2 bg-gray-100 rounded-b-lg">
-                    <img
-                      src="https://via.placeholder.com/300"
-                      alt="Image for Card 2"
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
-                  {/* Text Section */}
-                  <div className="w-full md:w-1/2 p-4">
-                    <p className="text-gray-700">
-                      This is the text info for the second card. On smaller
-                      screens, the content will be stacked in a column, while on
-                      larger screens it will appear side by side with the image.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </div> */}
+            <AboutAndVisitors/>
+           
           </div>
         </section>
 
         {/* Testimonial section */}
-        <section className="text-gray-600 body-font">
-          <div className="container px-5 pt-2 mx-auto">
-            <div className="flex flex-col text-center w-full mb-20">
-              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-                Invest in Your Future: Explore Our Undergraduate Programs
-              </h1>
-              <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-                Embark on your academic journey at IIITDMJ and explore our
-                diverse range of undergraduate programs! We offer the{" "}
-                <Link
-                  to="/courses/bcom"
-                  className="text-indigo-500 hover:underline font-semibold"
-                >
-                  {" "}
-                  Bachelors of Technology (B-Tech)
-                </Link>{" "}
-                for a comprehensive understanding of business, the{" "}
-                <Link
-                  to="/courses/bca"
-                  className="text-indigo-500 hover:underline font-semibold"
-                >
-                  Masters of Technology (M-Tech)
-                </Link>{" "}
-                for mastering the world of technology, and the{" "}
-                <Link
-                  to="/courses/bba"
-                  className="text-indigo-500 hover:underline font-semibold"
-                >
-                  Doctor of Philosophy (PHD){" "}
-                </Link>
-                to hone your leadership and management skills. Choose your path
-                and become a well-equipped professional in today's dynamic
-                world.
-              </p>
-            </div>
-            <div className="flex flex-wrap -m-4 text-center">
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-calculator text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                    <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
-                  </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">
-                    {StudentCount.BCOM}
-                  </h2>
-                  <p className="leading-relaxed">BTech</p>
-                </div>
-              </div>
-
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-briefcase text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5" />
-                  </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">
-                    {StudentCount.BBA}
-                  </h2>
-                  <p className="leading-relaxed">BDes</p>
-                </div>
-              </div>
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-laptop text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
-                  </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">
-                    {StudentCount.BCA}
-                  </h2>
-                  <p className="leading-relaxed">MTech</p>
-                </div>
-              </div>
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-laptop text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
-                  </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">
-                    {StudentCount.BCA}
-                  </h2>
-                  <p className="leading-relaxed">MDes</p>
-                </div>
-              </div>
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-laptop text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
-                  </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">
-                    {StudentCount.BCA}
-                  </h2>
-                  <p className="leading-relaxed">PHD</p>
-                </div>
-              </div>
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-                <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">
-                    {StudentCount.Total}
-                  </h2>
-                  <p className="leading-relaxed">TOTAL</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Features section */}
         <section className="px-2 pt-20 md:p-10">
           <div className="mx-auto max-w-6xl space-y-8 md:space-y-20">
             {/* 1/3 and 2/3 */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-              <div className="flex flex-col rounded-3xl bg-layer-2 p-8">
-                <h2 className="bg-gradient-to-r  font-sans text-2xl font-semibold text-gradient gradient-peach md:text-3xl">
-                  Dynamic Student Showcase
-                </h2>
-                <p className="mt-4 text-lg text-justify">
-                  Implement a visually appealing and dynamic student showcase
-                  prominently on the home page of IIITDMJ. This feature should
-                  highlight the diverse talents and achievements of students
-                  through a rotating carousel or grid display. Include
-                  high-quality images, brief bios, and links to individual
-                  student profiles, allowing visitors to learn more about each
-                  student's academic journey, extracurricular activities, and
-                  notable accomplishments. This dynamic showcase can be updated
-                  regularly to reflect the evolving achievements of the student
-                  body, fostering a sense of pride and community engagement.
-                </p>
-              </div>
-              <div className="rounded-3xl bg-layer-2  p-8 md:col-span-2">
-                {/* <h2 className="bg-gradient-to-r bg-clip-text text-2xl font-semibold text-gradient gradient-cotton-candy md:text-3xl">
-                  You're in control.
-                </h2>
-                <p className="mt-4 text-lg">
-                  All of your stats are displayed in an easy to understand
-                  dashboard. Make decisions with confidence.
-                </p> */}
-                <img className="bg-cover" src={home_img1} alt="" />
-              </div>
-            </div>
 
             {/* 2/3 and 1/3 */}
-            <div className="lg:grid  flex flex-col-reverse  gap-6 lg:grid-cols-3">
-              <div className="rounded-3xl bg-layer-2 p-8 md:col-span-2">
-                {/* <h2 className="bg-gradient-to-r text-2xl font-semibold text-gradient gradient-cotton-candy md:text-3xl">
-                  You're in control.
-                </h2>
-                <p className="mt-4 text-lg">
-                  All of your stats are displayed in an easy to understand
-                  dashboard. Make decisions with confidence.
-                </p> */}
-                <img className="" src={home_img2} alt="" />
-              </div>
-              <div className="flex flex-col rounded-3xl bg-layer-2 p-8">
-                <h2 className="bg-gradient-to-r font-sans text-2xl font-semibold text-gradient gradient-peach md:text-3xl">
-                  Interactive Campus Map with Student Spotlights
-                </h2>
-                <p className="mt-4 text-lg text-justify">
-                  Enhance the user experience by integrating an interactive
-                  campus map on the home page that not only provides a visual
-                  layout of the college grounds but also incorporates pop-ups or
-                  markers linked to specific student achievements or projects.
-                  When users hover over designated areas, they can access
-                  information about the outstanding contributions of students
-                  associated with that location. This interactive feature not
-                  only showcases individual accomplishments but also allows
-                  prospective students, parents, and other visitors to explore
-                  the campus and discover the vibrant student community at
-                  IIITDMJ.
-                </p>
-              </div>
-            </div>
 
             {/* 1/3 and 2/3 */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-              <div className="flex flex-col rounded-3xl bg-layer-2 p-8">
-                <h2 className="bg-gradient-to-r font-sans text-2xl font-semibold text-gradient gradient-peach md:text-3xl">
-                  Live Social Feed Aggregator{" "}
-                </h2>
-                <p className="mt-4 text-lg text-justify">
-                  Foster a sense of community and real-time engagement by
-                  incorporating a live social feed aggregator on the home page.
-                  This feature should aggregate posts, photos, and updates from
-                  various social media platforms using relevant hashtags or user
-                  mentions associated with IIITDMJ. By curating content directly
-                  from students' social media accounts, the website can provide
-                  an authentic and dynamic glimpse into campus life. This
-                  real-time feed not only showcases the students' daily
-                  experiences but also promotes a sense of connectivity and
-                  inclusivity among the college community. Ensure that the feed
-                  is moderated to maintain a positive and supportive online
-                  environment.
-                </p>
-              </div>
-              <div className="rounded-3xl bg-layer-2 p-8 md:col-span-2">
-                {/* <h2 className="bg-gradient-to-r text-2xl font-semibold text-gradient gradient-cotton-candy md:text-3xl">
-                  You're in control.
-                </h2>
-                <p className="mt-4 text-lg">
-                  All of your stats are displayed in an easy to understand
-                  dashboard. Make decisions with confidence.
-                </p> */}
-                <img className="" src={home_img3} alt="" />
-              </div>
-            </div>
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3"></div>
           </div>
           <div className="flex justify-center items-center flex-col gap-10 ">
             {CellArrayData.map((item, key) => {
