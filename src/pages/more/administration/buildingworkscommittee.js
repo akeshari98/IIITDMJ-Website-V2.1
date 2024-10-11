@@ -58,22 +58,19 @@ const MainPage = () => {
   ];
 
   const quickLinks = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
-    { name: "Blog", href: "/blog" },
+    { name:"Board of Governers", href: "/boardofgoverners" },
+    { name:"Finance Committee", href: "/financecommittee" },
+    // { name:"General Administration", href: "/generaladministration" },
+    // { name:"Other Administration", href: "/otheradministration" },
+    // { name:"Senate", href: "/senate" },
+    { name:"Building Works Committee", href: "/buildingworkscommittee" },
+    { name:"Administrative Structure", href: "/administrativestructure" },
   ];
 
   // Downloads data
   const downloads = [
-    { name: "Annual Report 2023", href: "/downloads/annual_report_2023.pdf" },
-    {
-      name: "Board Meeting Minutes",
-      href: "/downloads/board_meeting_minutes.pdf",
-    },
-    { name: "Governors List", href: "/downloads/governors_list.pdf" },
-    { name: "Policy Document", href: "/downloads/policy_document.pdf" },
+    { name: "Building Works Committee Minutes", href: "/buildingminutes" },
+    { name: "Building Works Committee Agenda", href: "/buildingagenda" },
   ];
 
   return (
@@ -142,7 +139,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {quickLinks.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 hover:underline">
+                <a href={link.href} className="text-blue-500 no-underline">
                   {link.name}
                 </a>
               </li>
@@ -169,7 +166,7 @@ const MainPage = () => {
               <li key={index} className="mb-2 -ml-3">
                 <a
                   href={download.href}
-                  className="text-blue-500 hover:underline"
+                  className="text-blue-500 no-underline"
                 >
                   {download.name}
                 </a>

@@ -161,7 +161,7 @@ const  student= () => {
           <ul className="list-disc ml-5">
             {quickLinks.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 hover:underline">
+                <a href={link.href} className="text-blue-500 no-underline">
                   {link.name}
                 </a>
               </li>
@@ -188,7 +188,7 @@ const  student= () => {
               <li key={index} className="mb-2 -ml-3">
                 <a
                   href={download.href}
-                  className="text-blue-500 hover:underline"
+                  className="text-blue-500 no-underline"
                 >
                   {download.name}
                 </a>

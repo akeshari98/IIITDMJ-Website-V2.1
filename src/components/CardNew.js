@@ -27,7 +27,7 @@ const Card = ({ image, name, designation, address, contact, mail, role }) => {
         {mail && (
           <div className="text-gray-600">
             {mail.map((item, index) => (
-              <p className="text-blue-500 break-words" key={index}>{item}</p> 
+              <a href="" className="no-underline text-blue-500 break-words" key={index}>{item}</a> 
             ))}
           </div>
         )}
