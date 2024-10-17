@@ -8,7 +8,7 @@ const ImageZoomView = ({ img, zoomToggle, setZoomToggle }) => {
         onClick={() => setZoomToggle(!zoomToggle)}
         src={img}
         alt={img}
-        className="object-cover md:h-full h-auto  w-auto  cursor-zoom-out rounded-lg"
+        className="object-cover md:h-full h-full  w-auto  cursor-zoom-out rounded-lg"
       />
 
       <a

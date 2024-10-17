@@ -1,70 +1,92 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
-  const cardsData = [
-    {
-      image: profile,
-      name: "Shri Deepak Ghaisas",
-      designation: "",
-      role: "Chairman, BOG",
-      address:
-        "Gencoval Strategic Services Pvt. Ltd. 501, Windfall, Sahar Plaza Complex, Andheri, Kurla Road, Andheri (East), Mumbai - 400059",
-      contact: ["+91 22 42547001 (office)", "+91 98765 43210 (mobile)"],
-      mail: ["deepak.ghaisas@gencoval.com", "info@gencoval.com"],
-    },
-    {
-      image: profile,
-      name: "Shri Sanjay Dubey",
-      designation: "",
-      role: "Member",
-      address:
-        "Additional Chief Secretary, Department of Science and Technology, Government of MP, Mantralaya - 462004, Bhopal",
-      contact: [],
-      mail: [],
-    },
-    {
-      image: profile,
-      name: "Smt. Saumya Gupta",
-      designation: "",
-      role: "Member",
-      address:
-        "Joint Secretary (IIITs), Room No. 107-C, Shastri Bhawan, New Delhi, 011-23073687",
-      contact: [],
-      mail: ["saumya.gupta@ias.nic.in"],
-    },
-    {
-      image: profile,
-      name: "Shri A.K. Pipal",
-      designation: "",
-      role: "Member",
-      address:
-        "Scientist ‘G’ & Group Coordinator, Ministry of Electronics and Information Technology, Room No. 4002, Electronics Niketan, 6, CGO Complex, New Delhi – 110 003",
-      contact: ["011-24364777"],
-      mail: ["pipal@meity.gov.in"],
-    },
-    {
-      image: profile,
-      name: "Prof. Deepak Kumar Srivastava",
-      designation: "",
-      role: "Member",
-      address:
-        "Director, IIM Ranchi, 5th Floor, Suchana Bhawan, Meur’s Road, Audrey House Campus, Jharkhand 834008",
-      contact: ["+91 0651 2280113", "+91 0651 2280940"],
-      mail: ["director.office@iimranchi.ac.in", "office.ipc@iimranchi.ac.in"],
-    },
-    {
-      image: profile,
-      name: "Ms. Swapnali D. Gadekar",
-      designation: "",
-      role: "Secretary, BOG",
-      address: "Acting Registrar, PDPM IIITDM Jabalpur",
-      contact: ["0761-2794021", "0761-2794025", "0761-2794092"],
-      mail: ["pipal@meity.gov.in"],
-    },
-  ];
+  const [cardsData, setCardsData] = useState([]); // State to hold the fetched data
+  const [loading, setLoading] = useState(true); // State to show loading state
+  const [error, setError] = useState(null); // State to handle errors
+
+  useEffect(() => {
+    // Fetch the BOG data from the backend route
+    const fetchCardsData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/bog"); // Replace with your API endpoint
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await response.json(); // Parse the JSON response
+        setCardsData(data); // Update cardsData with the fetched data
+      } catch (err) {
+        setError(err.message); // Handle errors
+      } finally {
+        setLoading(false); // Set loading to false after data is fetched
+      }
+    };
+
+    fetchCardsData();
+  }, []);
+  // const cardsData = [
+  //   {
+  //     image: profile,
+  //     name: "Shri Deepak Ghaisas",
+  //     designation: "",
+  //     role: "Chairman, BOG",
+  //     address: "Gencoval Strategic Services Pvt. Ltd. 501, Windfall, Sahar Plaza Complex, Andheri, Kurla Road, Andheri (East), Mumbai - 400059",
+  //     contact: ["+91 22 42547001 (office)", "+91 98765 43210 (mobile)"],
+  //     mail: ["deepak.ghaisas@gencoval.com", "info@gencoval.com"],
+  //   },
+  //   {
+  //     image: profile,
+  //     name: "Shri Sanjay Dubey",
+  //     designation: "",
+  //     role: "Member",
+  //     address:
+  //       "Additional Chief Secretary, Department of Science and Technology, Government of MP, Mantralaya - 462004, Bhopal",
+  //     contact: [],
+  //     mail: [],
+  //   },
+  //   {
+  //     image: profile,
+  //     name: "Smt. Saumya Gupta",
+  //     designation: "",
+  //     role: "Member",
+  //     address:
+  //       "Joint Secretary (IIITs), Room No. 107-C, Shastri Bhawan, New Delhi, 011-23073687",
+  //     contact: [],
+  //     mail: ["saumya.gupta@ias.nic.in"],
+  //   },
+  //   {
+  //     image: profile,
+  //     name: "Shri A.K. Pipal",
+  //     designation: "",
+  //     role: "Member",
+  //     address:
+  //       "Scientist ‘G’ & Group Coordinator, Ministry of Electronics and Information Technology, Room No. 4002, Electronics Niketan, 6, CGO Complex, New Delhi – 110 003",
+  //     contact: ["011-24364777"],
+  //     mail: ["pipal@meity.gov.in"],
+  //   },
+  //   {
+  //     image: profile,
+  //     name: "Prof. Deepak Kumar Srivastava",
+  //     designation: "",
+  //     role: "Member",
+  //     address:
+  //       "Director, IIM Ranchi, 5th Floor, Suchana Bhawan, Meur’s Road, Audrey House Campus, Jharkhand 834008",
+  //     contact: ["+91 0651 2280113", "+91 0651 2280940"],
+  //     mail: ["director.office@iimranchi.ac.in", "office.ipc@iimranchi.ac.in"],
+  //   },
+  //   {
+  //     image: profile,
+  //     name: "Ms. Swapnali D. Gadekar",
+  //     designation: "",
+  //     role: "Secretary, BOG",
+  //     address: "Acting Registrar, PDPM IIITDM Jabalpur",
+  //     contact: ["0761-2794021", "0761-2794025", "0761-2794092"],
+  //     mail: ["pipal@meity.gov.in"],
+  //   },
+  // ];
 
   const quickLinks = [
     // { name:"Board of Governers", href: "/boardofgoverners" },

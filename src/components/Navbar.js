@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo1 from "../resources/images/IIIT_logo.png"; // Hamburger menu logo
 import Logo2 from "../resources/images/IIIT_logo.png"; // Desktop view logo
-
+import TranslateButton from "./Gtranslate";
 const NavLink = [
   {
     id: "01",

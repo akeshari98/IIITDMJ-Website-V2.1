@@ -3,7 +3,7 @@ import React from 'react';
 const InfoDiv = ({ name, designation, mail,address }) => {
   return (
     <div className="">
-      <div className="mb-2"> {/* Reduced top margin */}
+      <div className="w-full mb-2"> {/* Reduced top margin */}
         {name && <p className="font-semibold break-words -mb-1">{name}</p>} {/* Reduced bottom margin */}
         {designation && <p className="text-gray-400 font-semibold break-words -mb-1">{designation}</p>} {/* Reduced bottom margin */}
         {address && <p className="text-gray-600 break-words -mb-1">{address}</p>}

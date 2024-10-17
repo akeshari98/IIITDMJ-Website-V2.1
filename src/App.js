@@ -5,7 +5,7 @@ import Footer from "./components/footer/footer";
 // import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Loader from "./components/Loader";
-
+import AccessibilityHeader from "./components/AccessibilityHeader";
 function App() {
   const [loading, setLoading] = useState(false);
   const [MoreOptionToggle, setMoreOptionToggle] = useState(false);
@@ -21,9 +21,10 @@ function App() {
   }, [pathname]);
 //added tests
   return (
-    <>
+    <div className="overflow-x-hidden">
       {loading && <Loader loading={loading} />}
       <ScrollToTop />
+      <AccessibilityHeader/>
       <Navbar
         MoreOptionToggle={MoreOptionToggle}
         setMoreOptionToggle={setMoreOptionToggle}
@@ -33,7 +34,7 @@ function App() {
         MoreOptionToggle={MoreOptionToggle}
         setMoreOptionToggle={setMoreOptionToggle}
       />
-    </>
+    </div>
   );
 }
 

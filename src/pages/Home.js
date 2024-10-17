@@ -250,32 +250,32 @@ function Home() {
           <div className="container  pt-2 mx-auto mt-10">
             <div className="flex flex-col w-full text-left">
               <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
-                Latest <span style={{ color: "#008100" }}>Updates</span>
+                Latest <span style={{ color: "#2563EB" }}>Updates</span>
               </h1>
               {/* Horizontal line */}
 
               <p className="lg:w-2/3 leading-relaxed text-base">
                 Get all the latest information here
               </p>
-              <div className="w-12 h-1 bg-[#008100] my-2"></div>
+              <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
             </div>
-            <div className="bg-gray-100">
+            <div className="bg-white">
             <NewsSlider />
             </div>
-            <div className="bg-gray-100 py-8">
+            <div className="bg-white py-8">
               <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
                     <div className="flex flex-col w-full text-left">
                       <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
                         Recent{" "}
-                        <span style={{ color: "#008100" }}>Announcements</span>
+                        <span style={{ color: "#2563EB" }}>Announcements</span>
                       </h1>
                       {/* Horizontal line */}
-                      <div className="w-12 h-1 bg-[#008100] my-2"></div>
+                      <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
                     </div>
 
-                    {/* <div className="w-12 h-1 bg-[#008100] my-2"></div> */}
+                    {/* <div className="w-12 h-1 bg-[#2563EB] my-2"></div> */}
                     {/* <Newspaper className="w-6 h-6 sm:w-8 sm:h-8 text-red-600" /> */}
                   </div>
                 </div>
@@ -283,7 +283,7 @@ function Home() {
                 <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
                   <div className="lg:w-2/3">
                     <div className="bg-white rounded-lg shadow-md ">
-                      <h3 className="text-xl font-semibold mb-4">
+                      <h3 className="text-2xl font-semibold mb-4">
                         Achievements
                       </h3>
                       <NewsSlider />

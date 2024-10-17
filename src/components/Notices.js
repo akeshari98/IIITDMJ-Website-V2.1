@@ -29,7 +29,7 @@ const noticeItems = [
 ];
 
 const NoticeCard = ({ title, excerpt, date }) => (
-  <div className="bg-gray-90 shadow-md p-4 mb-4 border-l-4 border-red-600 hover:shadow-lg transition-shadow duration-300">
+  <div className="bg-gray-90 shadow-md p-4 mb-4 border-l-4 border-blue-600 hover:shadow-lg transition-shadow duration-300">
     <div className="flex justify-between items-start mb-2">
       <h3 className="text-lg font-semibold line-clamp-1 text-left">{title}</h3>
       <span className="text-xs text-gray-500 ml-2 whitespace-nowrap">{new Date(date).toLocaleDateString()}</span>
@@ -43,7 +43,7 @@ const Notices = () => {
 
   return (
     <div className="p-2 pt-1 rounded-lg">
-      <h2 className="text-xl font-semibold mb-4">Notices</h2>
+      <h2 className="text-2xl font-semibold mb-4">Notices</h2>
       <div
         className="overflow-y-auto"
         style={{ height: '443px' }} // Adjust this height to match your layout

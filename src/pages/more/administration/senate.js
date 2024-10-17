@@ -212,7 +212,7 @@ const MainPage = () => {
                     Deputy Director
                     </td>
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
-                    To be nominated on appointment
+                      To be nominated on appointment
                     </td>
                 </tr>
                 <tr className="bg-white">
@@ -224,15 +224,12 @@ const MainPage = () => {
                     </td>
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
-                        <div className="grid grid-cols-1">
+                            <div className="grid grid-cols-1">
                             {deans.map((info, index) => (
-                            <div key={index} className="flex items-start">
-                                <span className="mr-2 font-semibold">{index + 1}.</span> {/* Numbering each entry */}
-                                <InfoDiv {...info} />
-                            </div>
+                                <InfoDiv key={index} {...info} />
                             ))}
+                            </div>
                         </div>
-                    </div>
                     </td>
                 </tr>
                 <tr className="bg-gray-50">
@@ -244,15 +241,12 @@ const MainPage = () => {
                     </td>
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
-                        <div className="grid grid-cols-1">
+                            <div className="grid grid-cols-1">
                             {heads.map((info, index) => (
-                            <div key={index} className="flex items-start">
-                                <span className="mr-2 font-semibold">{index + 1}.</span> {/* Numbering each entry */}
-                                <InfoDiv {...info} />
-                            </div>
+                                <InfoDiv key={index} {...info} />
                             ))}
+                            </div>
                         </div>
-                    </div>
                     </td>
                 </tr>
                 <tr className="bg-white">
@@ -264,15 +258,12 @@ const MainPage = () => {
                     </td>
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
-                        <div className="grid grid-cols-1">
+                            <div className="grid grid-cols-1">
                             {profs.map((info, index) => (
-                            <div key={index} className="flex items-start">
-                                <span className="mr-2 font-semibold">{index + 1}.</span> {/* Numbering each entry */}
-                                <InfoDiv {...info} />
-                            </div>
+                                <InfoDiv key={index} {...info} />
                             ))}
+                            </div>
                         </div>
-                    </div>
                     </td>
                 </tr>
                 <tr className="bg-gray-50">
@@ -295,14 +286,12 @@ const MainPage = () => {
                     </td>
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
-                        <div className="grid grid-cols-1">
+                            <div className="grid grid-cols-1">
                             {special.map((info, index) => (
-                            <div key={index} className="flex items-start">
-                                <InfoDiv {...info} />
-                            </div>
+                                <InfoDiv key={index} {...info} />
                             ))}
+                            </div>
                         </div>
-                    </div>
                     </td>
                 </tr>
                 <tr className="bg-gray-50">
@@ -314,14 +303,12 @@ const MainPage = () => {
                     </td>
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
-                        <div className="grid grid-cols-1">
+                            <div className="grid grid-cols-1">
                             {secretary.map((info, index) => (
-                            <div key={index} className="flex items-start">
-                                <InfoDiv {...info} />
-                            </div>
+                                <InfoDiv key={index} {...info} />
                             ))}
+                            </div>
                         </div>
-                    </div>
                     </td>
                 </tr>
                 </tbody>

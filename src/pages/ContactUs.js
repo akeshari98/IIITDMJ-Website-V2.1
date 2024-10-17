@@ -180,16 +180,20 @@ function ContactUs() {
                 className="w-full bg-white rounded border border-gray-300 hover:border-sky-600   focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
             </div>
             <button
-              ref={buttonRef}
-              className="tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-              <div
-                className={`w-8 h-8 rounded-full border-4 border-r-slate-300 border-slate-50 ${
-                  loading === true ? "animate-spin block" : "hidden"
-                }`}></div>
-              <p className={`${loading === true ? "hidden" : "block"}`}>
-                Submit
-              </p>
-            </button>
+  ref={buttonRef}
+  className=" flex items-center justify-center tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-2 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center space-x-2 focus:shadow-outline focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+>
+  <div className="flex items-center justify-center space-x-2">
+    <div
+      className={`w-6 h-6 rounded-full border-4 border-r-transparent border-gray-100 ${
+        loading ? "animate-spin block" : "hidden"
+      }`}
+    ></div>
+    <span className={`${loading ? "invisible" : "visible"}`}>Submit</span>
+  </div>
+</button>
+
+
           </form>
         </div>
       </section>

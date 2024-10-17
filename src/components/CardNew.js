@@ -5,7 +5,7 @@ const Card = ({ image, name, designation, address, contact, mail, role }) => {
     <div className="max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform hover:scale-105">
       {image && (
         <img 
-          src={image} 
+          src={`data:image/jpeg;base64,${image}`} 
           alt={name} 
           className="w-48 h-48 object-cover rounded-md mx-auto"
         />
@@ -24,13 +24,18 @@ const Card = ({ image, name, designation, address, contact, mail, role }) => {
           </div>
         )}
 
-        {mail && (
-          <div className="text-gray-600">
-            {mail.map((item, index) => (
-              <a href="" className="no-underline text-blue-500 break-words" key={index}>{item}</a> 
-            ))}
-          </div>
-        )}
+{mail && (
+  <div className="text-gray-600">
+    {mail.map((item, index) => (
+      <div key={index} className="break-words">
+        <a href={`mailto:${item}`} className="no-underline text-blue-500">
+          {item}
+        </a>
+      </div>
+    ))}
+  </div>
+)}
+
       </div>
     </div>
   );
