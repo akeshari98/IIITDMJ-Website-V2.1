@@ -1,16 +1,39 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
 
-    const links = [
-        { name:"Link 1", href: "/" },
-        { name:"Link 2", href: "/" },
-        { name:"Link 3", href: "/" },
-        { name:"Link 4", href: "/" },
-      ];
+  const [data, setData] = useState({
+    links: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/links/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "links", endpoint: "fcminutes" },
+    ];
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
   const quickLinks = [
     { name:"Board of Governers", href: "/boardofgoverners" },
@@ -59,10 +82,10 @@ const MainPage = () => {
           {/* Text content area with formatted text and circular bullets */}
             <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
                 <ul className="list-disc ml-5">
-                    {links.map((link, index) => (
+                {data.links.map((link, index) => (
                     <li key={index} className="flex items-start ml-3 mb-2">
-                        <span className="w-2 h-2 mt-2 mr-2 bg-black rounded-full"></span>
-                        <a href={link.href} className="-mt-1 text-xl font-semibold text-blue-500 no-underline">
+                        <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+                        <a target="_blank" href={link.href} className="-mt-1 text-xl font-semibold text-blue-500 no-underline">
                         {link.name}
                         </a>
                     </li>

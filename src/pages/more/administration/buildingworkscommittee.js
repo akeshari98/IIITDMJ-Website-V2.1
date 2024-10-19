@@ -1,61 +1,40 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
-  const cardsData = [
-    {
-      image: profile,
-      name: "Prof. Bhartendu Kumar  Singh",
-      designation: "Director",
-      role: "Chairperson (Ex-Officio)",
-      address:
-        "PDPM-IIITDM Jabalpur",
-      contact: [],
-      mail: ["director@iiitdmj.ac.in"],
-    },
-    {
-      image: profile,
-      name: "Shri Atul Kumar Pandey",
-      designation: "Project Engineer-cum-Estate Officer",
-      role: "Member",
-      address:
-        "Indian Institute of Technology Indore Khandwa Road, Simrol Indore - 453 552",
-      contact: [],
-      mail: ["atul.pandey@iiti.ac.in"],
-    },
-    {
-      image: profile,
-      name: "Er. Jayant K Gupta",
-      designation: "SE (Civil), CPWD, bhopal",
-      role: "Member",
-      address:
-        "",
-      contact: [],
-      mail: ["sebhopalcpwd@gmail.com"],
-    },
-    {
-      image: profile,
-      name: "Er. Sunil Trivedi",
-      designation: "SE (Electrical), MPPKVVCL",
-      role: "Member",
-      address:
-        "",
-      contact: [],
-      mail: ["secityjabalpur@gmail.com"],
-    },
-    {
-      image: profile,
-      name: "Mrs. Swapnali Gadekar",
-      designation: "Acting Registrar and Officer-In-Charge Estate",
-      role: "Secretary (Ex-Offico)",
-      address:
-        "PDPM IIITDM Jabalpur",
-      contact: [],
-      mail: ["registrar@iiitdmj.ac.in"],
-    },
-  ];
+  const [data, setData] = useState({
+    cardsData: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "cardsData", endpoint: "buildingworks" },
+    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
   const quickLinks = [
     { name:"Board of Governers", href: "/boardofgoverners" },
@@ -112,7 +91,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {cardsData.map((card, index) => (
+              {data.cardsData.map((card, index) => (
                 <Card key={index} {...card} />
               ))}
             </div>

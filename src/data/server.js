@@ -36,5 +36,9 @@ server.get("/test", async (req, res) => {
 // server.use("/faculties", require("./routes/faculty"));
 // server.use("/departments", require("./routes/departments"));
 // server.use("/admin", require("./routes/admin"));
-server.use("/bog", require("./routes/bog"));
+server.use("/people", require("./routes/people"));
+server.use("/links", require("./routes/links"));
+// server.use("/financecommittee", require("./routes/financecommittee"));
+// server.use("/generaladministration", require("./routes/generaladministration"));
+// server.use("/otheradministration", require("./routes/otheradministration"));
 

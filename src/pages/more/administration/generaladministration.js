@@ -1,147 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
-    const director=[
-        {
-            image: profile,
-            name: "Prof. Bhartendu K Singh",
-            designation: "",
-            role: "",
-            address:
-                "",
-            contact: ["0761-2794003/2794005"],
-            mail: ["director@iiitdmj.ac.in"],
-        },
+  const [data, setData] = useState({
+    director: [],
+    deans: [],
+    hods: [],
+    registrar: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "director", endpoint: "director" },
+      { key: "deans", endpoint: "deans" },
+      { key: "hods", endpoint: "hods" },
+      { key: "registrar", endpoint: "registrar" },
     ];
-    const deans=[
-        {
-            image: profile,
-            name: "Prof. Vijay Kumar Gupta",
-            designation: "Professor In-Charge (Academics)",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794413"],
-            mail: ["dean.acad[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Dr. Mukesh Kumar Roy",
-            designation: "Faculty-in-Charge (Student Affairs)",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794350"],
-            mail: ["dean.s[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Prof. Pritee Khanna",
-            designation: "Professor In-charge (Research, Sponsored Projects & Consultancy)",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794222"],
-            mail: ["dean.research[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Dr. Sachin Kumar Jain",
-            designation: "Associate Professor In-charge (Academic)",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794468"],
-            mail: ["skjain[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Dr. Dip Prakash Samajdar",
-            designation: "Associate Professor In-charge (Research, Sponsored Projects & Consultancy)",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794474"],
-            mail: ["dip.samajdar[at]iiitdmj.ac.in"],
-        },
-    ];
-    const hods=[
-        {
-            image: profile,
-            name: "Dr. Vinod Kumar Jain",
-            designation: "CSE",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794226"],
-            mail: ["headcse[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Dr. Prabir Mukhopadhyay",
-            designation: "Design",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794310"],
-            mail: ["headdesign[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Dr. Matadeen Bansal",
-            designation: "ECE",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794469"],
-            mail: ["headece[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Dr. M. Zahid Ansari",
-            designation: "ME",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794422"],
-            mail: ["headme[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Dr. Lokendra Balyan",
-            designation: "NS",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794346"],
-            mail: ["headns[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Dr. Mamta Anand",
-            designation: "Liberal Arts",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794268"],
-            mail: ["headla[at]iiitdmj.ac.in"],
-        },
-    ];
-    const registrar=[
-        {
-            image: profile,
-            name: "Mrs. Swapnali Gadekar",
-            designation: "Deputy Registrar",
-            role: "",
-            address:
-                "",
-            contact: ["+91-0761-2794025"],
-            mail: ["swapnali[at]iiitdmj.ac.in"],
-        },
-    ]
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
   const quickLinks = [
     { name: "IIIT Act", href:"/"},
@@ -195,7 +94,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {director.map((card, index) => (
+              {data.director.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -206,7 +105,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {deans.map((card, index) => (
+              {data.deans.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -217,7 +116,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {hods.map((card, index) => (
+              {data.hods.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -228,7 +127,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {registrar.map((card, index) => (
+              {data.registrar.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>

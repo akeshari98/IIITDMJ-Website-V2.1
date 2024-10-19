@@ -1,124 +1,50 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import InfoDiv from "../../../components/InfoDiv";
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
-  const director=[
-    {
-        name:"Prof. Bhartendu K Singh",
-        designation:"Director",
-        mail:["director@iiitdmj.ac.in"],
-    },
-  ]; 
-  const ddirector=[
-    {
-        name:"",
-        designation:"",
-        mail:[],
-    },
-  ];
-  const deans=[
-    {
-        name:"Dr. Mukesh Kumar Roy",
-        designation:"Faculty-in-Charge (Student Affairs)",
-        mail:["mkroy@iiitdmj.ac.in"],
-    },
-    {
-        name:" Prof. V. K. Gupta",
-        designation:"Professor In-charge (Academic)",
-        mail:["dean.acad@iiitdmj.ac.in"],
-    },
-    {
-        name:"Prof. Pritee Khanna",
-        designation:"Professor In-charge (RSPC)",
-        mail:["dean.research@iiitdmj.ac.in"],
-    },
-  ];
-  const heads=[
-    {
-        name:"Dr. M. Zahid Ansari",
-        designation:"Head, ME Discipline",
-        mail:["headme@iiitdmj.ac.in"],
-    },
-    {
-        name:"Dr. Matadeen Bansal",
-        designation:"Head, ECE Discipline",
-        mail:["headece@iiitdmj.ac.in"],
-    },
-    {
-      name:"Dr. Prabir MukhopadhyayDesign",
-      designation:"Head, ECE Discipline",
-      mail:["headsedign@iiitdmj.ac.in"],
-  },
-  {
-        name:"Dr. Vinod Kumar Jain",
-        designation:"Head, CSE Discipline",
-        mail:["headcse@iiitdmj.ac.in"],
-    },
-    {
-      name:"Dr. Lokendra Balyan",
-      designation:"Head, NS Discipline",
-      mail:["headns@iiitdmj.ac.in"],
-  },
-  {
-    name:"Dr. Mamta Anand",
-    designation:"Head, Liberal Arts (With merging of Humanities)",
-    mail:["headla@iiitdmj.ac.in"],
-},
-  ];
-  const profs=[
-    {
-        name:"Prof. Aparajita Ojha",
-        mail:["aojha@iiitdmj.ac.in"],
-    },
-    {
-      name:"Prof. Puneet Tandon",
-      mail:["ptandon@iiitdmj.ac.in"],
-  },
-  {
-    name:"Prof. Tanuja Sheorey",
-    mail:["tanush@iiitdmj.ac.in"],
-},
-{
-  name:"Prof. P. N. Kondekar",
-  mail:["pnkondekar@iiitdmj.ac.in"],
-},
-{
-  name:"Prof. Dinesh Kumar V.",
-  mail:["dineshk@iiitdmj.ac.in"],
-},
-{
-  name:"Prof. Prashant K. Jain",
-  mail:["pkjain@iiitdmj.ac.in"],
-},
-{
-  name:"Prof. Prabin K Padhy",
-  mail:["prabin16@iiitdmj.ac.in"],
-},
-{
-  name:"Prof. Atul Gupta",
-  mail:["atul@iiitdmj.ac.in"],
-},
-{
-  name:"Prof. S. N. Sharma",
-  mail:["snsharma@iiitdmj.ac.in"],
-},
-  ];
-  const special=[
-    {
-      name:"Shri Rajeev Kumar Singh",
-      designation:"Global Head Talent Acquisition",
-      address:"Wipro Ltd., 118 Crescent,Forest Trail, Bhugaon, District-Pune 412115",
-      mail:["rajeev.singhkumar@wipro.com"]
+  const [data, setData] = useState({
+    director: [],
+    deans: [],
+    hods: [],
+    profs: [],
+    special: [],
+    secretary: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-  ];
-  const secretary=[
-    {
-      name:"Mrs. Swapnali Gadekar",
-      mail:["registrar@iiitdmj.ac.in"]
-    }
-  ];
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "director", endpoint: "director" },
+      { key: "deans", endpoint: "deans" },
+      { key: "hods", endpoint: "hods" },
+      { key: "profs", endpoint: "profs" },
+      { key: "special", endpoint: "special" },
+      { key: "secretary", endpoint: "registrar" },
+    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
   const quickLinks = [
     { name:"Board of Governers", href: "/boardofgoverners" },
     { name:"Finance Committee", href: "/financecommittee" },
@@ -197,7 +123,7 @@ const MainPage = () => {
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                         <div className="flex justify-start">
                             <div className="grid grid-cols-1">
-                            {director.map((info, index) => (
+                            {data.director.map((info, index) => (
                                 <InfoDiv key={index} {...info} />
                             ))}
                             </div>
@@ -225,7 +151,7 @@ const MainPage = () => {
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
                             <div className="grid grid-cols-1">
-                            {deans.map((info, index) => (
+                            {data.deans.map((info, index) => (
                                 <InfoDiv key={index} {...info} />
                             ))}
                             </div>
@@ -242,7 +168,7 @@ const MainPage = () => {
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
                             <div className="grid grid-cols-1">
-                            {heads.map((info, index) => (
+                            {data.hods.map((info, index) => (
                                 <InfoDiv key={index} {...info} />
                             ))}
                             </div>
@@ -259,7 +185,7 @@ const MainPage = () => {
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
                             <div className="grid grid-cols-1">
-                            {profs.map((info, index) => (
+                            {data.profs.map((info, index) => (
                                 <InfoDiv key={index} {...info} />
                             ))}
                             </div>
@@ -287,7 +213,7 @@ const MainPage = () => {
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
                             <div className="grid grid-cols-1">
-                            {special.map((info, index) => (
+                            {data.special.map((info, index) => (
                                 <InfoDiv key={index} {...info} />
                             ))}
                             </div>
@@ -304,7 +230,7 @@ const MainPage = () => {
                     <td className="px-2 py-2 border border-gray-200 break-words align-top" style={{ maxWidth: '200px', whiteSpace: 'normal' }}>
                     <div className="flex justify-start">
                             <div className="grid grid-cols-1">
-                            {secretary.map((info, index) => (
+                            {data.secretary.map((info, index) => (
                                 <InfoDiv key={index} {...info} />
                             ))}
                             </div>

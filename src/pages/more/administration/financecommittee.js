@@ -1,70 +1,40 @@
-import React from "react";
+import React,{ useEffect, useState } from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
-  const cardsData = [
-    {
-      image: profile,
-      name: "Shri Deepak Ghaisas",
-      designation: "",
-      role: "Chairman, Finance Committee",
-      address:
-        "Gencoval Strategic Services Pvt. Ltd. 501, Windfall, Sahar Plaza Complex, Andheri, Kurla Road, Andheri (East), Mumbai - 400059",
-      contact: ["+91 22 42547001 (office)", "+91 98765 43210 (mobile)"],
-      mail: ["deepak.ghaisas@gencoval.com", "info@gencoval.com"],
-    },
-    {
-      image: profile,
-      name: "Smt. Saumya Gupta",
-      designation: "",
-      role: "Member",
-      address:
-        "Joint Secretary (IIITs), Room No. 107-C, Shastri Bhawan, New Delhi, 011-23073687",
-      contact: [],
-      mail: ["saumya.gupta@ias.nic.in"],
-    },
-    {
-      image: profile,
-      name: "Shri Anil Kumar Director (Finance)",
-      designation: "",
-      role: "Member",
-      address:
-        "Integrated Finance Division Room No. 213-C, MHRD Govt. of India ‘C’ Wing, Shastri Bhawan, New Delhi - 110001",
-      contact: [" 011-23387465, EPBX- 272"],
-      mail: ["anil.k35@gov.in"],
-    },
-    {
-      image: profile,
-      name: "Mrs. Atreyee Borooah Thekedath",
-      designation: "",
-      role: "Member",
-      address:
-        "Director Web.com(India) Pvt. Ltd. 191, Maniram Dewan Road Chandmari, Guwahati- 781003 Assam",
-      contact: ["0361 – 2667017/2668579"],
-      mail: ["atreyee@webcomindia.biz"],
-    },
-    {
-        image: profile,
-        name: "Prof. Bhartendu K Singh",
-        designation: "",
-        role: "Member",
-        address:
-          "Director PDPM IIITDM Jabalpur",
-        contact: ["0761-2794003/2794005"],
-        mail: ["director@iiitdmj.ac.in"],
-      },
-    {
-      image: profile,
-      name: "Ms. Swapnali D. Gadekar",
-      designation: "",
-      role: "Secretary, Finance Committee",
-      address: "Acting Registrar, PDPM IIITDM Jabalpur",
-      contact: ["0761-2794021", "0761-2794025"],
-      mail: ["registrar@iiitdmj.ac.in", "swapnali@iiitdmj.ac.in"],
-    },
-  ];
+  const [data, setData] = useState({
+    cardsData: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "cardsData", endpoint: "financecommittee" },
+    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
   const quickLinks =[
     { name:"Board of Governers", href: "/boardofgoverners" },
@@ -120,7 +90,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {cardsData.map((card, index) => (
+              {data.cardsData.map((card, index) => (
                 <Card key={index} {...card} />
               ))}
             </div>

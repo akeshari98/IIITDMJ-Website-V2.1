@@ -10,13 +10,10 @@ const MainPage = () => {
         { name:"Link 2", href: "/" },
         { name:"Link 3", href: "/" },
         { name:"Link 4", href: "/" },
-      ];
+    ];
 
   const quickLinks = [
     { name:"Board of Governers", href: "/boardofgoverners" },
-    // { name:"Finance Committee", href: "/financecommittee" },
-    // { name:"General Administration", href: "/generaladministration" },
-    // { name:"Other Administration", href: "/otheradministration" },
     { name:"Senate", href: "/senate" },
     { name:"Building Works Committee", href: "/buildingworkscommittee" },
     { name:"Administrative Structure", href: "/administrativestructure" },

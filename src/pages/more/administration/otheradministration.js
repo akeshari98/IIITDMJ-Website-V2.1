@@ -1,149 +1,58 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
-    const cc=[
-        {
-            image: profile,
-            name: "Dr. Deepmala",
-            designation: "",
-            role: "Head",
-            address:
-                "",
-            contact: ["+91-761-2794353"],
-            mail: ["deepmala[at]iiitdmj.ac.in"],
-        },
+  const [data, setData] = useState({
+    cc: [],
+    tp: [],
+    iic: [],
+    alumni: [],
+    comm: [],
+    registrar: [],
+    audit: [],
+    cpio: [],
+    rspc: [],
+    acad: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "cc", endpoint: "cc" },
+      { key: "tp", endpoint: "tp" },
+      { key: "iic", endpoint: "iic" },
+      { key: "alumni", endpoint: "alumni" },
+      { key: "comm", endpoint: "comm" },
+      { key: "registrar", endpoint: "registrar_f&a" },
+      { key: "audit", endpoint: "audit" },
+      { key: "cpio", endpoint: "cpio" },
+      { key: "rspc", endpoint: "rspc" },
+      { key: "acad", endpoint: "academics" },
     ];
-    const tp=[
-        {
-            image: profile,
-            name: "Dr. Anil Kumar",
-            designation: "",
-            role: "Chairman",
-            address:
-                "",
-            contact: ["+91-761-2794466 "],
-            mail: ["chair_placement[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Mr. Omvir Singh Bhadauria",
-            designation: "",
-            role: "Placement Officer",
-            address:
-                "",
-            contact: ["+91-761-2794143 "],
-            mail: ["omvir[at]iiitdmj.ac.in"],
-        },
-    ];
-    const iic=[
-        {
-            image: profile,
-            name: "Prof. Puneet Tandon",
-            designation: "",
-            role: "Professor In-charge",
-            address:
-                "",
-            contact: ["+91-761-2794411"],
-            mail: ["pic.iic[at]iiitdmj.ac.in"],
-        },
-        {
-            image: profile,
-            name: "Mr. Omvir Singh Bhadauria",
-            designation: "",
-            role: "Assistant Registrar Cum Placement Officer",
-            address:
-                "",
-            contact: ["+91-761-2794143 "],
-            mail: ["omvir[at]iiitdmj.ac.in"],
-        },
-    ];
-    const alumni=[
-        {
-            image: profile,
-            name: "Prof. Puneet Tandon",
-            designation: "",
-            role: "Professor In-charge",
-            address:
-                "",
-            contact: ["+91-761-2794411"],
-            mail: ["pic.iic[at]iiitdmj.ac.in"],
-        },
-    ];
-    const comm=[
-        {
-            image: profile,
-            name: "Dr. Trivesh Kumar",
-            designation: "",
-            role: "Professor In-charge",
-            address:
-                "",
-            contact: ["+91-761-2794476"],
-            mail: ["trivesh[at]iiitdmj.ac.in"],
-        },
-    ];
-    const registrar=[
-        {
-            image: profile,
-            name: "Mrs. Swapnali Gadekar",
-            designation: "Deputy Registrar",
-            role: "",
-            address:
-                "",
-            contact: ["+91-0761-2794025"],
-            mail: ["swapnali[at]iiitdmj.ac.in"],
-        },
-    ];
-    const audit=[
-        {
-            image: profile,
-            name: "Mr. Rizwan Ahmed",
-            designation: "Deputy Registrar",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794032"],
-            mail: ["rizwan[at]iiitdmj.ac.in"],
-        },
-    ];
-    const cpio=[
-        {
-            image: profile,
-            name: "Mr. Santosh Mahobia",
-            designation: "Assistant Registrar",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794063"],
-            mail: ["santosh[at]iiitdmj.ac.in"],
-        },
-    ];
-    const rspc=[
-        {
-            image: profile,
-            name: "Mr. Shailesh Sharma",
-            designation: "Assistant Registrar",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794003"],
-            mail: ["shailesh[at]iiitdmj.ac.in"],
-        },
-    ];
-    const acad=[
-        {
-            image: profile,
-            name: "Mrs. Priti Patel ",
-            designation: "Assistant Registrar",
-            role: "",
-            address:
-                "",
-            contact: ["+91-761-2794008 "],
-            mail: ["priti.patel[at]iiitdmj.ac.in"],
-        },
-    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
 
   const quickLinks = [
@@ -195,7 +104,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {cc.map((card, index) => (
+              {data.cc.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -206,7 +115,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {tp.map((card, index) => (
+              {data.tp.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -217,7 +126,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {iic.map((card, index) => (
+              {data.iic.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -228,18 +137,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {alumni.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
-              ))}
-            </div>
-          </div>
-          </div>
-          <div>
-          <h3 className="text-xl font-semibold mt-4">Alumni Cell</h3>
-
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {alumni.map((card, index) => (
+              {data.alumni.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -250,7 +148,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {comm.map((card, index) => (
+              {data.comm.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -261,7 +159,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {registrar.map((card, index) => (
+              {data.registrar.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -272,7 +170,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {audit.map((card, index) => (
+              {data.audit.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -283,7 +181,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {cpio.map((card, index) => (
+              {data.cpio.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -294,7 +192,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {rspc.map((card, index) => (
+              {data.rspc.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
@@ -305,7 +203,7 @@ const MainPage = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {acad.map((card, index) => (
+              {data.acad.map((card, index) => (
                 <a href="/" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
