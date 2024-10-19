@@ -7,30 +7,32 @@ const NavLink = [
   {
     id: "01",
     name: "Home",
-    link: [{ "About": "/about" }],
+    href: "/",
+    link: [{name: "About", href: "/about", isExternal: false }],
   },
   {
     id: "02",
     name: "Administration",
     link: [
-      { "Board of Governers": "/boardofgoverners" },
-      { "Finance Committee": "/financecommittee" },
-      { "General Administration": "/generaladministration" },
-      { "Other Administration": "/otheradministration" },
-      { "Senate": "/senate" },
-      { "Building Works Committee": "/buildingworkscommittee" },
-      { "Administrative Structure": "/administrativestructure" },
+      {name: "Board of Governers", href: "/boardofgoverners", isExternal: false },
+      {name: "Finance Committee", href: "/financecommittee", isExternal: false },
+      {name: "General Administration", href: "/generaladministration", isExternal: false },
+      {name: "Other Administration", href: "/otheradministration", isExternal: false },
+      {name: "Senate", href: "/senate", isExternal: false },
+      {name: "Building Works Committee", href: "/buildingworkscommittee", isExternal: false },
+      {name: "Administrative Structure", href: "/administrativestructure", isExternal: false },
     ],
   },
   {
     id: "03",
     name: "Departments",
     link: [
-      { "Faculty": "/club" },
-      { "Courses": "/courses" },
-      { "About": "/about" },
-      { "Contact": "/contact" },
-      { "Gallery": "/" },
+      {name: "Computer Science & Engineering (CSE)", href: "http://cse.iiitdmj.ac.in/", isExternal: true },
+      {name: "Electronics & Communication Engineering (ECE)", href: "https://www.iiitdmj.ac.in/ece.iiitdmj.ac.in/", isExternal: true },
+      {name: "Design (Des)", href: "http://design.iiitdmj.ac.in/", isExternal: true },
+      {name: "Mechanical Engineering (ME)", href: "https://www.iiitdmj.ac.in/me.iiitdmj.ac.in/", isExternal: true },
+      {name: "Natural Sciences (NS)", href: "https://www.iiitdmj.ac.in/ns.iiitdmj.ac.in/", isExternal: true },
+      {name: "Liberal Arts (LA)", href: "https://www.iiitdmj.ac.in/la.iiitdmj.ac.in/", isExternal: true },
     ],
   },
   {
@@ -48,20 +50,20 @@ const NavLink = [
     id: "05",
     name: "Deans",
     link: [
-      { "Dean Academics": "/deanacademics" },
-      { "Dean Students": "/deanstudents" },
-      { "Dean RSPC": "/" },
-      { "Dean P&D": "/" },
+      {name: "Dean Academics", href: "/deanacademics", isExternal: false },
+      {name: "Dean Students", href: "/deanstudents", isExternal: false },
+      {name: "Dean RSPC", href: "/", isExternal: false },
+      {name: "Dean P&D", href: "/", isExternal: false },
     ],
   },
   {
     id: "06",
     name: "People",
     link: [
-      { "Faculty": "/" },
-      { "Research Staff": "/researchstaff" },
-      { "Office Administration": "/officeadministration" },
-      { "Staff": "/staff" },
+      {name: "Faculty", href: "http://faculty.iiitdmj.ac.in/", isExternal:true },
+      {name: "Research Staff", href: "/researchstaff", isExternal:false },
+      {name: "Office Administration", href: "/officeadministration", isExternal:false },
+      {name: "Staff", href: "/staff", isExternal:false },
     ],
   },
   {
@@ -89,6 +91,7 @@ const NavLink = [
   {
     id: "09",
     name: "Research",
+    href: "https://www.iiitdmj.ac.in/rspc.iiitdmj.ac.in/",
     link: [], 
   },
 ];
@@ -170,7 +173,14 @@ const Navbar = () => {
               {NavLink.map((item, index) => (
                 <div key={index} className="relative group">
                   <button className="font-semibold flex items-center px-3 py-2 text-black hover:text-blue-600 focus:outline-none">
-                    {item.name}
+                  <a
+                      href={item.href}
+                      rel="noopener noreferrer"
+                      className={"block no-underline text-black"}
+                      key={index}
+                    >
+                      {item.name}
+                    </a>
                     {Array.isArray(item.link) &&
                       item.link.length > 0 && ( // Only render the SVG if there are sub-links
                         <svg
@@ -192,27 +202,35 @@ const Navbar = () => {
                   {Array.isArray(item.link) && item.link.length > 0 && (
                     <ul className="absolute left-0 mt-0 bg-white text-black shadow-lg hidden group-hover:block z-50 w-auto min-w-max">
                       {item.link.map((subItem, subIndex) => {
-                        const subItemName = Object.keys(subItem)[0];
-                        const subItemLink = subItem[subItemName];
-                        return (
-                          
-                            <Link
-                              to={subItemLink}
-                              className={`block no-underline ${
-                                isActive(subItemLink)
-                                  ? "font-bold text-blue-600"
-                                  : "text-black"
-                              }`}
-                            >
-                              <li
-                            key={subIndex}
-                            className="font-normal w-full hover:bg-blue-200 px-5 py-2"
-                          >{subItemName}</li>
-                              
-                            </Link>
-                          
-                        );
-                      })}
+  return subItem.isExternal ? (
+    <a
+      href={subItem.href}
+      rel="noopener noreferrer"
+      className={`block no-underline ${
+        isActive(subItem.href) ? "font-bold text-blue-600" : "text-black"
+      }`}
+      key={subIndex}
+    >
+      <li className="font-normal w-full hover:bg-blue-200 px-5 py-2">
+        {subItem.name}
+      </li>
+    </a>
+  ) : (
+    <Link
+      to={subItem.href}
+      className={`block no-underline ${
+        isActive(subItem.href) ? "font-bold text-blue-600" : "text-black"
+      }`}
+      key={subIndex}
+      onClick={closeMenuOnClick}
+    >
+      <li className="font-normal w-full hover:bg-blue-200 px-5 py-2">
+        {subItem.name}
+      </li>
+    </Link>
+  );
+})}
+
                     </ul>
                   )}
                 </div>
