@@ -47,6 +47,8 @@ import StudentCorner from "./pages/more/StudentCorner";
 import ResearchStaff from "./pages/more/people/researchstaff"
 import OfficeAdministration from "./pages/more/people/officeadministration"
 import Staff from "./pages/more/people/staff"
+import PrimaryHealthCentre from "./pages/more/facilities/primaryhealthcentre"
+import ShopsInCampus from "./pages/more/facilities/shopsincampus"
 
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
@@ -205,6 +207,14 @@ const router = createBrowserRouter([
       {
         path: "/officeadministration",
         element: <OfficeAdministration />,
+      },
+      {
+        path: "/primaryhealthcentre",
+        element: <PrimaryHealthCentre />,
+      },
+      {
+        path: "/shopsincampus",
+        element: <ShopsInCampus />,
       },
       {
         path: "/staff",

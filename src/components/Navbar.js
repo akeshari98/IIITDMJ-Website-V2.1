@@ -81,11 +81,12 @@ const NavLink = [
     id: "08",
     name: "Facilities",
     link: [
-      { "Faculty": "/club" },
-      { "Courses": "/courses" },
-      { "About": "/about" },
-      { "Contact": "/contact" },
-      { "Gallery": "/" },
+      {name: "Primary Health Centre", href: "/primaryhealthcentre", isExternal: false },
+      {name: "Computer Centre", href: "https://www.iiitdmj.ac.in/cc.iiitdmj.ac.in/", isExternal: true },
+      {name: "Library", href: "http://web.iiitdmj.ac.in/library.html", isExternal: true },
+      {name: "Bank & ATM", href: "https://www.iiitdmj.ac.in/downloads/Banking%20Facilities%20in%20PDPM.pdf", isExternal: true },
+      {name: "Shops in Campus", href: "/shopsincampus", isExternal: false },
+      {name: "Downloads", href: "/", isExternal: false },
     ],
   },
   {
