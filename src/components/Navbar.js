@@ -202,35 +202,34 @@ const Navbar = () => {
                   {Array.isArray(item.link) && item.link.length > 0 && (
                     <ul className="absolute left-0 mt-0 bg-white text-black shadow-lg hidden group-hover:block z-50 w-auto min-w-max">
                       {item.link.map((subItem, subIndex) => {
-  return subItem.isExternal ? (
-    <a
-      href={subItem.href}
-      rel="noopener noreferrer"
-      className={`block no-underline ${
-        isActive(subItem.href) ? "font-bold text-blue-600" : "text-black"
-      }`}
-      key={subIndex}
-    >
-      <li className="font-normal w-full hover:bg-blue-200 px-5 py-2">
-        {subItem.name}
-      </li>
-    </a>
-  ) : (
-    <Link
-      to={subItem.href}
-      className={`block no-underline ${
-        isActive(subItem.href) ? "font-bold text-blue-600" : "text-black"
-      }`}
-      key={subIndex}
-      onClick={closeMenuOnClick}
-    >
-      <li className="font-normal w-full hover:bg-blue-200 px-5 py-2">
-        {subItem.name}
-      </li>
-    </Link>
-  );
-})}
-
+                        return subItem.isExternal ? (
+                          <a
+                            href={subItem.href}
+                            rel="noopener noreferrer"
+                            className={`block no-underline ${
+                              isActive(subItem.href) ? "font-bold text-blue-600" : "text-black"
+                            }`}
+                            key={subIndex}
+                          >
+                            <li className="font-normal w-full hover:bg-blue-200 px-5 py-2">
+                              {subItem.name}
+                            </li>
+                          </a>
+                        ) : (
+                          <Link
+                            to={subItem.href}
+                            className={`block no-underline ${
+                              isActive(subItem.href) ? "font-bold text-blue-600" : "text-black"
+                            }`}
+                            key={subIndex}
+                            onClick={closeMenuOnClick}
+                          >
+                            <li className="font-normal w-full hover:bg-blue-200 px-5 py-2">
+                              {subItem.name}
+                            </li>
+                          </Link>
+                        );
+                      })}
                     </ul>
                   )}
                 </div>
@@ -318,27 +317,40 @@ const Navbar = () => {
                   {openDropdowns.includes(index) && (
                     <ul className="bg-white text-black mt-0 rounded-b-lg shadow-none">
                       {item.link.map((subItem, subIndex) => {
-                        const subItemName = Object.keys(subItem)[0];
-                        const subItemLink = subItem[subItemName];
-                        return (
-                          
-                            <Link
-                              to={subItemLink}
-                              className={`block no-underline ${
-                                isActive(subItemLink)
-                                  ? "font-bold text-blue-600"
-                                  : "text-black"
-                              }`}
-                              onClick={closeMenuOnClick}
-                            >
-                              <li
+                        const subItemName = subItem.name || Object.keys(subItem)[0];
+                        const subItemLink = subItem.href || subItem[subItemName];
+                        const isExternal = subItem.isExternal || false;
+
+                        return isExternal ? (
+                          <a
+                            href={subItemLink}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            className={`block no-underline ${
+                              isActive(subItemLink) ? "font-bold text-blue-600" : "text-black"
+                            }`}
                             key={subIndex}
-                            className="font-normal hover:bg-blue-200 px-4 py-1"
-                          >{subItemName}</li>
-                              
-                            </Link>
+                          >
+                            <li className="font-normal hover:bg-blue-200 px-4 py-1">
+                              {subItemName}
+                            </li>
+                          </a>
+                        ) : (
+                          <Link
+                            to={subItemLink}
+                            className={`block no-underline ${
+                              isActive(subItemLink) ? "font-bold text-blue-600" : "text-black"
+                            }`}
+                            key={subIndex}
+                            onClick={closeMenuOnClick}
+                          >
+                            <li className="font-normal hover:bg-blue-200 px-4 py-1">
+                              {subItemName}
+                            </li>
+                          </Link>
                         );
                       })}
+
                     </ul>
                   )}
                 </li>
