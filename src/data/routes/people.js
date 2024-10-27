@@ -94,6 +94,55 @@ const professors = async (res) => {
   }
 };
 
+
+const staff = async (committee, res) => {
+  try {
+    const query = `
+      SELECT p.id, address, first_name, last_name, phone_no, profile_picture, role, imp, COALESCE(p.email, pos.email) AS email
+      FROM 
+          non_faculty_info p
+      JOIN 
+          non_faculty_positions pos ON p.id=pos.id
+      WHERE position_type=$1
+      ORDER BY imp ASC, first_name ASC;
+    `;
+    const result = await pool.query(query, [committee]);
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+const shops = async (res) => {
+  try {
+    const query = `
+      SELECT * FROM shops ORDER BY id ASC;
+    `;
+    const result = await pool.query(query);
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+
+
+const doctors = async (res) => {
+  try {
+    const query = `
+      SELECT * FROM doctors ORDER BY id ASC;
+    `;
+    const result = await pool.query(query);
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+
 router.get("/boardofgoverners", (req, res) => { withAddress('board_of_governors', res); })
 router.get("/financecommittee", (req, res) => { withAddress('finance_committee', res); })
 router.get("/buildingworks", (req, res) => { withAddress('building_works', res); })
@@ -113,8 +162,17 @@ router.get("/cpio", (req, res) => { withoutAddress('CPIO', res); })
 router.get("/rspc", (req, res) => { withoutAddress('RSPC', res); })
 router.get("/academics", (req, res) => { withoutAddress('academics', res); })
 router.get("/registrar_f&a", (req, res) => { withoutAddress('registrar_f&a', res); })
+router.get("/deansacad", (req, res) => { withoutAddress('deans_acad', res); })
+router.get("/deanstudents", (req, res) => { withoutAddress('deans_students', res); })
+
 router.get("/profs", (req, res) => { professors(res); })
 
+router.get("/researchstaff", (req, res) => { staff('research_staff', res); })
+router.get("/officeadministration", (req, res) => { staff('office_administration', res); })
+router.get("/staff", (req, res) => { staff('staff', res); })
+
+router.get("/shops", (req, res) => { shops(res); })
+router.get("/doctors", (req, res) => { doctors(res); })
 
 
 module.exports = router;

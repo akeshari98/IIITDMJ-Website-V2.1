@@ -1,38 +1,40 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from '../../../components/CardNew';
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
-const research = () => {
-  const cardsData = [
-    {
-      image: profile,
-      name: 'Mr. Aditya Sharma',
-      designation: 'Technical Officer',
-      role: 'Computer Science & Engineering',
-      address: '',
-      contact: [],
-      mail: ["adityasharma@iiitdmj.ac.in"],
-    },
-    {
-      image: profile,
-      name: 'Mr. Awadhesh K. Singh',
-      designation: 'Technical Officer',
-      role: 'Mechanical Engineering',
-      address: 'Design, Analysis and Development of Interdisciplinary Systems(Mechatronics, MEMS and NEMS)',
-      contact: [],
-      mail: ["aks@iiitdmj.ac.in"],
-    },
-    {
-      image: profile,
-      name: 'Dr. Dada Saheb Ramteke',
-      designation: 'Technical Officer',
-      role: 'Mechanical Engineering',
-      address: 'Condition monitoring, gear fault diagnosis, noise and vibration, signal processing, and machine learning',
-      contact: [],
-      mail: ["dsramteke@iiitdmj.ac.in"],
-    },
-  ];
+const MainPage = () => {
+  const [data, setData] = useState({
+    cardsData: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "cardsData", endpoint: "researchstaff" },
+    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
   const quickLinks = [
     { name: 'Home', href: '/' },
@@ -83,7 +85,7 @@ const research = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {cardsData.map((card, index) => (
+              {data.cardsData.map((card, index) => (
                 <Card key={index} {...card} />
               ))}
             </div>
@@ -151,4 +153,4 @@ const research = () => {
   );
 };
 
-export default research;
+export default MainPage;

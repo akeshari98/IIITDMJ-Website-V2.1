@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
@@ -6,7 +6,7 @@ import image1 from "../../../resources/images/phc1.png";
 import image2 from "../../../resources/images/phc2.png";
 import image3 from "../../../resources/images/phc3.png";
 
-const Healthcentre = () => {
+const MainPage = () => {
 
   const quickLinks = [
     { name: "Gymkhana", href: "/" },
@@ -29,15 +29,37 @@ const Healthcentre = () => {
     { name: "Guidelines 29-11-2016", href: "/financecommittee" },
   ];
 
-  const doctors = [
-    { name: "Dr. G S Sandhu (MD)", specialization: "Medical Specialist" },
-    { name: "Dr. Arvind Nath Gupta (MD)", specialization: "Pediatrician" },
-    { name: "Dr. Ranjana Gupta", specialization: "Gynecologist" },
-    { name: "Dr. Sabiha Khan", specialization: "ENT Specialist" },
-    { name: "Dr. Hemant Singh", specialization: "Pediatrician" },
-    { name: "Dr. Abhay Shrivastava", specialization: "Orthopedist" },
-    { name: "Dr. Jogendri Pathariya", specialization: "Counselor" },
-  ];
+  const [data, setData] = useState({
+    cardsData: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "cardsData", endpoint: "doctors" },
+    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
 
   return (
@@ -89,9 +111,9 @@ const Healthcentre = () => {
             <br />
             <h3>Doctors available for consultation:</h3>
             <ul className="list-disc ml-5">
-              {doctors.map((doctor, index) => (
+              {data.cardsData.map((doctor, index) => (
                 <li key={index} className="-ml-3">
-                  • <strong>{doctor.name}</strong> - {doctor.specialization}
+                  • <strong>{doctor.name} - {doctor.role} </strong>
                 </li>
               ))}
             </ul>
@@ -164,4 +186,4 @@ const Healthcentre = () => {
   );
 };
 
-export default Healthcentre;
+export default MainPage;

@@ -1,66 +1,40 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from '../../../components/CardNew';
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
-const office = () => {
-  const cardsData = [
-    {
-      image: profile,
-      name: 'Shri R P Dwivedi',
-      designation: 'Joint Registrar	',
-      role: '',
-      address: '',
-      contact: [],
-      mail: [],
-    },
-    {
-      image: profile,
-      name: 'Mrs. Swapnali D Gadekar',
-      designation: 'Deputy Registrar',
-      role: '',
-      address: 'Finance & Accounts',
-      contact: [],
-      mail: [],
-    },
-    {
-      image: profile,
-      name: 'Shri Rizwan Ahmed',
-      designation: 'Deputy Registrar',
-      role: '',
-      address: 'Establishment, General Administration and Internal Audit',
-      contact: [],
-      mail: [],
-    },
-    {
-      image: profile,
-      name: 'Shri Santosh Mahobia',
-      designation: 'Assistant Registrar',
-      role: '',
-      address: 'Student Affairs, Official Language Officer, CPIO',
-      contact: [],
-      mail: [],
-    },
-    {
-      image: profile,
-      name: 'Shri Shailesh Sharma',
-      designation: 'Assistant Registrar',
-      role: '',
-      address: 'RSPC, P&S, Publicity Officer',
-      contact: [],
-      mail: [],
-    },
-    {
-      image: profile,
-      name: 'Mrs. Priti Patel',
-      designation: 'Assistant Registrar',
-      role: '',
-      address: 'Academics, Innovation & Incubation Cell and Patent & Copyright Cell, International Affairs',
-      contact: [],
-      mail: [],
-    },
-    
-  ];
+const MainPage = () => {
+  const [data, setData] = useState({
+    cardsData: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "cardsData", endpoint: "officeadministration" },
+    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
   const quickLinks = [
     { name: 'Home', href: '/' },
@@ -112,7 +86,7 @@ const office = () => {
 
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {cardsData.map((card, index) => (
+              {data.cardsData.map((card, index) => (
                 <Card key={index} {...card} />
               ))}
             </div>
@@ -180,4 +154,4 @@ const office = () => {
   );
 };
 
-export default office;
+export default MainPage;

@@ -1,118 +1,40 @@
-import React from 'react'; 
+import React, {useEffect, useState} from 'react';
+import Card from '../../../components/CardNew';
 import college_img1 from "../../../resources/images/3.jpg";
 import profile from "../../../resources/images/admin/profile.jpg";
 
-const staff = () => {
-  const tableData = [
-    {
-      name: 'Aayesha Begam Mansoori',
-      designation: 'Senior Technician',
-      Department: 'Electronics & Communication Engineering',
-      Contact: "ayesha[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Abhishek Bawane',
-      designation: 'Junior Assistant',
-      Department: 'Purchase and Store',
-      Contact: "abhishekb[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Adesh Kumar',
-      designation: 'Senior Assistant',
-      Department: 'Finance and Accounts',
-      Contact: "adesh[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Aishwarya Pradhan',
-      designation: 'Junior Assistant',
-      Department: 'Mechanical Engineering',
-      Contact: "aishwarya[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Akhilesh Srivastava',
-      designation: 'Senior Technician',
-      Department: 'Electronics & Communication Engineering',
-      Contact: "akhil[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Alok Kulkarni',
-      designation: 'Senior Technician',
-      Department: 'Computer Science & Engineering',
-      Contact: "alok[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Aloysius Beenu Michael',
-      designation: 'Junior Superintendent',
-      Department: 'Registrar Secretariat',
-      Contact: "michael[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Anil Kumar',
-      designation: 'Junior Superintendent',
-      Department: 'Placement Cell',
-      Contact: "anil[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Anup Bajpai',
-      designation: 'Senior Technician',
-      Department: 'Mechanical Engineering',
-      Contact: "anupb[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Anup Kumar Gupta',
-      designation: 'Senior Technician',
-      Department: 'Computer Science & Engineering',
-      Contact: "ak[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Anupam Shukla',
-      designation: 'Senior Technician',
-      Department: 'Mechanical Engineering',
-      Contact: "anupam[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Ashok Kumar',
-      designation: 'Superintendent',
-      Department: 'On Lien',
-      Contact: "ashokk[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Bharti Kewat',
-      designation: 'Senior Technician',
-      Department: 'Electronics & Communication Engineering',
-      Contact: "bharti[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Dev Krishna Jha',
-      designation: 'Junior Superintendent',
-      Department: 'Junior Superintendent',
-      Contact: "devj[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Ganesh Prashad Kashyap',
-      designation: 'Driver',
-      Department: 'General Administration',
-      Contact: "ganesh[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Ghanshyam Meshram',
-      designation: 'Senior Technician',
-      Department: 'Computer Science & Engineering',
-      Contact: "shyam[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Jitendra Bahadur Singh',
-      designation: 'Senior Assistant',
-      Department: 'Security & Central Mess',
-      Contact: "jbsingh[at]iiitdmj.ac.in",
-    },
-    {
-      name: 'Kamlesh Singh Warkade',
-      designation: 'Senior Assistant',
-      Department: 'General Administration',
-      Contact: "kamlesh[at]iiitdmj.ac.in",
-    },
-  ];
+const MainPage = () => {
+  const [data, setData] = useState({
+    cardsData: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "cardsData", endpoint: "staff" },
+    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
   const quickLinks = [
     { name: 'Home', href: '/' },
@@ -170,13 +92,13 @@ const staff = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {tableData.map((row, index) => (
+                  {data.cardsData.map((row, index) => (
                     <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                       <td className="px-2 py-2 border border-gray-200">{index + 1}</td>
-                      <td className="px-2 py-2 border border-gray-200">{row.name}</td>
-                      <td className="px-2 py-2 border border-gray-200">{row.designation}</td>
-                      <td className="px-2 py-2 border border-gray-200">{row.Department}</td>
-                      <td className="px-2 py-2 border border-gray-200">{row.Contact}</td>
+                      <td className="px-2 py-2 border border-gray-200">{row.first_name} {row.last_name}</td>
+                      <td className="px-2 py-2 border border-gray-200">{row.role}</td>
+                      <td className="px-2 py-2 border border-gray-200">{row.address}</td>
+                      <td className="px-2 py-2 border border-gray-200">{row.email}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -244,4 +166,4 @@ const staff = () => {
   );
 };
 
-export default staff;
+export default MainPage;
