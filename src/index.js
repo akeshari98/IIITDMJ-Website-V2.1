@@ -49,7 +49,10 @@ import OfficeAdministration from "./pages/more/people/officeadministration"
 import Staff from "./pages/more/people/staff"
 import PrimaryHealthCentre from "./pages/more/facilities/primaryhealthcentre"
 import ShopsInCampus from "./pages/more/facilities/shopsincampus"
-
+import GymKhana from "./pages/more/students/gymkhana"
+import Activities from "./pages/more/students/activities"
+import Hostels from "./pages/more/students/hostels"
+import Counselling from "./pages/more/students/counselling"
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
@@ -215,6 +218,22 @@ const router = createBrowserRouter([
       {
         path: "/shopsincampus",
         element: <ShopsInCampus />,
+      },
+      {
+        path: "/gymkhana",
+        element: <GymKhana />,
+      },
+      {
+        path: "/activities",
+        element: <Activities />,
+      },
+      {
+        path: "/hostels",
+        element: <Hostels />,
+      },
+      {
+        path: "/counselling",
+        element: <Counselling />,
       },
       {
         path: "/staff",

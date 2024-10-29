@@ -9,14 +9,14 @@ import image3 from "../../../resources/images/phc3.png";
 const MainPage = () => {
 
   const quickLinks = [
-    { name: "Gymkhana", href: "/" },
-    { name: "Activities", href: "/" },
+    { name: "Gymkhana", href: "/gymkhana" },
+    { name: "Activities", href: "/activities" },
     // { name:"General Administration", href: "/generaladministration" },
     // { name:"Other Administration", href: "/otheradministration" },
-    { name: "Counselling", href: "/" },
-    { name: "Hostels", href: "/" },
-    { name: "Alumni", href: "/" },
-    { name: "Students Mess", href: "/" },
+    { name: "Counselling", href: "/counselling" },
+    { name: "Hostels", href: "/hostels" },
+    { name: "Alumni", href: "https://alumni.iiitdmj.ac.in/" },
+    { name: "Students Mess", href: "https://www.iiitdmj.ac.in/mess.iiitdmj.ac.in/" },
     { name: "PHC", href: "/primaryhealthcentre" },
   ];
   const quickLinks2 = [
@@ -120,23 +120,23 @@ const MainPage = () => {
 
             {/* Adding images in a single row */}
             <div className="flex justify-center mt-4 mb-4">
-              <span className="flex gap-4">
-                <img
-                  src={image1}
-                  alt="PHC 1"
-                  className="w-64 h-56 object-cover " // Increased size to 48x48
-                />
-                <img
-                  src={image2}
-                  alt="PHC 2"
-                  className="w-64 h-56 object-cover" // Increased size to 48x48
-                />
-                <img
-                  src={image3}
-                  alt="PHC 3"
-                  className="w-64 h-56 object-cover" // Increased size to 48x48
-                />
-              </span>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-4">
+  <img
+    src={image1}
+    alt="Image 1"
+    className="w-full h-full object-cover"
+  />
+  <img
+    src={image2}
+    alt="Image 2"
+    className="w-full h-full object-cover"
+  />
+  <img
+    src={image3}
+    alt="Image 2"
+    className="w-full h-full object-cover"
+  />
+</div>
             </div>
             <h3>Guidelines</h3>
             <ul className="list-disc ml-5">

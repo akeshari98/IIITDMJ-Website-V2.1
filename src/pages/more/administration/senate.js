@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from "react";
 import InfoDiv from "../../../components/InfoDiv";
 import college_img1 from "../../../resources/images/3.jpg";
-import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
   const [data, setData] = useState({
