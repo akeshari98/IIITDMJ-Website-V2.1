@@ -53,6 +53,7 @@ import GymKhana from "./pages/more/students/gymkhana"
 import Activities from "./pages/more/students/activities"
 import Hostels from "./pages/more/students/hostels"
 import Counselling from "./pages/more/students/counselling"
+
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
@@ -83,6 +84,8 @@ import Bcom from "./pages/Bcom";
 import Verification from "./modules/admin/components/Verification";
 import { isCompositeComponent } from "react-dom/test-utils";
 
+//Footer 
+import RTI from "./pages/more/Footer/RTI"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -262,6 +265,26 @@ const router = createBrowserRouter([
       {
         path: "/student-corner",
         element: <StudentCorner />,
+      },
+      {
+        path: "/rti",
+        element: <RTI />,
+      },
+      {
+        path: "/gymkhana",
+        element: <GymKhana />,
+      },
+      {
+        path: "/activities",
+        element: <Activities />,
+      },
+      {
+        path: "/hostels",
+        element: <Hostels />,
+      },
+      {
+        path: "/counselling",
+        element: <Counselling />,
       },
     ],
   },

@@ -1,251 +1,174 @@
 import React from "react";
-import logo from "../../resources/images/IIIT_logo.png";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./footer.css";
-import {
-  FaPhoneAlt,
-  FaEnvelope,
-  FaGlobe,
-  FaTwitter,
-  FaLinkedin,
-  FaFacebook,
-} from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaGlobe, FaTwitter, FaLinkedin, FaFacebook, FaAngleRight } from "react-icons/fa";
 import Weather from "./weather/weather";
-const LatestNews = ({ news }) => {
-    return (
-      <div className="kilimanjaro_blog_area">
-        <div className="kilimanjaro_thumb">
-          <img className="img-fluid" src={news.imageUrl} alt="Blog Thumbnail" />
-        </div>
-        <a href="#">{news.title}</a>
-        <p className="kilimanjaro_date">{news.date}</p>
-        <p>{news.description}</p>
-      </div>
-    );
-  };
-  const latestNewsData = [
-    {
-      id: 1,
-      title: "Your Blog Title Goes Here",
-      date: "21 Jan 2018",
-      description: "Lorem ipsum dolor sit amet, consectetur",
-      imageUrl: "https://3.bp.blogspot.com/--C1wpaf_S4M/W7V__10nRoI/AAAAAAAAK24/1NSfapuYSIY0f0wzXY9NgoH0FjQLT07YACKgBGAs/s1600/maxresdefault.jpg",
-    },
-    {
-      id: 2,
-      title: "Another Blog Title",
-      date: "15 Feb 2018",
-      description: "Dolor sit amet, consectetur adipiscing elit",
-      imageUrl: "https://3.bp.blogspot.com/--C1wpaf_S4M/W7V__10nRoI/AAAAAAAAK24/1NSfapuYSIY0f0wzXY9NgoH0FjQLT07YACKgBGAs/s1600/maxresdefault.jpg",
-    },
-    // Add more news items as needed
-  ];
+import logo from "../../resources/images/IIIT_logo.png";
 const Footer = () => {
-
   return (
-    <footer className="kilimanjaro_area">
-      {/* Top Footer Area Start */}
-      <div className="foo_top_header_one section_padding_100_70">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-md-6 col-lg-3">
-              <div className="kilimanjaro_part">
-                <img src={logo} className="logo_footer" />
-                <div className="kilimanjaro_part m-top-15">
-                  <h5>About</h5>
-                  <ul className="kilimanjaro_links">
-                    <li>
-                      <a href="https://www.iiitdmj.ac.in/pbi.iiitdmj.ac.in">
-                        <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                        PBI
+    <footer className="relative z-10">
+      {/* Top Footer Area */}
+      <div className="bg-[#15151e] text-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* First Column */}
+            <div className="space-y-6">
+              <img src={logo} alt="IIIT Logo" className="w-[70%] mb-12" />
+              <div>
+                <h5 className="text-white font-medium text-lg mb-6">About</h5>
+                <ul className="space-y-3">
+                  {['PBI', 'IIIT Act', 'RTI', 'Statuses', 'Bus Time Table', 'Organizational Chart', 'Recruitment and Promotion Norms-2016'].map((item) => (
+                    <li key={item}>
+                      <a href="#" className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200">
+                        <FaAngleRight className="text-xs" />
+                        <span>{item}</span>
                       </a>
                     </li>
-                    <li>
-                      <a href="https://www.iiitdmj.ac.in/rti.php">
-                        <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                        IIIT Act
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://www.iiitdmj.ac.in/downloads/IIIT%20Act%2030_of_2014.pdf">
-                        <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                        RTI
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://www.iiitdmj.ac.in/downloads/The%20Gazette%20publication%20of%20Statutes%20of%20IIITDM%20Jabalpur.pdf">
-                        <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                        Statuses
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://www.iiitdmj.ac.in/downloads/time%20table%20Detailed.pdf">
-                        <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                        Bus Time Table
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://www.iiitdmj.ac.in/downloads/Organizational%20Chart.pdf">
-                        <i className="fa fa-angle-right" aria-hidden="true"></i>
-                        Organizational Chart
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://www.iiitdmj.ac.in/downloads/RPN-2016(1).pdf">
-                        <i className="fa fa-angle-right" aria-hidden="true"></i>
-                        Recruitment and Promotion Norms-2016
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              {/* <div className="kilimanjaro_part m-top-15">
-                <h5>Social Links</h5>
-                <ul className="kilimanjaro_social_links">
-                  <li><a href="#"><i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
-                  <li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a></li>
-                  <li><a href="#"><i className="fa fa-pinterest" aria-hidden="true"></i> Pinterest</a></li>
-                  <li><a href="#"><i className="fa fa-youtube" aria-hidden="true"></i> YouTube</a></li>
-                  <li><a href="#"><i className="fa fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
-                </ul>
-              </div> */}
-            </div>
-            <div className="col-12 col-md-6 col-lg-3">
-              <div className="kilimanjaro_part">
-                <h5>Tags Widget</h5>
-                <ul className="kilimanjaro_widget">
-                  <li>
-                    <a href="#">Classy</a>
-                  </li>
-                  <li>
-                    <a href="#">Blog</a>
-                  </li>
-                  <li>
-                    <a href="#">Creative</a>
-                  </li>
-                  {/* <li><a href="#">One Page</a></li> */}
-                  {/* <li><a href="#">Multipurpose</a></li>
-                  <li><a href="#">Minimal</a></li>
-                  <li><a href="#">Classic</a></li>
-                  <li><a href="#">Medical</a></li> */}
-                </ul>
-              </div>
-              <div className="kilimanjaro_part m-top-15">
-                <h5>Important Links</h5>
-                <ul className="kilimanjaro_links">
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                      Terms & Conditions
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                      About Licenses
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                      Help & Support
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                      Careers
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                      Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-angle-right" aria-hidden="true"></i>{" "}
-                      Community & Forum
-                    </a>
-                  </li>
+                  ))}
                 </ul>
               </div>
             </div>
-            <div className="col-12 col-md-6 col-lg-3">
-              <div className="kilimanjaro_part">
-                <h5>Latest News</h5>
-                {latestNewsData.map((news) => (
-                  <LatestNews key={news.id} news={news} />
-                ))}
+
+            {/* Second Column */}
+            <div className="space-y-6">
+              <div>
+                <h5 className="text-white font-medium text-lg mb-6">Tags</h5>
+                <div className="flex flex-wrap gap-2">
+                  {['Classy', 'Blog', 'Creative'].map((tag) => (
+                    <a
+                      key={tag}
+                      href="#"
+                      className="px-4 py-2 text-gray-400 text-sm border border-gray-700 rounded-md hover:bg-gray-700 hover:text-white transition-colors duration-200"
+                    >
+                      {tag}
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h5 className="text-white font-medium text-lg mb-6">Important Links</h5>
+                <ul className="space-y-3">
+                  {[
+                    'Electronics and ICT Academy',
+                    'Online Fee Payment',
+                    'Annual Report',
+                    'Annual Account',
+                    'World e-book Library',
+                    'Consortium for Educational Communication (CEC)',
+                    'National Academic Depository (NAD)',
+                    'Building Materials & Technology Promotion Council',
+                    'Intellectual Property Policy (IPR)',
+                    'Equal Opportunity Policy for Persons with Disabilities',
+                    'Accessibility',
+                    'Asi@Connect'
+                  ].map((link) => (
+                    <li key={link}>
+                      <a href="#" className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200 pb-2 border-b border-gray-700">
+                        <FaAngleRight className="text-xs" />
+                        <span>{link}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-            <div className="col-12 col-md-6 col-lg-3">
-              <h5 className="text-center">Contact</h5>
-              <div className=" text-white p-6 rounded-lg space-y-4 text-center flex flex-col items-center space-y-4">
-                <div className="flex items-center space-x-3">
-                  <FaPhoneAlt className="text-gray-400" />
-                  <span className="text-gray-300">011-2659-7135</span>
+
+            {/* Third Column */}
+            <div className="space-y-6">
+              <div>
+              <h5 className="text-white font-medium text-lg mb-6">Tags</h5>
+                <div className="flex flex-wrap gap-2">
+                  {['Classy', 'Blog', 'Creative'].map((tag) => (
+                    <a
+                      key={tag}
+                      href="#"
+                      className="px-4 py-2 text-gray-400 text-sm border border-gray-700 rounded-md hover:bg-gray-700 hover:text-white transition-colors duration-200"
+                    >
+                      {tag}
+                    </a>
+                  ))}
                 </div>
-                <div className="flex items-center space-x-3">
-                  <FaEnvelope className="text-gray-400" />
-                  <span className="text-gray-300">info@iitd.ac.in</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <FaGlobe className="text-gray-400" />
-                  <span className="text-gray-300">www.iitd.ac.in</span>
+                <h5 className="text-white font-medium text-lg mb-6">Other Links</h5>
+                <ul className="space-y-3">
+                  {[
+                    'SC/ST and Minority Cell',
+                    'Women Cell',
+                    'Internal Complaints Committee',
+                    'Grievance Redressal Cell',
+                    'Scholarship',
+                    'Anti-Ragging Committee and Squad',
+                    'Revista',
+                    'Fit India',
+                    'Azadi Ka Amrit Mahotsava (AKAM) 2022',
+                    'Contacts',
+                    'Press Releases',
+                    'Closed Holiday 2023 | 2024',
+                    'Restricted Holiday 2023 | 2024'
+                  ].map((link) => (
+                    <li key={link}>
+                      <a href="#" className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200 pb-2 border-b border-gray-700">
+                        <FaAngleRight className="text-xs" />
+                        <span>{link}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Fourth Column */}
+            <div className="space-y-8">
+              <div>
+                <h5 className="text-white font-medium text-lg mb-6 text-center">Contact</h5>
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <FaPhoneAlt className="text-gray-400" />
+                    <span className="text-gray-400">011-2659-7135</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <FaEnvelope className="text-gray-400" />
+                    <span className="text-gray-400">info@iitd.ac.in</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <FaGlobe className="text-gray-400" />
+                    <span className="text-gray-400">www.iitd.ac.in</span>
+                  </div>
                 </div>
 
-                {/* Social Media Icons */}
-                <div className="flex justify-center space-x-4 mt-4">
-                  <a href="#" className="text-gray-400 hover:text-gray-200">
-                    <FaTwitter className="w-6 h-6" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-gray-200">
-                    <FaLinkedin className="w-6 h-6" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-gray-200">
-                    <FaFacebook className="w-6 h-6" />
-                  </a>
+                <div className="flex justify-center space-x-4 mt-6">
+                  {[FaTwitter, FaLinkedin, FaFacebook].map((Icon, index) => (
+                    <a key={index} href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+                      <Icon className="w-6 h-6" />
+                    </a>
+                  ))}
                 </div>
               </div>
-              {/* <div className="col-12 col-md-6 col-lg-3"> */}
-  {/* Weather Component Replacement */}
-  <Weather />
-{/* </div> */}
-
+              
+              <Weather />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Footer Bottom Area Start */}
-      <div className="bg-black text-gray-500 py-2 flex items-center">
-  <div className="container mx-auto flex justify-between items-center">
-    <div className="flex items-center space-x-1">
-      <p className="text-sm mb-0">
-        © All Rights Reserved by{" "}
-        <a
-          href="#"
-          className="text-gray-400 hover:text-gray-200 no-underline"
-        >
-          PDPM IIITDM Jabalpur
-        </a>
-      </p>
-      <i className="fa fa-heart text-red-500 ml-1"></i>
-    </div>
-    <div className="flex items-center">
-      <p className="text-xs mb-0">
-        Maintained by{" "}
-        <span className="text-gray-300">
-          Computer Center, IIITDM Jabalpur
-        </span>
-      </p>
-    </div>
-  </div>
-</div>
-
-
+      {/* Footer Bottom Area */}
+      <div className="bg-black text-gray-500 py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-1">
+              <p className="text-sm">
+                © All Rights Reserved by{" "}
+                <a href="#" className="text-gray-400 hover:text-gray-200">
+                  PDPM IIITDM Jabalpur
+                </a>
+              </p>
+            </div>
+            <div>
+              <p className="text-xs">
+                Maintained by{" "}
+                <span className="text-gray-300">Computer Center, IIITDM Jabalpur</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

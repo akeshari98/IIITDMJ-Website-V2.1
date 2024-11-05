@@ -5,7 +5,7 @@ const DirectorCard = ({ title, content, media, buttons }) => {
   const [showFullContent, setShowFullContent] = useState(false);
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden w-full md:w-1/3">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden w-full md:w-1/2">
       <div className="p-6 bg-blue-50 h-full flex flex-col justify-between">
         <div>
           <h2 className="text-2xl font-bold mb-2 text-left">
@@ -67,7 +67,7 @@ const InfoCard = ({ title, content, buttons, media, isVideo }) => {
   }, [media]);
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden w-full md:w-2/3">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden w-full ">
       <div className="p-6 h-full flex flex-col justify-between">
         <div>
           <h2 className="text-2xl font-bold mb-2 text-left">
@@ -130,8 +130,7 @@ const IITDelhiInfoCards = () => {
       title: "ABOUT IIITDMJ",
       content: "IIIT Jabalpur fosters a vibrant and dynamic learning environment where students pursue degrees in various engineering disciplines, including Computer Science, Electronics, Mechanical, and Information Technology. ",
       buttons: [
-        { text: "Read more", primary: false },
-        { text: "Newsletter", primary: true }
+        { text: "Read more", primary: true },
       ],
       media: [
         "https://picsum.photos/400/300?random=1",
@@ -152,7 +151,7 @@ const IITDelhiInfoCards = () => {
   ];
 
   return (
-    <div className="bg-white py-8 px-4 sm:px-6 lg:px-8">
+    <div className="bg-white ">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8">
           {dummyData.map((card, index) => 
