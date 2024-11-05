@@ -223,6 +223,22 @@ const router = createBrowserRouter([
         element: <ShopsInCampus />,
       },
       {
+        path: "/gymkhana",
+        element: <GymKhana />,
+      },
+      {
+        path: "/activities",
+        element: <Activities />,
+      },
+      {
+        path: "/hostels",
+        element: <Hostels />,
+      },
+      {
+        path: "/counselling",
+        element: <Counselling />,
+      },
+      {
         path: "/staff",
         element: <Staff />,
       },

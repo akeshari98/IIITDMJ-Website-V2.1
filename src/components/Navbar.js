@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo1 from "../resources/images/IIIT_logo.png"; // Hamburger menu logo
 import Logo2 from "../resources/images/IIIT_logo.png"; // Desktop view logo
+
 import TranslateButton from "./Gtranslate";
+
+
 
 const NavLink = [
   {
@@ -116,11 +119,14 @@ const NavLink = [
     id: "07",
     name: "Students",
     link: [
-      { "Faculty": "/club" },
-      { "Courses": "/courses" },
-      { "About": "/about" },
-      { "Contact": "/contact" },
-      { "Gallery": "/" },
+      {name: "Student's Portal", href: "https://iiitdm.iweb.ltd/Account/LoginMVC", isExternal: true },
+      {name: "Placement", href: "https://www.iiitdmj.ac.in/placement.iiitdmj.ac.in/", isExternal: true },
+      {name: "Gymkhana", href: "/gymkhana", isExternal: false },
+      {name: "Activities", href: "/activities", isExternal: false },
+      {name: "Hostels", href: "/hostels", isExternal: false },
+      {name: "Counselling", href: "/counselling", isExternal: false },
+      {name: "Alumni Cell", href: "https://alumni.iiitdmj.ac.in/", isExternal: true },
+      {name: "Students Mess", href: "https://www.iiitdmj.ac.in/mess.iiitdmj.ac.in/", isExternal: true },
     ],
   },
   {

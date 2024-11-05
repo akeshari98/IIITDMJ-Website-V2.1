@@ -5,10 +5,12 @@ import profile from "../../../resources/images/admin/profile.jpg";
 import image1 from "../../../resources/images/gym-1.jpg";
 import image2 from "../../../resources/images/gym-2.jpg";
 
+
 import image3 from "../../../resources/images/senate1.jpg";
 import image4 from "../../../resources/images/senate2.jpg";
 import image5 from "../../../resources/images/senate3.jpg";
 import image6 from "../../../resources/images/senate4.jpg";
+
 
 const MainPage = () => {
   const links = [
