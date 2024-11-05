@@ -135,7 +135,7 @@ const MainPage = () => {
             ))}
             <br></br>
             <hr></hr>
-            <h3>PG-Students Counseling Committee Members</h3>
+            <h3 className="text-xl font-semibold">PG-Students Counseling Committee Members</h3>
             <div className="overflow-auto">
               <table className="min-w-full table-auto border-collapse border border-gray-200 mt-4">
                 <thead>
@@ -178,7 +178,7 @@ const MainPage = () => {
               </table>
             </div>
             <br></br>
-            <h3>UG-Students Counseling Committee Members</h3>
+            <h3 className="text-xl font-semibold">UG-Students Counseling Committee Members</h3>
             <div className="overflow-auto">
               <table className="min-w-full table-auto border-collapse border border-gray-200 mt-4">
                 <thead>

@@ -6,7 +6,7 @@ const CollapsibleSection = ({ title, children, defaultOpen = false }) => {
     const [isOpen, setIsOpen] = useState(defaultOpen);
   
     return (
-      <div className="bg-white rounded-lg shadow-sm mb-4">
+      <div className="bg-white rounded-lg shadow-md mb-4">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-gray-50"
@@ -27,10 +27,10 @@ const CollapsibleSection = ({ title, children, defaultOpen = false }) => {
   };
   const RTIPage = () => {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen">
         {/* Header */}
-        <header className="bg-blue-700 text-white py-8 sticky top-0 z-50 rounded-md">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="bg-white text-white py-8 top-0 z-50 rounded-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-black" >
             <h1 className="text-4xl font-bold">Right to Information</h1>
             <p className="mt-2 text-lg">RTI Act 2005</p>
           </div>
@@ -368,8 +368,8 @@ const RTI = () => {
         className="relative w-full h-96 bg-[length:100%_100%] bg-no-repeat bg-center"
         style={{ backgroundImage: `url(${college_img1})` }}
       >
-        <h1 className="absolute inset-0 flex items-center justify-center text-white text-5xl ">
-        RTI @Glance
+        <h1 className="absolute inset-0 flex items-center justify-center text-white text-5xl font-bold">
+          RTI @Glance
         </h1>
       </div>
 
@@ -405,7 +405,7 @@ const RTI = () => {
                   <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
             </svg>
           </div>
-          <ul className="list-disc list-inside pl-5 text-gray-700">
+          <ul className="list-disc ml-5">
             {quickLinks.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
                 <a href={link.href} className="text-blue-500 no-underline">

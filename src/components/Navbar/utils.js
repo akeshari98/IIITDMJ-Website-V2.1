@@ -310,6 +310,7 @@ export const Menus = [
     ],
   },
   {
-    name: "Facilities",
+    name: "Research",
+    href:"https://www.iiitdmj.ac.in/rspc.iiitdmj.ac.in/"
   }
 ];

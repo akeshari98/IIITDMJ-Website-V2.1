@@ -60,9 +60,9 @@ export default function DesktopMenu({ menu }) {
             </p>
           )}
         </div>
-        {isExternal && (
+        {/* {isExternal && (
           <ExternalLink size={12} className="text-gray-400 group-hover:text-gray-600" />
-        )}
+        )} */}
       </div>
     );
 
@@ -114,7 +114,7 @@ export default function DesktopMenu({ menu }) {
             rel="noopener noreferrer"
           >
             {menu.name}
-            <ExternalLink size={12} className="ml-1" />
+            {/* <ExternalLink size={12} className="ml-1" /> */}
           </a>
         ) : (
           <Link 
@@ -138,8 +138,8 @@ export default function DesktopMenu({ menu }) {
           className="sub-menu absolute bg-white rounded-lg p-2.5 shadow-lg"
           style={{
             maxWidth: "90vw",
-            width: `${Math.min(200 * gridCols, 1200)}px`,
-            marginTop: "-20px",
+            width: "auto",
+            marginTop: "-30px",
           }}
           initial="exit"
           animate={isHover ? "enter" : "exit"}

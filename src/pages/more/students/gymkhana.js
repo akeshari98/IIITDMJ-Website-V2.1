@@ -10,12 +10,6 @@ import image4 from "../../../resources/images/senate2.jpg";
 import image5 from "../../../resources/images/senate3.jpg";
 import image6 from "../../../resources/images/senate4.jpg";
 
-import image3 from "../../../resources/images/senate1.jpg";
-import image4 from "../../../resources/images/senate2.jpg";
-import image5 from "../../../resources/images/senate3.jpg";
-import image6 from "../../../resources/images/senate4.jpg";
-
-
 const MainPage = () => {
   const links = [
     { name: "Various Clubs Working Under Gymkhana", href: "/" },
@@ -243,7 +237,7 @@ const MainPage = () => {
                 </p>
               </li>
             </ul>
-
+            <br></br>
             <p className="text-gray-700 mb-4 font-semibold">
               Finally, IITDM Jabalpur sports fraternity has a unique ability to
               bring people from different backgrounds together, as well as teach
