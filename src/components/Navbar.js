@@ -2,6 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo1 from "../resources/images/IIIT_logo.png"; // Hamburger menu logo
 import Logo2 from "../resources/images/IIIT_logo.png"; // Desktop view logo
+
+import TranslateButton from "./Gtranslate";
+
+
+
 const NavLink = [
   {
     id: "01",
@@ -20,7 +25,7 @@ const NavLink = [
       {name: "Senate", href: "/senate", isExternal: false },
       {name: "Building Works Committee", href: "/buildingworkscommittee", isExternal: false },
       {name: "Administrative Structure", href: "/administrativestructure", isExternal: false },
-    ],
+    ], 
   },
   {
     id: "03",
@@ -35,16 +40,61 @@ const NavLink = [
     ],
   },
   {
-    id: "04",
-    name: "Academics",
-    link: [
-      { "Faculty": "/club" },
-      { "Courses": "/courses" },
-      { "About": "/about" },
-      { "Contact": "/contact" },
-      { "Gallery": "/" },
-    ],
-  },
+  id: "04",
+  name: "Academics",
+  link: [
+    { 
+      name: "Faculty",
+      href: "/faculty",
+      column: 1
+    },
+    {
+      name: "Courses",
+      href: "/courses",
+      column: 1
+    },
+    {
+      name: "About",
+      href: "/about",
+      column: 1
+    },
+    {
+      name: "Contact",
+      href: "/contact",
+      column: 1
+    },
+    {
+      name: "Gallery",
+      href: "/gallery",
+      column: 1
+    },
+    {
+      name: "Research",
+      href: "/research",
+      column: 2
+    },
+    {
+      name: "Publications",
+      href: "/publications",
+      column: 2
+    },
+    {
+      name: "Labs",
+      href: "/labs",
+      column: 2
+    },
+    {
+      name: "Projects",
+      href: "/projects",
+      column: 2
+    },
+    {
+      name: "Events",
+      href: "/events",
+      column: 2
+    }
+  ]
+},
   {
     id: "05",
     name: "Deans",
@@ -98,12 +148,38 @@ const NavLink = [
     link: [], 
   },
 ];
+const AcademicDropdown = () => {
+  return (
+    <div className="academic-dropdown">
+      {/* This is where you can customize the academic section */}
+      <div className="dropdown-heading">Academic Programs</div>
+      <ul>
+        <li><a href="/undergraduate">Undergraduate Programs</a></li>
+        <li><a href="/postgraduate">Postgraduate Programs</a></li>
+        <li><a href="/phd">PhD Programs</a></li>
+      </ul>
 
+      <div className="dropdown-heading">Resources</div>
+      <ul>
+        <li><a href="/library">Library</a></li>
+        <li><a href="/labs">Laboratories</a></li>
+        <li><a href="/research">Research Centers</a></li>
+      </ul>
+    </div>
+  );
+};
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdowns, setOpenDropdowns] = useState([]);
-  const location = useLocation(); // For tracking active links
-  const linkListRef = useRef(null); // Ref to measure link list width
+  const [isSticky, setIsSticky] = useState(false);
+  const [isLogoHidden, setIsLogoHidden] = useState(false);
+  const location = useLocation();
+  const linkListRef = useRef(null);
+  const [academicOpen, setAcademicOpen] = useState(false);
+
+  const handleAcademicToggle = () => {
+    setAcademicOpen(!academicOpen);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -121,26 +197,17 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      const linkListWidth = linkListRef.current
-        ? linkListRef.current.scrollWidth
-        : 0; // Total width of the link list
-      const navbarWidth = linkListRef.current
-        ? linkListRef.current.parentElement.offsetWidth
-        : 0; // Width of the navbar container
-
-      // Show hamburger menu if the link list width exceeds the available navbar width
-      if (linkListWidth> navbarWidth) {
-        setIsMenuOpen(true); // Show hamburger menu
+    const handleScroll = () => {
+      if (window.scrollY > 200 && window.innerWidth >= 768) {
+        setIsSticky(true);
+        setIsLogoHidden(true);
       } else {
-        setIsMenuOpen(false); // Hide hamburger menu if there is enough space
-        setOpenDropdowns([]); // Close all dropdowns
+        setIsSticky(false);
+        setIsLogoHidden(false);
       }
     };
-
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Call it initially to set the correct state
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const closeMenuOnClick = () => {
@@ -153,98 +220,96 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className="relative sm:py-6 px-4 mx-auto lg:px-6">
-      <nav className="relative flex items-center justify-between sm:h-12 sm:py-1 md:justify-center">
-        <div className="flex  w-full items-center flex-1 md:absolute md:inset-y-0 md:left-0">
-          <div className="flex items-center justify-between w-full  py-3 mr-8">
-            {/* Left-side logo for Desktop */}
-
-            <Link to="/" className="w-48" onClick={closeMenuOnClick}>
-              {" "}
-              {/* Added margin right */}
+    <div className="relative sm:py-6">
+      <nav
+        className={`${
+          isSticky && window.innerWidth >= 1440
+            ? "fixed top-0 z-50 bg-transparent backdrop-blur-md shadow-lg"
+            : "relative"
+        } w-full flex items-center justify-between sm:h-12 sm:py-1 md:justify-center transition-all duration-300`}
+      >
+        <div className="flex w-full items-center flex-1 md:absolute md:inset-y-0 md:left-0">
+          <div className="flex items-center justify-between w-full py-3 mr-8">
+            <Link to="/" onClick={closeMenuOnClick}>
               <span className="sr-only">IIITDMJ</span>
-              <img className="w-48" src={Logo2} alt="logo" />
+              <img
+                className={`${
+                  isLogoHidden ? "w-0 opacity-0" : "w-48 opacity-100"
+                } transition-all duration-300 ml-4`}
+                src={Logo2}
+                alt="logo"
+              />
             </Link>
-
-            {/* Right-side Links for Desktop */}
             <div
-              className="hidden [@media(min-width:1400px)]:flex flex-1 justify-center items-center ml-5 space-x-3"
+              className={`hidden [@media(min-width:1400px)]:flex flex-1 justify-center items-center ml-5 space-x-3 transition-all duration-300 ${
+                isLogoHidden ? "space-x-8" : "space-x-3"
+              }`}
               ref={linkListRef}
-            >
-              {" "}
-              {/* Reduced space between links */}
+            > 
               {NavLink.map((item, index) => (
                 <div key={index} className="relative group">
                   <button className="font-semibold flex items-center px-3 py-2 text-black hover:text-blue-600 focus:outline-none">
-                  <a
+                    <a
                       href={item.href}
                       rel="noopener noreferrer"
                       className={"block no-underline text-black"}
-                      key={index}
                     >
                       {item.name}
                     </a>
-                    {Array.isArray(item.link) &&
-                      item.link.length > 0 && ( // Only render the SVG if there are sub-links
-                        <svg
-                          className="ml-1 h-4 w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      )}
+                    {Array.isArray(item.link) && item.link.length > 0 && (
+                      <svg
+                        className="ml-1 h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    )}
                   </button>
                   {Array.isArray(item.link) && item.link.length > 0 && (
-                    <ul className="absolute left-0 mt-0 bg-white text-black shadow-lg hidden group-hover:block z-50 w-auto min-w-max">
-                      {item.link.map((subItem, subIndex) => {
-                        return subItem.isExternal ? (
-                          <a
-                            href={subItem.href}
-                            rel="noopener noreferrer"
-                            className={`block no-underline ${
-                              isActive(subItem.href) ? "font-bold text-blue-600" : "text-black"
+                    <ul
+                      className={`absolute left-0 mt-0 bg-white text-black shadow-lg ${
+                        item.name === "Academics" ? "grid grid-cols-2 gap-4" : ""
+                      } hidden group-hover:block z-50 w-auto min-w-max`}
+                    > 
+                      {item.link.map((subItem, subIndex) => (
+                        <Link
+                          to={subItem.href}
+                          className={`block no-underline ${
+                            isActive(subItem.href)
+                              ? "font-bold text-blue-600"
+                              : "text-black"
+                          }`}
+                          key={subIndex}
+                          onClick={closeMenuOnClick}
+                        >
+                          <li
+                            className={`font-normal w-full hover:bg-blue-200 px-5 py-2 ${
+                              item.name === "Academics"
+                                ? `col-span-${subItem.column || 1}`
+                                : ""
                             }`}
-                            key={subIndex}
                           >
-                            <li className="font-normal w-full hover:bg-blue-200 px-5 py-2">
-                              {subItem.name}
-                            </li>
-                          </a>
-                        ) : (
-                          <Link
-                            to={subItem.href}
-                            className={`block no-underline ${
-                              isActive(subItem.href) ? "font-bold text-blue-600" : "text-black"
-                            }`}
-                            key={subIndex}
-                            onClick={closeMenuOnClick}
-                          >
-                            <li className="font-normal w-full hover:bg-blue-200 px-5 py-2">
-                              {subItem.name}
-                            </li>
-                          </Link>
-                        );
-                      })}
+                            {subItem.name}
+                          </li>
+                        </Link>
+                      ))}
                     </ul>
                   )}
                 </div>
               ))}
             </div>
-
-            {/* Hamburger Menu for Mobile View */}
             <div className="flex items-center">
               <button
                 onClick={toggleMenu}
-                className="text-black hover:text-blue-600 focus:outline-none
-      md:hidden [@media(max-width:1399px)]:block [@media(min-width:1400px)]:hidden"
+                className="text-black hover:text-blue-600 focus:outline-none md:hidden [@media(max-width:1399px)]:block [@media(min-width:1400px)]:hidden"
               >
                 <svg
                   className="h-6 w-6"
@@ -270,27 +335,19 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Sidebar Menu */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-opacity-90 z-40 flex flex-col w-64 p-4 overflow-y-auto 
-        sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden
-        [@media(max-width:1399px)]:block [@media(min-width:1400px)]:hidden"
+          className="fixed inset-0 bg-opacity-90 z-40 flex flex-col w-64 p-4 overflow-y-auto sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden [@media(max-width:1399px)]:block [@media(min-width:1400px)]:hidden"
           style={{ backgroundColor: "white" }}
         >
-          {/* Image above the list of links */}
           <div className="flex justify-center mb-4">
             <Link to="/" className="w-28" onClick={closeMenuOnClick}>
               <span className="sr-only">IIITDMJ</span>
-              <img className="w-full" src={Logo1} alt="logo" />
+              <img className="w-full ml-4" src={Logo1} alt="logo" />
             </Link>
           </div>
           <div className="flex items-start">
-            {" "}
-            {/* Added this div to keep the logo and links together */}
             <ul className="space-y-1 flex-1">
-              {" "}
-              {/* Flex to occupy remaining space */}
               {NavLink.map((item, index) => (
                 <li key={index}>
                   <button
@@ -311,51 +368,12 @@ const Navbar = () => {
                         strokeWidth="2"
                         d={
                           openDropdowns.includes(index)
-                            ? "M19 15l-7-7-7 7"
-                            : "M5 9l7 7 7-7"
+                            ? "M6 18L18 6M6 6l12 12"
+                            : "M4 6h16M4 12h16M4 18h16"
                         }
                       />
                     </svg>
                   </button>
-                  {openDropdowns.includes(index) && (
-                    <ul className="bg-white text-black mt-0 rounded-b-lg shadow-none">
-                      {item.link.map((subItem, subIndex) => {
-                        const subItemName = subItem.name || Object.keys(subItem)[0];
-                        const subItemLink = subItem.href || subItem[subItemName];
-                        const isExternal = subItem.isExternal || false;
-
-                        return isExternal ? (
-                          <a
-                            href={subItemLink}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            className={`block no-underline ${
-                              isActive(subItemLink) ? "font-bold text-blue-600" : "text-black"
-                            }`}
-                            key={subIndex}
-                          >
-                            <li className="font-normal hover:bg-blue-200 px-4 py-1">
-                              {subItemName}
-                            </li>
-                          </a>
-                        ) : (
-                          <Link
-                            to={subItemLink}
-                            className={`block no-underline ${
-                              isActive(subItemLink) ? "font-bold text-blue-600" : "text-black"
-                            }`}
-                            key={subIndex}
-                            onClick={closeMenuOnClick}
-                          >
-                            <li className="font-normal hover:bg-blue-200 px-4 py-1">
-                              {subItemName}
-                            </li>
-                          </Link>
-                        );
-                      })}
-
-                    </ul>
-                  )}
                 </li>
               ))}
             </ul>

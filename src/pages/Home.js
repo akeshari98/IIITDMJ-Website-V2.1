@@ -15,6 +15,7 @@ import Marquee2 from "./Marquee2";
 import ImageSlider from "./ImageSlider";
 import ImageGallery from "../components/ImageGallery";
 import NewsSlider from "../components/NewsSlider/NewsSlider";
+import AchievementsSlider from "../components/AchievementsSlider";
 import Notices from "../components/Notices";
 import AboutAndVisitors from "../components/AboutAndVisitor";
 const slides = [
@@ -190,63 +191,7 @@ function Home() {
         </div>
 
         <section className="px-8  pt-6 pb-2 text-center md:py-16">
-          <div className="mx-auto max-w-6xl">
-            <div className="flex flex-col items-center">
-              {/* ProductHunt badge - Product of the month - 1st */}
-
-              <img className="aspect-square w-1/6" src={Logo} alt="logo" />
-
-              <h1 className="text-center text-3xl font-semibold text-heading md:max-w-4xl lg:text-5xl xl:text-6xl">
-                Indian Institute Of Informtion Techonology Design And
-                Manufacturing Jabalpur.
-              </h1>
-              <p className="mt-6 max-w-3xl text-xl">
-                IIIT Jabalpur fosters a vibrant and dynamic learning environment
-                where students pursue degrees in various engineering
-                disciplines, including Computer Science, Electronics,
-                Mechanical, and Information Technology.
-              </p>
-
-              {/* <form className="mt-6 flex flex-col gap-2 sm:flex-row">
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="sr-only block text-sm font-semibold text-heading">
-                    Courses
-                  </label>
-                  <input
-                    id="Courses"
-                    name="courses"
-                    type="text"
-                    list="courses"
-                    placeholder="Seach"
-                    onChange={(event) => setSelectedCourse(event.target.value)}
-                    className="block  w-full rounded-xl border-2 border-layer-3 bg-muted-1 px-4 py-2.5 font-semibold text-heading placeholder:text-text/50 focus:border-primary focus:outline-none focus:ring-0 sm:text-sm"
-                  />
-                  <datalist id="courses">
-                    <option value="BTech" />
-                    <option value="BDes" />
-                    <option value="Mdes" />
-                    <option value="MTech" />
-                    <option value="Phd" />
-                  </datalist>
-                </div>
-                <button
-                  onClick={handleSearch}
-                  type="submit"
-                  className="inline-flex cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition duration-200 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:text-white dark:focus:ring-white/80">
-                  Search
-                </button>
-              </form> */}
-            </div>
-            {/* <div className="mt-12 md:px-2">
-              <img
-                className="h-auto w-full rounded-lg"
-                src={college_img1}
-                alt="college"
-              />
-            </div> */}
-          </div>
+          {/*  */}
           <div className="container  pt-2 mx-auto mt-10">
             <div className="flex flex-col w-full text-left">
               <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
@@ -286,7 +231,7 @@ function Home() {
                       <h3 className="text-2xl font-semibold mb-4">
                         Achievements
                       </h3>
-                      <NewsSlider />
+                      <AchievementsSlider/>
                     </div>
                   </div>
                   <div className="lg:w-1/3">

@@ -1,0 +1,26 @@
+Images are stored on a cloudinary Db
+only public id of images is stored in the url section of postgre Db
+full link us constructed in using public id, transformation details, and image public id.
+FORMAT: https://res.cloudinary.com/<cloud_name>/image/upload/<transformation>/<image_id>.<format>
+
+Example: 
+cloud_name: djy2jlthj
+transformation: c_fill,w_400,h_300,q_auto:low,f_auto
+image_id: IIITDMJ_Images/News/gqv7ai6hdtq0npehbg63
+format: jpg
+compiled:https://res.cloudinary.com/djy2jlthj/image/upload/c_fill,w_400,h_300,q_auto:low,f_auto/IIITDMJ_Images/News/gqv7ai6hdtq0npehbg63.jpg
+
+
+JSX SCRIPT:
+const cloudName = 'your_cloud_name'; // Replace with your Cloudinary cloud name
+
+const generateImageUrl = (publicId, transformation) => {
+    return `https://res.cloudinary.com/${cloudName}/image/upload/${transformation}/${publicId}.jpg`;
+};
+
+// Example usage in a component
+const ImageComponent = ({ imageId }) => {
+    const imageUrl = generateImageUrl(imageId, 'q_auto:low');
+
+    return <img src={imageUrl} alt="Your Image" />;
+};

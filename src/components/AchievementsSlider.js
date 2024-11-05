@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axiosInstance from '../../axios'; // Importing the axios instance
+import axiosInstance from '../axios'; // Importing the axios instance
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import newsPlaceHolder from "../../resources/images/newsPlaceHolder.png"
+import newsPlaceHolder from "../resources/images/newsPlaceHolder.png"
 // Helper function to build Cloudinary image URLs
 const buildImageUrl = (publicId) => {
   const cloudName = "djy2jlthj";
   return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_300/${publicId}`;
 };
 
-const NewsCard = ({ title, imagePublicId, excerpt, createdAt, link }) => {
+const AchievementsCard = ({ title, imagePublicId, excerpt, createdAt, link }) => {
   // Define a placeholder image URL
   // const newsPlaceholder = "https://example.com/path-to-placeholder-image.jpg";
 
@@ -53,7 +53,7 @@ const NewsCard = ({ title, imagePublicId, excerpt, createdAt, link }) => {
 
 
 
-const NewsCarousel = () => {
+const AchievementsCarousel = () => {
   const [newsData, setNewsData] = useState([]);
   const carouselRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -64,7 +64,7 @@ const NewsCarousel = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axiosInstance.get('/news/news'); // Fetching news data
+        const response = await axiosInstance.get('/achievements/achievements'); // Fetching news data
         const newsItems = response.data.map(item => ({
           ...item,
           imagePublicId: item.image_url, // Assume the API returns 'image' as publicId
@@ -131,7 +131,7 @@ const NewsCarousel = () => {
       >
         {newsData.map((item, index) => (
           <div key={`${item.id}-${index}`} className="snap-start px-2 py-4">
-            <NewsCard {...item} />
+            <AchievementsCard {...item} />
           </div>
         ))}
       </div>
@@ -151,5 +151,5 @@ const NewsCarousel = () => {
   );
 };
 
-export default NewsCarousel;
+export default AchievementsCarousel;
 

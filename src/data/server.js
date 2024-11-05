@@ -2,9 +2,15 @@ const express = require("express"); // for the server
 const bodyParser = require("body-parser"); // for parsing and reading json data
 const cors = require("cors");
 const pool = require("./connection"); // Import the PostgreSQL pool from db.js
-
+const sequelize = require('./sequelize'); // Sequelize instance
+const newsModal = require('./modals/newsModal');
+const achievementsModal = require('./modals/achievementsModal');
+const noticesModal = require('./modals/noticesModal');
+const homeCarouselModal = require('./modals/homeCarouselModal');
+// Create the server
 const server = express(); // starting the server
 
+// Middleware to handle CORS and headers
 server.use((_req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
@@ -15,9 +21,6 @@ server.use(bodyParser.json()); // using the body-parser
 server.use(cors()); // using cors to prevent the CORS error
 
 const port = 5000;
-server.listen(port, () => {
-  console.log("server started at localhost " + port);
-});
 
 // Test connection to PostgreSQL
 server.get("/test", async (req, res) => {
@@ -30,15 +33,26 @@ server.get("/test", async (req, res) => {
   }
 });
 
+// Synchronize Sequelize models and start the server
+sequelize.sync()
+  .then(() => {
+    console.log('Database synchronized');
+    // Start the server after successful sync
+    server.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Unable to synchronize the database:', err);
+  });
+
 // Use the routes for each section
-// server.use("/feedbacks", require("./routes/feedbacks"));
-// server.use("/students", require("./routes/students"));
-// server.use("/faculties", require("./routes/faculty"));
-// server.use("/departments", require("./routes/departments"));
-// server.use("/admin", require("./routes/admin"));
 server.use("/people", require("./routes/people"));
 server.use("/links", require("./routes/links"));
-// server.use("/financecommittee", require("./routes/financecommittee"));
-// server.use("/generaladministration", require("./routes/generaladministration"));
-// server.use("/otheradministration", require("./routes/otheradministration"));
 
+// Add these routes for the different sections
+server.use("/news", require("./routes/news")); // Assuming you have routes defined for news
+server.use("/achievements", require("./routes/achievements")); // Assuming you have routes defined for achievements
+// server.use("/notices", require("./routes/notices")); // Routes for notices
+server.use("/carousel", require("./routes/homeCarousel")); // Routes for homepage carousel
+server.use("/notices", require("./routes/notices")); // Routes for homepage carousel
