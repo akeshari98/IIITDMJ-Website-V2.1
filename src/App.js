@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/footer/footer";
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTopButton";
 import Loader from "./components/Loader";
 import AccessibilityHeader from "./components/AccessibilityHeader";
 

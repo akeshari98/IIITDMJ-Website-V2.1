@@ -252,6 +252,9 @@ router.get("/counselling_head", (req, res) => {
 router.get("/counselling_core", (req, res) => {
   withoutAddress("councelling_core", res);
 });
+router.get("/scholarship", (req, res) => {
+  withoutAddress("scholarship", res);
+});
 
 router.get("/profs", (req, res) => {
   professors(res);

@@ -21,6 +21,29 @@ const getLinks = async (type, res) => {
   }
 };
 
+
+const getLinks2 = async (type, res) => {
+  try {
+    const query = `
+      SELECT * 
+      FROM ${type} 
+      ORDER BY id DESC;
+    `;
+    const result = await pool.query(query);
+
+    res.status(200).json(result.rows);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+router.get("/annual_report", (req, res) => { getLinks2('annual_report', res); });
+router.get("/annual_account", (req, res) => { getLinks2('annual_account', res); });
+router.get("/grievance_redressal_cell", (req, res) => { getLinks2('grievance_redressal_cell', res); });
+router.get("/press_releases", (req, res) => { getLinks2('press_releases', res); });
+
 router.get("/bogminutes", (req, res) => { getLinks('bog_minutes', res); });
 router.get("/bogagenda", (req, res) => { getLinks('bog_agenda', res); });
 router.get("/fcminutes", (req, res) => { getLinks('fc_minutes', res); });

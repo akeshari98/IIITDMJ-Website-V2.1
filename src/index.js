@@ -14,7 +14,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
-import ContactUs from "./pages/ContactUs";
 import Courses from "./pages/Courses";
 import Register from "./pages/Register";
 import SignUpMessage from "./pages/test/SignUpMessage";
@@ -35,8 +34,8 @@ import Senateminutes from "./pages/more/administration/senateminutes";
 import Senateagenda from "./pages/more/administration/senateagenda";
 import Buildingminutes from "./pages/more/administration/buildingminutes";
 import Buildingagenda from "./pages/more/administration/buildingagenda";
-import DeanAcademics from "./pages/more/deans/deanacademics"
-import DeanStudents from "./pages/more/deans/deanstudents"
+import DeanAcademics from "./pages/more/deans/deanacademics";
+import DeanStudents from "./pages/more/deans/deanstudents";
 import Club from "./pages/more/Club";
 import Event from "./pages/more/Event";
 import Gallery from "./pages/more/Gallery";
@@ -44,15 +43,23 @@ import News from "./pages/more/News";
 import Saptadhara from "./pages/more/Saptadhara";
 import Step from "./pages/more/Step";
 import StudentCorner from "./pages/more/StudentCorner";
-import ResearchStaff from "./pages/more/people/researchstaff"
-import OfficeAdministration from "./pages/more/people/officeadministration"
-import Staff from "./pages/more/people/staff"
-import PrimaryHealthCentre from "./pages/more/facilities/primaryhealthcentre"
-import ShopsInCampus from "./pages/more/facilities/shopsincampus"
-import GymKhana from "./pages/more/students/gymkhana"
-import Activities from "./pages/more/students/activities"
-import Hostels from "./pages/more/students/hostels"
-import Counselling from "./pages/more/students/counselling"
+import ResearchStaff from "./pages/more/people/researchstaff";
+import OfficeAdministration from "./pages/more/people/officeadministration";
+import Staff from "./pages/more/people/staff";
+import PrimaryHealthCentre from "./pages/more/facilities/primaryhealthcentre";
+import ShopsInCampus from "./pages/more/facilities/shopsincampus";
+import GymKhana from "./pages/more/students/gymkhana";
+import Activities from "./pages/more/students/activities";
+import Hostels from "./pages/more/students/hostels";
+import Counselling from "./pages/more/students/counselling";
+import AnnualReport from "./pages/more/Footer/annualreport";
+import AnnualAccount from "./pages/more/Footer/annualaccounts";
+import Accessibility from "./pages/more/Footer/accessibility";
+import ContactUs from "./pages/more/Footer/contact";
+import Grievance from "./pages/more/Footer/grievanceandredressalcell";
+import Scholarship from "./pages/more/Footer/scholarship";
+import PressReleases from "./pages/more/Footer/pressreleases";
+import MapsAndDirections from "./pages/more/Footer/mapsanddirections";
 
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
@@ -84,8 +91,8 @@ import Bcom from "./pages/Bcom";
 import Verification from "./modules/admin/components/Verification";
 import { isCompositeComponent } from "react-dom/test-utils";
 
-//Footer 
-import RTI from "./pages/more/Footer/RTI"
+//Footer
+import RTI from "./pages/more/Footer/RTI";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -192,7 +199,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/buildingminutes",
-        element: <Buildingminutes/>,
+        element: <Buildingminutes />,
       },
       {
         path: "/buildingagenda",
@@ -237,6 +244,34 @@ const router = createBrowserRouter([
       {
         path: "/counselling",
         element: <Counselling />,
+      },
+      {
+        path: "/annualreport",
+        element: <AnnualReport />,
+      },
+      {
+        path: "/annualaccount",
+        element: <AnnualAccount />,
+      },
+      {
+        path: "/accessibility",
+        element: <Accessibility />,
+      },
+      {
+        path: "/grievanceandredressalcell",
+        element: <Grievance />,
+      },
+      {
+        path: "/scholarship",
+        element: <Scholarship />,
+      },
+      {
+        path: "/pressreleases",
+        element: <PressReleases />,
+      },
+      {
+        path: "/mapsanddirections",
+        element: <MapsAndDirections />,
       },
       {
         path: "/staff",
