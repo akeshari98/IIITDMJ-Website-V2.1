@@ -63,7 +63,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* First Column */}
             <div className="space-y-6">
-            <img src={logo} alt="IIIT Logo" className="w-[70%] mb-12" />
+            {/* <img src={logo} alt="IIIT Logo" className="w-[70%] mb-12" /> */}
               <div>
                 <h5 className="text-white font-medium text-lg mb-6">About</h5>
                 <ul className="space-y-3">
@@ -227,7 +227,7 @@ const Footer = () => {
                   </div>
               </div>
               
-              <Weather />
+              {/* <Weather /> */}
             </div>
           </div>
         </div>
