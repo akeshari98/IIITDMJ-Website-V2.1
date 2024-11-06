@@ -97,7 +97,7 @@ const MainPage = () => {
               service from campus to city. The bus timing can be see and
               downloaded from the below link.
             </p>
-            <div className="mt-5 mb-5 bg-gray-300">
+            <div className="mt-5 mb-5 bg-gray-300 rounded-lg">
               <iframe
                 width="100%"
                 height="300px"
@@ -140,6 +140,15 @@ const MainPage = () => {
               <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
             </svg>
           </div>
+          <ul className="list-disc ml-5">
+            {quickLinks.map((link, index) => (
+              <li key={index} className="mb-2 -ml-3">
+                <a href={link.href} className="text-blue-500 no-underline">
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
