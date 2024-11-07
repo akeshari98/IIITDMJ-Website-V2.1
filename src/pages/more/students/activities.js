@@ -65,12 +65,12 @@ const MainPage = () => {
 <a href="https://www.iiitdmj.ac.in/students/downloads/IHPC_report_2017.pdf" className="no-underline">Report on the major activities and events conducted by the Indian Heritage and Philosophy Club in the session 2016-17</a>
             </p>
 <hr></hr>
-            <h2>Students' Participation in IIITDMJ- Japan Collaboration</h2>
+            <h2 className="text-2xl mb-4">Students' Participation in IIITDMJ- Japan Collaboration</h2>
             <p className="text-gray-700 mb-4 font-semibold">
                 Participation of students in IIITDMJ - Japan collaboration has reached to new heights. Every year, both during winter and summer vacation, students are going to Japan for 10 days exposure visit, in which they not only visit leading industries, renowned laboratories and leading academic universities, but also are introduced to Japanese culture. Both Industry and academia of Japan are now having a very good impression of capabilities of our students and eager to place the students, both for MS program and in industry. Few among them are AMADA, Canon and GE energy. Some students are now pursuing MS in Japan’s leading academic Institutions, University of Tokyo and Tokyo Institute of Technology. With the introduction of project based internship (PBI) in the curriculum, in the year 2012 five students had been offered six month long internship in MHI, Canon and Chiba University. Based on their performance during internship, the students shall be offered jobs in respective companies.
             </p>
             <hr></hr>
-            <h2>Annual Fest</h2>
+            <h2 className="text-2xl mb-4">Annual Fest</h2>
             <p className="text-gray-700 mb-4 font-semibold">
             The students have been organizing annual inter-college festivals namely “Tarang” (Cultural Fest), “Abhikalpan” (Tech Fest) and “Gusto” (Sports Fest) in the campus regularly ever since the inception of the institute. These festivals have become very popular among the students of other colleges of Jabalpur and a significant number of students of other colleges participate in these events. Apart from this, various festivals at inter-hall level like DMD battle (Cultural event), Enthuse (Sports event) and various technical events such as Photography Exhibitions, Robotics events, etc, are also being organized by students. Institute has also opened SPIC-MACAY chapter under whose banner various cultural and folk events are being organised. National Festivals like Independence Day and Republic Day are also organized by IIITDMJ students with great enthusiasm.
             </p>

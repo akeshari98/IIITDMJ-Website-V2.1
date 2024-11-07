@@ -241,7 +241,7 @@ const MainPage = () => {
             </div>
             <br></br>
             <hr></hr>
-            <h2>Hostel Administration</h2>
+            <h2 className="text-2xl">Hostel Administration</h2>
             <div className="overflow-auto">
               <table className="min-w-full table-auto border-collapse border border-gray-200 mt-4">
                 <thead>
@@ -281,25 +281,25 @@ const MainPage = () => {
               </table>
             </div>
             <br></br>
-            <h3>Notifications</h3>
+            <h3 className="text-2xl mb-4">Notifications</h3>
             <ul className="list-disc ml-5">
               {notifications.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
                   <a href={link.href} className="text-blue-500 no-underline">
-                    <strong>•</strong> {link.name}
+                    {link.name}
                   </a>
                 </li>
               ))}
             </ul>
             <hr></hr>
-            <h3>Hostel Allotment Information</h3>
+            <h3 className="text-2xl">Hostel Allotment Information</h3>
             <br></br>
             <h6>Hostel Allotment in Vasishtha Hostel (HALL-I)</h6>
             <ul className="list-disc ml-5">
                 {vasishtha.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
                     <a href={link.href} className="text-blue-500 no-underline">
-                    <strong>•</strong>  {link.name}
+                    {link.name}
                     </a>
                 </li>
                 ))}
@@ -309,7 +309,7 @@ const MainPage = () => {
                 {aryabhatta.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
                     <a href={link.href} className="text-blue-500 no-underline">
-                    <strong>•</strong>  {link.name}
+                    {link.name}
                     </a>
                 </li>
                 ))}
@@ -319,7 +319,7 @@ const MainPage = () => {
                 {vivekananda.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
                     <a href={link.href} className="text-blue-500 no-underline">
-                    <strong>•</strong>  {link.name}
+                    {link.name}
                     </a>
                 </li>
                 ))}
@@ -329,7 +329,7 @@ const MainPage = () => {
                 {nagarjuna.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
                     <a href={link.href} className="text-blue-500 no-underline">
-                    <strong>•</strong>  {link.name}
+                    {link.name}
                     </a>
                 </li>
                 ))}
@@ -339,7 +339,7 @@ const MainPage = () => {
                 {panini.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
                     <a href={link.href} className="text-blue-500 no-underline">
-                    <strong>•</strong>  {link.name}
+                    {link.name}
                     </a>
                 </li>
                 ))}
@@ -349,7 +349,7 @@ const MainPage = () => {
                 {saraswati.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
                     <a href={link.href} className="text-blue-500 no-underline">
-                    <strong>•</strong>  {link.name}
+                    {link.name}
                     </a>
                 </li>
                 ))}
@@ -359,7 +359,7 @@ const MainPage = () => {
                 {rewa.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
                     <a href={link.href} className="text-blue-500 no-underline">
-                    <strong>•</strong>  {link.name}
+                    {link.name}
                     </a>
                 </li>
                 ))}
