@@ -74,8 +74,8 @@ export const Menus = [
         heading: "IMPORTANT LINKS",
         items: [
           { name: "Important Forms" },
-          { name: "Internal Circulars" },
-          { name: "External Circulars" },
+          { name: "Internal Circulars", href: "/internalcirculars" },
+          { name: "External Circulars", href: "/externalcirculars" },
           { name: "Study In India" }
         ]
       },

@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
 
 
 const MainPage = () => {
   const [data, setData] = useState({
-    director: [],
-    deans: [],
-    hods: [],
-    registrar: [],
+    links: [],
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      const response = await fetch(`http://localhost:5000/links/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }
@@ -30,30 +27,17 @@ const MainPage = () => {
 
   useEffect(() => {
     const endpoints = [
-      { key: "director", endpoint: "director" },
-      { key: "deans", endpoint: "deans" },
-      { key: "hods", endpoint: "hods" },
-      { key: "registrar", endpoint: "registrar" },
+      { key: "links", endpoint: "internal_circulars" },
     ];
-
-    // Fetch all data
     endpoints.forEach(({ endpoint, key }) => {
       fetchData(endpoint, key);
     });
   }, []);
 
   const quickLinks = [
-    { name: "IIIT Act", href:"/"},
-    { name: "Institue Rules", href:"/"},
-    { name: "Director Portfolio", href:"/"},
-    { name:"Board of Governers", href: "/boardofgoverners" },
-    { name:"Finance Committee", href: "/financecommittee" },
-    // { name:"General Administration", href: "/generaladministration" },
-    // { name:"Other Administration", href: "/otheradministration" },
-    // { name:"Senate", href: "/senate" },
-    { name:"Building Works Committee", href: "/buildingworkscommittee" },
-    { name:"Administrative Structure", href: "/administrativestructure" },
+    { name:"External Circulars", href: "/externalcirculars" },
   ];
+
 
   return (
     <div>
@@ -63,7 +47,7 @@ const MainPage = () => {
         style={{ backgroundImage: `url(${college_img1})` }}
       >
         <h1 className="absolute inset-0 flex items-center justify-center text-white text-5xl font-bold">
-          General Administration
+          Internal Circulars
         </h1>
       </div>
 
@@ -83,59 +67,28 @@ const MainPage = () => {
               <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5z" />
               <path d="M2 3h10v2H2zm0 3h4v3H2zm0 4h4v1H2zm0 2h4v1H2zm5-6h2v1H7zm3 0h2v1h-2zM7 8h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1H7zm-3 2h2v1H7zm3 0h2v1H7zm-3 2h2v1H7zm3 0h2v1H7z" />
             </svg>
+            
             <h2 className="text-3xl font-semibold mb-4">
-              Key Administrators Of Insitute
+                Internal Circulars
             </h2>
           </div>
 
-          {/* Subheading for card section */}
-          <div>
-          <h3 className="text-xl font-semibold mt-4">Director</h3>
-
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {data.director.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
-              ))}
+          {/* Text content area with formatted text and circular bullets */}
+            <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
+                <ul className="list-disc ml-5">
+                    {data.links.map((link, index) => (
+                    <li key={index} className="flex items-start ml-3 mb-2">
+                        <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                        <a target="_blank" href={link.href} className="-mt-1 text-lg font-semibold text-blue-500 no-underline">
+                        {link.name}
+                        </a>
+                    </li>
+                    ))}
+                </ul>
             </div>
-          </div>
-          </div>
-          <div>
-          <h3 className="text-xl font-semibold mt-4">Deans</h3>
-
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {data.deans.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
-              ))}
-            </div>
-          </div>
-          </div>
-          <div>
-          <h3 className="text-xl font-semibold mt-4">Head Of Disciplines</h3>
-
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {data.hods.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
-              ))}
-            </div>
-          </div>
-          </div>
-          <div>
-          <h3 className="text-xl font-semibold mt-4">Registrar (Acting)</h3>
-
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
-              {data.registrar.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
-              ))}
-            </div>
-          </div>
-          </div>
+        
         </div>
 
-        {/* 30% Quick Links section */}
         {/* 30% Quick Links section */}
         <div className="w-full md:w-3/12 px-4">
           <div className="flex flex-row">
@@ -169,3 +122,6 @@ const MainPage = () => {
 };
 
 export default MainPage;
+
+
+

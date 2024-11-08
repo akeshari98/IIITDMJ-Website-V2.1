@@ -278,7 +278,7 @@ const MainPage = () => {
                   width="16"
                   height="16"
                   fill="black"
-                  className="bi bi-download w-7 h-7 ml-3 mt-4 inline-block"
+                  className="bi bi-download w-7 h-7 ml-3 mt-6 inline-block"
                   viewBox="0 0 16 16"
                 >
                   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>

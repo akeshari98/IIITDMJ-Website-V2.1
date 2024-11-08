@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
-import profile from "../../../resources/images/admin/profile.jpg";
+
 
 const MainPage = () => {
 
@@ -80,15 +80,15 @@ const MainPage = () => {
         </p>
         <ul className="list-none ml-4 mb-4">
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             You can change the size of the fonts
             </li>
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             You can change the colour of the fonts
             </li>
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             You can change the settings to make a keyboard or a mouse easier to use
             </li>
         </ul>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
-import profile from "../../../resources/images/admin/profile.jpg";
+
 import image1 from "../../../resources/images/phc1.png";
 import image2 from "../../../resources/images/phc2.png";
 import image3 from "../../../resources/images/phc3.png";
@@ -101,7 +101,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
               {quickLinks2.map((link, index) => (
                 <li key={index} className="-ml-3">
-                  •{' '}
+                  {' '}
                   <a href={link.href} className="text-blue-500 no-underline">
                     {link.name}
                   </a>
@@ -113,7 +113,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
               {data.cardsData.map((doctor, index) => (
                 <li key={index} className="-ml-3">
-                  • <strong>{doctor.name} - {doctor.role} </strong>
+                   <strong>{doctor.name} - {doctor.role} </strong>
                 </li>
               ))}
             </ul>
@@ -142,7 +142,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
               {guidelines.map((link, index) => (
                 <li key={index} className="-ml-3">
-                  •{' '}
+                  {' '}
                   <a href={link.href} className="text-blue-500 no-underline">
                     {link.name}
                   </a>

@@ -61,6 +61,9 @@ import Scholarship from "./pages/more/Footer/scholarship";
 import PressReleases from "./pages/more/Footer/pressreleases";
 import MapsAndDirections from "./pages/more/Footer/mapsanddirections";
 
+import InternalCirculars from "./pages/more/academics/internalcirculars";
+import ExternalCirculars from "./pages/more/academics/externalcirculars";
+
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
@@ -272,6 +275,14 @@ const router = createBrowserRouter([
       {
         path: "/mapsanddirections",
         element: <MapsAndDirections />,
+      },
+      {
+        path: "/internalcirculars",
+        element: <InternalCirculars />,
+      },
+      {
+        path: "/externalcirculars",
+        element: <ExternalCirculars />,
       },
       {
         path: "/staff",

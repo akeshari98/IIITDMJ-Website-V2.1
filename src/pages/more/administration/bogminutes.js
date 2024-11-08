@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
-import profile from "../../../resources/images/admin/profile.jpg";
+
 
 const MainPage = () => {
   const [data, setData] = useState({
@@ -80,7 +80,7 @@ const MainPage = () => {
                 <ul className="list-disc ml-5">
                     {data.links.map((link, index) => (
                     <li key={index} className="flex items-start ml-3 mb-2">
-                        <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+                        <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
                         <a target="_blank" href={link.href} className="-mt-1 text-xl font-semibold text-blue-500 no-underline">
                         {link.name}
                         </a>

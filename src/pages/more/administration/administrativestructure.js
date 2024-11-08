@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
-import profile from "../../../resources/images/admin/profile.jpg";
 
 const MainPage = () => {
 
@@ -58,23 +57,23 @@ const MainPage = () => {
         {/* <h4 className="text-xl font-semibold mb-2">Key Points</h4> */}
         <ul className="list-none ml-4 mb-4 font-semibold">
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             Board of Governors
             </li>
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             Senate
             </li>
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             Finance Committee
             </li>
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             Building and Works Committee
             </li>
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             Research Council
             </li>
         </ul>
@@ -87,19 +86,19 @@ const MainPage = () => {
         {/* <h4 className="text-xl font-semibold mb-2">Responsibilities of the Administration</h4> */}
         <ul className="list-none ml-4 mb-4">
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             The Deputy Director  (to be nominated on appointment)
             </li>
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             The Deans
             </li>
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             The Heads of various disciplines
             </li>
             <li className="flex items-start mb-1">
-            <span className="w-2 h-2 mt-1.5 mr-2 bg-black rounded-full"></span>
+            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
             The Registrar
             </li>
         </ul>
