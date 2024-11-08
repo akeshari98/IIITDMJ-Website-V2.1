@@ -43,6 +43,8 @@ router.get("/annual_report", (req, res) => { getLinks2('annual_report', res); })
 router.get("/annual_account", (req, res) => { getLinks2('annual_account', res); });
 router.get("/grievance_redressal_cell", (req, res) => { getLinks2('grievance_redressal_cell', res); });
 router.get("/press_releases", (req, res) => { getLinks2('press_releases', res); });
+router.get("/internal_circulars", (req, res) => { getLinks2('internal_circulars', res); });
+router.get("/external_circulars", (req, res) => { getLinks2('external_circulars', res); });
 
 router.get("/bogminutes", (req, res) => { getLinks('bog_minutes', res); });
 router.get("/bogagenda", (req, res) => { getLinks('bog_agenda', res); });

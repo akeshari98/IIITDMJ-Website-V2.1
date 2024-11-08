@@ -61,6 +61,20 @@ import Scholarship from "./pages/more/Footer/scholarship";
 import PressReleases from "./pages/more/Footer/pressreleases";
 import MapsAndDirections from "./pages/more/Footer/mapsanddirections";
 
+//academics
+import Convocation from "./pages/more/academics/convocation";
+import Curriculum from "./pages/more/academics/curriculum";
+import FeeStructure from "./pages/more/academics/feestructure";
+import IntegratedMasters from "./pages/more/academics/integratedmasters";
+import OfferedPrograms from "./pages/more/academics/offeredprograms";
+import PartTimePrograms from "./pages/more/academics/parttimeprograms";
+import PgPrograms from "./pages/more/academics/pgprograms";
+import PhdPrograms from "./pages/more/academics/phdprograms";
+import UgPrograms from "./pages/more/academics/ugprograms";
+import UsefulInformation from "./pages/more/academics/usefulinformation";
+import InternalCirculars from "./pages/more/academics/internalcirculars";
+import ExternalCirculars from "./pages/more/academics/externalcirculars";
+
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
@@ -320,6 +334,55 @@ const router = createBrowserRouter([
       {
         path: "/counselling",
         element: <Counselling />,
+      },
+      //academics
+      {
+        path: "/convocation",
+        element: <Convocation />,
+      },
+      {
+        path: "/curriculum",
+        element: <Curriculum />,
+      },
+      {
+        path: "/feestructure",
+        element: <FeeStructure />,
+      },
+      {
+        path: "/integratedmasters",
+        element: <IntegratedMasters />,
+      },
+      {
+        path: "/offeredprograms",
+        element: <OfferedPrograms />,
+      },
+      {
+        path: "/parttimeprograms",
+        element: <PartTimePrograms />,
+      },
+      {
+        path: "/pgprograms",
+        element: <PgPrograms />,
+      },
+      {
+        path: "/phdprograms",
+        element: <PhdPrograms />,
+      },
+      {
+        path: "/ugprograms",
+        element: <UgPrograms />,
+      },
+      {
+        path: "/usefulinformation",
+        element: <UsefulInformation />,
+      },
+      {
+        path: "/internalcirculars",
+        element: <InternalCirculars />,
+      },
+      {
+        path: "/externalcirculars",
+        element: <ExternalCirculars />,
       },
     ],
   },
