@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
-import profile from "../../../resources/images/admin/profile.jpg";
+
 import image1 from "../../../resources/images/vasishtha.jpg";
 import image2 from "../../../resources/images/aryabhatta.jpg";
 import image3 from "../../../resources/images/vivekananda.jpg";

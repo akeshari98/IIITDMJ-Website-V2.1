@@ -132,6 +132,7 @@ export const Menus = [
         heading: "IMPORTANT LINKS",
         items: [
           { name: "Important Forms" },
+
           { name: "Internal Circulars" ,
             href:"/internalcirculars"
           },
@@ -140,7 +141,10 @@ export const Menus = [
           },
           { name: "Study In India" ,
             href:"https://www.studyinindia.gov.in/admission/registrations"
-          }
+          },
+          { name: "Internal Circulars", href: "/internalcirculars" },
+          { name: "External Circulars", href: "/externalcirculars" },
+          { name: "Study In India" }
         ]
       },
     ]

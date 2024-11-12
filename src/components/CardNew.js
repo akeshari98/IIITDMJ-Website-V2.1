@@ -15,13 +15,12 @@ const Card = ({ first_name, last_name, email, address, phone_no, role, profile_p
   // Initialize variables for phoneArray and emailArray
   const phoneArray = phone_no ? splitPhoneNumber(phone_no) : []; // Only split if phone_no is not null
   const emailArray = email ? splitEmailString(email) : []; // Only split if email is not null
-
   return (
     <div className="max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform hover:scale-105">
-      <img 
+      <img
         src={profile_picture || profile} 
         alt={first_name} 
-        className="w-48 h-48 object-cover rounded-md mx-auto"
+        className="w-40 h-40 object-cover rounded-md mx-auto"
       />
       <div className="mt-4">
         {first_name && <h3 className="text-xl font-bold break-words">{first_name} {last_name}</h3>}

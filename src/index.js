@@ -288,6 +288,14 @@ const router = createBrowserRouter([
         element: <MapsAndDirections />,
       },
       {
+        path: "/internalcirculars",
+        element: <InternalCirculars />,
+      },
+      {
+        path: "/externalcirculars",
+        element: <ExternalCirculars />,
+      },
+      {
         path: "/staff",
         element: <Staff />,
       },
