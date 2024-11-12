@@ -8,8 +8,8 @@ import { Dessert } from "lucide-react";
 import { Play } from "lucide-react";
 import { Database } from "lucide-react";
 import { MapPin } from "lucide-react";
-import { HeartPulse,Monitor,Download,Banknote,ShoppingCart,Utensils,Heart,Dumbbell,Activity } from "lucide-react";
-import { Book,Briefcase,Clipboard,User,Laptop, Code, Palette, BookOpen,DollarSign, Settings,ClipboardCheck,Home,Layers} from "lucide-react"
+import { HeartPulse, Monitor, Download, Banknote, ShoppingCart, Utensils, Heart, Dumbbell, Activity } from "lucide-react";
+import { Book, Briefcase, Clipboard, User, Laptop, Code, Palette, BookOpen, DollarSign, Settings, ClipboardCheck, Home, Layers } from "lucide-react"
 
 export const Menus = [
   {
@@ -33,47 +33,115 @@ export const Menus = [
       {
         heading: "PROGRAMMES",
         items: [
-          { name: "B.Tech." },
-          { name: "M.Tech." },
-          { name: "B.Des." },
-          { name: "M.Des." },
-          { name: "Ph.D." },
-          { name: "Integrated Master+Ph.D." },
-          { name: "Special Part Time M.Tech./M.Des." }
+          {
+            name: "B.Tech.",
+            href: "/offeredprograms"
+          },
+          {
+            name: "M.Tech.",
+            href: "/offeredprograms"
+          },
+          {
+            name: "B.Des.",
+            href: "/offeredprograms"
+          },
+          {
+            name: "M.Des.",
+            href: "/offeredprograms"
+          },
+          {
+            name: "Ph.D.",
+            href: "/offeredprograms"
+          },
+          {
+            name: "Integrated Master+Ph.D.",
+            href: "/integratedmasters"
+          },
+          {
+            name: "Special Part Time M.Tech./M.Des.",
+            href: "/parttimeprograms"
+          }
         ]
       },
       {
         heading: "ADMISSION",
         items: [
-          { name: "Undergraduate programs" },
-          { name: "Postgraduate Program" },
-          { name: "Ph.D. Programs" },
-          { name: "Fees Structure" },
-          { name: "Seat Matrix 2024-25" },
-          { name: "Academic Guidelines (UG & PG)" },
-          { name: "Academic Guidelines (Ph.D.)" },
-          { name: "Curriculum" }
+          {
+            name: "Undergraduate programs",
+            href: "/ugprograms"
+          },
+          {
+            name: "Postgraduate Program",
+            href: "/pgprograms"
+          },
+          {
+            name: "Ph.D. Programs",
+            href: "/phdprograms"
+          },
+          {
+            name: "Fees Structure",
+            href: "feestructure"
+          },
+          { name: "Seat Matrix 2024-25" ,
+            href:"https://www.iiitdmj.ac.in/academics/download/Seat%20Matrix%202024-25.pdf"
+          },
+          { name: "Academic Guidelines (UG & PG)",
+            href:"https://www.iiitdmj.ac.in/academics/download/Academic%20Guidelines_271017.pdf"
+           },
+          { name: "Academic Guidelines (Ph.D.)",
+            href:"https://www.iiitdmj.ac.in/academics/download/Ph.D.%20Manual.pdf"
+           },
+          {
+            name: "Curriculum",
+            href: "/curriculum"
+          }
         ]
       },
       {
         heading: "ACADEMIC LINKS",
         items: [
           { name: "Academic Calendar" },
-          { name: "Time Table Sem I, 2024-25" },
-          { name: "Guidelines - Time Table Sem I" },
-          { name: "Useful Information" },
-          { name: "Fee Refund Rule" },
-          { name: "Proposal/Modification for a Course" },
-          { name: "Proposal for a New Elective" },
-          { name: "Course & Modification in a Course" },
+          { name: "Time Table Sem I, 2024-25",
+            href:"https://drive.google.com/file/d/1PTF1d6gE2RmSqp6sUWGgoLCp1NlvLGVM/view"
+           },
+          { name: "Guidelines - Time Table Sem I" ,
+            href:"https://www.iiitdmj.ac.in/downloads/Guidelines-Timetable-Sem-I-2024-25.pdf"
+          },
+          { name: "Useful Information" ,
+            href:"/usefulinformation"
+          },
+          { name: "Fee Refund Rule",
+            href:"https://www.iiitdmj.ac.in/downloads/Notification_Revised_refund_rule.pdf"
+           },
+          { name: "Proposal/Modification for a Course",
+            href:"https://docs.google.com/forms/d/1Tlg6a0SPnNAa--A81yKsNet19n-hw9fas1P1QdHpzTI"
+           },
+          { name: "Proposal for a New Elective" ,
+            href:"https://docs.google.com/forms/d/1xcVmD4BvURRppXtWBnNpdHIPhMSOh_3xvxu_ovbkJl8/viewform?edit_requested=true#responses"
+           },
+          { name: "Course & Modification in a Course",
+            href:"https://docs.google.com/forms/d/1-bNPq1bkzlOCv6O8gI7nUcnJrIITqKAkAG3CrdQrHoU"
+           },
           { name: "Form for submission of thesis" },
-          { name: "Convocation" }
+          { name: "Convocation",
+            href:"/convocation"
+           }
         ]
       },
       {
         heading: "IMPORTANT LINKS",
         items: [
           { name: "Important Forms" },
+
+          { name: "Internal Circulars" ,
+            href:"/internalcirculars"
+          },
+          { name: "External Circulars" ,
+            href:"/externalcirculars"
+          },
+          { name: "Study In India" ,
+            href:"https://www.studyinindia.gov.in/admission/registrations"
+          },
           { name: "Internal Circulars", href: "/internalcirculars" },
           { name: "External Circulars", href: "/externalcirculars" },
           { name: "Study In India" }
@@ -123,11 +191,11 @@ export const Menus = [
       }
     ],
     gridCols: 1,
-  },  
+  },
   {
     name: "Departments",
     subMenuGroups: [
-      { 
+      {
         items: [
           {
             name: "Computer Science & Engineering (CSE)",
@@ -311,6 +379,6 @@ export const Menus = [
   },
   {
     name: "Research",
-    href:"https://www.iiitdmj.ac.in/rspc.iiitdmj.ac.in/"
+    href: "https://www.iiitdmj.ac.in/rspc.iiitdmj.ac.in/"
   }
 ];
