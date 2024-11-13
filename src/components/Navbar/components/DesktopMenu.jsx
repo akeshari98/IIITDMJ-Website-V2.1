@@ -4,43 +4,33 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export default function DesktopMenu({ menu }) {
-  const [isHover, toggleHover] = useState(false);
+  const [isHover, setIsHover] = useState(false);
 
-  const toggleHoverMenu = () => {
-    toggleHover(!isHover);
-  };
+  const handleMouseEnter = () => setIsHover(true);
+  const handleMouseLeave = () => setIsHover(false);
 
   const subMenuAnimate = {
     enter: {
       opacity: 1,
       rotateX: 0,
-      transition: {
-        duration: 0.3,
-      },
+      transition: { duration: 0.3 },
       display: "block",
     },
     exit: {
       opacity: 0,
       rotateX: -15,
-      transition: {
-        duration: 0.3,
-      },
-      transitionEnd: {
-        display: "none",
-      },
+      transition: { duration: 0.3 },
+      transitionEnd: { display: "none" },
     },
   };
 
-  // Function to handle menu item click
   const handleMenuItemClick = (href, isExternal) => {
     if (!href) return;
-    
     if (isExternal) {
       window.open(href, '_blank', 'noopener,noreferrer');
     }
   };
 
-  // Function to render menu item based on href and external status
   const renderMenuItem = (item) => {
     const isExternal = item.href?.startsWith('http');
     const content = (
@@ -50,7 +40,7 @@ export default function DesktopMenu({ menu }) {
             <item.icon size={16} className="text-gray-600" />
           </div>
         )}
-        <div className="flex-grow">
+        <div className="flex-grow min-w-0">
           <p className="text-[13px] font-medium text-gray-600 leading-tight group-hover:text-gray-900 transition-colors">
             {item.name}
           </p>
@@ -61,7 +51,9 @@ export default function DesktopMenu({ menu }) {
           )}
         </div>
         {isExternal && (
-          <ExternalLink size={12} className="text-gray-400 group-hover:text-gray-600" />
+          <div className="flex-shrink-0 w-4">
+            <ExternalLink size={12} className="text-gray-400 group-hover:text-gray-600" />
+          </div>
         )}
       </div>
     );
@@ -101,14 +93,14 @@ export default function DesktopMenu({ menu }) {
   return (
     <motion.li
       className="group/link relative"
-      onHoverStart={toggleHoverMenu}
-      onHoverEnd={toggleHoverMenu}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       key={menu.name}
     >
       {menu.href ? (
         menu.href.startsWith('http') ? (
-          <a 
-            href={menu.href} 
+          <a
+            href={menu.href}
             className="flex-center gap-1 hover:bg-white/5 cursor-pointer px-3 py-1 rounded-xl"
             target="_blank"
             rel="noopener noreferrer"
@@ -117,8 +109,8 @@ export default function DesktopMenu({ menu }) {
             <ExternalLink size={12} className="ml-1" />
           </a>
         ) : (
-          <Link 
-            to={menu.href} 
+          <Link
+            to={menu.href}
             className="flex-center gap-1 hover:bg-white/5 cursor-pointer px-3 py-1 rounded-xl"
           >
             {menu.name}
@@ -132,27 +124,28 @@ export default function DesktopMenu({ menu }) {
           )}
         </span>
       )}
-      
+
       {hasSubMenu && (
         <motion.div
           className="sub-menu absolute bg-white rounded-lg p-2.5 shadow-lg"
           style={{
             maxWidth: "90vw",
             width: `${Math.min(200 * gridCols, 1200)}px`,
-            marginTop: "-20px",
+            marginTop: "0px", // Removed negative margin
+            top: "100%", // Position directly under parent
           }}
           initial="exit"
           animate={isHover ? "enter" : "exit"}
           variants={subMenuAnimate}
         >
           <div
-            className="grid gap-3"
+            className="grid divide-x divide-gray-300"
             style={{
               gridTemplateColumns: `repeat(${gridCols}, minmax(180px, 1fr))`,
             }}
           >
             {menu.subMenuGroups.map((group, groupIndex) => (
-              <div key={groupIndex} className="space-y-1.5">
+              <div key={groupIndex} className="space-y-1.5 px-3 first:pl-0 last:pr-0">
                 <h3 className="text-sm font-semibold text-gray-500 mb-1">
                   {group.heading}
                 </h3>
