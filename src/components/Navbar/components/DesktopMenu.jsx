@@ -149,6 +149,7 @@ export default function DesktopMenu({ menu }) {
                 <h3 className="text-sm font-semibold text-gray-500 mb-1">
                   {group.heading}
                 </h3>
+                <hr></hr>
                 <div className="space-y-0.5">
                   {group.items.map((item, itemIndex) => (
                     <div

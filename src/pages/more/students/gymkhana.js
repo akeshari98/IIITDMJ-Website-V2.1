@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
-import profile from "../../../resources/images/admin/profile.jpg";
+
 import image1 from "../../../resources/images/gym-1.jpg";
 import image2 from "../../../resources/images/gym-2.jpg";
 
@@ -182,7 +182,7 @@ const MainPage = () => {
             <h2>Brief Information regarding Clubs</h2>
             <ul className="ml-5 space-y-4">
               <li className="flex items-start">
-                <span className="font-bold mr-2">•</span>
+                <span className="font-bold mr-2"></span>
                 <p className="text-gray-700 font-semibold">
                   <b>Cultural Club:</b> The Institute has vibrant Cultural Clubs
                   that provide a platform for students to showcase their
@@ -199,7 +199,7 @@ const MainPage = () => {
                 </p>
               </li>
               <li className="flex items-start">
-                <span className="font-bold mr-2">•</span>
+                <span className="font-bold mr-2"></span>
                 <p className="text-gray-700 font-semibold">
                   <b>Science & Technology Club:</b> There are in all 7 different
                   Science and Technology Clubs which are mentored separately by
@@ -213,7 +213,7 @@ const MainPage = () => {
                 </p>
               </li>
               <li className="flex items-start">
-                <span className="font-bold mr-2">•</span>
+                <span className="font-bold mr-2"></span>
                 <p className="text-gray-700 font-semibold">
                   <b>Sports Club:</b> Sports and games play a major role in
                   keeping a person fit and fine. Sports in general inculcates
@@ -237,7 +237,7 @@ const MainPage = () => {
                 </p>
               </li>
             </ul>
-
+            <br></br>
             <p className="text-gray-700 mb-4 font-semibold">
               Finally, IITDM Jabalpur sports fraternity has a unique ability to
               bring people from different backgrounds together, as well as teach

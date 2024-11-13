@@ -1,52 +1,40 @@
-import React from 'react'; 
+import React, {useEffect, useState} from 'react';
+import Card from '../../../components/CardNew';
 import college_img1 from "../../../resources/images/3.jpg";
-import profile from "../../../resources/images/admin/profile.jpg";
 
-const shops = () => {
-  const tableData = [
-  {
-    shopName: "Non-Veg & Breakfast Corner",
-    firmName: "M/s. Kesar Jayka",
-    mobileNo: ["8839794160", "9302077118"],
-    location: "Near Vasishtha Hostel (Hall-1)",
-  },
-  {
-    shopName: "Fruit & Fruit Juice/ Vegetables",
-    firmName: "M/s. Gulzar Vegetable & Fruit",
-    mobileNo: ["8827662337"],
-    location: "Near Vasishtha Hostel (Hall-1)",
-  },
-  {
-    shopName: "Stationery Shop",
-    firmName: "M/s. Metro Traders",
-    mobileNo: ["9827442116"],
-    location: "Near Vasishtha Hostel (Hall-1)",
-  },
-  {
-    shopName: "Grocery Shop",
-    firmName: "M/s. Bakery Shop & Catering",
-    mobileNo: ["9907173003"],
-    location: "Near Vasishtha Hostel (Hall-1)",
-  },
-  {
-    shopName: "Tea/Coffee Shop [NESCAFE]",
-    firmName: "M/s. Ravi Provision Stores",
-    mobileNo: ["9425152766"],
-    location: "Near Vasishtha Hostel (Hall-1)",
-  },
-  {
-    shopName: "Barber Shop",
-    firmName: "M/s Ashirwad Mens Parlour",
-    mobileNo: ["9630507101", "6262210246"],
-    location: "Ground Floor Hall-1 (Vasishtha Hostel)",
-  },
-  {
-    shopName: "Laundry Shop",
-    firmName: "M/s Manoj Rajak",
-    mobileNo: ["9329892077"],
-    location: "Ground Floor Hall-1 (Vasishtha Hostel)",
-  },
-];
+
+const MainPage = () => {
+  const [data, setData] = useState({
+    cardsData: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "cardsData", endpoint: "shops" },
+    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
 
   const quickLinks = [
@@ -105,12 +93,12 @@ const shops = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {tableData.map((row, index) => (
+                  {data.cardsData.map((row, index) => (
                     <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                       <td className="px-2 py-2 border border-gray-200">{index + 1}</td>
-                      <td className="px-2 py-2 border border-gray-200">{row.shopName}</td>
-                      <td className="px-2 py-2 border border-gray-200">{row.firmName}</td>
-                      <td className="px-2 py-2 border border-gray-200">{row.mobileNo.join(", ")}</td>
+                      <td className="px-2 py-2 border border-gray-200">{row.name}</td>
+                      <td className="px-2 py-2 border border-gray-200">M/s {row.owner}</td>
+                      <td className="px-2 py-2 border border-gray-200">{row.contact}</td>
                       <td className="px-2 py-2 border border-gray-200">{row.location}</td>
                     </tr>
                   ))}
@@ -154,7 +142,7 @@ const shops = () => {
                   width="16"
                   height="16"
                   fill="black"
-                  className="bi bi-download w-7 h-7 ml-3 mt-4 inline-block"
+                  className="bi bi-download w-7 h-7 ml-3 mt-6 inline-block"
                   viewBox="0 0 16 16"
                 >
                   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
@@ -179,4 +167,4 @@ const shops = () => {
   );
 };
 
-export default shops;
+export default MainPage;

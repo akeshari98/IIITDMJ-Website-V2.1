@@ -1,22 +1,22 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
-import profile from "../../../resources/images/admin/profile.jpg";
+
 import image1 from "../../../resources/images/phc1.png";
 import image2 from "../../../resources/images/phc2.png";
 import image3 from "../../../resources/images/phc3.png";
 
-const Healthcentre = () => {
+const MainPage = () => {
 
   const quickLinks = [
-    { name: "Gymkhana", href: "/" },
-    { name: "Activities", href: "/" },
+    { name: "Gymkhana", href: "/gymkhana" },
+    { name: "Activities", href: "/activities" },
     // { name:"General Administration", href: "/generaladministration" },
     // { name:"Other Administration", href: "/otheradministration" },
-    { name: "Counselling", href: "/" },
-    { name: "Hostels", href: "/" },
-    { name: "Alumni", href: "/" },
-    { name: "Students Mess", href: "/" },
+    { name: "Counselling", href: "/counselling" },
+    { name: "Hostels", href: "/hostels" },
+    { name: "Alumni", href: "https://alumni.iiitdmj.ac.in/" },
+    { name: "Students Mess", href: "https://www.iiitdmj.ac.in/mess.iiitdmj.ac.in/" },
     { name: "PHC", href: "/primaryhealthcentre" },
   ];
   const quickLinks2 = [
@@ -29,15 +29,37 @@ const Healthcentre = () => {
     { name: "Guidelines 29-11-2016", href: "/financecommittee" },
   ];
 
-  const doctors = [
-    { name: "Dr. G S Sandhu (MD)", specialization: "Medical Specialist" },
-    { name: "Dr. Arvind Nath Gupta (MD)", specialization: "Pediatrician" },
-    { name: "Dr. Ranjana Gupta", specialization: "Gynecologist" },
-    { name: "Dr. Sabiha Khan", specialization: "ENT Specialist" },
-    { name: "Dr. Hemant Singh", specialization: "Pediatrician" },
-    { name: "Dr. Abhay Shrivastava", specialization: "Orthopedist" },
-    { name: "Dr. Jogendri Pathariya", specialization: "Counselor" },
-  ];
+  const [data, setData] = useState({
+    cardsData: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async (endpoint, key) => {
+    try {
+      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${key} data`);
+      }
+      const result = await response.json();
+      setData((prevState) => ({ ...prevState, [key]: result }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const endpoints = [
+      { key: "cardsData", endpoint: "doctors" },
+    ];
+
+    // Fetch all data
+    endpoints.forEach(({ endpoint, key }) => {
+      fetchData(endpoint, key);
+    });
+  }, []);
 
 
   return (
@@ -79,7 +101,7 @@ const Healthcentre = () => {
             <ul className="list-disc ml-5">
               {quickLinks2.map((link, index) => (
                 <li key={index} className="-ml-3">
-                  •{' '}
+                  {' '}
                   <a href={link.href} className="text-blue-500 no-underline">
                     {link.name}
                   </a>
@@ -89,38 +111,38 @@ const Healthcentre = () => {
             <br />
             <h3>Doctors available for consultation:</h3>
             <ul className="list-disc ml-5">
-              {doctors.map((doctor, index) => (
+              {data.cardsData.map((doctor, index) => (
                 <li key={index} className="-ml-3">
-                  • <strong>{doctor.name}</strong> - {doctor.specialization}
+                   <strong>{doctor.name} - {doctor.role} </strong>
                 </li>
               ))}
             </ul>
 
             {/* Adding images in a single row */}
             <div className="flex justify-center mt-4 mb-4">
-              <span className="flex gap-4">
-                <img
-                  src={image1}
-                  alt="PHC 1"
-                  className="w-64 h-56 object-cover " // Increased size to 48x48
-                />
-                <img
-                  src={image2}
-                  alt="PHC 2"
-                  className="w-64 h-56 object-cover" // Increased size to 48x48
-                />
-                <img
-                  src={image3}
-                  alt="PHC 3"
-                  className="w-64 h-56 object-cover" // Increased size to 48x48
-                />
-              </span>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-4">
+  <img
+    src={image1}
+    alt="Image 1"
+    className="w-full h-full object-cover"
+  />
+  <img
+    src={image2}
+    alt="Image 2"
+    className="w-full h-full object-cover"
+  />
+  <img
+    src={image3}
+    alt="Image 2"
+    className="w-full h-full object-cover"
+  />
+</div>
             </div>
             <h3>Guidelines</h3>
             <ul className="list-disc ml-5">
               {guidelines.map((link, index) => (
                 <li key={index} className="-ml-3">
-                  •{' '}
+                  {' '}
                   <a href={link.href} className="text-blue-500 no-underline">
                     {link.name}
                   </a>
@@ -164,4 +186,4 @@ const Healthcentre = () => {
   );
 };
 
-export default Healthcentre;
+export default MainPage;
