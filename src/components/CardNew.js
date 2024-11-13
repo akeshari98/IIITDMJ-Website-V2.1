@@ -20,7 +20,7 @@ const Card = ({ first_name, last_name, email, address, phone_no, role, profile_p
       <img
         src={profile_picture || profile} 
         alt={first_name} 
-        className="w-40 h-40 object-cover rounded-md mx-auto"
+        className="w-40 h-40 object-cover object-top rounded-md mx-auto"
       />
       <div className="mt-4">
         {first_name && <h3 className="text-xl font-bold break-words">{first_name} {last_name}</h3>}

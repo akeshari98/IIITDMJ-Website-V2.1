@@ -185,14 +185,14 @@ function Home() {
           <h4 className="h-8 w-auto whitespace-nowrap font-semibold">
             Impotant Updates:
           </h4>
-          <div className="w-full px-0 mt-0 ml-4">
+          <div className="w-full px-0 ml-4"> 
             <Marquee2 data={notis} />
           </div>
         </div>
 
-        <section className="px-8  pt-6 pb-2 text-center md:py-16">
+        <section className="px-8  pt-6 pb-2 text-center md:py-16 ">
           {/*  */}
-          <div className="container  pt-2 mx-auto mt-10">
+          <div className="container  pt-2 mx-auto -mt-10">
             <div className="flex flex-col w-full text-left">
               <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
                 Latest <span style={{ color: "#2563EB" }}>Updates</span>

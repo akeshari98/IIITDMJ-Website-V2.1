@@ -144,7 +144,7 @@ const IITDelhiInfoCards = () => {
       title: "DIRECTOR'S CORNER",
       content: "Prof. Bhartendu K Singh has taken over the charge as Director, Indian Institute of Information Technology Jabalpur (IIITDMJ) with effect from the forenoon of 15th February, 2022. He brings with him a wealth of experience and a vision for enhancing the institute's global standing and research impact.",
       buttons: [{ text: "Read more", primary: false }],
-      media: "https://picsum.photos/200/300?random=4",
+      media: "https://www.iiitdmj.ac.in/assets/img/faculty/admin/Prof.%20Bhartendu%20K%20Singh.jpg",
       isVideo: false,
       isDirector: true
     }
