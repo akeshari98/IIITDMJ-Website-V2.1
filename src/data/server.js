@@ -7,6 +7,10 @@ const newsModal = require('./modals/newsModal');
 const achievementsModal = require('./modals/achievementsModal');
 const noticesModal = require('./modals/noticesModal');
 const homeCarouselModal = require('./modals/homeCarouselModal');
+const eventsModal = require('./modals/eventsModal');
+const eventImagesModal = require('./modals/eventImagesModal');
+// const tendersModal = require('./modals/tendersModal');
+const path = require('path');
 // Create the server
 const server = express(); // starting the server
 
@@ -16,7 +20,7 @@ server.use((_req, res, next) => {
   res.header("Access-Control-Allow-Headers", "*");
   next();
 });
-
+server.use('/public', express.static(path.join(__dirname, '../../public')));
 server.use(bodyParser.json()); // using the body-parser
 server.use(cors()); // using cors to prevent the CORS error
 
@@ -34,18 +38,20 @@ server.get("/test", async (req, res) => {
 });
 
 // Synchronize Sequelize models and start the server
-sequelize.sync()
-  .then(() => {
-    console.log('Database synchronized');
-    // Start the server after successful sync
-    server.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-  })
-  .catch((err) => {
-    console.error('Unable to synchronize the database:', err);
-  });
-
+// sequelize.sync()
+//   .then(() => {
+//     console.log('Database synchronized');
+//     // Start the server after successful sync
+//     server.listen(port, () => {
+//       console.log(`Server is running on port ${port}`);
+//     });
+//   })
+//   .catch((err) => {
+//     console.error('Unable to synchronize the database:', err);
+//   });
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 // Use the routes for each section
 server.use("/people", require("./routes/people"));
 server.use("/links", require("./routes/links"));
@@ -56,3 +62,7 @@ server.use("/achievements", require("./routes/achievements")); // Assuming you h
 // server.use("/notices", require("./routes/notices")); // Routes for notices
 server.use("/carousel", require("./routes/homeCarousel")); // Routes for homepage carousel
 server.use("/notices", require("./routes/notices")); // Routes for homepage carousel
+server.use("/events", require("./routes/events"));
+server.use("/eventImages", require("./routes/eventImages"));
+server.use("/tenders", require("./routes/tenders"));
+server.use("/facultyInfo",require("./routes/facultyInfo"))

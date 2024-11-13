@@ -1,6 +1,6 @@
 import React from 'react';
 import profile from "../resources/images/admin/profile.jpg";
-
+import { Link } from 'react-router-dom';
 // Function to split phone number by '.' and return an array of strings
 const splitPhoneNumber = (phone_no) => {
   return phone_no.toString().split('.'); // Splits wherever there is a '.'
@@ -11,7 +11,7 @@ const splitEmailString = (email) => {
   return email.split(',').map(item => item.trim()); // Trims any extra spaces
 };
 
-const Card = ({ first_name, last_name, email, address, phone_no, role, profile_picture }) => {
+const Card = ({ first_name, last_name, email, address, phone_no, role, profile_picture, id, user_type }) => {
   // Initialize variables for phoneArray and emailArray
   const phoneArray = phone_no ? splitPhoneNumber(phone_no) : []; // Only split if phone_no is not null
   const emailArray = email ? splitEmailString(email) : []; // Only split if email is not null
@@ -44,6 +44,13 @@ const Card = ({ first_name, last_name, email, address, phone_no, role, profile_p
             ))}
           </div>
         )}
+       
+      {user_type==="faculty"&&<Link
+                to={`/profilepage/${id}`}
+                className="absolute bottom-4 left-4 right-4 bg-black text-white rounded px-4 py-2 hover:bg-gray-700 transition duration-300 text-center "
+              >
+                View Profile
+              </Link>}          
       </div>
     </div>
   );

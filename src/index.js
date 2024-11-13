@@ -105,8 +105,15 @@ import Bcom from "./pages/Bcom";
 import Verification from "./modules/admin/components/Verification";
 import { isCompositeComponent } from "react-dom/test-utils";
 
-//Footer
-import RTI from "./pages/more/Footer/RTI";
+import RTI from "./pages/more/Footer/RTI"
+
+//EIS
+import LandingPage from "./modules/faculty/pages/LandingPage";
+import ProfilePage from "./modules/faculty/pages/profilePage";
+
+//Events
+import EventsPage from "./components/Events/EventsPage"
+import TendersPage from "./pages/more/Tenders"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -343,6 +350,19 @@ const router = createBrowserRouter([
         path: "/counselling",
         element: <Counselling />,
       },
+      {
+        path:"/employee",
+        element:<LandingPage/>
+      },
+      {
+        path:"/profilepage/:id", 
+        element:<ProfilePage/>
+      },
+      { path:"/event/:eventId",
+        element:<EventsPage /> },
+      { path:"/tenders",
+        element:<TendersPage/> },
+      
       //academics
       {
         path: "/convocation",
