@@ -69,18 +69,19 @@ const MainPage = () => {
 
                     {/* Text content area with formatted text and circular bullets */}
                     <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-                        <p><span className="font-semibold">Clarification: </span>The fees under the heading "Semester Fees" are per semester fees.</p>
+                        <p><span className="text-lg font-semibold ">Clarification: </span>The fees under the heading "Semester Fees" are per semester fees.</p>
+                        <br></br>
                         {/* Table 1 for Schedule with margins */}
                         <div className="mx-4">
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Fee Structure 2024-25</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Fee Structure 2024-25</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2024-25/UG2024.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Details of Fee to be paid by B.Tech./B.Des. 2024 Batch
@@ -89,7 +90,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2024-25/PhD2024.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by PhD 2024 Batch
@@ -98,7 +99,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2024-25/PG2024.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by M.Tech./M.Des. 2024 Batch
@@ -106,7 +107,7 @@ const MainPage = () => {
                                         </td>
                                     </tr>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2024-25/Integrated%20(M+P)%202024.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by Integrated (M.Tech./M.Des. + PhD) 2024 Batch
@@ -119,12 +120,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Fee Structure 2023-24</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Fee Structure 2023-24</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2023-24/BTech_BDes%20Fee%20Structure%202023-24.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Details of Fee to be paid by B.Tech/B. Des Students - Batch 2023
@@ -133,7 +134,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2023-24/PG%20(MTech_MDes)%202023.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by M.Tech/M.Des Students - Batch 2023
@@ -142,7 +143,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2023-24/Fee%20Structure%20PhD%202023%20batch.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by Ph. D Students - Batch 2023
@@ -155,12 +156,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Fee Structure 2022-23</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Fee Structure 2022-23</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2022-23/B.Tech_B.Des.2022.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Details of Fee to be paid by B.Tech/B. Des Students - Batch 2022
@@ -169,7 +170,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2022-23/M.Tech_M.Des%202022.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by M.Tech/M.Des Students - Batch 2022
@@ -178,7 +179,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2022-23/phd%202022%20batch.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by Ph. D Students - Batch 2022
@@ -186,7 +187,7 @@ const MainPage = () => {
                                         </td>
                                     </tr>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2022-23/Integrated%20(Master+PhD)%202022.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by Integrated(M.Tech,M.Des+PhD)- Batch 2022
@@ -199,12 +200,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Fee Structure 2021-22</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Fee Structure 2021-22</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2021-22/B.Tech,B.Des%20(2021-22).pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Details of Fee to be paid by B.Tech/B. Des Students - Batch 2021
@@ -213,7 +214,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2021-22/M.Tech,M.Des(2021-22).pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by M.Tech/M.Des Students - Batch 2021
@@ -222,7 +223,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2021-22/Ph.D%202021.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by Ph. D Students - Batch 2021
@@ -230,7 +231,7 @@ const MainPage = () => {
                                         </td>
                                     </tr>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2021-22/Integrated(M.Tech,M.Des+PhD)2021.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by Integrated(M.Tech,M.Des+PhD)- Batch 2021
@@ -243,12 +244,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Fee Structure 2020-21</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Fee Structure 2020-21</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2020-21/fee-structure-Btech-Bdes-2020-21.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Details of Fee to be paid by B.Tech/B. Des Students - Batch 2020
@@ -257,7 +258,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2020-21/fee-structure-Mtech-Mdes-2020-21.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by M.Tech/M.Des Students - Batch 2020
@@ -266,7 +267,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2020-21/fee-structure-PhD-2020-21.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by Ph. D Students - Batch 2020
@@ -279,12 +280,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Fee Structure 2019-20</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Fee Structure 2019-20</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2019-20/fee-structure-B.Tech-2019-20.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Details of Fee to be paid by B.Tech/B. Des Students - Batch 2019
@@ -293,7 +294,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2019-20/fee-structure-M.Tech-M.Des-2019-20.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by M.Tech/M.Des Students - Batch 2019
@@ -302,7 +303,7 @@ const MainPage = () => {
                                     </tr>
 
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/fee-structure-2019-20/fee-structure-P.hD-2019-20.pdf"
                                                 className="text-blue-500 no-underline hover:text-blue-700">
                                                 Details of Fee to be paid by Ph. D Students - Batch 2019
@@ -315,12 +316,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Details of Fee to be paid by B.Tech/B. Des/Ph. D/M. Tech Students (2018 onwards)</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Details of Fee to be paid by B.Tech/B. Des/Ph. D/M. Tech Students (2018 onwards)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/Fees%20details%20-%202018.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Fee Structure 2018 onwards
@@ -333,13 +334,13 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">
+                                        <th className="p-2 font-semibold text-black bg-gray-300">
                                             Details of Fee to be paid by B.Tech/B. Des/Ph. D/M. Tech Students (2017 onwards)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/B.TechB.%20DesPh.%20DM.%20Tech%20Students%20(2017%20onwards).pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Fee Structure 2017 onwards
@@ -352,12 +353,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Details of the Fee to be paid by B. Tech /B.Des. Students (2016 batch onwards)</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Details of the Fee to be paid by B. Tech /B.Des. Students (2016 batch onwards)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/FeesstructureUG2016.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Fee Structure 2016
@@ -370,12 +371,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Details of the Fee to be paid by B. Tech Students (2015 batch onwards)</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Details of the Fee to be paid by B. Tech Students (2015 batch onwards)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/FeesstructureUG2015.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Fee Structure 2015
@@ -388,12 +389,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Details of the Fee to be paid by B. Tech Students (2013 batch onwards)</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Details of the Fee to be paid by B. Tech Students (2013 batch onwards)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/FeesstructureUG2013.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Fee Structure 2013
@@ -406,12 +407,12 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-10">
                                 <thead>
                                     <tr>
-                                        <th className="p-2 font-semibold text-gray-700 bg-gray-300">Details of the Fee to be paid by B. Tech Students (2012 batch onwards)</th>
+                                        <th className="p-2 font-semibold text-black bg-gray-300">Details of the Fee to be paid by B. Tech Students (2012 batch onwards)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/Fee%20Structre%20For%20Batch%202012-%203rd%20Semester%20onwards.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Fee Structre 2012
@@ -424,13 +425,13 @@ const MainPage = () => {
                             <table className="w-full border-collapse mb-6">
                                 <tbody>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/Ph.D-fee%20structure%202017.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Fee Structure for PhD (2017 onwards)
                                             </a>
                                         </td>
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/M.TechM.Des%20fee%20structure%202017.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                 Fee structure of M.Tech/M.Des (2017 onward)
@@ -438,14 +439,14 @@ const MainPage = () => {
                                         </td>
                                     </tr>
                                     <tr className="border-b">
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/Fee%20Stucture%20PG%202015%20onwards_Revised.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
 
                                                 Fees Structure for the PhD Students
                                             </a>
                                         </td>
-                                        <td className="p-2 text-gray-700 bg-gray-50 text-center">
+                                        <td className="p-2 text-black bg-gray-50 text-center">
                                             <a href="https://www.iiitdmj.ac.in/academics/download/Fee%20Stucture%20PG%20Mtech-Mdes%2013-14.pdf"
                                                 className="text-blue-500  hover:text-blue-700  no-underline">
                                                Fees Structure for the MTech & MDes Students

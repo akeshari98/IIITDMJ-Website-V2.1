@@ -78,7 +78,7 @@ const MainPage = () => {
 
           {/* Text content area with formatted text and circular bullets */}
           <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               Counseling is a talking therapy, a way of exploring what might
               help a student find his way through his current difficulties. The
               counseling Service believes that with support, the student is the
@@ -86,10 +86,10 @@ const MainPage = () => {
               to enable a student to find his own answers and work towards
               increasing his sense of competency and selfworth.
             </p>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               Many students need the help of the counseling Service to talk
               about things like:
-              <ul className="text-gray-700 mt-2 ml-2 mb-2 font-semibold">
+              <ul className="text-black mt-2 ml-2 mb-2 font-medium">
                 {[
                   "(a) Academic Problems",
                   "(b) Interpersonal Relationship",
@@ -102,10 +102,10 @@ const MainPage = () => {
                 ))}
               </ul>
             </p>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               The counseling Service at IIITDMJ is supported by a strong team of
               students/Faculty/Counsellor. It is constituted by the following-
-              <ul className="text-gray-700 mt-2 ml-2 mb-2 font-semibold">
+              <ul className="text-black mt-2 ml-2 mb-2 font-medium">
                 {[
                   "Head, counseling Service",
                   "Student Coordinators",
@@ -121,7 +121,7 @@ const MainPage = () => {
                 ))}
               </ul>
             </p>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               The counseling Service provides logistics in improving student’s
               difficulties in various ways from academic to social life. It is
               an integral part of the Institute that closely works with the

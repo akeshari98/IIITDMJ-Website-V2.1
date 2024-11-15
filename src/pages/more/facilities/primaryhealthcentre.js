@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
 
@@ -7,7 +7,6 @@ import image2 from "../../../resources/images/phc2.png";
 import image3 from "../../../resources/images/phc3.png";
 
 const MainPage = () => {
-
   const quickLinks = [
     { name: "Gymkhana", href: "/gymkhana" },
     { name: "Activities", href: "/activities" },
@@ -16,7 +15,10 @@ const MainPage = () => {
     { name: "Counselling", href: "/counselling" },
     { name: "Hostels", href: "/hostels" },
     { name: "Alumni", href: "https://alumni.iiitdmj.ac.in/" },
-    { name: "Students Mess", href: "https://www.iiitdmj.ac.in/mess.iiitdmj.ac.in/" },
+    {
+      name: "Students Mess",
+      href: "https://www.iiitdmj.ac.in/mess.iiitdmj.ac.in/",
+    },
     { name: "PHC", href: "/primaryhealthcentre" },
   ];
   const quickLinks2 = [
@@ -51,16 +53,13 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    const endpoints = [
-      { key: "cardsData", endpoint: "doctors" },
-    ];
+    const endpoints = [{ key: "cardsData", endpoint: "doctors" }];
 
     // Fetch all data
     endpoints.forEach(({ endpoint, key }) => {
       fetchData(endpoint, key);
     });
   }, []);
-
 
   return (
     <div>
@@ -97,62 +96,58 @@ const MainPage = () => {
 
           {/* Text content area with formatted text and circular bullets */}
           <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-            <h3>Links</h3>
+            <h3 className="text-xl font-semibold mb-1">Links:</h3>
             <ul className="list-disc ml-5">
               {quickLinks2.map((link, index) => (
                 <li key={index} className="-ml-3">
-                  {' '}
+                  {" "}
                   <a href={link.href} className="text-blue-500 no-underline">
                     {link.name}
                   </a>
                 </li>
               ))}
             </ul>
-            <br />
-            <h3>Doctors available for consultation:</h3>
+            <h3 className="text-xl font-semibold mb-1 mt-4">Doctors available for consultation:</h3>
             <ul className="list-disc ml-5">
               {data.cardsData.map((doctor, index) => (
                 <li key={index} className="-ml-3">
-                   <strong>{doctor.name} - {doctor.role} </strong>
+                    {doctor.name} - {doctor.role}{" "}
                 </li>
               ))}
             </ul>
-
-            {/* Adding images in a single row */}
-            <div className="flex justify-center mt-4 mb-4">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-4">
-  <img
-    src={image1}
-    alt="Image 1"
-    className="w-full h-full object-cover"
-  />
-  <img
-    src={image2}
-    alt="Image 2"
-    className="w-full h-full object-cover"
-  />
-  <img
-    src={image3}
-    alt="Image 2"
-    className="w-full h-full object-cover"
-  />
-</div>
-            </div>
-            <h3>Guidelines</h3>
+            <h3 className="text-xl font-semibold mb-1 mt-4">Guidelines:</h3>
             <ul className="list-disc ml-5">
               {guidelines.map((link, index) => (
                 <li key={index} className="-ml-3">
-                  {' '}
+                  {" "}
                   <a href={link.href} className="text-blue-500 no-underline">
                     {link.name}
                   </a>
                 </li>
               ))}
             </ul>
+            {/* Adding images in a single row */}
+            <div className="flex justify-center mt-4 mb-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-4">
+                <img
+                  src={image1}
+                  alt="Image 1"
+                  className="w-full h-full object-cover"
+                />
+                <img
+                  src={image2}
+                  alt="Image 2"
+                  className="w-full h-full object-cover"
+                />
+                <img
+                  src={image3}
+                  alt="Image 2"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
-
         </div>
-
 
         {/* 30% Quick Links section */}
         <div className="w-full md:w-3/12 px-4">
@@ -179,7 +174,6 @@ const MainPage = () => {
               </li>
             ))}
           </ul>
-
         </div>
       </div>
     </div>

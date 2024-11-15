@@ -52,7 +52,7 @@ export default function DesktopMenu({ menu }) {
         </div>
         {isExternal && (
           <div className="flex-shrink-0 w-4">
-            <ExternalLink size={12} className="text-gray-400 group-hover:text-gray-600" />
+            {/* <ExternalLink size={12} className="text-gray-400 group-hover:text-gray-600" /> */}
           </div>
         )}
       </div>
@@ -106,7 +106,7 @@ export default function DesktopMenu({ menu }) {
             rel="noopener noreferrer"
           >
             {menu.name}
-            <ExternalLink size={12} className="ml-1" />
+            {/* <ExternalLink size={12} className="ml-1" /> */}
           </a>
         ) : (
           <Link
@@ -139,7 +139,7 @@ export default function DesktopMenu({ menu }) {
           variants={subMenuAnimate}
         >
           <div
-            className="grid divide-x divide-gray-300"
+            className="grid divide-x divide-white"
             style={{
               gridTemplateColumns: `repeat(${gridCols}, minmax(180px, 1fr))`,
             }}
@@ -149,7 +149,7 @@ export default function DesktopMenu({ menu }) {
                 <h3 className="text-sm font-semibold text-gray-500 mb-1">
                   {group.heading}
                 </h3>
-                <hr></hr>
+                {group.heading && <hr></hr>}
                 <div className="space-y-0.5">
                   {group.items.map((item, itemIndex) => (
                     <div

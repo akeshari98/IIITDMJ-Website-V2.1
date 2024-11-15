@@ -157,7 +157,7 @@ const MainPage = () => {
 
           {/* Text content area with formatted text and circular bullets */}
           <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               IIITDM Jabalpur is a fully residential Institute. All the students
               are required to be reside in the campus. The hostel environment
               and available amenities play a very important role in the overall

@@ -67,7 +67,7 @@ const MainPage = () => {
                             </h2>
                         </div>
 
-                        <h6 className=" text-gray-800 ">Institute offers Integrated (MTech/MDes+PhD)programme in:</h6>
+                        <h6 className="font-semibold text-gray-800 ">Institute offers Integrated (MTech/MDes+PhD)programme in:</h6>
                         {/* Bulleted List */}
                         <ul className="list-none text-gray-800 mb-2 pb-6 border-b border-gray-200">
                             <li className="flex items-start">
@@ -103,7 +103,7 @@ const MainPage = () => {
                             </h2>
                         </div>
 
-                        <h6 className=" text-gray-800 ">Fees for Integrated Master+PhD:</h6>
+                        <h6 className="font-semibold text-gray-800 ">Fees for Integrated Master+PhD:</h6>
                         <p className=" text-gray-800">
                             Equivalent to M.Tech./MDes for first two years or till formal admission in Ph.D. programme (clearance of comprehensive exam) whichever is earlier. After this period it will be equivalent to Ph.D. programme fees of equivalent batch (for example a student who has taken admission in 2021 then Ph.D. fees will be applicable for the Ph.D. students admitted in 2021 from 2023 onwards)
                         </p>
@@ -111,7 +111,7 @@ const MainPage = () => {
                         <a href="#" className="text-blue-600 no-underline mb-6">Details of Fee Structure</a>
 
 
-                        <h6 className=" text-gray-800 pt-8">Assistantship for Integrated Master+PhD:</h6>
+                        <h6 className="font-semibold text-gray-800 pt-8">Assistantship for Integrated Master+PhD:</h6>
                         <p className=" text-gray-800 ">
                             Equivalent to M.Tech. for first two years or till formal admission in Ph.D. programme (clearance of comprehensive exam) whichever is earlier. After this period it will be equivalent to Ph.D. programme assistantship.
                         </p>
