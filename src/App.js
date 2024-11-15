@@ -5,7 +5,7 @@ import Footer from "./components/footer/footer";
 import ScrollToTop from "./components/ScrollToTopButton";
 import Loader from "./components/Loader";
 import AccessibilityHeader from "./components/AccessibilityHeader";
-
+import { useSelector } from 'react-redux';
 function App() {
   const [loading, setLoading] = useState(false);
   const [MoreOptionToggle, setMoreOptionToggle] = useState(false);
@@ -18,10 +18,15 @@ function App() {
       setLoading(false);
     }, 200);
   }, [pathname]);
+  const fontSize = useSelector((state) => state.fontSize); // Access Redux font size
 
+  // Update CSS variable whenever fontSize changes
+  useEffect(() => {
+    document.documentElement.style.setProperty('--dynamic-font-size', `${fontSize}px`);
+  }, [fontSize]);
   return (
     <div>
-      <div className="overflow-x-hidden">
+      <div className="overflow-x-hidden " style={{ fontSize: `${fontSize}px` }}>
         {loading && <Loader loading={loading} />}
         <ScrollToTop />
         <div className="hidden lg:block">

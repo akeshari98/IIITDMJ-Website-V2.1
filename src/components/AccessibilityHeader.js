@@ -17,9 +17,14 @@ import {
   School
 } from 'lucide-react';
 import { Link } from 'react-router-dom'; // Import Link for internal navigation
+import { useDispatch, useSelector } from 'react-redux';
+import { increaseFontSize, decreaseFontSize } from '../app/slice/sessionSlice'; // Update path if needed
 
 const AccessibilityHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const dispatch = useDispatch();
+  const fontSize = useSelector((state) => state.fontSize); // Get font size from Redux store
 
   const menuItems = [
     { label: 'Jobs', icon: Briefcase, link: '/jobs' },                // Internal link
@@ -33,7 +38,7 @@ const AccessibilityHeader = () => {
   ];
 
   return (
-    <header className="bg-black text-white">
+    <header className="bg-black text-white" style={{ fontSize: `${fontSize}px` }}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-1">
           {/* Mobile menu button */}
@@ -82,8 +87,19 @@ const AccessibilityHeader = () => {
               <option>हिन्दी</option>
               <option>English</option>
             </select>
-            <button className="text-xs hover:text-gray-300 transition duration-200">A-</button>
-            <button className="text-xs hover:text-gray-300 transition duration-200">A+</button>
+            {/* Font size adjustment buttons */}
+            <button 
+              onClick={() => dispatch(decreaseFontSize())} 
+              className="text-xs hover:text-gray-300 transition duration-200"
+            >
+              A-
+            </button>
+            <button 
+              onClick={() => dispatch(increaseFontSize())} 
+              className="text-xs hover:text-gray-300 transition duration-200"
+            >
+              A+
+            </button>
             <a href="#" className="flex items-center text-sm no-underline text-white hover:text-gray-300 transition duration-200">
               <Mail size={16} className="mr-1" />
               IIITDMJ Email

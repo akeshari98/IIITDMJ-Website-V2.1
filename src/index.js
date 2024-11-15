@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
@@ -114,6 +115,9 @@ import ProfilePage from "./modules/faculty/pages/profilePage";
 //Events
 import EventsPage from "./components/Events/EventsPage"
 import TendersPage from "./pages/more/Tenders"
+
+//misc
+import ScreenReaderAccess from "./pages/ScreenReaderAccess"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -362,6 +366,8 @@ const router = createBrowserRouter([
         element:<EventsPage /> },
       { path:"/tenders",
         element:<TendersPage/> },
+      { path:"/screenreaderaccess",
+        element:<ScreenReaderAccess/> },
       
       //academics
       {
@@ -495,6 +501,7 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>

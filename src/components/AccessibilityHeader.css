@@ -1,0 +1,33 @@
+/* Hide Google Translate attribution and original combo */
+.goog-te-gadget-simple {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    color: white !important;
+  }
+  
+  .goog-te-gadget-simple .goog-te-menu-value {
+    color: white !important;
+  }
+  
+  .goog-te-gadget-simple .goog-te-menu-value:hover {
+    text-decoration: none !important;
+    opacity: 0.8;
+  }
+  
+  .goog-te-banner-frame {
+    display: none !important;
+  }
+  
+  .goog-te-gadget img {
+    display: none !important;
+  }
+  
+  .goog-te-gadget-simple span {
+    border-left: none !important;
+  }
+  
+  .goog-te-gadget {
+    color: transparent !important;
+  }
