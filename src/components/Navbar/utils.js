@@ -8,8 +8,32 @@ import { Dessert } from "lucide-react";
 import { Play } from "lucide-react";
 import { Database } from "lucide-react";
 import { MapPin } from "lucide-react";
-import { HeartPulse, Monitor, Download, Banknote, ShoppingCart, Utensils, Heart, Dumbbell, Activity } from "lucide-react";
-import { Book, Briefcase, Clipboard, User, Laptop, Code, Palette, BookOpen, DollarSign, Settings, ClipboardCheck, Home, Layers } from "lucide-react"
+import {
+  HeartPulse,
+  Monitor,
+  Download,
+  Banknote,
+  ShoppingCart,
+  Utensils,
+  Heart,
+  Dumbbell,
+  Activity,
+} from "lucide-react";
+import {
+  Book,
+  Briefcase,
+  Clipboard,
+  User,
+  Laptop,
+  Code,
+  Palette,
+  BookOpen,
+  DollarSign,
+  Settings,
+  ClipboardCheck,
+  Home,
+  Layers,
+} from "lucide-react";
 
 export const Menus = [
   {
@@ -20,7 +44,7 @@ export const Menus = [
           {
             name: "About",
             icon: Book,
-            href: "/"
+            href: "/",
           },
         ],
       },
@@ -35,157 +59,164 @@ export const Menus = [
         items: [
           {
             name: "B.Tech.",
-            href: "/offeredprograms"
+            href: "/offeredprograms",
           },
           {
             name: "M.Tech.",
-            href: "/offeredprograms"
+            href: "/offeredprograms",
           },
           {
             name: "B.Des.",
-            href: "/offeredprograms"
+            href: "/offeredprograms",
           },
           {
             name: "M.Des.",
-            href: "/offeredprograms"
+            href: "/offeredprograms",
           },
           {
             name: "Ph.D.",
-            href: "/offeredprograms"
+            href: "/offeredprograms",
           },
           {
             name: "Integrated Master+Ph.D.",
-            href: "/integratedmasters"
+            href: "/integratedmasters",
           },
           {
             name: "Special Part Time M.Tech./M.Des.",
-            href: "/parttimeprograms"
-          }
-        ]
+            href: "/parttimeprograms",
+          },
+        ],
       },
       {
         heading: "ADMISSION",
         items: [
           {
             name: "Undergraduate programs",
-            href: "/ugprograms"
+            href: "/ugprograms",
           },
           {
             name: "Postgraduate Program",
-            href: "/pgprograms"
+            href: "/pgprograms",
           },
           {
             name: "Ph.D. Programs",
-            href: "/phdprograms"
+            href: "/phdprograms",
           },
           {
             name: "Fees Structure",
-            href: "feestructure"
+            href: "feestructure",
           },
-          { name: "Seat Matrix 2024-25" ,
-            href:"https://www.iiitdmj.ac.in/academics/download/Seat%20Matrix%202024-25.pdf"
+          {
+            name: "Seat Matrix 2024-25",
+            href: "https://www.iiitdmj.ac.in/academics/download/Seat%20Matrix%202024-25.pdf",
           },
-          { name: "Academic Guidelines (UG & PG)",
-            href:"https://www.iiitdmj.ac.in/academics/download/Academic%20Guidelines_271017.pdf"
-           },
-          { name: "Academic Guidelines (Ph.D.)",
-            href:"https://www.iiitdmj.ac.in/academics/download/Ph.D.%20Manual.pdf"
-           },
+          {
+            name: "Academic Guidelines (UG & PG)",
+            href: "https://www.iiitdmj.ac.in/academics/download/Academic%20Guidelines_271017.pdf",
+          },
+          {
+            name: "Academic Guidelines (Ph.D.)",
+            href: "https://www.iiitdmj.ac.in/academics/download/Ph.D.%20Manual.pdf",
+          },
           {
             name: "Curriculum",
-            href: "/curriculum"
-          }
-        ]
+            href: "/curriculum",
+          },
+        ],
       },
       {
         heading: "ACADEMIC LINKS",
         items: [
           { name: "Academic Calendar" },
-          { name: "Time Table Sem I, 2024-25",
-            href:"https://drive.google.com/file/d/1PTF1d6gE2RmSqp6sUWGgoLCp1NlvLGVM/view"
-           },
-          { name: "Guidelines - Time Table Sem I" ,
-            href:"https://www.iiitdmj.ac.in/downloads/Guidelines-Timetable-Sem-I-2024-25.pdf"
+          {
+            name: "Time Table Sem I, 2024-25",
+            href: "https://drive.google.com/file/d/1PTF1d6gE2RmSqp6sUWGgoLCp1NlvLGVM/view",
           },
-          { name: "Useful Information" ,
-            href:"/usefulinformation"
+          {
+            name: "Guidelines - Time Table Sem I",
+            href: "https://www.iiitdmj.ac.in/downloads/Guidelines-Timetable-Sem-I-2024-25.pdf",
           },
-          { name: "Fee Refund Rule",
-            href:"https://www.iiitdmj.ac.in/downloads/Notification_Revised_refund_rule.pdf"
-           },
-          { name: "Proposal/Modification for a Course",
-            href:"https://docs.google.com/forms/d/1Tlg6a0SPnNAa--A81yKsNet19n-hw9fas1P1QdHpzTI"
-           },
-          { name: "Proposal for a New Elective" ,
-            href:"https://docs.google.com/forms/d/1xcVmD4BvURRppXtWBnNpdHIPhMSOh_3xvxu_ovbkJl8/viewform?edit_requested=true#responses"
-           },
-          { name: "Course & Modification in a Course",
-            href:"https://docs.google.com/forms/d/1-bNPq1bkzlOCv6O8gI7nUcnJrIITqKAkAG3CrdQrHoU"
-           },
+          { name: "Useful Information", href: "/usefulinformation" },
+          {
+            name: "Fee Refund Rule",
+            href: "https://www.iiitdmj.ac.in/downloads/Notification_Revised_refund_rule.pdf",
+          },
+          {
+            name: "Proposal/Modification for a Course",
+            href: "https://docs.google.com/forms/d/1Tlg6a0SPnNAa--A81yKsNet19n-hw9fas1P1QdHpzTI",
+          },
+          {
+            name: "Proposal for a New Elective",
+            href: "https://docs.google.com/forms/d/1xcVmD4BvURRppXtWBnNpdHIPhMSOh_3xvxu_ovbkJl8/viewform?edit_requested=true#responses",
+          },
+          {
+            name: "Course & Modification in a Course",
+            href: "https://docs.google.com/forms/d/1-bNPq1bkzlOCv6O8gI7nUcnJrIITqKAkAG3CrdQrHoU",
+          },
           { name: "Form for submission of thesis" },
-          { name: "Convocation",
-            href:"/convocation"
-           }
-        ]
+          { name: "Convocation", href: "/convocation" },
+        ],
       },
       {
         heading: "IMPORTANT LINKS",
         items: [
-          { name: "Important Forms", href: "https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/Details%20of%20Services.htm" },
+          {
+            name: "Important Forms",
+            href: "https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/Details%20of%20Services.htm",
+          },
 
-          { name: "Internal Circulars" ,
-            href:"/internalcirculars"
+          { name: "Internal Circulars", href: "/internalcirculars" },
+          { name: "External Circulars", href: "/externalcirculars" },
+          {
+            name: "Study In India",
+            href: "https://www.studyinindia.gov.in/admission/registrations",
           },
-          { name: "External Circulars" ,
-            href:"/externalcirculars"
-          },
-          { name: "Study In India" ,
-            href:"https://www.studyinindia.gov.in/admission/registrations"
-          }
-        ]
+        ],
       },
-    ]
+    ],
   },
   {
     name: "Administration",
     subMenuGroups: [
       {
-        items: [{
-          name: "Board of Governors",
-          icon: CircleHelp,
-          href: "/boardofgoverners"
-        },
-        {
-          name: "Finance Committee",
-          icon: DollarSign,
-          href: "/financecommittee"
-        },
-        {
-          name: "General Administration",
-          icon: Settings,
-          href: "/generaladministration"
-        },
-        {
-          name: "Other Administration",
-          icon: ClipboardCheck,
-          href: "/otheradministration"
-        },
-        {
-          name: "Senate",
-          icon: Users,
-          href: "/senate"
-        },
-        {
-          name: "Building Works Committee",
-          icon: Home,
-          href: "/buildingworkscommittee"
-        },
-        {
-          name: "Administrative Structure",
-          icon: Layers,
-          href: "/administrativestructure"
-        }]
-      }
+        items: [
+          {
+            name: "Board of Governors",
+            icon: CircleHelp,
+            href: "/boardofgoverners",
+          },
+          {
+            name: "Finance Committee",
+            icon: DollarSign,
+            href: "/financecommittee",
+          },
+          {
+            name: "General Administration",
+            icon: Settings,
+            href: "/generaladministration",
+          },
+          {
+            name: "Other Administration",
+            icon: ClipboardCheck,
+            href: "/otheradministration",
+          },
+          {
+            name: "Senate",
+            icon: Users,
+            href: "/senate",
+          },
+          {
+            name: "Building Works Committee",
+            icon: Home,
+            href: "/buildingworkscommittee",
+          },
+          {
+            name: "Administrative Structure",
+            icon: Layers,
+            href: "/administrativestructure",
+          },
+        ],
+      },
     ],
     gridCols: 1,
   },
@@ -197,35 +228,35 @@ export const Menus = [
           {
             name: "Computer Science & Engineering (CSE)",
             icon: Laptop,
-            href: "http://cse.iiitdmj.ac.in/"
+            href: "http://cse.iiitdmj.ac.in/",
           },
           {
             name: "Electronics & Communication Engineering (ECE)",
             icon: Code,
-            href: "https://www.iiitdmj.ac.in/ece.iiitdmj.ac.in/"
+            href: "https://www.iiitdmj.ac.in/ece.iiitdmj.ac.in/",
           },
           {
             name: "Design (Des)",
             icon: Palette,
-            href: "http://design.iiitdmj.ac.in/"
+            href: "http://design.iiitdmj.ac.in/",
           },
           {
             name: "Mechanical Engineering (ME)",
             icon: Settings,
-            href: "https://www.iiitdmj.ac.in/me.iiitdmj.ac.in/"
+            href: "https://www.iiitdmj.ac.in/me.iiitdmj.ac.in/",
           },
           {
             name: "Natural Sciences (NS)",
             icon: BookOpen,
-            href: "https://www.iiitdmj.ac.in/ns.iiitdmj.ac.in/"
+            href: "https://www.iiitdmj.ac.in/ns.iiitdmj.ac.in/",
           },
           {
             name: "Liberal Arts (LA)",
             icon: Users,
-            href: "https://www.iiitdmj.ac.in/la.iiitdmj.ac.in/"
+            href: "https://www.iiitdmj.ac.in/la.iiitdmj.ac.in/",
           },
-        ]
-      }
+        ],
+      },
     ],
   },
   {
@@ -236,22 +267,22 @@ export const Menus = [
           {
             name: "Dean Academics",
             icon: Laptop,
-            href: "/deanacademics"
+            href: "/deanacademics",
           },
           {
             name: "Dean Students",
             icon: User,
-            href: "/deanstudents"
+            href: "/deanstudents",
           },
           {
             name: "Dean RSPC",
             icon: Palette,
-            href: "/"
+            href: "/",
           },
           {
             name: "Dean P&D",
             icon: Settings,
-            href: "/"
+            href: "/",
           },
         ],
       },
@@ -265,22 +296,22 @@ export const Menus = [
           {
             name: "Faculty",
             icon: Book,
-            href: "http://faculty.iiitdmj.ac.in/"
+            href: "/employee",
           },
           {
             name: "Research Staff",
             icon: Users,
-            href: "/researchstaff"
+            href: "/researchstaff",
           },
           {
             name: "Office Administration",
             icon: Clipboard,
-            href: "/officeadministration"
+            href: "/officeadministration",
           },
           {
             name: "Staff",
             icon: Briefcase,
-            href: "/staff"
+            href: "/staff",
           },
         ],
       },
@@ -294,42 +325,42 @@ export const Menus = [
           {
             name: "Students Portal",
             icon: Book,
-            href: "https://iiitdm.iweb.ltd/Account/LoginMVC"
+            href: "https://iiitdm.iweb.ltd/Account/LoginMVC",
           },
           {
             name: "Placement",
             icon: Briefcase,
-            href: "https://www.iiitdmj.ac.in/placement.iiitdmj.ac.in/"
+            href: "https://www.iiitdmj.ac.in/placement.iiitdmj.ac.in/",
           },
           {
             name: "Gymkhana",
             icon: Dumbbell,
-            href: "/gymkhana"
+            href: "/gymkhana",
           },
           {
             name: "Activities",
             icon: Activity,
-            href: "/activities"
+            href: "/activities",
           },
           {
             name: "Counselling",
             icon: Heart,
-            href: "/counselling"
+            href: "/counselling",
           },
           {
             name: "Hostel",
             icon: Home,
-            href: "/hostels"
+            href: "/hostels",
           },
           {
             name: "Alumni Cell",
             icon: Users,
-            href: "https://alumni.iiitdmj.ac.in/"
+            href: "https://alumni.iiitdmj.ac.in/",
           },
           {
             name: "Student Mess",
             icon: Utensils,
-            href: "https://www.iiitdmj.ac.in/mess.iiitdmj.ac.in/"
+            href: "https://www.iiitdmj.ac.in/mess.iiitdmj.ac.in/",
           },
         ],
       },
@@ -343,32 +374,32 @@ export const Menus = [
           {
             name: "Primary Health Center",
             icon: HeartPulse,
-            href: "/primaryhealthcentre"
+            href: "/primaryhealthcentre",
           },
           {
             name: "Library",
             icon: Book,
-            href: "http://web.iiitdmj.ac.in/library.html"
+            href: "http://web.iiitdmj.ac.in/library.html",
           },
           {
             name: "Computer Center",
             icon: Monitor,
-            href: "https://www.iiitdmj.ac.in/cc.iiitdmj.ac.in/"
+            href: "https://www.iiitdmj.ac.in/cc.iiitdmj.ac.in/",
           },
           {
             name: "Bank and ATM",
             icon: Banknote,
-            href: "https://www.iiitdmj.ac.in/downloads/Banking%20Facilities%20in%20PDPM.pdf"
+            href: "https://www.iiitdmj.ac.in/downloads/Banking%20Facilities%20in%20PDPM.pdf",
           },
           {
             name: "Shops In Campus",
             icon: ShoppingCart,
-            href: "/shopsincampus"
+            href: "/shopsincampus",
           },
           {
             name: "Downloads",
             icon: Download,
-            href: "/"
+            href: "/",
           },
         ],
       },
@@ -376,6 +407,6 @@ export const Menus = [
   },
   {
     name: "Research",
-    href: "https://www.iiitdmj.ac.in/rspc.iiitdmj.ac.in/"
-  }
+    href: "https://www.iiitdmj.ac.in/rspc.iiitdmj.ac.in/",
+  },
 ];

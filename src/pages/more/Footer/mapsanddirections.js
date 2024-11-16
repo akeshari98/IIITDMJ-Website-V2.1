@@ -45,16 +45,16 @@ const MainPage = () => {
 
           {/* Text content area with formatted text and circular bullets */}
           <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               Jabalpur has good access to all three means of transport, viz,
               Road, Rail and Air.
             </p>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               <bold>Roadways</bold> : Jabalpur is well connected by road
               route.The national highway 7 connects Jabalpur to Bhopal, the
               capital of Madhya Pradesh.
             </p>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               <bold>Railways</bold> : Jabalpur is also well connected by Train.
               Direct trains are available for major destinations of India from
               Jabalpur.To know your train to Jabalpur{" "}
@@ -66,7 +66,7 @@ const MainPage = () => {
               </a>
               .
             </p>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               <bold>Airways</bold> : The Dumna airport connects few major
               airports of country.The flight from all major Indian cities
               reaches to Dumna airport via Delhi & Gwalior at regular basis. To
@@ -79,16 +79,16 @@ const MainPage = () => {
               </a>
               .
             </p>
-            <h4 className="text-2xl font-semibold mb-4">
+            <h4 className="text-xl font-semibold mb-2">
               Reaching the Institute
             </h4>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-1 font-medium">
               The institute is situated at{" "}
               <strong>
                 Meghawa, Dumna Airport Road, P.O Khamaria, Jabalpur 482005
               </strong>
             </p>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               The Institute is approximately 13 km from the bus terminus, 10 km
               from the railway station and 3 km from the airport. Once you reach
               the city, you can hire a taxi (24 hours service taxi contact
@@ -112,7 +112,7 @@ const MainPage = () => {
                 }}
               ></iframe>
             </div>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               To know more about <strong>Jabalpur city </strong>
               <a
                 href="https://jabalpur.nic.in/"

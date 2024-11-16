@@ -74,7 +74,7 @@ async function getFacultyBasicInfo(userId) {
   const query = `
   SELECT id, first_name, last_name, designation, email, contact, address, profile_picture, department, about, interests, linkedin, github
 FROM 
-    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
            'SELECT auth_user.id AS id, 
                    auth_user.first_name AS first_name, 
                    auth_user.last_name AS last_name, 
@@ -110,7 +110,7 @@ async function getAllFaculties(branch_id) {
   const query = `
     SELECT id, first_name, last_name, designation, email, contact, address, profile_picture, department, about, interests
 FROM 
-    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
            'SELECT auth_user.id AS id, 
                    auth_user.first_name AS first_name, 
                    auth_user.last_name AS last_name, 
@@ -142,6 +142,144 @@ FROM
   return rows;
 }
 
+async function getFacultyCourses(userId) {
+  const query = `
+    SELECT DISTINCT course_code, course_name, discipline
+    FROM 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+           'SELECT pc_course.code AS course_code, 
+                   pc_course.name AS course_name, 
+                   pc_discipline.name AS discipline
+            FROM programme_curriculum_course AS pc_course
+            JOIN programme_curriculum_courseinstructor AS pc_instructor 
+              ON pc_course.id = pc_instructor.course_id_id
+            JOIN programme_curriculum_course_disciplines AS pc_course_discipline 
+              ON pc_course.id = pc_course_discipline.course_id
+            JOIN programme_curriculum_discipline AS pc_discipline 
+              ON pc_discipline.id = pc_course_discipline.discipline_id
+            JOIN globals_extrainfo AS globals_info 
+              ON pc_instructor.instructor_id_id = globals_info.id
+            WHERE globals_info.user_id = ${userId}'
+          ) AS t(course_code varchar, course_name varchar, discipline varchar);`;
+  
+  const { rows } = await pool.query(query);
+  return rows;
+}
+
+async function getSpecialization(userId) {
+  const query = `
+    SELECT about
+    FROM 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+           'SELECT faculty_about.about AS about
+            FROM auth_user
+            JOIN eis_faculty_about AS faculty_about 
+              ON auth_user.id = faculty_about.user_id
+            WHERE auth_user.id = ${userId}'
+          ) AS t(about varchar);
+`;
+  
+  const { rows } = await pool.query(query);
+  return rows;
+}
+
+async function getProjects(userId) {
+  const query = `
+    SELECT title, pi, co_pi, start_date, finish_date
+    FROM 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+           'SELECT research_projects.title AS title,pi,co_pi,start_date,finish_date
+            FROM auth_user
+            JOIN eis_emp_research_projects AS research_projects 
+              ON auth_user.id = research_projects.user_id
+            WHERE auth_user.id = ${userId}'
+          ) AS t(title text, pi varchar, co_pi varchar, start_date date, finish_date date);
+`;
+  
+  const { rows } = await pool.query(query);
+  return rows;
+}
+
+
+async function getBooks(userId) {
+  const query = `
+    SELECT title, authors, publisher, pyear
+    FROM 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+           'SELECT published_books.title AS title,authors,publisher,pyear
+            FROM auth_user
+            JOIN eis_emp_published_books AS published_books 
+              ON auth_user.id = published_books.user_id
+            WHERE auth_user.id = ${userId}'
+          ) AS t(title text, authors varchar, publisher varchar, pyear int);
+`;
+  
+  const { rows } = await pool.query(query);
+  return rows;
+}
+
+
+async function getPublications(userId) {
+  const query = `
+    SELECT authors, title_paper, name, volume_no, page_no, year, doi
+    FROM 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+           'SELECT authors, title_paper, name, volume_no, page_no, year, doi
+            FROM auth_user
+            JOIN eis_emp_research_papers AS research_papers 
+              ON auth_user.id = research_papers.user_id
+            WHERE auth_user.id = ${userId}'
+          ) AS t(authors varchar, title_paper varchar, name varchar, volume_no varchar, page_no varchar, year varchar, doi varchar);
+`;
+  const { rows } = await pool.query(query);
+  return rows;
+}
+
+
+
+async function getConferences(userId) {
+  const query = `
+    (SELECT role, name, venue, start_date
+    FROM 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+           'SELECT role, name, venue, start_date
+            FROM auth_user
+            JOIN eis_emp_event_organized AS event_organized 
+              ON auth_user.id = event_organized.user_id
+            WHERE auth_user.id = ${userId}'
+          ) AS t(role varchar, name varchar, venue varchar, start_date date))
+    UNION
+    (SELECT role, name, venue, start_date
+    FROM 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+           'SELECT role1 AS role, name, venue, start_date
+            FROM auth_user
+            JOIN eis_emp_confrence_organised AS confrence_organised 
+              ON auth_user.id = confrence_organised.user_id
+            WHERE auth_user.id = ${userId}'
+          ) AS t(role varchar, name varchar, venue varchar, start_date date))
+           ;
+`;
+  const { rows } = await pool.query(query);
+  return rows;
+}
+
+
+async function getStudents(userId) {
+  const query = `
+    SELECT rollno, s_name, status, s_year, title, co_supervisors
+    FROM 
+    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+           'SELECT rollno, s_name, status, s_year, title, co_supervisors
+            FROM auth_user
+            JOIN eis_emp_mtechphd_thesis AS mtech_phd_thesis 
+              ON auth_user.id = mtech_phd_thesis.user_id
+            WHERE auth_user.id = ${userId}'
+          ) AS t(rollno varchar, s_name varchar, status varchar, s_year int, title varchar, co_supervisors varchar);
+`;
+  const { rows } = await pool.query(query);
+  return rows;
+}
 
 // Export the functions
 module.exports = {
@@ -150,6 +288,13 @@ module.exports = {
   getFacultyExperience,
   getFacultyAdminPosition,
   getFacultyBasicInfo,
-  getAllFaculties
+  getAllFaculties,
+  getFacultyCourses,
+  getSpecialization,
+  getProjects,
+  getBooks,
+  getPublications,
+  getConferences,
+  getStudents
 };
 

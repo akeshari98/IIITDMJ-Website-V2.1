@@ -61,6 +61,7 @@ import Grievance from "./pages/more/Footer/grievanceandredressalcell";
 import Scholarship from "./pages/more/Footer/scholarship";
 import PressReleases from "./pages/more/Footer/pressreleases";
 import MapsAndDirections from "./pages/more/Footer/mapsanddirections";
+import AdminPortal from "./pages/more/people/adminportal";
 
 //academics
 import Convocation from "./pages/more/academics/convocation";
@@ -364,14 +365,24 @@ const router = createBrowserRouter([
         path:"/profilepage/:id", 
         element:<ProfilePage/>
       },
-      { path:"/event/:eventId",
-        element:<EventsPage /> },
-      { path:"/tenders",
-        element:<TendersPage/> },
-      { path:"/screenreaderaccess",
-        element:<ScreenReaderAccess/> },
+      { 
+        path:"/event/:eventId",
+        element:<EventsPage /> 
+      },
+      { 
+        path:"/tenders",
+        element:<TendersPage/> 
+      },
+      { 
+        path:"/screenreaderaccess",
+        element:<ScreenReaderAccess/> 
+      },
       
       //academics
+      {
+        path: "/adminportal",
+        element: <AdminPortal />,
+      },
       {
         path: "/convocation",
         element: <Convocation />,

@@ -119,6 +119,7 @@ const MainPage = () => {
                                 </tr>
                             </tbody>
                         </table>
+                        <br></br>
                         <table class="w-full border border-gray-300 text-left">
                             <thead>
                                 <tr>
@@ -149,7 +150,7 @@ const MainPage = () => {
                                 </tr>
                             </tbody>
                         </table>
-
+                        <br></br>
                         <table class="w-full border border-gray-300 text-left">
                             <thead>
                                 <tr>

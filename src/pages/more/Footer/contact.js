@@ -107,10 +107,10 @@ function ContactUs() {
         </div>
         <div className="container px-5 py-24 mx-auto flex ">
           <div className="lg:w-1/3 md:w-1/2 bg-white h-full rounded-lg p-5 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-lg ">
-            <h4 className="text-black text-3xl font-semibold mb-4">
+            <h4 className="text-black text-2xl font-semibold mb-4">
               Contact Address
             </h4>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-gray-900 mb-4 font-medium">
               Pandit Dwarka Prasad Mishra<br></br>
               Indian Institute of Information Technology, <br></br>
               Design & Manufacturing<br></br>
