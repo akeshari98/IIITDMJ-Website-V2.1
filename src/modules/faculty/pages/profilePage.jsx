@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, Globe, FileText, Twitter, Linkedin, Github, ChevronDown, ChevronUp, Calendar, Building, GraduationCap, Trophy, Briefcase } from 'lucide-react';
+import { Mail, Phone, MapPin, Globe, FileText, Twitter, Linkedin, Github, ChevronDown, ChevronUp, Calendar, Building, GraduationCap, Trophy, Briefcase, Presentation,BookCopy, BookOpenText, ScrollText, CalendarRange, Users, Brain } from 'lucide-react';
 import axiosInstance from '../../../axios'; // Assuming you have axios instance configured
 import { useParams } from 'react-router-dom';
 const Collapsible = ({ title, children, defaultOpen = false, icon }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   
   return (
-    <div className="border rounded-lg mb-4 shadow-sm hover:shadow-md transition-shadow">
+    <div className="border rounded-lg mb-2 shadow-sm hover:shadow-md transition-shadow">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100"
+        className="w-full p-2 rounded-lg flex justify-between items-center hover:bg-gray-50"
       >
         <div className="flex items-center gap-2">
           {icon}
-          <h3 className="font-semibold text-lg">{title}</h3>
+          <h3 className=" text-lg">{title}</h3>
         </div>
         {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
       </button>
-      {isOpen && <div className="p-4">{children}</div>}
+      {isOpen && <div className="p-2">{children}</div>}
     </div>
   );
 };
 
 const QualificationCard = ({ degree, college, year }) => (
-  <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all border-l-4 border-blue-500 mb-3">
-    <div className="flex items-start gap-3">
+  <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all border-l-4 border-blue-500 mb-3">
+    <div className="flex items-start gap-1">
       {/* <GraduationCap className="w-6 h-6 text-blue-500 mt-1" /> */}
       <div>
-        <h4 className="font-semibold text-lg">{degree}</h4>
-        <p className="text-gray-600">{college}</p>
+        <h4 className=" text-md">{degree}</h4>
+        <p className="text-sm text-gray-600">{college}</p>
         <p className="text-sm text-gray-500">{year}</p>
       </div>
     </div>
@@ -36,15 +36,15 @@ const QualificationCard = ({ degree, college, year }) => (
 );
 
 const ExperienceCard = ({ title, description, from, to }) => (
-  <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all border-l-4 border-green-500 mb-3">
-    <div className="flex items-start gap-3">
+  <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all border-l-4 border-blue-500 mb-3">
+    <div className="flex items-start gap-1">
       {/* <Briefcase className="w-6 h-6 text-green-500 mt-1" /> */}
       <div>
-        <h4 className="font-semibold text-lg">{title}</h4>
-        <p className="text-gray-600">{description}</p>
+        <h4 className=" text-md">{title}</h4>
+        <p className="text-sm text-gray-600">{description}</p>
         <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
-          <Calendar className="w-4 h-4" />
-          <span>{from} - {to || 'Present'}</span>
+        {from && <Calendar className="w-4 h-4" />}
+          <span className='text-sm'>{from} - {to || 'Present'}</span>
         </div>
       </div>
     </div>
@@ -52,15 +52,15 @@ const ExperienceCard = ({ title, description, from, to }) => (
 );
 
 const AdminPositionCard = ({ title, description, from, to }) => (
-  <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all border-l-4 border-purple-500 mb-3">
-    <div className="flex items-start gap-3">
+  <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all border-l-4 border-blue-500 mb-3">
+    <div className="flex items-start gap-1">
       {/* <Building className="w-6 h-6 text-purple-500 mt-1" /> */}
       <div>
-        <h4 className="font-semibold text-lg">{title}</h4>
-        <p className="text-gray-600">{description}</p>
+        <h4 className="text-md">{title}</h4>
+        <p className="text-sm text-gray-600">{description}</p>
         <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
-          <Calendar className="w-4 h-4" />
-          <span>{from} - {to || 'Present'}</span>
+        {from && <Calendar className="w-4 h-4" />}
+          <span className='text-sm'>{from} - {to || 'Present'}</span>
         </div>
       </div>
     </div>
@@ -68,19 +68,72 @@ const AdminPositionCard = ({ title, description, from, to }) => (
 );
 
 const HonorCard = ({ title, description, period }) => (
-  <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all border-l-4 border-yellow-500 mb-3">
-    <div className="flex items-start gap-3">
+  <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all border-l-4 border-blue-500 mb-3">
+    <div className="flex items-start gap-1">
       {/* <Trophy className="w-6 h-6 text-yellow-500 mt-1" /> */}
       <div>
-        <h4 className="font-semibold text-lg">{title}</h4>
-        <p className="text-gray-600">{description}</p>
+        <h4 className=" text-md">{title}</h4>
+        <p className="text-sm text-gray-600">{description}</p>
         <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
-          <Calendar className="w-4 h-4" />
-          <span>{period}</span>
+          {period && <Calendar className="w-4 h-4" />}
+          <span className='text-sm'>{period}</span>
         </div>
       </div>
     </div>
   </div>
+);
+
+const ProjectCard = ({ title, pi, co_pi, start_date, finish_date }) => (
+  <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all border-l-4 border-blue-500 mb-3">
+    <div className="flex items-start gap-1">
+      {/* <Briefcase className="w-6 h-6 text-green-500 mt-1" /> */}
+      <div>
+        <h4 className="text-md mb-2 leading-tight">{title}</h4>
+        <p className="text-sm text-gray-600">PI: {pi || 'NA'}</p>
+        <p className="text-sm text-gray-600">Co-PI: {co_pi || 'NA'}</p>
+        <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
+          <Calendar className="w-4 h-4" />
+          <span className='text-sm mt-1'>
+            {start_date ? new Date(start_date).toLocaleDateString() : 'NA'} -{' '}
+            {finish_date ? new Date(finish_date).toLocaleDateString() : 'Present'}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+
+
+const BooksCard = ({ title, pyear, publisher, authors}) => (
+  <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all border-l-4 border-blue-500 mb-3">
+    <div className="flex items-start gap-3">
+      {/* <Briefcase className="w-6 h-6 text-green-500 mt-1" /> */}
+      <div>
+        <h4 className=" text-md mb-2 leading-tight">{title}</h4>
+        <p className="text-sm text-gray-600">Author: {authors || 'NA'}</p>
+        <p className="text-sm text-gray-600">Publisher: {publisher || 'NA'}</p>
+        <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
+          <Calendar className="w-4 h-4" />
+          <span className='text-sm mt-1'>{pyear}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+
+const Publication = ({ authors, title_paper, name, volume_no, page_no, year, doi}) => (
+  <p className="text-gray-600">
+    {authors}{title_paper && `,`} {title_paper && `"`}{title_paper}{title_paper && `"`}{name && `,`} {name}{volume_no && `,`} {volume_no}{page_no && `:`} {page_no}{year && `,`} {year}{doi && `,`} <br></br>{doi && <a href={`https://doi.org/${doi}`} target="_blank" rel="noopener noreferrer">Link: {doi}</a>}
+  </p>
+);
+
+
+const Conference = ({ role, name, venue, start_date}) => (
+  <p className="text-gray-600">
+    {role}{name && `,`} {name && `"`}{name}{name && `"`}{venue && `,`} {venue}{start_date && `,`} {start_date && new Date(start_date).toLocaleDateString()}
+  </p>
 );
 
 const AboutTab = ({ userId }) => {
@@ -112,7 +165,7 @@ const AboutTab = ({ userId }) => {
   }, [userId]);
 //  console.log(qualifications);
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 space-y-3">
       <Collapsible 
         title="Qualifications" 
         defaultOpen={true}
@@ -132,7 +185,7 @@ const AboutTab = ({ userId }) => {
 
       <Collapsible 
         title="Professional Experience"
-        icon={<Briefcase className="w-6 h-6 text-green-500" />}
+        icon={<Briefcase className="w-6 h-6 text-blue-500" />}
       >
         <div className="space-y-4">
           {experience.map((exp, index) => (
@@ -149,7 +202,7 @@ const AboutTab = ({ userId }) => {
 
       <Collapsible 
         title="Administrative Positions"
-        icon={<Building className="w-6 h-6 text-purple-500" />}
+        icon={<Building className="w-6 h-6 text-blue-500" />}
       >
         <div className="space-y-4">
           {adminPositions.map((pos, index) => (
@@ -166,7 +219,7 @@ const AboutTab = ({ userId }) => {
 
       <Collapsible 
         title="Honors & Awards"
-        icon={<Trophy className="w-6 h-6 text-yellow-500" />}
+        icon={<Trophy className="w-6 h-6 text-blue-500" />}
       >
         <div className="space-y-4">
           {honors.map((honor, index) => (
@@ -183,129 +236,187 @@ const AboutTab = ({ userId }) => {
   );
 };
 const Table = ({ headers, data }) => (
-  <div className="overflow-x-auto">
-    <table className="min-w-full border-collapse">
-      <thead>
-        <tr>
-          {headers.map((header, index) => (
-            <th key={index} className="border p-2 bg-gray-50">{header}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex} className="border p-2">{cell}</td>
+  data.length > 0 ? (
+    <div className="overflow-x-auto">
+      <table className="min-w-full border-collapse">
+        <thead>
+          <tr>
+            {headers.map((header, index) => (
+              <th key={index} className="text-left border p-1 bg-gray-50">{header}</th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          {data.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {Object.values(row).map((cell, cellIndex) => (
+                <td key={cellIndex} className="border p-1">{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ) : (
+    <p className="text-gray-500">No data available.</p>
+  )
 );
+
+
 // Replace the existing TabContent case for 'about' with:
 const TabContent = ({ tab, userId }) => {
-  const courseTableHeaders = ['Course Code', 'Course Name', 'Category', 'Institute', 'Department'];
-  const currentCourses = [
-    ['CS8018', 'Blockchain Technology', 'UG', 'IIITDM', 'Computer Science'],
-    ['ME6023', 'Advanced Manufacturing', 'PG', 'IIITDM', 'Mechanical Engineering'],
-  ];
-  const previousCourses = [
-    ['CS7016', 'Machine Learning', 'UG', 'IIITDM', 'Computer Science'],
-    ['ME5021', 'CAD/CAM', 'PG', 'IIITDM', 'Mechanical Engineering'],
-  ];
+  const courseTableHeaders = ['Course Code', 'Course Name', 'Department'];
+  const [currentCourses, setCourses] = useState([]);
+  const [Specialization, setSpecialization] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [books, setBooks] = useState([]);
+  const [publications, setPublications] = useState([]);
+  const [conferences, setConferences] = useState([]);
+  const [students, setStudents] = useState([]);
+  // const Specializtaion = [
+  //   {about:'ai,ml,deep learning'},
+  // ];
+  // const previousCourses = [
+  //   ['CS7016', 'Machine Learning', 'UG', 'IIITDM', 'Computer Science'],
+  //   ['ME5021', 'CAD/CAM', 'PG', 'IIITDM', 'Mechanical Engineering'],
+  // ];
 
   const studentTableHeaders = ['Roll No', 'Name', 'Status', 'Year', 'Specialization', 'Co-guide'];
   const phdStudents = [
     ['2020PHD01', 'John Doe', 'Ongoing', '2020', 'AI in Manufacturing', 'Dr. Smith'],
     ['2021PHD03', 'Jane Smith', 'Completed', '2021', 'Smart Materials', 'Dr. Johnson'],
   ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [coursesRes, specializationRes, projectsRes, booksRes, publicationsRes, conferencesRes, studentsRes] = await Promise.all([
+          axiosInstance.get(`/facultyInfo/faculty/${userId}/currentCourses`),
+          axiosInstance.get(`/facultyInfo/faculty/${userId}/specialization`),
+          axiosInstance.get(`/facultyInfo/faculty/${userId}/projects`),
+          axiosInstance.get(`/facultyInfo/faculty/${userId}/books`),
+          axiosInstance.get(`/facultyInfo/faculty/${userId}/publications`),
+          axiosInstance.get(`/facultyInfo/faculty/${userId}/conferences`),
+          axiosInstance.get(`/facultyInfo/faculty/${userId}/students`),
+        ]);
+
+        setCourses(coursesRes.data);
+        setSpecialization(specializationRes.data);
+        setProjects(projectsRes.data)
+        setBooks(booksRes.data)
+        setPublications(publicationsRes.data)
+        setConferences(conferencesRes.data)
+        setStudents(studentsRes.data)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
   switch (tab) {
     case 'about':
       return <AboutTab userId={userId} />;
       case 'courses':
         return (
-          <div className="p-6 space-y-6">
-            <Collapsible title="Current Courses" defaultOpen={true}>
+          <div className="p-4 space-y-3">
+            <Collapsible title="Current Courses" defaultOpen={true}
+            icon={<Presentation className="w-6 h-6 text-blue-500" />}>
               <Table headers={courseTableHeaders} data={currentCourses} />
             </Collapsible>
 
-            <Collapsible title="Previous Courses">
+            {/* <Collapsible title="Previous Courses">
               <Table headers={courseTableHeaders} data={previousCourses} />
-            </Collapsible>
+            </Collapsible> */}
           </div>
         );
 
       case 'research':
         return (
-          <div className="p-6 space-y-6">
-            <Collapsible title="Areas / Specialization" defaultOpen={true}>
-              <ul className="list-disc list-inside space-y-2">
-                <li>Smart Manufacturing Systems</li>
-                <li>Industrial IoT and Industry 4.0</li>
-                <li>AI-driven Process Optimization</li>
-                <li>Sustainable Manufacturing</li>
+          <div className="p-4 space-y-3">
+            <Collapsible title="Areas / Specialization" defaultOpen={true}
+            icon={<Brain className="w-6 h-6 text-blue-500" />}>
+              <ul className="leading-tight list-disc list-inside space-y-1">
+                {Specialization.map((entry, entryIndex) =>
+                  entry.about.split(',').map((item, itemIndex) => (
+                    <li key={`${entryIndex}-${itemIndex}`}>{item.trim()}</li>
+                  ))
+                )}
               </ul>
             </Collapsible>
 
-            <Collapsible title="Project Activities">
+            <Collapsible title="Project Activities"
+            icon={<BookOpenText className="w-6 h-6 text-blue-500" />}>
               <div className="space-y-4">
-                <div className="border-l-4 border-blue-500 pl-4">
-                  <h4 className="font-semibold">Smart Manufacturing Lab Development</h4>
-                  <p className="text-gray-600">Funded by DST (2021-2024)</p>
-                </div>
-                <div className="border-l-4 border-blue-500 pl-4">
-                  <h4 className="font-semibold">AI in Manufacturing Processes</h4>
-                  <p className="text-gray-600">Industry Collaboration (2020-2023)</p>
-                </div>
+                {projects.map((pos, index) => (
+                  <ProjectCard
+                    key={index}
+                    title={pos.title}
+                    pi={pos.pi}
+                    co_pi={pos.co_pi}
+                    start_date={pos.start_date}
+                    finish_date={pos.finish_date}
+                  />
+                ))}
               </div>
             </Collapsible>
 
-            <Collapsible title="Books/Book Chapters">
-              <ul className="list-disc list-inside space-y-2">
-                <li>Smart Manufacturing: Principles and Applications (2022)</li>
-                <li>Chapter in "Advanced Manufacturing Technologies" (2021)</li>
-              </ul>
-            </Collapsible>
-
-            <Collapsible title="Publications">
-              <ul className="list-disc list-inside space-y-2">
-                <li>"AI-driven optimization in smart manufacturing" - Journal of Manufacturing Systems, 2023</li>
-                <li>"Industry 4.0 implementation framework" - International Journal of Production Research, 2022</li>
-              </ul>
-            </Collapsible>
-
-            <Collapsible title="Conference / Workshop">
-              <ul className="list-disc list-inside space-y-2">
-                <li>International Conference on Smart Manufacturing (Organizer, 2023)</li>
-                <li>Workshop on Industry 4.0 (Speaker, 2022)</li>
-              </ul>
-            </Collapsible>
-
-            <Collapsible title="Students">
-              <div className="space-y-6">
-                <h4 className="font-semibold mb-2">Ph.D. Students</h4>
-                <Table headers={studentTableHeaders} data={phdStudents} />
-                
-                <h4 className="font-semibold mb-2">M.Tech Students</h4>
-                <Table 
-                  headers={studentTableHeaders} 
-                  data={[
-                    ['2022MT01', 'Alice Cooper', 'Ongoing', '2022', 'Manufacturing', 'Dr. Brown'],
-                    ['2022MT02', 'Bob Wilson', 'Ongoing', '2022', 'Design', 'Dr. White']
-                  ]} 
-                />
-                
-                <h4 className="font-semibold mb-2">M.Des Students</h4>
-                <Table 
-                  headers={studentTableHeaders} 
-                  data={[
-                    ['2022MD01', 'Carol Davis', 'Ongoing', '2022', 'Product Design', 'Dr. Green'],
-                    ['2021MD02', 'David Miller', 'Completed', '2021', 'UX Design', 'Dr. Black']
-                  ]} 
-                />
+            <Collapsible title="Books/Book Chapters"
+            icon={<BookCopy className="w-6 h-6 text-blue-500" />}>
+              <div className="space-y-4">
+                {books.map((pos, index) => (
+                  <BooksCard
+                    key={index}
+                    title={pos.title}
+                    authors={pos.authors}
+                    publisher={pos.publisher}
+                    pyear={pos.pyear}
+                  />
+                ))}
               </div>
+            </Collapsible>
+
+            <Collapsible title="Publications"
+            icon={<ScrollText className="w-6 h-6 text-blue-500" />}>
+              <ul className="list-disc list-inside space-y-2">
+                {publications.map((pos, index) => (
+                  <div className='flex flex-row'>
+                    <p className='text-gray-600 mr-1'>{index+1}.</p>
+                    <Publication
+                    key={index}
+                    title_paper={pos.title_paper}
+                    authors={pos.authors}
+                    name={pos.name}
+                    volume_no={pos.volume_no}
+                    page_no={pos.page_no}
+                    year={pos.year}
+                    doi={pos.doi}
+                  />
+                  </div>
+                ))}
+              </ul>
+            </Collapsible>
+
+            <Collapsible title="Conference / Workshop"
+            icon={<CalendarRange className="w-6 h-6 text-blue-500" />}>
+            <ul className="list-disc list-inside space-y-2">
+                {conferences.map((pos, index) => (
+                  <div className=' flex flex-row'>
+                    <p className=' text-gray-600 mr-1'>{index+1}.</p>
+                    <Conference
+                    key={index}
+                    role={pos.role}
+                    name={pos.name}
+                    venue={pos.venue}
+                    start_date={pos.start_date}
+                  />
+                  </div>
+                ))}
+              </ul>
+            </Collapsible>
+
+            <Collapsible title="Students"
+            icon={<Users className="w-6 h-6 text-blue-500" />}>
+              <Table headers={studentTableHeaders} data={students} />
             </Collapsible>
           </div>
         );
@@ -313,7 +424,7 @@ const TabContent = ({ tab, userId }) => {
       case 'gallery':
         return (
           <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Photo Gallery</h2>
+            <h2 className="text-2xl font-medium mb-6">Photo Gallery</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="relative aspect-square">
@@ -364,7 +475,7 @@ const ProfilePage = () => {
                 alt="Faculty Profile"
                 className="w-40 h-40 mb-4"
               />
-              <h1 className="text-2xl font-bold text-center">{basicInfo.first_name} {basicInfo.last_name}</h1>
+              <h1 className="text-2xl font-medium text-center">{basicInfo.first_name} {basicInfo.last_name}</h1>
               <p className="text-gray-600">{basicInfo.designation}</p>
             </div>
 
@@ -401,19 +512,25 @@ const ProfilePage = () => {
           {/* Main Content */}
           <div className="w-full md:w-2/3">
             {/* Navigation */}
-            <nav className="bg-white rounded-lg shadow-md mb-6">
-              <ul className="flex flex-wrap">
-                {['about', 'courses', 'research', 'gallery'].map((tab) => (
-                  <li key={tab} className="flex-1">
+            <nav className="border-b-2 mb-5">
+              <ul className="flex gap-4">
+                {['about', 'courses', 'research'].map((tab) => (
+                  <li key={tab}>
                     <button
                       onClick={() => setActiveTab(tab)}
-                      className={`w-full p-4 text-center capitalize transition-colors ${
+                      className={`text-lg relative p-2 text-left capitalize transition-colors ${
                         activeTab === tab
-                          ? 'bg-blue-600 text-white'
-                          : 'hover:bg-gray-100 text-gray-600'
+                          ? 'text-blue-600'
+                          : 'text-gray-600 hover:text-gray-800'
                       }`}
                     >
                       {tab}
+                      {/* Thicker line effect */}
+                      <span
+                        className={`absolute left-0 bottom-0 h-[2px] bg-blue-500 transition-all duration-300 ${
+                          activeTab === tab ? 'w-full' : 'w-0'
+                        }`}
+                      />
                     </button>
                   </li>
                 ))}

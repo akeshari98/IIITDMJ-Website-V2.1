@@ -9,9 +9,9 @@ const CollapsibleSection = ({ title, children, defaultOpen = false }) => {
       <div className="bg-white rounded-lg shadow-md mb-4">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-gray-50"
+          className="bg-gray-50 w-full px-6 py-4 flex justify-between items-center text-left hover:bg-gray-100"
         >
-          <h3 className="text-xl font-semibold text-blue-700">{title}</h3>
+          <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
           <svg
             className={`w-6 h-6 transform transition-transform ${isOpen ? 'rotate-180' : ''}`}
             fill="none"
@@ -21,7 +21,7 @@ const CollapsibleSection = ({ title, children, defaultOpen = false }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        {isOpen && <div className="px-6 pb-6">{children}</div>}
+        {isOpen && <div className="px-6 pb-2">{children}</div>}
       </div>
     );
   };
@@ -31,13 +31,13 @@ const CollapsibleSection = ({ title, children, defaultOpen = false }) => {
         {/* Header */}
         <header className="bg-white text-white py-8 top-0 z-50 rounded-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-black" >
-            <h1 className="text-4xl font-bold">Right to Information</h1>
+            <h1 className="text-3xl font-bold">Right to Information</h1>
             <p className="mt-2 text-lg">RTI Act 2005</p>
           </div>
         </header>
   
         {/* Main Content */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Name & Title Section */}
           <CollapsibleSection title="Name & Title of the Act" defaultOpen={true}>
             <ul className="list-disc pl-5 text-gray-700">

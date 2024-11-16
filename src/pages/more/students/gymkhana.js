@@ -128,7 +128,7 @@ const MainPage = () => {
 
           {/* Text content area with formatted text and circular bullets */}
           <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-gray-700 mb-4 font-medium">
               Students' Gymkhana is constituted to evolve a disciplined
               self-governance for carrying out various extracurricular in-campus
               activities and to establish a responsible and accountable student
@@ -157,7 +157,7 @@ const MainPage = () => {
               />
             </div>
 
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-gray-700 mb-4 font-medium">
               The Students' Senate has 2-3 representatives from each class.
               There are around 40 members in the Student Senate. Various
               gymkhana clubs that are part of Cultural, Sports and Technical,
@@ -168,7 +168,7 @@ const MainPage = () => {
               gymkhana who have their CPI&gt;= 6.0 are eligible to become
               mentors, coordinators, co-coordinators for various clubs.
             </p>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-gray-700 mb-4 font-medium">
               Student gymkhana is headed by Dean, Students, who is nominated by
               Board of Governor of the Institute for three years. Dean
               (Students) chairs all the meetings of the Student Senate and
@@ -179,11 +179,11 @@ const MainPage = () => {
               respective major festivals organized by the students' gymkhana.
             </p>
             <hr></hr>
-            <h2>Brief Information regarding Clubs</h2>
+            <h2 className="font-semibold text-xl mb-2">Brief Information regarding Clubs</h2>
             <ul className="ml-5 space-y-4">
               <li className="flex items-start">
                 <span className="font-bold mr-2"></span>
-                <p className="text-gray-700 font-semibold">
+                <p className="text-gray-700 font-medium">
                   <b>Cultural Club:</b> The Institute has vibrant Cultural Clubs
                   that provide a platform for students to showcase their
                   creativity and talent. There are six clubs associated with our
@@ -200,7 +200,7 @@ const MainPage = () => {
               </li>
               <li className="flex items-start">
                 <span className="font-bold mr-2"></span>
-                <p className="text-gray-700 font-semibold">
+                <p className="text-gray-700 font-medium">
                   <b>Science & Technology Club:</b> There are in all 7 different
                   Science and Technology Clubs which are mentored separately by
                   Faculty Members. Since the inception of the Institute, the
@@ -214,7 +214,7 @@ const MainPage = () => {
               </li>
               <li className="flex items-start">
                 <span className="font-bold mr-2"></span>
-                <p className="text-gray-700 font-semibold">
+                <p className="text-gray-700 font-medium">
                   <b>Sports Club:</b> Sports and games play a major role in
                   keeping a person fit and fine. Sports in general inculcates
                   teamwork, mental strength, and physical fitness along with
@@ -238,7 +238,7 @@ const MainPage = () => {
               </li>
             </ul>
             <br></br>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-gray-700 mb-4 font-medium">
               Finally, IITDM Jabalpur sports fraternity has a unique ability to
               bring people from different backgrounds together, as well as teach
               valuable life lessons.
@@ -315,7 +315,7 @@ const MainPage = () => {
         {/* 30% Quick Links section */}
         <div className="w-full md:w-3/12 px-4">
           <div className="flex flex-row">
-            <h2 className="text-2xl font-semibold mb-2">Other Information</h2>
+            <h2 className="text-2xl font-medium mb-2">Other Information</h2>
           </div>
           <ul className="list-disc ml-5">
             {links.map((link, index) => (
@@ -327,7 +327,7 @@ const MainPage = () => {
             ))}
           </ul>
           <div className="flex flex-row">
-            <h2 className="text-2xl font-semibold mb-2">Form Downloads</h2>
+            <h2 className="text-2xl font-medium mb-2">Form Downloads</h2>
           </div>
           <ul className="list-disc ml-5">
             {forms.map((link, index) => (
@@ -339,7 +339,7 @@ const MainPage = () => {
             ))}
           </ul>
           <div className="flex flex-row">
-            <h2 className="text-2xl font-semibold mb-2">Guidelines</h2>
+            <h2 className="text-2xl font-medium mb-2">Guidelines</h2>
           </div>
           <ul className="list-disc ml-5">
             {guidelines.map((link, index) => (
@@ -351,7 +351,7 @@ const MainPage = () => {
             ))}
           </ul>
           <div className="flex flex-row">
-            <h2 className="text-2xl font-semibold mb-2">Notifications</h2>
+            <h2 className="text-2xl font-medium mb-2">Notifications</h2>
           </div>
           <ul className="list-disc ml-5">
             {notifications.map((link, index) => (

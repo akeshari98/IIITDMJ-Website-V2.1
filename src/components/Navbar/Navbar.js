@@ -31,11 +31,13 @@ const Navbar = () => {
       >
         <nav className="px-3.5 flex-center-between w-full max-w-7xl mx-auto">
           <div className="flex-center gap-x-3 relative">
-            <img
-              className="w-48 opacity-100 transition-all duration-300 -ml-2"
-              src={Logo}
-              alt="logo"
-            />
+            <a href="/">
+              <img
+                className="w-48 opacity-100 transition-all duration-300 -ml-2"
+                src={Logo}
+                alt="logo"
+              />
+            </a>
           </div>
 
           <ul className="gap-x-1 lg:flex-center hidden">

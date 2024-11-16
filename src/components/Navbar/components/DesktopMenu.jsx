@@ -139,7 +139,7 @@ export default function DesktopMenu({ menu }) {
           variants={subMenuAnimate}
         >
           <div
-            className="grid divide-x divide-gray-300"
+            className="grid divide-x divide-white"
             style={{
               gridTemplateColumns: `repeat(${gridCols}, minmax(180px, 1fr))`,
             }}
@@ -149,7 +149,7 @@ export default function DesktopMenu({ menu }) {
                 <h3 className="text-sm font-semibold text-gray-500 mb-1">
                   {group.heading}
                 </h3>
-                <hr></hr>
+                {group.heading && <hr></hr>}
                 <div className="space-y-0.5">
                   {group.items.map((item, itemIndex) => (
                     <div

@@ -51,48 +51,48 @@ const MainPage = () => {
 
           {/* Text content area with formatted text and circular bullets */}
         <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-        <p className="text-gray-700 mb-4 font-semibold">
+        <p className="text-gray-700 mb-4 font-medium">
         This page provides help for challenged computer users, to enable them to make the most of this and other websites.
         </p>
         <h4 className="text-xl font-semibold mb-4">
         Commonly Used Methods
             </h4>
-        <p className="text-gray-700 mb-4 font-semibold">
+        <p className="text-gray-700 mb-4 font-medium">
         You can change the settings of your browser or your operating system, and add plugins to help you access the internet better.
         </p>
-        <p className="text-gray-700 mb-4 font-semibold">
+        <p className="text-gray-700 mb-4 font-medium">
         If you can't see well you can change the size of the display easily in most browsers.
         </p>
-        <p className="text-gray-700 mb-4 font-semibold">
+        <p className="text-gray-700 mb-4 font-medium">
         For Firefox and Chrome the size of the display can be increased or decreased by the Ctrl + (press control and plus key simultaneously) and Ctrl - (press control and minus key simultaneously) commands.
         </p>
-        <p className="text-gray-700 mb-4 font-semibold">
+        <p className="text-gray-700 mb-4 font-medium">
         To reset to original size please use the Ctrl 0 (press control and zero key simultaneously) command.
         </p>
-        <p className="text-gray-700 mb-4 font-semibold">
+        <p className="text-gray-700 mb-4 font-medium">
         For text to speech you can use the ChromeVox extension on Google Chrome which will read out the text for you.
         </p>
         <h4 className="text-xl font-semibold mb-4">
         Detailed Information
             </h4>
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-gray-700 mb-4 font-medium">
             There is a lot more that you can do. Here are some examples:
         </p>
         <ul className="list-none ml-4 mb-4">
             <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+            <span className="relative w-1.5 h-1.5 mt-2 mr-2 bg-black rounded-full flex-shrink-0"></span>
             You can change the size of the fonts
             </li>
             <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+            <span className="relative w-1.5 h-1.5 mt-2 mr-2 bg-black rounded-full flex-shrink-0"></span>
             You can change the colour of the fonts
             </li>
             <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+            <span className="relative w-1.5 h-1.5 mt-2 mr-2 bg-black rounded-full flex-shrink-0"></span>
             You can change the settings to make a keyboard or a mouse easier to use
             </li>
         </ul>
-        <p className="text-gray-700 mb-4 font-semibold">
+        <p className="text-gray-700 mb-4 font-medium">
         For detailed information on how to make these changes and for much more to help you make the most of the internet please visit this <a href="https://www.bbc.co.uk/accessibility/" className="text-blue-500 no-underline">My Web My Way website.</a></p>
         </div>
         

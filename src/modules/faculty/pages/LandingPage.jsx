@@ -55,8 +55,9 @@ const LandingPage = () => {
   );
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl text-left mb-12 mt-8">Faculty Profiles</h1>
+    <div className='bg-gray-50'>
+    <div className="container mx-auto p-4 bg-gray-50">
+      {/* <h1 className="font-semibold text-3xl text-left mb-12">Faculty Profiles</h1> */}
       <nav className="flex items-center mb-8 text-gray-600">
         <a href="/" className="hover:underline">Home</a>
         <ChevronRight size={16} className="mx-2" />
@@ -64,7 +65,7 @@ const LandingPage = () => {
       </nav>
 
       <div className="flex justify-between items-center mb-6">
-        <nav className="flex space-x-4">
+        {/* <nav className="flex space-x-4">
           {Object.keys(departments).map(department => (
             <button
               key={department}
@@ -76,9 +77,33 @@ const LandingPage = () => {
               {department}
             </button>
           ))}
-        </nav>
+        </nav> */}
+        <nav className="w-full border-b-2">
+              <ul className="flex gap-[1%]">
+                {Object.keys(departments).map((department) => (
+                  <li key={department}>
+                    <button
+                      onClick={() => setSelectedDepartment(department)}
+                      className={`text-lg relative p-2 text-left capitalize transition-colors ${
+                        selectedDepartment === department
+                          ? 'text-gray-800'
+                          : 'text-gray-600 hover:text-gray-800'
+                      }`}
+                    >
+                      {department}
+                      {/* Thicker line effect */}
+                      <span
+                        className={`absolute left-0 bottom-0 h-[2px] bg-gray-800 transition-all duration-300 ${
+                          selectedDepartment === department ? 'w-full' : 'w-0'
+                        }`}
+                      />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-        <div className="relative w-full max-w-md">
+        {/* <div className="relative w-full max-w-md">
           <input
             type="text"
             placeholder="Search Faculty..."
@@ -88,8 +113,19 @@ const LandingPage = () => {
           <span className="absolute left-3 top-2 text-gray-400">
             <Search />
           </span>
-        </div>
+        </div> */}
       </div>
+      <div className="relative w-full mb-5">
+          <input
+            type="text"
+            placeholder="Search Faculty..."
+            className="border border-gray-600 rounded-lg pl-10 pr-4 py-2 w-full text-gray-600 bg-white focus:outline-none"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <span className="absolute left-3 top-2 text-gray-400">
+            <Search />
+          </span>
+        </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {loading ? (
@@ -98,12 +134,12 @@ const LandingPage = () => {
           filteredFaculty.map((faculty, index) => (
             <div
               key={index}
-              className="relative w-[95%] max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform ml-auto mr-auto flex flex-col"
+              className="max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform flex flex-col h-full"
               style={{ height: '500px' }}
             >
               <img src={faculty.photo} alt={`${faculty.name}'s Profile`} className="w-48 h-48 object-cover rounded-md mx-auto" />
               <div className="flex flex-col items-center text-center mt-5">
-                <h3 className="text-xl font-bold break-words">{faculty.name}</h3>
+                <h3 className="text-xl font-medium break-words">{faculty.name}</h3>
                 <p className="text-gray-700">{faculty.designation}</p>
                 <p className="text-gray-500">{faculty.department}</p>
                 <div className="flex flex-wrap gap-2 mt-2 mb-6 overflow-hidden max-h-16">
@@ -115,18 +151,21 @@ const LandingPage = () => {
                   )}
                 </div>
               </div>
+              <div className="mt-auto">
               <Link
                 to={`/profilepage/${faculty.id}`}
-                className="absolute bottom-4 left-4 right-4 bg-black text-white rounded px-4 py-2 hover:bg-gray-700 transition duration-300 text-center"
+                className="mt-4 bg-gray-700 text-white rounded px-2 py-2 hover:bg-gray-900 transition duration-300 text-center block w-full"
               >
                 View Profile
               </Link>
+            </div>
             </div>
           ))
         ) : (
           <p className="col-span-full text-center text-gray-500">No faculty found.</p>
         )}
       </div>
+    </div>
     </div>
   );
 };

@@ -96,7 +96,7 @@ const MainPage = () => {
 
           {/* Text content area with formatted text and circular bullets */}
           <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-            <h3>Links</h3>
+            <h3 className="text-xl font-semibold mb-1">Links:</h3>
             <ul className="list-disc ml-5">
               {quickLinks2.map((link, index) => (
                 <li key={index} className="-ml-3">
@@ -107,18 +107,25 @@ const MainPage = () => {
                 </li>
               ))}
             </ul>
-            <br />
-            <h3>Doctors available for consultation:</h3>
+            <h3 className="text-xl font-semibold mb-1 mt-4">Doctors available for consultation:</h3>
             <ul className="list-disc ml-5">
               {data.cardsData.map((doctor, index) => (
                 <li key={index} className="-ml-3">
-                  <strong>
                     {doctor.name} - {doctor.role}{" "}
-                  </strong>
                 </li>
               ))}
             </ul>
-
+            <h3 className="text-xl font-semibold mb-1 mt-4">Guidelines:</h3>
+            <ul className="list-disc ml-5">
+              {guidelines.map((link, index) => (
+                <li key={index} className="-ml-3">
+                  {" "}
+                  <a href={link.href} className="text-blue-500 no-underline">
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
             {/* Adding images in a single row */}
             <div className="flex justify-center mt-4 mb-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-4">
@@ -139,17 +146,6 @@ const MainPage = () => {
                 />
               </div>
             </div>
-            <h3>Guidelines</h3>
-            <ul className="list-disc ml-5">
-              {guidelines.map((link, index) => (
-                <li key={index} className="-ml-3">
-                  {" "}
-                  <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 

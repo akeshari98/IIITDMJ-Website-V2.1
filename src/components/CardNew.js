@@ -26,19 +26,20 @@ const Card = ({
   const phoneArray = phone_no ? splitPhoneNumber(phone_no) : []; // Only split if phone_no is not null
   const emailArray = email ? splitEmailString(email) : []; // Only split if email is not null
   return (
-    <div className="max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform ">
+
+    <div className="max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform flex flex-col h-full">
       <img
         src={profile_picture || profile}
         alt={first_name}
         className="w-40 h-40 object-cover object-top rounded-md mx-auto"
       />
-      <div className="mt-4">
+      <div className="mt-4 flex-grow">
         {first_name && (
-          <h3 className="text-xl font-bold break-words -mb-1">
+          <h3 className="text-lg font-semibold break-words -mb-1 leading-tight">
             {first_name} {last_name}
           </h3>
         )}
-        {role && <p className="text-lg text-gray-400 font-bold break-words">{role}</p>}
+        {role && <p className="text-md text-gray-400 font-semibold break-words">{role}</p>}
         {address && <p className="text-gray-600 break-words">{address}</p>}
         {phone_no && phoneArray.length > 0 && (
           <div className="text-gray-600 mt-1 -mb-1">
@@ -63,18 +64,17 @@ const Card = ({
             ))}
           </div>
         )}
-        <div className="mt-3">
-        {user_type === "faculty" && (
+      </div>
+      {user_type === "faculty" && (
+        <div className="mt-auto">
           <Link
             to={`/profilepage/${id}`}
-            className="bg-gray-700 text-white rounded px-2 py-2 hover:bg-gray-900 transition duration-300 text-center"
+            className="mt-4 bg-gray-700 text-white rounded px-2 py-2 hover:bg-gray-900 transition duration-300 text-center block w-full"
           >
             View Profile
           </Link>
-        )}
         </div>
-        
-      </div>
+      )}
     </div>
   );
 };

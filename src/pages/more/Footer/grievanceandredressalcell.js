@@ -71,7 +71,7 @@ const MainPage = () => {
 
           {/* Text content area with formatted text and circular bullets */}
           <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-            <h4 className="text-xl font-semibold mb-4">
+            <h4 className="text-xl font-medium mb-4">
               Grievance Redressal Mechanism of the Institute:
             </h4>
             <ul className="list-disc ml-5">
@@ -81,7 +81,7 @@ const MainPage = () => {
                   <a
                     target="_blank"
                     href={link.href}
-                    className="-mt-1 text-md font-semibold text-blue-500 no-underline"
+                    className="-mt-1 text-md font-medium text-blue-500 no-underline"
                   >
                     {link.name}
                   </a>
@@ -111,7 +111,7 @@ const MainPage = () => {
               </li>
             </ul>
 
-            <p className="text-gray-700 mb-4 font-semibold">
+            <p className="text-black mb-4 font-medium">
               You are requested to forward your grievance, if any, in above
               mentioned email id in accordance with the notification issued in
               this regard.

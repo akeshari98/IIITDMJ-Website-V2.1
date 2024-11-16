@@ -61,6 +61,7 @@ import Grievance from "./pages/more/Footer/grievanceandredressalcell";
 import Scholarship from "./pages/more/Footer/scholarship";
 import PressReleases from "./pages/more/Footer/pressreleases";
 import MapsAndDirections from "./pages/more/Footer/mapsanddirections";
+import AdminPortal from "./pages/more/people/adminportal";
 
 //academics
 import Convocation from "./pages/more/academics/convocation";
@@ -115,9 +116,11 @@ import ProfilePage from "./modules/faculty/pages/profilePage";
 //Events
 import EventsPage from "./components/Events/EventsPage"
 import TendersPage from "./pages/more/Tenders"
-
+//admin  portal 
+import AdminPortal from './modules/admin/AdminPortal';
 //misc
 import ScreenReaderAccess from "./pages/ScreenReaderAccess"
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -362,14 +365,24 @@ const router = createBrowserRouter([
         path:"/profilepage/:id", 
         element:<ProfilePage/>
       },
-      { path:"/event/:eventId",
-        element:<EventsPage /> },
-      { path:"/tenders",
-        element:<TendersPage/> },
-      { path:"/screenreaderaccess",
-        element:<ScreenReaderAccess/> },
+      { 
+        path:"/event/:eventId",
+        element:<EventsPage /> 
+      },
+      { 
+        path:"/tenders",
+        element:<TendersPage/> 
+      },
+      { 
+        path:"/screenreaderaccess",
+        element:<ScreenReaderAccess/> 
+      },
       
       //academics
+      {
+        path: "/adminportal",
+        element: <AdminPortal />,
+      },
       {
         path: "/convocation",
         element: <Convocation />,
@@ -417,7 +430,7 @@ const router = createBrowserRouter([
       {
         path: "/externalcirculars",
         element: <ExternalCirculars />,
-      },
+      }
     ],
   },
   {
@@ -497,6 +510,10 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <NotFound />,
+  },
+  {
+    path: "/adminP",
+    element: <AdminPortal />,
   },
 ]);
 

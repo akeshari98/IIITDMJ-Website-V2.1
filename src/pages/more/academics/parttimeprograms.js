@@ -67,7 +67,7 @@ const MainPage = () => {
                             </h2>
                         </div>
 
-                        <h6 className=" text-gray-800 ">Institute offers Special Part Time MTech Programmes in:</h6>
+                        <h6 className="font-semibold text-gray-800 ">Institute offers Special Part Time MTech Programmes in:</h6>
                         {/* Bulleted List */}
                         <ul className="list-none text-gray-800 mb-2">
                             <li className="flex items-start">
@@ -84,7 +84,7 @@ const MainPage = () => {
                             </li>
                         </ul>
 
-                        <h6 className=" text-gray-800 ">Institute offers Special Part Time MTech Programmes in:</h6>
+                        <h6 className="font-semibold text-gray-800 ">Institute offers Special Part Time MTech Programmes in:</h6>
                         {/* Bulleted List */}
                         <ul className="list-none text-gray-800 mb-2 pb-6 border-b border-gray-200">
                             <li className="flex items-start">
@@ -93,7 +93,7 @@ const MainPage = () => {
                             </li>
                         </ul>
 
-                        <h6 className=" text-gray-800 ">Eligibility for Admissions:</h6>
+                        <h6 className="font-semibold text-gray-800 ">Eligibility for Admissions:</h6>
                         {/* Bulleted List */}
                         <ul className="list-none text-gray-800 mb-2">
                             <li className="flex items-start">
@@ -147,7 +147,7 @@ const MainPage = () => {
                             </h2>
                         </div>
 
-                        <h6 className=" text-gray-800 ">Fees for Special Part Time MTech/MDes Programmes in:</h6>
+                        <h6 className="font-semibold text-gray-800 ">Fees for Special Part Time MTech/MDes Programmes in:</h6>
                         <p className=" text-gray-800">
                         Equivalent to M.Tech./MDes programme (Hostel is not alloted for Part time program so Hostel fee is not required in part time Program).
                         </p>
@@ -155,7 +155,7 @@ const MainPage = () => {
                         <a href="#" className="text-blue-600 no-underline mb-6">Details of Fee Structure</a>
 
 
-                        <h6 className=" text-gray-800 pt-8">Courses for Special Part Time MTech/MDes Programmes in:</h6>
+                        <h6 className="font-semibold text-gray-800 pt-8">Courses for Special Part Time MTech/MDes Programmes in:</h6>
                         <p className=" text-gray-800 ">
                         courses are also equvalance to MTech/MDes program.
                         </p>
