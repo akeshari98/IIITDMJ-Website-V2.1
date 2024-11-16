@@ -1,34 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axiosInstance from '../axios'; // Importing the axios instance
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight,Clock, ExternalLink  } from 'lucide-react';
 import newsPlaceHolder from "../resources/images/newsPlaceHolder.png"
 // Helper function to build Cloudinary image URLs
 const buildImageUrl = (publicId) => {
   const cloudName = "djy2jlthj";
-  return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_300/${publicId}`;
+  return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_600/${publicId}`;
 };
 
 const AchievementsCard = ({ title, imagePublicId, excerpt, createdAt, link }) => {
-  // Define a placeholder image URL
-  // const newsPlaceholder = "https://example.com/path-to-placeholder-image.jpg";
-
-  // Build the Cloudinary image URL or use the placeholder if no valid imagePublicId is passed
   const imageUrl = imagePublicId ? buildImageUrl(imagePublicId) : newsPlaceHolder;
   
   return (
-    <div className="flex-shrink-0 w-64 sm:w-72 md:w-80 bg-white shadow-md overflow-hidden transition-transform duration-300 hover:scale-102 border-b border-black border-opacity-10">
-      <img src={imageUrl} alt={title} className="w-full h-40 sm:h-48 object-cover" />
-      <div className="p-3 sm:p-4 text-left h-56 flex flex-col justify-between">
+    <div className="flex-shrink-0 w-64 sm:w-72 md:w-80 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-100">
+      <div className="relative">
+        <img src={imageUrl} alt={title} className="w-full h-48 sm:h-52 object-cover" />
+        <div className="absolute top-0 right-0 bg-black bg-opacity-60 text-white text-xs px-3 py-1 m-3 rounded-full flex items-center">
+          <Clock className="w-3 h-3 mr-1" />
+          {new Date(createdAt).toLocaleDateString()}
+        </div>
+      </div>
+      <div className="p-5 text-left h-56 flex flex-col justify-between">
         <div>
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-base sm:text-lg font-semibold line-clamp-2 text-left">{title}</h3>
-            <span className="text-xs sm:text-sm text-gray-500 ml-2 whitespace-nowrap">
-              {new Date(createdAt).toLocaleDateString()}
-            </span>
-          </div>
-          {/* Rendering excerpt with strong tags using dangerouslySetInnerHTML */}
+          <h3 className="text-lg  mb-3 line-clamp-2 text-gray-800 leading-snug">
+            {title}
+          </h3>
           <p
-            className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 line-clamp-3 text-left"
+            className="text-sm text-gray-600 mb-4 line-clamp-3 leading-relaxed"
             dangerouslySetInnerHTML={{ __html: excerpt }}
           />
         </div>
@@ -37,20 +35,16 @@ const AchievementsCard = ({ title, imagePublicId, excerpt, createdAt, link }) =>
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-black text-white px-3 py-1 sm:px-4 sm:py-2 text-sm hover:bg-gray-800 transition-colors duration-300 "
-            style={{
-              width: 'fit-content',
-              textDecoration: 'none', // Remove underline
-            }}
+            className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
           >
             Read More
+            {/* <ExternalLink className="w-4 h-4" /> */}
           </a>
         </div>
       </div>
     </div>
   );
 };
-
 
 
 const AchievementsCarousel = () => {

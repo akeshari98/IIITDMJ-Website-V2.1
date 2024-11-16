@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Card from "../../../components/CardNew";
 import college_img1 from "../../../resources/images/3.jpg";
+import PageHeader from "../../../components/PageHeader";
 
 
 const MainPage = () => {
@@ -46,18 +47,11 @@ const MainPage = () => {
   ];
 
 
+  const crumbs = [{crumb:"Finance Commitee Minutes",link:"#"}]
   return (
     <div>
       {/* Full-width image with centered heading */}
-      <div
-        className="relative w-full h-96 bg-[length:100%_100%] bg-no-repeat bg-center"
-        style={{ backgroundImage: `url(${college_img1})` }}
-      >
-        <h1 className="absolute inset-0 flex items-center justify-center text-white text-5xl font-bold">
-          Finance Committee Minutes
-        </h1>
-      </div>
-
+      <PageHeader breadCrumbs={crumbs} title={"Finance Committee Minutes"}/>
       {/* Main content area with flex for side-by-side layout */}
       <div className="container mx-auto mt-8 mb-8 flex flex-col md:flex-row">
         {/* 70% section */}

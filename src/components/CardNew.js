@@ -1,7 +1,6 @@
 import React from "react";
 import profile from "../resources/images/admin/profile.jpg";
 import { Link } from "react-router-dom";
-
 // Function to split phone number by '.' and return an array of strings
 const splitPhoneNumber = (phone_no) => {
   return phone_no.toString().split("."); // Splits wherever there is a '.'
@@ -27,6 +26,7 @@ const Card = ({
   const phoneArray = phone_no ? splitPhoneNumber(phone_no) : []; // Only split if phone_no is not null
   const emailArray = email ? splitEmailString(email) : []; // Only split if email is not null
   return (
+
     <div className="max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform flex flex-col h-full">
       <img
         src={profile_picture || profile}
