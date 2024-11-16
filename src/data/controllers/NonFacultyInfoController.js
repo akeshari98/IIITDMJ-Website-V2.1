@@ -16,12 +16,12 @@ const getAllNonFaculty = async (req, res) => {
     }
   };
   
-const addNonFacultyInfo = async ({ firstName, last_name, email, address, phone_no, profile_picture }) => {
+const addNonFacultyInfo = async ({ first_name, last_name, email, address, phone_no, profile_picture }) => {
     const query = `
       INSERT INTO non_faculty_info (first_name, last_name, email, address, phone_no, profile_picture)
       VALUES ($1, $2, $3, $4, $5, $6);
     `;
-    await pool.query(query, [firstName, last_name, email, address, phone_no, profile_picture]);
+    await pool.query(query, [first_name, last_name, email, address, phone_no, profile_picture]);
   };
   
   // Update an existing non-faculty member's information

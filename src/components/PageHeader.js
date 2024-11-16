@@ -8,7 +8,7 @@ function PageHeader({ image, title, breadCrumbs }) {
     <div>
       <div className="h-[50vh] relative">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-bottom"
           style={{ backgroundImage: `url(${image || college_img1})` }}
           role="img"
           aria-label="Background image for the page header"

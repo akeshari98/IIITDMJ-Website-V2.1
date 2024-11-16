@@ -245,7 +245,7 @@ function Home() {
         <section className="px-8  pt-6 pb-2 text-center md:py-16 ">
           {/*  */}
           <div className="container  pt-10 mx-auto -mt-10 flex flex-col gap-12">
-            <div className="flex flex-col w-full text-left md:px-24">
+            <div className="flex flex-col w-full text-left">
               <div className="flex flex-col ">
                 <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
                   Latest <span className="sm:text-3xl text-2xl font-medium title-font text-gray-900" style={{ color: "#2563EB" }}>Updates</span>
@@ -257,7 +257,7 @@ function Home() {
                 </p>
                 <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
               </div>
-              <div className="bg-white py-4">
+              <div className="bg-white py-4 w-full">
                 <NewsSlider />
               </div>
             </div>

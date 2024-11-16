@@ -145,7 +145,7 @@ const NewsCarousel = () => {
         onTouchEnd={handleMouseUp}
         onTouchMove={handleTouchMove}
         onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        // onMouseLeave={() => setIsPaused(false)}
       >
         {newsData.map((item, index) => (
           <div key={`${item.id}-${index}`} className="snap-start">

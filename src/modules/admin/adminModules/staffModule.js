@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Image, Search } from 'lucide-react';
 import axiosInstance from '../../../axios';
+import profile from "../../../resources/images/admin/profile.jpg";
 
 // Separate form component with memoization
 const StaffForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
@@ -176,9 +177,9 @@ const StaffList = React.memo(({
         <tr key={staff.id}>
           <td className="px-6 py-4">
             <div className="flex items-center">
-              {staff.profile_picture && (
+              {(
                 <img
-                  src={staff.profile_picture}
+                  src={staff.profile_picture || profile}
                   alt={`${staff.first_name} ${staff.last_name}`}
                   className="h-8 w-8 rounded-full mr-3"
                 />
