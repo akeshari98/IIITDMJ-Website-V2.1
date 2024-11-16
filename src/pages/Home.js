@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Newspaper } from "lucide-react";
+import { Bell, Newspaper, Paperclip, Zap } from "lucide-react";
 import axios from "axios";
 import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
 import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg";
@@ -19,7 +19,9 @@ import AchievementsSlider from "../components/AchievementsSlider";
 import Notices from "../components/Notices";
 import AboutAndVisitors from "../components/AboutAndVisitor";
 import Events from "../components/Events/Events"
-
+import ImpotantAnnouncement from "../components/ImportantAnnouncement"
+import FocusOn from "../components/FocusOn"
+import Coi from "../components/Coi";
 const events = [
   {
     id: "1",
@@ -224,7 +226,7 @@ function Home() {
   return (
     <div>
       <main>
-  
+
         <div>
           <ImageSlider slides={slides} />
         </div>
@@ -233,27 +235,31 @@ function Home() {
           <h4 className="h-8 w-auto whitespace-nowrap font-semibold">
             Impotant Updates:
           </h4>
-          <div className="w-full px-0 ml-4"> 
+          <div className="w-full px-0 ml-4">
             <Marquee2 data={notis} />
           </div>
         </div>
-
+        <section className="px-8  pt-6 pb-2 text-center md:py-16 ">
+          <ImpotantAnnouncement />
+        </section>
         <section className="px-8  pt-6 pb-2 text-center md:py-16 ">
           {/*  */}
-          <div className="container  pt-2 mx-auto -mt-10">
-            <div className="flex flex-col w-full text-left">
-              <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
-                Latest <span style={{ color: "#2563EB" }}>Updates</span>
-              </h1>
-              {/* Horizontal line */}
+          <div className="container  pt-10 mx-auto -mt-10 flex flex-col gap-12">
+            <div className="flex flex-col w-full text-left md:px-24">
+              <div className="flex flex-col ">
+                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+                  Latest <span className="sm:text-3xl text-2xl font-medium title-font text-gray-900" style={{ color: "#2563EB" }}>Updates</span>
+                </h1>
+                {/* Horizontal line */}
 
-              <p className="lg:w-2/3 leading-relaxed text-base">
-                Get all the latest information here
-              </p>
-              <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
-            </div>
-            <div className="bg-white">
-            <NewsSlider />
+                <p className="lg:w-2/3 leading-relaxed text-base text-gray-600">
+                  Get all the latest information here
+                </p>
+                <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
+              </div>
+              <div className="bg-white py-4">
+                <NewsSlider />
+              </div>
             </div>
             <div className="bg-white py-8">
               <div className="max-w-7xl mx-auto">
@@ -262,8 +268,11 @@ function Home() {
                     <div className="flex flex-col w-full text-left">
                       <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
                         Recent{" "}
-                        <span style={{ color: "#2563EB" }}>Announcements</span>
+                        <span className="sm:text-3xl text-2xl font-medium title-font" style={{ color: "#2563EB" }}>Announcements</span>
                       </h1>
+                      <p className="lg:w-2/3 leading-relaxed text-base text-gray-600">
+                        Campus Bulletins
+                      </p>
                       {/* Horizontal line */}
                       <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
                     </div>
@@ -273,13 +282,17 @@ function Home() {
                 <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
                   <div className="lg:w-2/3">
                     <div className="bg-white rounded-lg shadow-md ">
-                      <h3 className="text-2xl font-semibold mb-4">
+                      <h3 className="text-2xl font mb-4">
                         Achievements
                       </h3>
-                      <AchievementsSlider/>
+                      <AchievementsSlider />
                     </div>
                   </div>
                   <div className="lg:w-1/3">
+                    <h3 className="text-2xl font mb-4 flex  justify-center">
+                      Notices 
+  <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse ml-2 mt-2.5"></span>
+                    </h3>
                     <div className="bg-white rounded-lg shadow-md pt-1">
                       <Notices />
                     </div>
@@ -287,15 +300,21 @@ function Home() {
                 </div>
               </div>
             </div>
-            
-            <AboutAndVisitors/>
-           
+
+            <AboutAndVisitors />
+
           </div>
         </section>
         <section className="px-2 pt-20 md:p-10">
-        {/* if (loading) return <p>Loading events...</p>;
+          <FocusOn />
+        </section>
+        <section className="px-2 pt-20 md:p-10">
+          <Coi />
+        </section>
+        <section className="px-2 pt-20 md:p-10">
+          {/* if (loading) return <p>Loading events...</p>;
         if (error) return <p>{error}</p>; */}
-         <Events events={fetchedEvents}/>
+          <Events events={fetchedEvents} />
         </section>
       </main>
     </div>

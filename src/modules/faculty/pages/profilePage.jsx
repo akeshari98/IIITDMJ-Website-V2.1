@@ -357,12 +357,12 @@ const ProfilePage = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Profile Sidebar */}
-          <div className="w-full md:w-1/3 bg-white rounded-lg shadow-md p-6 h-74">
+          <div className="w-full md:w-1/3 bg-white rounded-lg shadow-md p-6 h-auto self-start">
             <div className="flex flex-col items-center mb-6">
               <img
                 src={basicInfo.profile_picture}
                 alt="Faculty Profile"
-                className="w-32 h-32 rounded-full mb-4"
+                className="w-40 h-40 mb-4"
               />
               <h1 className="text-2xl font-bold text-center">{basicInfo.first_name} {basicInfo.last_name}</h1>
               <p className="text-gray-600">{basicInfo.designation}</p>

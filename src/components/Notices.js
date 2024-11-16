@@ -6,11 +6,11 @@ const NoticeCard = ({ title, excerpt, createdAt, link }) => (
     href={link} // Redirect to the link when clicked
     target="_blank" // Open in a new tab
     rel="noopener noreferrer" // Security feature for opening links
-    className="block bg-gray-90 shadow-md p-4 mb-4 border-l-4 border-blue-600 hover:shadow-lg transition-shadow duration-300 no-underline" // Remove underline
+    className="block bg-gray-90 shadow-md p-4 mb-4 border border-gray-300 hover:shadow-lg transition-shadow duration-300 no-underline" // Remove underline
     style={{ textDecoration: 'none', color: 'inherit' }} // Additional styles to ensure no link styling
   >
     <div className="flex justify-between items-start mb-2">
-      <h3 className="text-lg font-semibold line-clamp-1 text-left">{title}</h3>
+      <h3 className="text-lg  line-clamp-1 text-left">{title}</h3>
       <span className="text-xs text-gray-500 ml-2 whitespace-nowrap">
         {new Date(createdAt).toLocaleDateString()}
       </span>
@@ -44,13 +44,13 @@ const Notices = () => {
 
   return (
     <div className="p-2 pt-1 rounded-lg">
-      <h2 className="text-2xl font-semibold mb-4">Notices</h2>
+      {/* <h2 className="text-2xl font-semibold mb-4">Notices</h2> */}
       {loading ? (
         <p>Loading...</p> // Display loading message
       ) : error ? (
         <p className="text-red-500">{error}</p> // Display error message if any
       ) : (
-        <div className="overflow-y-auto" style={{ height: '443px' }}>
+        <div className="overflow-y-auto" style={{ height: '449px' }}>
           {notices.map((item, index) => (
             <NoticeCard key={`${item.id}-${index}`} {...item} />
           ))}

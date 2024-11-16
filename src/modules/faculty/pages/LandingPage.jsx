@@ -98,11 +98,11 @@ const LandingPage = () => {
           filteredFaculty.map((faculty, index) => (
             <div
               key={index}
-              className="relative max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform ml-4 flex flex-col justify-center"
+              className="relative w-[95%] max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform ml-auto mr-auto flex flex-col"
               style={{ height: '500px' }}
             >
               <img src={faculty.photo} alt={`${faculty.name}'s Profile`} className="w-48 h-48 object-cover rounded-md mx-auto" />
-              <div className="flex flex-col items-center text-center mt-2">
+              <div className="flex flex-col items-center text-center mt-5">
                 <h3 className="text-xl font-bold break-words">{faculty.name}</h3>
                 <p className="text-gray-700">{faculty.designation}</p>
                 <p className="text-gray-500">{faculty.department}</p>

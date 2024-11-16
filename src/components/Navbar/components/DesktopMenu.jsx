@@ -52,7 +52,7 @@ export default function DesktopMenu({ menu }) {
         </div>
         {isExternal && (
           <div className="flex-shrink-0 w-4">
-            <ExternalLink size={12} className="text-gray-400 group-hover:text-gray-600" />
+            {/* <ExternalLink size={12} className="text-gray-400 group-hover:text-gray-600" /> */}
           </div>
         )}
       </div>
@@ -106,7 +106,7 @@ export default function DesktopMenu({ menu }) {
             rel="noopener noreferrer"
           >
             {menu.name}
-            <ExternalLink size={12} className="ml-1" />
+            {/* <ExternalLink size={12} className="ml-1" /> */}
           </a>
         ) : (
           <Link
