@@ -61,7 +61,7 @@ import Grievance from "./pages/more/Footer/grievanceandredressalcell";
 import Scholarship from "./pages/more/Footer/scholarship";
 import PressReleases from "./pages/more/Footer/pressreleases";
 import MapsAndDirections from "./pages/more/Footer/mapsanddirections";
-import AdminPortal from "./pages/more/people/adminportal";
+// import AdminPortal from "./pages/more/people/adminportal";
 
 //academics
 import Convocation from "./pages/more/academics/convocation";
