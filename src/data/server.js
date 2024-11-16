@@ -66,3 +66,4 @@ server.use("/events", require("./routes/events"));
 server.use("/eventImages", require("./routes/eventImages"));
 server.use("/tenders", require("./routes/tenders"));
 server.use("/facultyInfo",require("./routes/facultyInfo"))
+server.use("/nonFacultyInfo", require("./routes/nonFacultyInfo"))
