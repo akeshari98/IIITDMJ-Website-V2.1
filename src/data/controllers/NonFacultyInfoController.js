@@ -3,7 +3,7 @@ const pool = require("../connection");
 const getAllNonFaculty = async (req, res) => {
     try {
       const query = `
-        SELECT first_name, last_name, email, address, phone_no, profile_picture
+        SELECT id,first_name, last_name, email, address, phone_no, profile_picture
         FROM non_faculty_info
         ORDER BY first_name ASC;
       `;
