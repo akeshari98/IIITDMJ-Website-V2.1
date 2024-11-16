@@ -115,9 +115,11 @@ import ProfilePage from "./modules/faculty/pages/profilePage";
 //Events
 import EventsPage from "./components/Events/EventsPage"
 import TendersPage from "./pages/more/Tenders"
-
+//admin  portal 
+import AdminPortal from './modules/admin/AdminPortal';
 //misc
 import ScreenReaderAccess from "./pages/ScreenReaderAccess"
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -417,7 +419,7 @@ const router = createBrowserRouter([
       {
         path: "/externalcirculars",
         element: <ExternalCirculars />,
-      },
+      }
     ],
   },
   {
@@ -497,6 +499,10 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <NotFound />,
+  },
+  {
+    path: "/adminP",
+    element: <AdminPortal />,
   },
 ]);
 

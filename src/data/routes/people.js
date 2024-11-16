@@ -67,13 +67,8 @@ const professors = async (res) => {
     const query = `
       SELECT p.id, user_type, first_name, last_name, address, phone_no, profile_picture, COALESCE(p.email, pos.email) AS email
       FROM 
-<<<<<<< HEAD
           dblink('dbname=fusionlab user=superAdmin password=9455957884', 
               'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture 
-=======
-          dblink('dbname=fusionlab user=my_user password=user123', 
-              'SELECT auth_user.id, first_name, last_name, email, address, phone_no, profile_picture 
->>>>>>> 55a7a95dfb9d2922dde33612a143693b902d8d18
               FROM auth_user, globals_extrainfo, globals_faculty 
               WHERE auth_user.id=globals_extrainfo.user_id 
               AND globals_extrainfo.id=globals_faculty.id_id 
