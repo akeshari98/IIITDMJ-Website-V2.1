@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { Image, Search } from "lucide-react";
 import axiosInstance from "../../../axios";
 import profile from "../../../resources/images/admin/profile.jpg";
-import { INTEGER } from "sequelize";
+// import { INTEGER } from "sequelize";
 
 // Separate form component with memoization
 const DoctorsForm = React.memo(
@@ -11,7 +11,7 @@ const DoctorsForm = React.memo(
       first_name: "",
       last_name: "",
       role: "",
-      imp: INTEGER,
+      // imp: INTEGER,
       email: "",
       isFaculty: Boolean
     });
