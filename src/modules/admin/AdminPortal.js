@@ -8,12 +8,23 @@ import {
   ShoppingBag,
   FileText,
   Settings,
-  MessageSquare
+  MessageSquare,
+  HeartPulse,
+  Building,
+  GraduationCap,
+  NotebookPen,
+  Pen
 } from 'lucide-react';
 
 // Products Module
-import ProductsModule from './adminModules/productsModule';
+// import ProductsModule from './adminModules/productsModule';
+import FacultyManager from './adminModules/facultyModule';
 import StaffManager from './adminModules/staffModule';
+import DoctorsManager from './adminModules/doctorsModule';
+import CounsellingManager from './adminModules/counsellingModule';
+import HostelsManager from './adminModules/hostelsModule';
+import ShopsManager from './adminModules/shopsModule';
+import PositionsManager from './adminModules/positionsModule';
 // Blog Posts Module
 
 // Main Admin Portal Component
@@ -22,21 +33,35 @@ const AdminPortal = () => {
   const [activeModule, setActiveModule] = useState('products');
 
   const modules = [
-    { id: 'products', name: 'Products', icon: ShoppingBag },
+    { id: 'faculty', name: 'View Faculty', icon: GraduationCap },
     { id: 'staff', name: 'Manage Staff', icon: Users },
-    { id: 'users', name: 'Users', icon: Users },
-    { id: 'messages', name: 'Messages', icon: MessageSquare },
-    { id: 'settings', name: 'Settings', icon: Settings },
+    { id: 'hostels', name: 'Hostel Management', icon: Building },
+    { id: 'counselling', name: 'Counselling Committee', icon: NotebookPen },
+    { id: 'shops', name: 'Institue Shops', icon: ShoppingBag },
+    { id: 'doctors', name: 'PHC Doctors', icon: HeartPulse },
+    { id: 'positions', name: 'Positions', icon: Pen },
   ];
   const [profileOpen, setProfileOpen] = useState(false);
   const renderModule = () => {
     switch (activeModule) {
-      case 'products':
-        return <ProductsModule />;
+      // case 'products':
+      //   return <ProductsModule />;
+      case 'faculty':
+        return <FacultyManager />;
       case 'staff':
         return <StaffManager />;
+      case 'doctors':
+        return <DoctorsManager />;
+      case 'counselling':
+        return <CounsellingManager />;
+      case 'hostels':
+        return <HostelsManager />;
+      case 'shops':
+        return <ShopsManager />;
+      case 'positions':
+        return <PositionsManager />;
       default:
-        return <div>Module under development</div>;
+        return <div>WELCOME TO IIITDMJ WEBSITE ADMIN PORTAL !!!</div>;
     }
   };
 
