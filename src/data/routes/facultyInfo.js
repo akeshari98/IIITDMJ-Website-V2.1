@@ -13,7 +13,8 @@ const {
   getBooks,
   getPublications,
   getConferences,
-  getStudents
+  getStudents,
+  getAllFaculty
 } = require("../controllers/FacultyInfoController"); // Update with the actual module name if it's different
 
 // Route 1: Get Faculty Honors
@@ -166,6 +167,16 @@ router.get("/faculty/:userId/students", async (req, res) => {
   } catch (error) {
     console.error("Error fetching faculty students:", error);
     res.status(500).json({ error: "Error fetching faculty students" });
+  }
+});
+
+router.get("/getAllFaculty", async (req, res) => {
+  try {
+    // Pass `req` and `res` to `getAllNonFaculty` so it can handle the response
+    await getAllFaculty(req, res);
+  } catch (error) {
+    console.error("Error in /getAllFaculty route:", error);
+    res.status(500).json({ error: "Server Error" });
   }
 });
 

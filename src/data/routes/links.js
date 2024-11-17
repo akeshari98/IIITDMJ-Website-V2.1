@@ -45,13 +45,17 @@ router.get("/grievance_redressal_cell", (req, res) => { getLinks2('grievance_red
 router.get("/press_releases", (req, res) => { getLinks2('press_releases', res); });
 router.get("/internal_circulars", (req, res) => { getLinks2('internal_circulars', res); });
 router.get("/external_circulars", (req, res) => { getLinks2('external_circulars', res); });
+router.get("/bogminutes", (req, res) => { getLinks2('bog_minutes', res); });
+router.get("/bogagenda", (req, res) => { getLinks2('bog_agenda', res); });
+router.get("/fcminutes", (req, res) => { getLinks2('fc_minutes', res); });
+router.get("/fcagenda", (req, res) => { getLinks2('fc_agenda', res); });
 
-router.get("/bogminutes", (req, res) => { getLinks('bog_minutes', res); });
-router.get("/bogagenda", (req, res) => { getLinks('bog_agenda', res); });
-router.get("/fcminutes", (req, res) => { getLinks('fc_minutes', res); });
-router.get("/fcagenda", (req, res) => { getLinks('fc_agenda', res); });
-router.get("/senateminutes", (req, res) => { getLinks('senate_minutes', res); });
-router.get("/senateagenda", (req, res) => { getLinks('senate_agenda', res); });
+// router.get("/bogminutes", (req, res) => { getLinks('bog_minutes', res); });
+// router.get("/bogagenda", (req, res) => { getLinks('bog_agenda', res); });
+// router.get("/fcminutes", (req, res) => { getLinks('fc_minutes', res); });
+// router.get("/fcagenda", (req, res) => { getLinks('fc_agenda', res); });
+// router.get("/senateminutes", (req, res) => { getLinks('senate_minutes', res); });
+// router.get("/senateagenda", (req, res) => { getLinks('senate_agenda', res); });
 
 
 module.exports = router;
