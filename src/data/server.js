@@ -65,5 +65,13 @@ server.use("/notices", require("./routes/notices")); // Routes for homepage caro
 server.use("/events", require("./routes/events"));
 server.use("/eventImages", require("./routes/eventImages"));
 server.use("/tenders", require("./routes/tenders"));
+
+
 server.use("/facultyInfo",require("./routes/facultyInfo"))
 server.use("/nonFacultyInfo", require("./routes/nonFacultyInfo"))
+server.use("/doctorsInfo", require("./routes/doctorsInfo"))
+server.use("/counsellingInfo", require("./routes/counsellingInfo"))
+server.use("/hostelsInfo", require("./routes/hostelsInfo"))
+server.use("/shopsInfo", require("./routes/shopsInfo"))
+// server.use("/positions",require("./controllers/PositionsController"))
+server.use("/positionsInfo", require("./routes/positionsInfo"))

@@ -233,14 +233,14 @@ const MainPage = () => {
               <InfoDiv2 key={index} {...info} />
             ))}
           </ul>
-          <div className="flex flex-row">
+          {/* <div className="flex flex-row">
             <h2 className="text-2xl font-semibold mb-2">Core Faculty Team(Counseling):</h2>
           </div>
           <ul className="list-disc ml-5">
             {data.core.map((info, index) => (
               <InfoDiv2 key={index} {...info} />
             ))}
-          </ul>
+          </ul> */}
         </div>
       </div>
     </div>

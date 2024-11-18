@@ -1,5 +1,6 @@
 require('dotenv').config();
 const pool = require("../connection");
+
 const getAllNonFaculty = async (req, res) => {
     try {
       const query = `

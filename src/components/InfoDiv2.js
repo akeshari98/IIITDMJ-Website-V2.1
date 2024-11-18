@@ -5,13 +5,13 @@ const splitPhoneNumber = (phone_no) => {
 const splitEmailString = (email) => {
   return email.split(',').map(item => item.trim()); // Trims any extra spaces
 };
-const InfoDiv = ({ first_name,last_name, email, phone_no }) => {
+const InfoDiv = ({ first_name,last_name, email, phone_no, role }) => {
   const emailArray = email ? splitEmailString(email) : [];
   const phoneArray = phone_no ? splitPhoneNumber(phone_no) : [];
   return (
     <div className="">
       <div className="w-full -ml-4">
-        {first_name && <p className="font-semibold break-words -mb-1">{first_name} {last_name}</p>} {/* Reduced bottom margin */}
+        {first_name && <p className="font-semibold break-words -mb-1">{first_name} {last_name} ({role})</p>} {/* Reduced bottom margin */}
         {email && emailArray.length > 0 && (
           <div className="text-gray-600 flex flex-row -mb-1">
             Email-

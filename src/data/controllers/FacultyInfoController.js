@@ -281,6 +281,26 @@ async function getStudents(userId) {
   return rows;
 }
 
+
+const getAllFaculty = async (req, res) => {
+  try {
+    const query = `
+      SELECT t.id, user_type, first_name, last_name, email, address, phone_no, profile_picture
+      FROM 
+          dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+              'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture FROM auth_user, globals_extrainfo, globals_faculty 
+              WHERE auth_user.id=globals_extrainfo.user_id 
+              AND globals_extrainfo.id=globals_faculty.id_id') AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, address text, phone_no bigint, profile_picture varchar)
+    `;
+    // console.log(res);
+    const result = await pool.query(query);
+    return res.json(result.rows); // Ensure res is used directly here
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Server error" });
+  }
+};
+
 // Export the functions
 module.exports = {
   getFacultyHonors,
@@ -295,6 +315,7 @@ module.exports = {
   getBooks,
   getPublications,
   getConferences,
-  getStudents
+  getStudents,
+  getAllFaculty
 };
 
