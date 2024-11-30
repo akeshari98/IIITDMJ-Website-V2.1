@@ -253,7 +253,16 @@ function Home() {
                 {/* Horizontal line */}
 
                 <p className="lg:w-2/3 leading-relaxed text-base text-gray-600">
-                  Get all the latest information here
+                  Get all the latest information here <span >
+          <Link
+            to={'/newsPage'}
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
+          >
+            View All
+            {/* <ExternalLink className="w-4 h-4" /> */}
+          </Link>
+        </span>
                 </p>
                 <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
               </div>
@@ -271,7 +280,16 @@ function Home() {
                         <span className="sm:text-3xl text-2xl font-medium title-font" style={{ color: "#2563EB" }}>Announcements</span>
                       </h1>
                       <p className="lg:w-2/3 leading-relaxed text-base text-gray-600">
-                        Campus Bulletins
+                        Campus Bulletins <span >
+          <Link
+            to={'/achievementsPage'}
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
+          >
+            View All
+            {/* <ExternalLink className="w-4 h-4" /> */}
+          </Link>
+        </span>
                       </p>
                       {/* Horizontal line */}
                       <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
@@ -290,9 +308,20 @@ function Home() {
                   </div>
                   <div className="lg:w-1/3">
                     <h3 className="text-2xl font mb-4 flex  justify-center">
-                      Notices 
+                      Notices  
   <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse ml-2 mt-2.5"></span>
+  <span >
+          <Link
+            to={'/noticesPage'}
+            rel="noopener noreferrer"
+            className="ml-10 inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
+          >
+            View All
+            {/* <ExternalLink className="w-4 h-4" /> */}
+          </Link>
+        </span>
                     </h3>
+                    
                     <div className="bg-white rounded-lg shadow-md pt-1">
                       <Notices />
                     </div>

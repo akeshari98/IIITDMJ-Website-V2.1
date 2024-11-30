@@ -13,7 +13,9 @@ import {
   Building,
   GraduationCap,
   NotebookPen,
-  Pen
+  Pen,
+  LinkIcon,
+  NewspaperIcon
 } from 'lucide-react';
 
 // Products Module
@@ -25,21 +27,26 @@ import CounsellingManager from './adminModules/counsellingModule';
 import HostelsManager from './adminModules/hostelsModule';
 import ShopsManager from './adminModules/shopsModule';
 import PositionsManager from './adminModules/positionsModule';
+import LinksManager from './adminModules/linksModule';
+import NewsManager from './adminModules/newsModule';
 // Blog Posts Module
-
+import { AdminAuth } from './components/AdminAuth';
+import { useSelector } from 'react-redux'
 // Main Admin Portal Component
-const AdminPortal = () => {
+const Page = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activeModule, setActiveModule] = useState('products');
-
+  const [activeModule, setActiveModule] = useState('faculty');
+ 
   const modules = [
-    { id: 'faculty', name: 'View Faculty', icon: GraduationCap },
+    { id: 'faculty', name: 'Faculty', icon: GraduationCap },
+    { id: 'links', name: 'Manage Links', icon: LinkIcon },
     { id: 'staff', name: 'Manage Staff', icon: Users },
-    { id: 'positions', name: 'Positions', icon: Pen },
+    { id: 'positions', name: 'Manage Positions', icon: Pen },
     { id: 'hostels', name: 'Hostel Management', icon: Building },
     { id: 'counselling', name: 'Student Counselling', icon: NotebookPen },
     { id: 'shops', name: 'Institue Shops', icon: ShoppingBag },
     { id: 'doctors', name: 'PHC Doctors', icon: HeartPulse },
+    { id: 'news', name: 'News', icon: NewspaperIcon },
   ];
   const [profileOpen, setProfileOpen] = useState(false);
   const renderModule = () => {
@@ -60,8 +67,12 @@ const AdminPortal = () => {
         return <ShopsManager />;
       case 'positions':
         return <PositionsManager />;
+      case 'links':
+        return <LinksManager />;  
+      case 'news':
+        return <NewsManager />;  
       default:
-        return <div>WELCOME TO IIITDMJ WEBSITE ADMIN PORTAL !!!</div>;
+        return <div className='text-lg'>WELCOME TO IIITDMJ WEBSITE ADMIN PORTAL !!!</div>;
     }
   };
 
@@ -185,6 +196,20 @@ const AdminPortal = () => {
       </button>
     </div>
   );
+}
+function AdminPortal() {
+  const { sessionID, sessionType } = useSelector((state) => state.session)
+
+  return (
+  <>
+      {
+        sessionStorage.getItem('admin') === "admin@gmail.com" || (sessionID === "admin@gmail.com" && sessionType === "admin") ||  localStorage.getItem("testing")
+          ?
+          <Page />
+          :
+          <AdminAuth />
+      }
+    </>)
 };
 
 // Add necessary state for profile dropdown

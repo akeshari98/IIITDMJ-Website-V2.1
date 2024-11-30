@@ -11,4 +11,7 @@ router.get('/news-overview', newsController.getNewsOverview);
 // Route to get individual news by ID
 router.get('/news/:id', newsController.getNewsById);
 
+router.post('/news', newsController.createNews);
+router.put('/news/:id', newsController.updateNews);
+router.delete('/news/:id', newsController.deleteNews);
 module.exports = router;

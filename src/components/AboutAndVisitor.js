@@ -25,7 +25,7 @@ const DirectorCard = ({ title, content, media, buttons }) => {
                 </p>
               </div>
             </div>
-            <div className="w-full md:w-1/2 pr-0 md:pr-4 mb-4 md:mb-0">
+            <div className="w-full md:w-2/3 pr-0 md:pr-4 mb-4 md:mb-0">
               <img
                 src={media}
                 alt="Director"

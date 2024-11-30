@@ -2,11 +2,18 @@ import React from 'react';
 import college_img1 from "../resources/images/3.jpg";
 import { Link } from "react-router-dom";
 import { ChevronRight } from 'lucide-react';
+import { motion } from "framer-motion";
 
 function PageHeader({ image, title, breadCrumbs }) {
+  // Animation Variants
+  const titleAnimation = {
+    hidden: { y: -50, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
+  };
+
   return (
     <div>
-      <div className="h-[50vh] relative">
+      <div className="h-[40vh] relative">
         <div
           className="absolute inset-0 bg-cover bg-bottom"
           style={{ backgroundImage: `url(${image || college_img1})` }}
@@ -16,7 +23,17 @@ function PageHeader({ image, title, breadCrumbs }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8">
           <div className="container mx-auto">
-            <h1 className="text-5xl text-white mb-16">{title}</h1>
+            {/* Animated Title */}
+            <motion.h1
+              className="text-5xl text-white mb-16"
+              initial="hidden"
+              animate="visible"
+              variants={titleAnimation}
+            >
+              {title}
+            </motion.h1>
+
+            {/* Breadcrumb Navigation */}
             <nav className="flex text-sm items-center mb-4 text-white" role="navigation">
               <Link to="/">Home</Link>
               {breadCrumbs.map(({ crumb, link }, index) => (

@@ -81,7 +81,8 @@ const DoctorsForm = React.memo(
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-4">
             <div className="text-md font-medium text-gray-700 mb-1">
-              Position Type: {selectedPositionType.replace(/_/g, ' ').toUpperCase()}
+              Position Type:{" "}
+              {selectedPositionType.replace(/_/g, " ").toUpperCase()}
             </div>
 
             {!isEditing && (
@@ -303,7 +304,7 @@ const PositionsManager = () => {
 
   const handleAddPosition = async (formData) => {
     try {
-      console.log(formData)
+      console.log(formData);
       const response = await axiosInstance.post(
         "/positionsInfo/addPositions",
         formData
@@ -384,16 +385,15 @@ const PositionsManager = () => {
           (staff.first_name || "").toLowerCase().includes(searchTermLower) ||
           (staff.last_name || "").toLowerCase().includes(searchTermLower) ||
           (staff.role || "").toLowerCase().includes(searchTermLower) ||
-          (staff.email || "") &&staff.email.toLowerCase().includes(searchTermLower)
+          ((staff.email || "").toLowerCase().includes(searchTermLower))
         );
       }),
     [staffList, searchTerm]
   );
 
-
   return (
     <div className="space-y-6">
-       <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center">
         <div className="flex space-x-4">
           <button
             onClick={() => {
@@ -440,7 +440,6 @@ const PositionsManager = () => {
           </select>
         </div>
       </div>
-
 
       {activeTab === "add" ? (
         <DoctorsForm

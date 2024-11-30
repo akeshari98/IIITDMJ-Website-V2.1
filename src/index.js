@@ -120,6 +120,9 @@ import TendersPage from "./pages/more/Tenders"
 import AdminPortal from './modules/admin/AdminPortal';
 //misc
 import ScreenReaderAccess from "./pages/ScreenReaderAccess"
+import NewsPage from "./pages/NewsPage"
+import AchievementsPage from "./pages/AchievementsPage"
+import NoticesPage from "./pages/NoticesPage"
 
 const router = createBrowserRouter([
   {
@@ -426,6 +429,18 @@ const router = createBrowserRouter([
       {
         path: "/externalcirculars",
         element: <ExternalCirculars />,
+      },
+      {
+        path: "/newsPage",
+        element: <NewsPage />,
+      },
+      {
+        path: "/achievementsPage",
+        element: <AchievementsPage/>,
+      },
+      {
+        path: "/noticesPage",
+        element: <NoticesPage/>,
       }
     ],
   },

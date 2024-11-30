@@ -7,10 +7,7 @@ const News = sequelize.define('News', {
   content: DataTypes.TEXT,
   image_url: DataTypes.STRING,
   link: DataTypes.STRING,
-  created_at: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW
-  }
+  
 });
 
 module.exports = News;

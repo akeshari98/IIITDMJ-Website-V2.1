@@ -14,7 +14,7 @@ exports.getAllAchievements = async (req, res) => {
 exports.getAchievementsOverview = async (req, res) => {
   try {
     const achievementsOverview = await Achievements.findAll({
-      attributes: ['id', 'title', 'excerpt', 'image_url', 'created_at'] // Adjust attributes as necessary
+      attributes: ['id', 'title', 'excerpt', 'image_url', 'createdAt'] // Adjust attributes as necessary
     });
     res.json(achievementsOverview);
   } catch (error) {

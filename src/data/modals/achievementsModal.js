@@ -7,10 +7,7 @@ const Achievements = sequelize.define('achievements', {
   content: DataTypes.TEXT,
   image_url: DataTypes.STRING,
   link: DataTypes.STRING,
-  created_at: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW
-  }
+  
 });
 
 module.exports = Achievements;
