@@ -29,7 +29,7 @@ const DirectorCard = ({ title, content, media, buttons }) => {
               <img
                 src={media}
                 alt="Director"
-                className="rounded-lg w-full h-48 md:h-64 object-cover"
+                className="rounded-lg w-48 h-64 object-cover mr-auto ml-auto mt-3"
               />
             </div>
           </div>

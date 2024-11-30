@@ -8,9 +8,9 @@ async function getFacultyHonors(userId) {
     SELECT t.id, title, description, "period"
     FROM dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
          'SELECT auth_user.id, eis_honors.title, description, "period" 
-          FROM auth_user, globals_extrainfo, globals_faculty, eis_honors
+          FROM auth_user, globals_extrainfo, eis_faculty_about, eis_honors
           WHERE auth_user.id=globals_extrainfo.user_id
-          AND globals_extrainfo.id=globals_faculty.id_id
+          AND auth_user.id=eis_faculty_about.user_id
           AND auth_user.id=eis_honors.user_id
           AND auth_user.id=${userId}')
     AS t(id int, title varchar, description varchar, "period" varchar)`;
@@ -25,9 +25,9 @@ async function getFacultyQualifications(userId) {
     SELECT t.id, "degree", college
     FROM dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
          'SELECT auth_user.id, "degree", college 
-          FROM auth_user, globals_extrainfo, globals_faculty, eis_qualifications
+          FROM auth_user, globals_extrainfo, eis_faculty_about, eis_qualifications
           WHERE auth_user.id=globals_extrainfo.user_id
-          AND globals_extrainfo.id=globals_faculty.id_id
+          AND auth_user.id=eis_faculty_about.user_id
           AND auth_user.id=eis_qualifications.user_id
           AND auth_user.id=${userId}')
     AS t(id int, "degree" varchar, college varchar)`;
@@ -42,9 +42,9 @@ async function getFacultyExperience(userId) {
     SELECT t.id, title, description, "from", "to"
     FROM dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
          'SELECT auth_user.id, eis_professional_experience.title, description, "from", "to" 
-          FROM auth_user, globals_extrainfo, globals_faculty, eis_professional_experience
+          FROM auth_user, globals_extrainfo, eis_faculty_about, eis_professional_experience
           WHERE auth_user.id=globals_extrainfo.user_id
-          AND globals_extrainfo.id=globals_faculty.id_id
+          AND auth_user.id=eis_faculty_about.user_id
           AND auth_user.id=eis_professional_experience.user_id
           AND auth_user.id=${userId}')
     AS t(id int, title varchar, description varchar, "from" varchar, "to" varchar)`;
@@ -59,9 +59,9 @@ async function getFacultyAdminPosition(userId) {
     SELECT t.id, title, description, "from", "to"
     FROM dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
          'SELECT auth_user.id, eis_administrative_position.title, description, "from", "to" 
-          FROM auth_user, globals_extrainfo, globals_faculty, eis_administrative_position
+          FROM auth_user, globals_extrainfo, eis_faculty_about, eis_administrative_position
           WHERE auth_user.id=globals_extrainfo.user_id
-          AND globals_extrainfo.id=globals_faculty.id_id
+          AND auth_user.id=eis_faculty_about.user_id
           AND auth_user.id=eis_administrative_position.user_id
           AND auth_user.id=${userId}')
     AS t(id int, title varchar, description varchar, "from" varchar, "to" varchar)`;
@@ -194,11 +194,11 @@ async function getProjects(userId) {
            'SELECT research_projects.title AS title,pi,co_pi,start_date,finish_date
             FROM auth_user
             JOIN eis_emp_research_projects AS research_projects 
-              ON auth_user.id = research_projects.user_id
+              ON CAST(auth_user.id AS varchar) = research_projects.pf_no
             WHERE auth_user.id = ${userId}'
           ) AS t(title text, pi varchar, co_pi varchar, start_date date, finish_date date);
 `;
-  
+ 
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -212,7 +212,7 @@ async function getBooks(userId) {
            'SELECT published_books.title AS title,authors,publisher,pyear
             FROM auth_user
             JOIN eis_emp_published_books AS published_books 
-              ON auth_user.id = published_books.user_id
+              ON CAST(auth_user.id as varchar) = published_books.pf_no
             WHERE auth_user.id = ${userId}'
           ) AS t(title text, authors varchar, publisher varchar, pyear int);
 `;
@@ -230,7 +230,7 @@ async function getPublications(userId) {
            'SELECT authors, title_paper, name, volume_no, page_no, year, doi
             FROM auth_user
             JOIN eis_emp_research_papers AS research_papers 
-              ON auth_user.id = research_papers.user_id
+              ON CAST(auth_user.id as varchar) = research_papers.pf_no
             WHERE auth_user.id = ${userId}'
           ) AS t(authors varchar, title_paper varchar, name varchar, volume_no varchar, page_no varchar, year varchar, doi varchar);
 `;
@@ -248,7 +248,7 @@ async function getConferences(userId) {
            'SELECT role, name, venue, start_date
             FROM auth_user
             JOIN eis_emp_event_organized AS event_organized 
-              ON auth_user.id = event_organized.user_id
+              ON CAST(auth_user.id as varchar) = event_organized.pf_no
             WHERE auth_user.id = ${userId}'
           ) AS t(role varchar, name varchar, venue varchar, start_date date))
     UNION
@@ -258,7 +258,7 @@ async function getConferences(userId) {
            'SELECT role1 AS role, name, venue, start_date
             FROM auth_user
             JOIN eis_emp_confrence_organised AS confrence_organised 
-              ON auth_user.id = confrence_organised.user_id
+              ON CAST(auth_user.id as varchar) = confrence_organised.pf_no
             WHERE auth_user.id = ${userId}'
           ) AS t(role varchar, name varchar, venue varchar, start_date date))
            ;
@@ -276,7 +276,7 @@ async function getStudents(userId) {
            'SELECT rollno, s_name, status, s_year, title, co_supervisors
             FROM auth_user
             JOIN eis_emp_mtechphd_thesis AS mtech_phd_thesis 
-              ON auth_user.id = mtech_phd_thesis.user_id
+              ON CAST(auth_user.id as varchar) = mtech_phd_thesis.pf_no
             WHERE auth_user.id = ${userId}'
           ) AS t(rollno varchar, s_name varchar, status varchar, s_year int, title varchar, co_supervisors varchar);
 `;
