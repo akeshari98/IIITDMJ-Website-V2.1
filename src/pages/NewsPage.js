@@ -10,22 +10,22 @@ const NewsPage = () => {
   const [sortOrder, setSortOrder] = useState('desc');
   const [expandedCards, setExpandedCards] = useState({});
 
-  const buildImageUrl = (publicId) => {
-    const cloudName = "djy2jlthj";
-    return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_600/${publicId}`;
-  };
+  // const buildImageUrl = (publicId) => {
+  //   const cloudName = "djy2jlthj";
+  //   return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_600/${publicId}`;
+  // };
   
-  const getImageUrl = (input) => {
-    // Regular expression to check if input is a URL
-    const urlRegex = /^(https?:\/\/)/;
+  // const getImageUrl = (input) => {
+  //   // Regular expression to check if input is a URL
+  //   const urlRegex = /^(https?:\/\/)/;
   
-    // If input matches a URL pattern, return it directly; otherwise, treat it as a public ID
-    if (urlRegex.test(input)) {
-      return input; // Input is a full URL
-    } else {
-      return buildImageUrl(input); // Input is a public ID
-    }
-  };
+  //   // If input matches a URL pattern, return it directly; otherwise, treat it as a public ID
+  //   if (urlRegex.test(input)) {
+  //     return input; // Input is a full URL
+  //   } else {
+  //     return buildImageUrl(input); // Input is a public ID
+  //   }
+  // };
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -115,7 +115,7 @@ const NewsPage = () => {
             <article key={news.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="aspect-w-16 aspect-h-9 relative">
                 <img
-                  src={news.imagePublicId ? getImageUrl(news.imagePublicId) : newsPlaceHolder}
+                  src={news.imagePublicId ? news.imagePublicId : newsPlaceHolder}
                   alt={news.title}
                   className="w-full h-48 object-cover"
                   onError={(e) => {
@@ -166,7 +166,7 @@ const NewsPage = () => {
                   >
                     Visit article
                     <ChevronRight className="w-4 h-4 ml-1" />
-                    <ExternalLink className="w-4 h-4 ml-1" />
+                    {/* <ExternalLink className="w-4 h-4 ml-1" /> */}
                   </a>
                 </div>
               </div>

@@ -25,7 +25,7 @@ exports.getNewsOverview = async (req, res) => {
 // Get single news by ID
 exports.getNewsById = async (req, res) => {
   try {
-    const news = await News.findByPk(req.params.id);
+    const news = await News.findByPk(req.params.id); 
     if (news) {
       res.json(news);
     } else {
@@ -40,14 +40,11 @@ exports.getNewsById = async (req, res) => {
 exports.createNews = async (req, res) => {
   try {
     const { title, excerpt, content, image_url, link } = req.body;
-    
-    // Validate required fields
-    if (!title || !excerpt || !content) {
+    if (!title || !link) {
       return res.status(400).json({
-        error: 'Required fields missing. Title, excerpt, and content are required.'
+        error: 'Required fields missing. Title and link are required.'
       });
     }
-
     const newNews = await News.create({
       title,
       excerpt,

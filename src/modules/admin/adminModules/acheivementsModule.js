@@ -20,7 +20,7 @@ import axiosInstance from '../../../axios';
 // };
 
 // Separate form component with memoization
-const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
+const AchievementsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
   const [formData, setFormData] = useState({
     title: '',
     excerpt: '',
@@ -73,7 +73,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
   return (
     <div className="max-w-4xl space-y-6">
       <h3 className="text-lg font-semibold">
-        {isEditing ? 'Edit News' : 'Add New News'}
+        {isEditing ? 'Edit Achievement' : 'Add New Achievement'}
       </h3>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-4">
@@ -156,7 +156,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
             type="submit"
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            {isEditing ? 'Update News' : 'Add News'}
+            {isEditing ? 'Update Achievement' : 'Add Achievement'}
           </button>
         </div>
       </form>
@@ -164,8 +164,8 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
   );
 });
 
-const NewsList = React.memo(({ 
-  newsList, 
+const AchievementsList = React.memo(({ 
+  achievementsList, 
   searchTerm, 
   onEdit, 
   onDelete 
@@ -181,13 +181,13 @@ const NewsList = React.memo(({
       </tr>
     </thead>
     <tbody className="divide-y divide-gray-200">
-      {newsList.map((news) => (
-        <tr key={news.id}>
-          <td className="px-6 py-4">{news.id}</td>
-          <td className="px-6 py-4">{news.title}</td>
+      {achievementsList.map((achievement) => (
+        <tr key={achievement.id}>
+          <td className="px-6 py-4">{achievement.id}</td>
+          <td className="px-6 py-4">{achievement.title}</td>
           <td className="px-6 py-4">
-            {news.image_url ? (
-              <a href={news.image_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+            {achievement.image_url ? (
+              <a href={achievement.image_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
                 View Image
               </a>
             ) : (
@@ -195,18 +195,18 @@ const NewsList = React.memo(({
             )}
           </td>
           <td className="px-6 py-4">
-            {new Date(news.createdAt).toLocaleDateString()}
+            {new Date(achievement.createdAt).toLocaleDateString()}
           </td>
           <td className="px-6 py-4">
             <div className="flex space-x-2">
               <button
-                onClick={() => onEdit(news)}
+                onClick={() => onEdit(achievement)}
                 className="text-blue-600 hover:text-blue-800"
               >
                 Edit
               </button>
               <button
-                onClick={() => onDelete(news.id)}
+                onClick={() => onDelete(achievement.id)}
                 className="text-red-600 hover:text-red-800"
               >
                 Delete
@@ -215,10 +215,10 @@ const NewsList = React.memo(({
           </td>
         </tr>
       ))}
-      {newsList.length === 0 && (
+      {achievementsList.length === 0 && (
         <tr>
           <td colSpan="5" className="px-6 py-4 text-center text-gray-500">
-            No news found.
+            No achievement found.
           </td>
         </tr>
       )}
@@ -226,90 +226,90 @@ const NewsList = React.memo(({
   </table>
 ));
 
-const NewsManager = () => {
+const AchievementsManager = () => {
   const [activeTab, setActiveTab] = useState('add');
-  const [newsList, setNewsList] = useState([]);
+  const [achievementsList, setAchievementsList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [editingNews, setEditingNews] = useState(null);
+  const [editingAchievements, setEditingAchievements] = useState(null);
 
-  const fetchNews = useCallback(async () => {
+  const fetchAchievements = useCallback(async () => {
     try {
-      const response = await axiosInstance.get('/news/news');
-      setNewsList(response.data);
+      const response = await axiosInstance.get('/achievements/achievements');
+      setAchievementsList(response.data);
     } catch (error) {
-      console.error('Error fetching news:', error);
+      console.error('Error fetching achievements:', error);
     }
   }, []);
 
   useEffect(() => {
-    fetchNews();
-  }, [fetchNews]);
+    fetchAchievements();
+  }, [fetchAchievements]);
 
-  const handleAddNews = async (formData) => {
+  const handleAddAchievements = async (formData) => {
     try {
-      const response = await axiosInstance.post('/news/news', formData,{
+      const response = await axiosInstance.post('/achievements/achievements', formData,{
         headers: {
           'Content-Type': 'multipart/form-data',
         },
      } );
       if (response.status === 201) {
-        await fetchNews();
+        await fetchAchievements();
         setActiveTab('manage');
-        alert("News added successfully!");
+        alert("Achievement added successfully!");
       }
     } catch (error) {
-      console.error('Error adding news:', error);
-      alert("Failed to add news.");
+      console.error('Error adding achievement:', error);
+      alert("Failed to add achievement.");
     }
   };
 
-  const handleUpdateNews = async (formData) => {
+  const handleUpdateAchievements = async (formData) => {
     try {
-      const response = await axiosInstance.put(`/news/news/${editingNews.id}`, formData, {
+      const response = await axiosInstance.put(`/achievements/achievements/${editingAchievements.id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       if (response.status === 200) {
-        await fetchNews();
-        setEditingNews(null);
+        await fetchAchievements();
+        setEditingAchievements(null);
         setActiveTab('manage');
-        alert("News updated successfully!");
+        alert("Achievement updated successfully!");
       }
     } catch (error) {
-      console.error('Error updating news:', error);
-      alert("Failed to update news.");
+      console.error('Error updating achievement:', error);
+      alert("Failed to update achievement.");
     }
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this news?')) {
+    if (window.confirm('Are you sure you want to delete this achievement?')) {
       try {
-        const response = await axiosInstance.delete(`/news/news/${id}`);
+        const response = await axiosInstance.delete(`/achievements/achievements/${id}`);
         if (response.status === 200) {
-          await fetchNews();
-          alert("News deleted successfully!");
+          await fetchAchievements();
+          alert("Achievement deleted successfully!");
         }
       } catch (error) {
-        console.error('Error deleting news:', error);
-        alert("Failed to delete news.");
+        console.error('Error deleting achievement:', error);
+        alert("Failed to delete achievement.");
       }
     }
   };
 
-  const handleEdit = useCallback((news) => {
-    setEditingNews(news);
+  const handleEdit = useCallback((achievement) => {
+    setEditingAchievements(achievement);
     setActiveTab('add');
   }, []);
 
-  const filteredNews = useMemo(() => 
-    newsList.filter(news => {
+  const filteredAchievements = useMemo(() => 
+    achievementsList.filter(achievement => {
       const searchTermLower = searchTerm.toLowerCase();
       return (
-        news.id.toString().includes(searchTermLower) ||
-        news.title.toLowerCase().includes(searchTermLower)
+        achievement.id.toString().includes(searchTermLower) ||
+        achievement.title.toLowerCase().includes(searchTermLower)
       );
-    }), [newsList, searchTerm]
+    }), [achievementsList, searchTerm]
   );
 
   return (
@@ -318,8 +318,8 @@ const NewsManager = () => {
         <button
           onClick={() => {
             setActiveTab('add');
-            if (!editingNews) {
-              setEditingNews(null);
+            if (!editingAchievements) {
+              setEditingAchievements(null);
             }
           }}
           className={`px-4 py-2 rounded-lg ${
@@ -328,7 +328,7 @@ const NewsManager = () => {
               : 'bg-gray-100 hover:bg-gray-200'
           }`}
         >
-          {editingNews ? 'Edit News' : 'Add News'}
+          {editingAchievements ? 'Edit Achievement' : 'Add Achievements'}
         </button>
         <button
           onClick={() => setActiveTab('manage')}
@@ -338,35 +338,35 @@ const NewsManager = () => {
               : 'bg-gray-100 hover:bg-gray-200'
           }`}
         >
-          Manage News
+          Manage Achievements
         </button>
       </div>
 
       {activeTab === 'add' ? (
-        <NewsForm
-          onSubmit={editingNews ? handleUpdateNews : handleAddNews}
-          initialData={editingNews}
-          // initialData={editingNews ? {
-          //   title: editingNews.title,
-          //   excerpt: editingNews.excerpt,
-          //   content: editingNews.content,
-          //   image_url: editingNews.image_url || '',
-          //   link: editingNews.link,
+        <AchievementsForm
+          onSubmit={editingAchievements ? handleUpdateAchievements : handleAddAchievements}
+          initialData={editingAchievements}
+          // initialData={editingAchievements ? {
+          //   title: editingAchievements.title,
+          //   excerpt: editingAchievements.excerpt,
+          //   content: editingAchievements.content,
+          //   image_url: editingAchievements.image_url || '',
+          //   link: editingAchievements.link,
           // } : null}
-          isEditing={!!editingNews}
+          isEditing={!!editingAchievements}
           onCancel={() => {
-            setEditingNews(null);
+            setEditingAchievements(null);
             setActiveTab('manage');
           }}
         />
       ) : (
         <div className="space-y-6">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-semibold">Manage News</h3>
+            <h3 className="text-lg font-semibold">Manage Achievement</h3>
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search news..."
+                placeholder="Search achievement..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-64"
@@ -375,8 +375,8 @@ const NewsManager = () => {
             </div>
           </div>
           <div className="bg-white rounded-lg shadow overflow-hidden">
-            <NewsList 
-              newsList={filteredNews}
+            <AchievementsList 
+              achievementsList={filteredAchievements}
               searchTerm={searchTerm}
               onEdit={handleEdit}
               onDelete={handleDelete}
@@ -388,4 +388,4 @@ const NewsManager = () => {
   );
 };
 
-export default NewsManager;
+export default AchievementsManager;

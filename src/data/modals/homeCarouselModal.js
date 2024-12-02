@@ -4,15 +4,15 @@ const sequelize = require('../sequelize'); // Adjust the path as necessary
 const Carousel = sequelize.define('Carousel', {
   title: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   subtext: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   image_url: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   link: {
     type: DataTypes.STRING,

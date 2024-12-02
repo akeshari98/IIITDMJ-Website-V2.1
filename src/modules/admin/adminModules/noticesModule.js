@@ -20,13 +20,12 @@ import axiosInstance from '../../../axios';
 // };
 
 // Separate form component with memoization
-const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
+const NoticesForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
   const [formData, setFormData] = useState({
     title: '',
     excerpt: '',
     content: '',
     link: '',
-    image_url: ''
   });
 
   // Update form data when initialData changes
@@ -39,7 +38,6 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
         excerpt: '',
         content: '',
         link: '',
-        image_url: ''
       });
     }
   }, [initialData]);
@@ -59,9 +57,6 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
     formDataToSend.append('excerpt', formData.excerpt);
     formDataToSend.append('content', formData.content);
     formDataToSend.append('link', formData.link);
-    if (formData.image_url) {
-      formDataToSend.append('image_url', formData.image_url);
-    }
     
     if (isEditing) {
       formDataToSend.append('id', initialData.id);
@@ -73,7 +68,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
   return (
     <div className="max-w-4xl space-y-6">
       <h3 className="text-lg font-semibold">
-        {isEditing ? 'Edit News' : 'Add New News'}
+        {isEditing ? 'Edit Notice' : 'Add New Notice'}
       </h3>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-4">
@@ -128,18 +123,6 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
               required
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Image URL
-            </label>
-            <input
-              type="text"
-              name="image_url"
-              value={formData.image_url}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
         </div>
 
         <div className="flex justify-end space-x-3">
@@ -156,7 +139,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
             type="submit"
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            {isEditing ? 'Update News' : 'Add News'}
+            {isEditing ? 'Update Notice' : 'Add Notice'}
           </button>
         </div>
       </form>
@@ -164,8 +147,8 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
   );
 });
 
-const NewsList = React.memo(({ 
-  newsList, 
+const NoticesList = React.memo(({ 
+  noticesList, 
   searchTerm, 
   onEdit, 
   onDelete 
@@ -175,38 +158,28 @@ const NewsList = React.memo(({
       <tr>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Image</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Created At</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
       </tr>
     </thead>
     <tbody className="divide-y divide-gray-200">
-      {newsList.map((news) => (
-        <tr key={news.id}>
-          <td className="px-6 py-4">{news.id}</td>
-          <td className="px-6 py-4">{news.title}</td>
+      {noticesList.map((notice) => (
+        <tr key={notice.id}>
+          <td className="px-6 py-4">{notice.id}</td>
+          <td className="px-6 py-4">{notice.title}</td>
           <td className="px-6 py-4">
-            {news.image_url ? (
-              <a href={news.image_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
-                View Image
-              </a>
-            ) : (
-              <span className="text-gray-500">No Image</span>
-            )}
-          </td>
-          <td className="px-6 py-4">
-            {new Date(news.createdAt).toLocaleDateString()}
+            {new Date(notice.createdAt).toLocaleDateString()}
           </td>
           <td className="px-6 py-4">
             <div className="flex space-x-2">
               <button
-                onClick={() => onEdit(news)}
+                onClick={() => onEdit(notice)}
                 className="text-blue-600 hover:text-blue-800"
               >
                 Edit
               </button>
               <button
-                onClick={() => onDelete(news.id)}
+                onClick={() => onDelete(notice.id)}
                 className="text-red-600 hover:text-red-800"
               >
                 Delete
@@ -215,10 +188,10 @@ const NewsList = React.memo(({
           </td>
         </tr>
       ))}
-      {newsList.length === 0 && (
+      {noticesList.length === 0 && (
         <tr>
           <td colSpan="5" className="px-6 py-4 text-center text-gray-500">
-            No news found.
+            No notices found.
           </td>
         </tr>
       )}
@@ -226,90 +199,90 @@ const NewsList = React.memo(({
   </table>
 ));
 
-const NewsManager = () => {
+const NoticesManager = () => {
   const [activeTab, setActiveTab] = useState('add');
-  const [newsList, setNewsList] = useState([]);
+  const [noticesList, setNoticesList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [editingNews, setEditingNews] = useState(null);
+  const [editingNotice, setEditingNotices] = useState(null);
 
-  const fetchNews = useCallback(async () => {
+  const fetchNotices = useCallback(async () => {
     try {
-      const response = await axiosInstance.get('/news/news');
-      setNewsList(response.data);
+      const response = await axiosInstance.get('/notices/notices');
+      setNoticesList(response.data);
     } catch (error) {
-      console.error('Error fetching news:', error);
+      console.error('Error fetching notices:', error);
     }
   }, []);
 
   useEffect(() => {
-    fetchNews();
-  }, [fetchNews]);
+    fetchNotices();
+  }, [fetchNotices]);
 
-  const handleAddNews = async (formData) => {
+  const handleAddNotices = async (formData) => {
     try {
-      const response = await axiosInstance.post('/news/news', formData,{
+      const response = await axiosInstance.post('/notices/notices', formData,{
         headers: {
           'Content-Type': 'multipart/form-data',
         },
      } );
       if (response.status === 201) {
-        await fetchNews();
+        await fetchNotices();
         setActiveTab('manage');
-        alert("News added successfully!");
+        alert("Notice added successfully!");
       }
     } catch (error) {
-      console.error('Error adding news:', error);
-      alert("Failed to add news.");
+      console.error('Error adding notice:', error);
+      alert("Failed to add notice.");
     }
   };
 
-  const handleUpdateNews = async (formData) => {
+  const handleUpdateNotices = async (formData) => {
     try {
-      const response = await axiosInstance.put(`/news/news/${editingNews.id}`, formData, {
+      const response = await axiosInstance.put(`/notices/notices/${editingNotice.id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       if (response.status === 200) {
-        await fetchNews();
-        setEditingNews(null);
+        await fetchNotices();
+        setEditingNotices(null);
         setActiveTab('manage');
-        alert("News updated successfully!");
+        alert("Notice updated successfully!");
       }
     } catch (error) {
-      console.error('Error updating news:', error);
-      alert("Failed to update news.");
+      console.error('Error updating notice:', error);
+      alert("Failed to update notice.");
     }
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this news?')) {
+    if (window.confirm('Are you sure you want to delete this notice?')) {
       try {
-        const response = await axiosInstance.delete(`/news/news/${id}`);
+        const response = await axiosInstance.delete(`/notices/notices/${id}`);
         if (response.status === 200) {
-          await fetchNews();
-          alert("News deleted successfully!");
+          await fetchNotices();
+          alert("Notice deleted successfully!");
         }
       } catch (error) {
-        console.error('Error deleting news:', error);
-        alert("Failed to delete news.");
+        console.error('Error deleting notice:', error);
+        alert("Failed to delete notice.");
       }
     }
   };
 
-  const handleEdit = useCallback((news) => {
-    setEditingNews(news);
+  const handleEdit = useCallback((notice) => {
+    setEditingNotices(notice);
     setActiveTab('add');
   }, []);
 
-  const filteredNews = useMemo(() => 
-    newsList.filter(news => {
+  const filteredNotices = useMemo(() => 
+    noticesList.filter(notice => {
       const searchTermLower = searchTerm.toLowerCase();
       return (
-        news.id.toString().includes(searchTermLower) ||
-        news.title.toLowerCase().includes(searchTermLower)
+        notice.id.toString().includes(searchTermLower) ||
+        notice.title.toLowerCase().includes(searchTermLower)
       );
-    }), [newsList, searchTerm]
+    }), [noticesList, searchTerm]
   );
 
   return (
@@ -318,8 +291,8 @@ const NewsManager = () => {
         <button
           onClick={() => {
             setActiveTab('add');
-            if (!editingNews) {
-              setEditingNews(null);
+            if (!editingNotice) {
+              setEditingNotices(null);
             }
           }}
           className={`px-4 py-2 rounded-lg ${
@@ -328,7 +301,7 @@ const NewsManager = () => {
               : 'bg-gray-100 hover:bg-gray-200'
           }`}
         >
-          {editingNews ? 'Edit News' : 'Add News'}
+          {editingNotice ? 'Edit Notice' : 'Add Notices'}
         </button>
         <button
           onClick={() => setActiveTab('manage')}
@@ -338,35 +311,35 @@ const NewsManager = () => {
               : 'bg-gray-100 hover:bg-gray-200'
           }`}
         >
-          Manage News
+          Manage Notices
         </button>
       </div>
 
       {activeTab === 'add' ? (
-        <NewsForm
-          onSubmit={editingNews ? handleUpdateNews : handleAddNews}
-          initialData={editingNews}
-          // initialData={editingNews ? {
-          //   title: editingNews.title,
-          //   excerpt: editingNews.excerpt,
-          //   content: editingNews.content,
-          //   image_url: editingNews.image_url || '',
-          //   link: editingNews.link,
+        <NoticesForm
+          onSubmit={editingNotice ? handleUpdateNotices : handleAddNotices}
+          initialData={editingNotice}
+          // initialData={editingNotice ? {
+          //   title: editingNotice.title,
+          //   excerpt: editingNotice.excerpt,
+          //   content: editingNotice.content,
+          //   image_url: editingNotice.image_url || '',
+          //   link: editingNotice.link,
           // } : null}
-          isEditing={!!editingNews}
+          isEditing={!!editingNotice}
           onCancel={() => {
-            setEditingNews(null);
+            setEditingNotices(null);
             setActiveTab('manage');
           }}
         />
       ) : (
         <div className="space-y-6">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-semibold">Manage News</h3>
+            <h3 className="text-lg font-semibold">Manage Notice</h3>
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search news..."
+                placeholder="Search notice..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-64"
@@ -375,8 +348,8 @@ const NewsManager = () => {
             </div>
           </div>
           <div className="bg-white rounded-lg shadow overflow-hidden">
-            <NewsList 
-              newsList={filteredNews}
+            <NoticesList 
+              noticesList={filteredNotices}
               searchTerm={searchTerm}
               onEdit={handleEdit}
               onDelete={handleDelete}
@@ -388,4 +361,4 @@ const NewsManager = () => {
   );
 };
 
-export default NewsManager;
+export default NoticesManager;

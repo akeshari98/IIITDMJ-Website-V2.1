@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Bell, Newspaper, Paperclip, Zap } from "lucide-react";
 import axios from "axios";
+import axiosInstance from "../axios";
 import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
 import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg";
 import home_img2 from "../resources/illustrations/home/college campus-amico.svg";
@@ -65,32 +66,28 @@ import Coi from "../components/Coi";
 //   }
 // ];
 
-const slides = [
-  {
-    image: college_img1,
-    text: {
-      title: "Innovative Solutions",
-      description: "We provide cutting-edge solutions tailored to your needs.",
-    },
-    readMoreUrl: "#",
-  },
-  {
-    image: college_img2,
-    text: {
-      title: "Advanced Technologies",
-      description: "Harness the power of technology for your business growth.",
-    },
-    readMoreUrl: "#",
-  },
-  {
-    image: college_img3,
-    text: {
-      title: "Future-Ready Strategies",
-      description: "Prepare for tomorrow with our forward-thinking strategies.",
-    },
-    readMoreUrl: "#",
-  },
-];
+
+
+// const slides = [
+//   {
+//     image_url: "https://www.iiitdmj.ac.in/img/slides/space-day.jpg",
+//     title: "Future-Ready Strategies",
+//     subtext: "Prepare for tomorrow with our forward-thinking strategies.",
+//     link: "#",
+//   },
+//   {
+//     image_url: "https://www.iiitdmj.ac.in/img/slides/space-day.jpg",
+//     title: "Future-Ready Strategies",
+//     subtext: "Prepare for tomorrow with our forward-thinking strategies.",
+//     link: "#",
+//   },
+//   {
+//     image_url: "https://www.iiitdmj.ac.in/img/slides/space-day.jpg",
+//     title: "Future-Ready Strategies",
+//     subtext: "Prepare for tomorrow with our forward-thinking strategies.",
+//     link: "#",
+//   },
+// ];
 
 // const achievements = [
 //   "Achievement 1",
@@ -187,6 +184,7 @@ function App() {
 }
 function Home() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
+
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const fetchEvents = async () => {
@@ -205,14 +203,16 @@ function Home() {
   useEffect(() => {
     fetchEvents(); // Call fetch on component load
   }, []);
-  const [StudentCount, setStudentCount] = useState({
-    Total: 12,
-    BTech: 4,
-    BDes: 4,
-    MTech: 4,
-    MDes: 4,
-    PHD: 12,
-  });
+
+  
+  // const [StudentCount, setStudentCount] = useState({
+  //   Total: 12,
+  //   BTech: 4,
+  //   BDes: 4,
+  //   MTech: 4,
+  //   MDes: 4,
+  //   PHD: 12,
+  // });
 
 
   const [selectedCourse, setSelectedCourse] = useState("");
@@ -228,18 +228,20 @@ function Home() {
       <main>
 
         <div>
-          <ImageSlider slides={slides} />
+          <ImageSlider/>
         </div>
         <br></br>
         <div className="flex flex-row items-center w-[90vw] ml-auto mr-auto">
+        <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse mr-4 mb-2"></span>
           <h4 className="h-8 w-auto whitespace-nowrap font-semibold">
             Impotant Updates:
           </h4>
           <div className="w-full px-0 ml-4">
+            
             <Marquee2 data={notis} />
           </div>
         </div>
-        <section className="px-8  pt-6 pb-2 text-center md:py-16 ">
+        <section className="px-8 pt-6 pb-2 text-center">
           <ImpotantAnnouncement />
         </section>
         <section className="px-8  pt-6 pb-2 text-center md:py-16 ">
@@ -253,11 +255,12 @@ function Home() {
                 {/* Horizontal line */}
 
                 <p className="lg:w-2/3 leading-relaxed text-base text-gray-600">
-                  Get all the latest information here <span >
+                  Get all the latest information here 
+          <span >
           <Link
             to={'/newsPage'}
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300 ml-4"
           >
             View All
             {/* <ExternalLink className="w-4 h-4" /> */}
@@ -280,16 +283,7 @@ function Home() {
                         <span className="sm:text-3xl text-2xl font-medium title-font" style={{ color: "#2563EB" }}>Announcements</span>
                       </h1>
                       <p className="lg:w-2/3 leading-relaxed text-base text-gray-600">
-                        Campus Bulletins <span >
-          <Link
-            to={'/achievementsPage'}
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
-          >
-            View All
-            {/* <ExternalLink className="w-4 h-4" /> */}
-          </Link>
-        </span>
+                        Campus Bulletins 
                       </p>
                       {/* Horizontal line */}
                       <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
@@ -302,6 +296,16 @@ function Home() {
                     <div className="bg-white rounded-lg shadow-md ">
                       <h3 className="text-2xl font mb-4">
                         Achievements
+                        <span >
+          <Link
+            to={'/achievementsPage'}
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300 ml-6 -mt-3"
+          >
+            View All
+            {/* <ExternalLink className="w-4 h-4" /> */}
+          </Link>
+        </span>
                       </h3>
                       <AchievementsSlider />
                     </div>
@@ -309,7 +313,7 @@ function Home() {
                   <div className="lg:w-1/3">
                     <h3 className="text-2xl font mb-4 flex  justify-center">
                       Notices  
-  <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse ml-2 mt-2.5"></span>
+  <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse ml-4 mt-2.5"></span>
   <span >
           <Link
             to={'/noticesPage'}

@@ -20,11 +20,10 @@ import axiosInstance from '../../../axios';
 // };
 
 // Separate form component with memoization
-const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
+const SlidesForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
   const [formData, setFormData] = useState({
     title: '',
-    excerpt: '',
-    content: '',
+    subtext: '',
     link: '',
     image_url: ''
   });
@@ -36,8 +35,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
     } else {
       setFormData({
         title: '',
-        excerpt: '',
-        content: '',
+        subtext: '',
         link: '',
         image_url: ''
       });
@@ -54,26 +52,26 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     const formDataToSend = new FormData();
     formDataToSend.append('title', formData.title);
-    formDataToSend.append('excerpt', formData.excerpt);
-    formDataToSend.append('content', formData.content);
+    formDataToSend.append('subtext', formData.subtext);
     formDataToSend.append('link', formData.link);
+  
     if (formData.image_url) {
       formDataToSend.append('image_url', formData.image_url);
     }
-    
+  
     if (isEditing) {
       formDataToSend.append('id', initialData.id);
     }
-
     onSubmit(formDataToSend);
   };
 
   return (
     <div className="max-w-4xl space-y-6">
       <h3 className="text-lg font-semibold">
-        {isEditing ? 'Edit News' : 'Add New News'}
+        {isEditing ? 'Edit Slides' : 'Add New Slides'}
       </h3>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-4">
@@ -87,32 +85,18 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
               value={formData.title}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Excerpt
+              Subtext
             </label>
-            <textarea
-              name="excerpt"
-              value={formData.excerpt}
+            <input
+              type="text"
+              name="subtext"
+              value={formData.subtext}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows={3}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Content
-            </label>
-            <textarea
-              name="content"
-              value={formData.content}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows={6}
-              
             />
           </div>
           <div>
@@ -125,7 +109,6 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
               value={formData.link}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
             />
           </div>
           <div>
@@ -138,6 +121,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
               value={formData.image_url}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             />
           </div>
         </div>
@@ -156,7 +140,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
             type="submit"
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            {isEditing ? 'Update News' : 'Add News'}
+            {isEditing ? 'Update Slides' : 'Add Slides'}
           </button>
         </div>
       </form>
@@ -164,8 +148,8 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
   );
 });
 
-const NewsList = React.memo(({ 
-  newsList, 
+const SlidesList = React.memo(({ 
+  slidesList, 
   searchTerm, 
   onEdit, 
   onDelete 
@@ -181,13 +165,13 @@ const NewsList = React.memo(({
       </tr>
     </thead>
     <tbody className="divide-y divide-gray-200">
-      {newsList.map((news) => (
-        <tr key={news.id}>
-          <td className="px-6 py-4">{news.id}</td>
-          <td className="px-6 py-4">{news.title}</td>
+      {slidesList.map((slides) => (
+        <tr key={slides.id}>
+          <td className="px-6 py-4">{slides.id}</td>
+          <td className="px-6 py-4">{slides.title}</td>
           <td className="px-6 py-4">
-            {news.image_url ? (
-              <a href={news.image_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+            {slides.image_url ? (
+              <a href={slides.image_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
                 View Image
               </a>
             ) : (
@@ -195,18 +179,18 @@ const NewsList = React.memo(({
             )}
           </td>
           <td className="px-6 py-4">
-            {new Date(news.createdAt).toLocaleDateString()}
+            {new Date(slides.createdAt).toLocaleDateString()}
           </td>
           <td className="px-6 py-4">
             <div className="flex space-x-2">
               <button
-                onClick={() => onEdit(news)}
+                onClick={() => onEdit(slides)}
                 className="text-blue-600 hover:text-blue-800"
               >
                 Edit
               </button>
               <button
-                onClick={() => onDelete(news.id)}
+                onClick={() => onDelete(slides.id)}
                 className="text-red-600 hover:text-red-800"
               >
                 Delete
@@ -215,10 +199,10 @@ const NewsList = React.memo(({
           </td>
         </tr>
       ))}
-      {newsList.length === 0 && (
+      {slidesList.length === 0 && (
         <tr>
           <td colSpan="5" className="px-6 py-4 text-center text-gray-500">
-            No news found.
+            No slides found.
           </td>
         </tr>
       )}
@@ -226,90 +210,90 @@ const NewsList = React.memo(({
   </table>
 ));
 
-const NewsManager = () => {
+const SlidesManager = () => {
   const [activeTab, setActiveTab] = useState('add');
-  const [newsList, setNewsList] = useState([]);
+  const [slidesList, setSlidesList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [editingNews, setEditingNews] = useState(null);
+  const [editingSlides, setEditingSlides] = useState(null);
 
-  const fetchNews = useCallback(async () => {
+  const fetchSlides = useCallback(async () => {
     try {
-      const response = await axiosInstance.get('/news/news');
-      setNewsList(response.data);
+      const response = await axiosInstance.get('/carousel/carousels');
+      setSlidesList(response.data);
     } catch (error) {
-      console.error('Error fetching news:', error);
+      console.error('Error fetching slides:', error);
     }
   }, []);
 
   useEffect(() => {
-    fetchNews();
-  }, [fetchNews]);
+    fetchSlides();
+  }, [fetchSlides]);
 
-  const handleAddNews = async (formData) => {
+  const handleAddSlides = async (formData) => {
     try {
-      const response = await axiosInstance.post('/news/news', formData,{
+      const response = await axiosInstance.post('/carousel/carousels', formData,{
         headers: {
           'Content-Type': 'multipart/form-data',
         },
      } );
       if (response.status === 201) {
-        await fetchNews();
+        await fetchSlides();
         setActiveTab('manage');
-        alert("News added successfully!");
+        alert("Slides added successfully!");
       }
     } catch (error) {
-      console.error('Error adding news:', error);
-      alert("Failed to add news.");
+      console.error('Error adding slides:', error);
+      alert("Failed to add slides.");
     }
   };
 
-  const handleUpdateNews = async (formData) => {
+  const handleUpdateSlides = async (formData) => {
     try {
-      const response = await axiosInstance.put(`/news/news/${editingNews.id}`, formData, {
+      const response = await axiosInstance.put(`/carousel/carousels/${editingSlides.id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       if (response.status === 200) {
-        await fetchNews();
-        setEditingNews(null);
+        await fetchSlides();
+        setEditingSlides(null);
         setActiveTab('manage');
-        alert("News updated successfully!");
+        alert("Slides updated successfully!");
       }
     } catch (error) {
-      console.error('Error updating news:', error);
-      alert("Failed to update news.");
+      console.error('Error updating slides:', error);
+      alert("Failed to update slides.");
     }
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this news?')) {
+    if (window.confirm('Are you sure you want to delete this slide?')) {
       try {
-        const response = await axiosInstance.delete(`/news/news/${id}`);
+        const response = await axiosInstance.delete(`/carousel/carousels/${id}`);
         if (response.status === 200) {
-          await fetchNews();
-          alert("News deleted successfully!");
+          await fetchSlides();
+          alert("Slide deleted successfully!");
         }
       } catch (error) {
-        console.error('Error deleting news:', error);
-        alert("Failed to delete news.");
+        console.error('Error deleting slides:', error);
+        alert("Failed to delete slide.");
       }
     }
   };
 
-  const handleEdit = useCallback((news) => {
-    setEditingNews(news);
+  const handleEdit = useCallback((slides) => {
+    setEditingSlides(slides);
     setActiveTab('add');
   }, []);
 
-  const filteredNews = useMemo(() => 
-    newsList.filter(news => {
+  const filteredSlides = useMemo(() => 
+    slidesList.filter(slides => {
       const searchTermLower = searchTerm.toLowerCase();
       return (
-        news.id.toString().includes(searchTermLower) ||
-        news.title.toLowerCase().includes(searchTermLower)
+        slides.id.toString().includes(searchTermLower) ||
+        slides.title.toLowerCase().includes(searchTermLower)
       );
-    }), [newsList, searchTerm]
+    }), [slidesList, searchTerm]
   );
 
   return (
@@ -318,8 +302,8 @@ const NewsManager = () => {
         <button
           onClick={() => {
             setActiveTab('add');
-            if (!editingNews) {
-              setEditingNews(null);
+            if (!editingSlides) {
+              setEditingSlides(null);
             }
           }}
           className={`px-4 py-2 rounded-lg ${
@@ -328,7 +312,7 @@ const NewsManager = () => {
               : 'bg-gray-100 hover:bg-gray-200'
           }`}
         >
-          {editingNews ? 'Edit News' : 'Add News'}
+          {editingSlides ? 'Edit Slides' : 'Add Slides'}
         </button>
         <button
           onClick={() => setActiveTab('manage')}
@@ -338,35 +322,35 @@ const NewsManager = () => {
               : 'bg-gray-100 hover:bg-gray-200'
           }`}
         >
-          Manage News
+          Manage Slides
         </button>
       </div>
 
       {activeTab === 'add' ? (
-        <NewsForm
-          onSubmit={editingNews ? handleUpdateNews : handleAddNews}
-          initialData={editingNews}
-          // initialData={editingNews ? {
-          //   title: editingNews.title,
-          //   excerpt: editingNews.excerpt,
-          //   content: editingNews.content,
-          //   image_url: editingNews.image_url || '',
-          //   link: editingNews.link,
+        <SlidesForm
+          onSubmit={editingSlides ? handleUpdateSlides : handleAddSlides}
+          initialData={editingSlides}
+          // initialData={editingSlides ? {
+          //   title: editingSlides.title,
+          //   subtext: editingSlides.subtext,
+          //   content: editingSlides.content,
+          //   image_url: editingSlides.image_url || '',
+          //   link: editingSlides.link,
           // } : null}
-          isEditing={!!editingNews}
+          isEditing={!!editingSlides}
           onCancel={() => {
-            setEditingNews(null);
+            setEditingSlides(null);
             setActiveTab('manage');
           }}
         />
       ) : (
         <div className="space-y-6">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-semibold">Manage News</h3>
+            <h3 className="text-lg font-semibold">Manage Slides</h3>
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search news..."
+                placeholder="Search slides..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-64"
@@ -375,8 +359,8 @@ const NewsManager = () => {
             </div>
           </div>
           <div className="bg-white rounded-lg shadow overflow-hidden">
-            <NewsList 
-              newsList={filteredNews}
+            <SlidesList 
+              slidesList={filteredSlides}
               searchTerm={searchTerm}
               onEdit={handleEdit}
               onDelete={handleDelete}
@@ -388,4 +372,4 @@ const NewsManager = () => {
   );
 };
 
-export default NewsManager;
+export default SlidesManager;

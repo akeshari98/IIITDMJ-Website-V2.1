@@ -10,10 +10,10 @@ const NewsPage = () => {
   const [sortOrder, setSortOrder] = useState('desc');
   const [expandedCards, setExpandedCards] = useState({});
 
-  const buildImageUrl = (publicId) => {
-    const cloudName = "djy2jlthj";
-    return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_600/${publicId}`;
-  };
+  // const buildImageUrl = (publicId) => {
+  //   const cloudName = "djy2jlthj";
+  //   return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_600/${publicId}`;
+  // };
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -104,7 +104,7 @@ const NewsPage = () => {
             <article key={news.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="aspect-w-16 aspect-h-9 relative">
                 <img
-                  src={news.imagePublicId ? buildImageUrl(news.imagePublicId) : newsPlaceHolder}
+                  src={news.imagePublicId ? news.imagePublicId : newsPlaceHolder}
                   alt={news.title}
                   className="w-full h-48 object-cover"
                   onError={(e) => {

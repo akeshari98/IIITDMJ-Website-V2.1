@@ -43,10 +43,10 @@ router.delete("/deleteShops", async (req, res) => {
 //Get all non faculties
 router.get("/getAllShops", async (req, res) => {
   try {
-    // Pass `req` and `res` to `getShops` so it can handle the response
+    // Pass `req` and `res` to `getAllShops` so it can handle the response
     await getAllShops(req, res);
   } catch (error) {
-    console.error("Error in /getShops route:", error);
+    console.error("Error in /getAllShops route:", error);
     res.status(500).json({ error: "Server Error" });
   }
 });

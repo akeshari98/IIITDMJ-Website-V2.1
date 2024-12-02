@@ -13,7 +13,7 @@ function PageHeader({ image, title, breadCrumbs }) {
 
   return (
     <div>
-      <div className="h-[40vh] relative">
+      <div className="h-[50vh] relative">
         <div
           className="absolute inset-0 bg-cover bg-bottom"
           style={{ backgroundImage: `url(${image || college_img1})` }}
@@ -25,7 +25,7 @@ function PageHeader({ image, title, breadCrumbs }) {
           <div className="container mx-auto">
             {/* Animated Title */}
             <motion.h1
-              className="text-5xl text-white mb-16"
+              className="text-5xl text-white mb-5"
               initial="hidden"
               animate="visible"
               variants={titleAnimation}

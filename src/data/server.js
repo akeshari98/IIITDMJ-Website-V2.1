@@ -59,7 +59,7 @@ server.use("/links", require("./routes/links"));
 // Add these routes for the different sections
 server.use("/news", require("./routes/news")); // Assuming you have routes defined for news
 server.use("/achievements", require("./routes/achievements")); // Assuming you have routes defined for achievements
-// server.use("/notices", require("./routes/notices")); // Routes for notices
+server.use("/notices", require("./routes/notices")); // Routes for notices
 server.use("/carousel", require("./routes/homeCarousel")); // Routes for homepage carousel
 server.use("/notices", require("./routes/notices")); // Routes for homepage carousel
 server.use("/events", require("./routes/events"));
