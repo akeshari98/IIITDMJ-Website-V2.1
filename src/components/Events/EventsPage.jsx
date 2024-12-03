@@ -67,7 +67,7 @@ const EventDetailPage = () => {
       <div className="h-[50vh] relative">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(http://localhost:5000/public/${event.cover_image})` }}
+          style={{ backgroundImage: `url(${event.cover_image})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8">
@@ -123,7 +123,7 @@ const EventDetailPage = () => {
                     className="aspect-square rounded-lg overflow-hidden"
                   >
                     <img
-                      src={`http://localhost:5000/public/${image.image_path}`}
+                      src={`${image.image_path}`}
                       alt={`Event photo ${index + 1}`}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
@@ -132,37 +132,6 @@ const EventDetailPage = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* <motion.div variants={item} className="lg:col-span-1">
-            <div className="bg-white rounded-xl p-6 shadow-sm sticky top-6">
-              <h2 className="text-2xl font-semibold mb-4">Event Details</h2>
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-500">Date </h3>
-                  <p className="mt-1 text-gray-900">
-                    {format(new Date(event.date), "MMMM d, yyyy")} 
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-gray-500">Location</h3>
-                  <p className="mt-1 text-gray-900">{event.location}</p>
-                  {event.locationDetails && (
-                    <p className="mt-1 text-sm text-gray-600">{event.locationDetails}</p>
-                  )}
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-gray-500">Organizer</h3>
-                  <p className="mt-1 text-gray-900">{event.organizer}</p>
-                </div>
-                {event.additionalInfo && (
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-500">Additional Information</h3>
-                    <p className="mt-1 text-sm text-gray-600">{event.description}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </motion.div> */}
         </motion.div>
       </div>
     </div>

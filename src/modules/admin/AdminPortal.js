@@ -18,7 +18,10 @@ import {
   NewspaperIcon,
   Image,
   MedalIcon,
-  PinIcon
+  PinIcon,
+  LoaderPinwheel,
+  Images,
+  ImagesIcon
 } from 'lucide-react';
 
 // Products Module
@@ -35,6 +38,8 @@ import NewsManager from './adminModules/newsModule';
 import SlidesManager from './adminModules/slidesModule';
 import AchievementsManager from './adminModules/acheivementsModule';
 import NoticesManager from './adminModules/noticesModule';
+import EventsManager from './adminModules/eventsModule';
+import EventImagesManager from './adminModules/eventImagesModule';
 // Blog Posts Module
 import { AdminAuth } from './components/AdminAuth';
 import { useSelector } from 'react-redux'
@@ -52,11 +57,12 @@ const Page = () => {
     { id: 'counselling', name: 'Student Counselling', icon: NotebookPen },
     { id: 'shops', name: 'Institue Shops', icon: ShoppingBag },
     { id: 'doctors', name: 'PHC Doctors', icon: HeartPulse },
-    { id: 'slides', name: 'Slides', icon: Image},
+    { id: 'slides', name: 'Home Page Slides', icon: Image},
     { id: 'news', name: 'News', icon: NewspaperIcon },
     { id: 'achievements', name: 'Achievements', icon: MedalIcon },
     { id: 'notices', name: 'Notices', icon: PinIcon },
-    
+    { id: 'events', name: 'Events', icon: LoaderPinwheel },
+    { id: 'eventImages', name: 'Event Images', icon: ImagesIcon },
   ];
   const [profileOpen, setProfileOpen] = useState(false);
   const renderModule = () => {
@@ -87,6 +93,10 @@ const Page = () => {
         return <AchievementsManager />; 
       case 'notices':
         return <NoticesManager />;  
+      case 'events':
+        return <EventsManager />;
+      case 'eventImages':
+        return <EventImagesManager />;
       default:
         return <div className='text-lg'>WELCOME TO IIITDMJ WEBSITE ADMIN PORTAL !!!</div>;
     }
