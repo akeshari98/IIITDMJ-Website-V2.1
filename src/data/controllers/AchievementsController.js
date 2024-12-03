@@ -1,26 +1,31 @@
 const Achievements = require('../modals/achievementsModal');
 
 // Get all news
+// Get all achievements in descending order of createdAt
 exports.getAllAchievements = async (req, res) => {
   try {
-    const achievementsList = await Achievements.findAll();
+    const achievementsList = await Achievements.findAll({
+      order: [['createdAt', 'DESC']]  // Sort by createdAt in descending order
+    });
     res.json(achievementsList);
   } catch (error) {
     res.status(500).send(error.message);
   }
 };
 
-// Get news overview (limited fields)
+// Get achievements overview (limited fields) in descending order of createdAt
 exports.getAchievementsOverview = async (req, res) => {
   try {
     const newsOverview = await Achievements.findAll({
-      attributes: ['id', 'title', 'excerpt', 'image_url', 'createdAt']
+      attributes: ['id', 'title', 'excerpt', 'image_url', 'createdAt'],
+      order: [['createdAt', 'DESC']]  // Sort by createdAt in descending order
     });
     res.json(newsOverview);
   } catch (error) {
     res.status(500).send(error.message);
   }
 };
+
 
 // Get single news by ID
 exports.getAchievementById = async (req, res) => {

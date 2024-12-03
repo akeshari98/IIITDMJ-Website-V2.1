@@ -3,7 +3,9 @@ const News = require('../modals/newsModal');
 // Get all news
 exports.getAllNews = async (req, res) => {
   try {
-    const newsList = await News.findAll();
+    const newsList = await News.findAll({
+      order: [['createdAt', 'DESC']]
+    });
     res.json(newsList);
   } catch (error) {
     res.status(500).send(error.message);
@@ -14,7 +16,8 @@ exports.getAllNews = async (req, res) => {
 exports.getNewsOverview = async (req, res) => {
   try {
     const newsOverview = await News.findAll({
-      attributes: ['id', 'title', 'excerpt', 'image_url', 'createdAt']
+      attributes: ['id', 'title', 'excerpt', 'image_url', 'createdAt'],
+      order: [['createdAt', 'DESC']]
     });
     res.json(newsOverview);
   } catch (error) {
@@ -39,6 +42,7 @@ exports.getNewsById = async (req, res) => {
 // Create new news
 exports.createNews = async (req, res) => {
   try {
+    console.log(req.body)
     const { title, excerpt, content, image_url, link } = req.body;
     if (!title || !link) {
       return res.status(400).json({

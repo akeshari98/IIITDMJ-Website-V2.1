@@ -3,7 +3,9 @@ const Notices = require('../modals/noticesModal');
 // Get all notice
 exports.getAllNotices = async (req, res) => {
   try {
-    const noticesList = await Notices.findAll();
+    const noticesList = await Notices.findAll({
+      order: [['createdAt', 'DESC']]
+    });
     res.json(noticesList);
   } catch (error) {
     res.status(500).send(error.message);
@@ -14,7 +16,8 @@ exports.getAllNotices = async (req, res) => {
 exports.getNoticesOverview = async (req, res) => {
   try {
     const noticeOverview = await Notices.findAll({
-      attributes: ['id', 'title', 'excerpt', 'createdAt']
+      attributes: ['id', 'title', 'excerpt', 'createdAt'],
+      order: [['createdAt', 'DESC']]
     });
     res.json(noticeOverview);
   } catch (error) {

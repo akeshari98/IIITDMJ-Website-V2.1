@@ -2,7 +2,9 @@ const Carousel = require('../modals/homeCarouselModal');
 
 exports.getAllCarousels = async (req, res) => {
   try {
-    const carousels = await Carousel.findAll();
+    const carousels = await Carousel.findAll({
+      order: [['createdAt', 'DESC']]
+    });
     res.json(carousels);
   } catch (error) {
     res.status(500).send(error.message);

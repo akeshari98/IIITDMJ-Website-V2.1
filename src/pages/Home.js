@@ -23,134 +23,6 @@ import Events from "../components/Events/Events"
 import ImpotantAnnouncement from "../components/ImportantAnnouncement"
 import FocusOn from "../components/FocusOn"
 import Coi from "../components/Coi";
-// const events = [
-//   {
-//     id: "1",
-//     title: "Annual Tech Symposium 2024",
-//     slug: "annual-tech-symposium-2024",
-//     description: "Join us for a day of cutting-edge technology discussions and networking opportunities with industry leaders.",
-//     date: "2024-12-15",
-//     coverImage: college_img1
-//   },
-//   {
-//     id: "2",
-//     title: "Cultural Festival 2024",
-//     slug: "cultural-festival-2024",
-//     description: "Experience diverse performances, art exhibitions, and cultural exchanges from around the world.",
-//     date: "2024-11-20",
-//     coverImage: college_img2
-//   },
-//   {
-//     id: "3",
-//     title: "Sports Meet 2024",
-//     slug: "sports-meet-2024",
-//     description: "Annual inter-college sports competition featuring multiple sporting events and championships.",
-//     date: "2024-10-05",
-//     coverImage: college_img3
-//   },
-//   {
-//     id: "4",
-//     title: "Research Conference",
-//     slug: "research-conference-2024",
-//     description: "International conference showcasing groundbreaking research across various disciplines.",
-//     date: "2024-09-25",
-//     coverImage: college_img4
-//   },
-//   {
-//     id: "5",
-//     title: "Alumni Reunion 2024",
-//     slug: "alumni-reunion-2024",
-//     description: "Annual gathering of alumni to celebrate achievements and strengthen the institute's network.",
-//     date: "2024-08-30",
-//     coverImage: college_img1
-//   }
-// ];
-
-
-
-// const slides = [
-//   {
-//     image_url: "https://www.iiitdmj.ac.in/img/slides/space-day.jpg",
-//     title: "Future-Ready Strategies",
-//     subtext: "Prepare for tomorrow with our forward-thinking strategies.",
-//     link: "#",
-//   },
-//   {
-//     image_url: "https://www.iiitdmj.ac.in/img/slides/space-day.jpg",
-//     title: "Future-Ready Strategies",
-//     subtext: "Prepare for tomorrow with our forward-thinking strategies.",
-//     link: "#",
-//   },
-//   {
-//     image_url: "https://www.iiitdmj.ac.in/img/slides/space-day.jpg",
-//     title: "Future-Ready Strategies",
-//     subtext: "Prepare for tomorrow with our forward-thinking strategies.",
-//     link: "#",
-//   },
-// ];
-
-// const achievements = [
-//   "Achievement 1",
-//   "Achievement 2",
-//   "Achievement 3",
-//   "Achievement 4",
-//   "Achievement 5",
-//   "Achievement 6",
-// ];
-// const news = ["News 1", "News 2", "News 3", "News 4", "News 5", "News 6"];
-// const notice = [
-//   "Notice 1",
-//   "Notice 2",
-//   "Notice 3",
-//   "Notice 4",
-//   "Notice 5",
-//   "Notice 6",
-// ];
-// const updates = [
-//   {
-//     title: "Achievements",
-//     announcements: achievements,
-//     bgColor: "#0384C1",
-//   },
-//   {
-//     title: "News & Events",
-//     announcements: news,
-//     bgColor: "#0384C1",
-//   },
-//   {
-//     title: "Notices",
-//     announcements: notice,
-//     bgColor: "#0384C1",
-//   },
-// ];
-// const notices = [
-//   {
-//     text: "B-Tech Admissions started.",
-//     to: "#",
-//   },
-//   {
-//     text: "M-Tech Admissions started.",
-//     to: "#",
-//   },
-//   {
-//     text: "PHD Admissions started.",
-//     to: "#",
-//   },
-// ];
-const notis = [
-  {
-    text: "B-Tech Admissions started.",
-    to: "#",
-  },
-  {
-    text: "M-Tech Admissions started.",
-    to: "#",
-  },
-  {
-    text: "PHD Admissions started.",
-    to: "#",
-  },
-];
 const images = [college_img1, college_img2, college_img3, college_img4];
 const photos = [
   college_img1,
@@ -162,35 +34,16 @@ const photos = [
   home_img3,
   home_img1,
 ];
-// const CellArrayData = [
-//   {
-//     title: "International Relations",
-//     subTitle: "Collaberation with JAPAN",
-//     photos: photos,
-//   },
-//   {
-//     title: "A glimpse of institute activities",
-//     subTitle: "Students/Events/Visits",
-//     photos: photos,
-//   },
-// ];
-
-function App() {
-  return (
-    <div className="App">
-      <ImageSlider images={images} />
-    </div>
-  );
-}
 function Home() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [fetchedMarquee,setFetchedMarquee] = useState('')
   const fetchEvents = async () => {
     try {
       setLoading(true); // Start loading
-      const response = await axios.get("http://localhost:5000/events/events"); // Adjust URL as needed
+      const response = await axiosInstance.get("events/events"); // Adjust URL as needed
       setFetchedEvents(response.data); // Set the fetched events data
       setLoading(false);
     } catch (err) {
@@ -204,24 +57,23 @@ function Home() {
     fetchEvents(); // Call fetch on component load
   }, []);
 
-  
-  // const [StudentCount, setStudentCount] = useState({
-  //   Total: 12,
-  //   BTech: 4,
-  //   BDes: 4,
-  //   MTech: 4,
-  //   MDes: 4,
-  //   PHD: 12,
-  // });
-
-
-  const [selectedCourse, setSelectedCourse] = useState("");
-  const navigate = useNavigate();
-  const handleSearch = () => {
-    if (selectedCourse) {
-      navigate(`/courses/${selectedCourse}`);
+  const fetchMarquee = async () =>{
+    try {
+      setLoading(true);
+      const response = await axiosInstance.get('/Marquee/Marquee')
+      setFetchedMarquee(response.data)
+      setLoading(false);
     }
-  };
+    catch(err){
+      console.error("Error fetching events:", err);
+      setError("Failed to fetch events. Please try again later.");
+      setLoading(false);
+    }
+  }
+  useEffect(()=>{
+    fetchMarquee();
+  },[])
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -238,7 +90,7 @@ function Home() {
           </h4>
           <div className="w-full px-0 ml-4">
             
-            <Marquee2 data={notis} />
+            <Marquee2 data={fetchedMarquee} />
           </div>
         </div>
         <section className="px-8 pt-6 pb-2 text-center">

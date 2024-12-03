@@ -23,7 +23,9 @@ exports.createEvent = async (req, res) => {
 // Retrieve all events without images
 exports.getAllEvents = async (req, res) => {
   try {
-    const events = await Event.findAll(); // No 'include' to avoid fetching images
+    const events = await Event.findAll({
+      order: [['createdAt', 'DESC']]
+    }); // No 'include' to avoid fetching images
     res.status(200).json(events);
   } catch (error) {
     console.error("Error fetching events:", error);
