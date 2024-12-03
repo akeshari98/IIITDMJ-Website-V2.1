@@ -5,13 +5,14 @@ const Event = require('../modals/eventsModal'); // Assuming the models are in th
 // Create a new event
 exports.createEvent = async (req, res) => {
   try {
-    const { name, date, location, external_link, cover_image } = req.body;
+    const { name, date, location, external_link, cover_image, description } = req.body;
     const newEvent = await Event.create({
       name,
       date,
       location,
       external_link,
       cover_image,
+      description
     });
     res.status(201).json(newEvent);
   } catch (error) {
@@ -24,7 +25,7 @@ exports.createEvent = async (req, res) => {
 exports.getAllEvents = async (req, res) => {
   try {
     const events = await Event.findAll({
-      order: [['createdAt', 'DESC']]
+      order:[['createdAt','ASC']]
     }); // No 'include' to avoid fetching images
     res.status(200).json(events);
   } catch (error) {
@@ -52,9 +53,9 @@ exports.getEventById = async (req, res) => {
 exports.updateEvent = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, date, location, external_link, cover_image } = req.body;
+    const { name, date, location, external_link, cover_image, description } = req.body;
     const [updated] = await Event.update(
-      { name, date, location, external_link, cover_image },
+      { name, date, location, external_link, cover_image, description },
       { where: { id } }
     );
     if (!updated) {

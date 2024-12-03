@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import axiosInstance from "../../../axios";
 
 const LINK_TYPES = [
+    "academic_calander",
     "annual_account",
     "annual_report",
     "bog_agenda",

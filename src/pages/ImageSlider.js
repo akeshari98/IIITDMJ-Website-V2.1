@@ -79,7 +79,7 @@ const ImageSlider = () => {
         <h1 className="text-3xl md:text-5xl font-bold text-center">
           {slides[currentIndex].title}
         </h1>
-        <p className="mt-4 text-lg md:text-2xl text-center max-w-[80%]">
+        <p className="mt-2 text-lg md:text-2xl text-center max-w-[80%]">
           {slides[currentIndex].subtext}
         </p>
         {slides[currentIndex].link && (
@@ -88,8 +88,8 @@ const ImageSlider = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button className="mt-6 px-6 py-1 bg-opacity-20 backdrop-blur-lg rounded-md text-white text-lg transform transition-transform duration-300 ease-in-out hover:scale-105">
-              Read More
+            <button className="mt-2 px-6 py-1 bg-opacity-20 backdrop-blur-lg rounded-md text-white text-lg transform transition-transform duration-300 ease-in-out hover:scale-105">
+              See More
             </button>
           </a>
         )}

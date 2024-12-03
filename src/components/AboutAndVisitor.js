@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import college1 from "../resources/images/3.jpg";
+import college2 from "../resources/images/5.jpg";
 
 // DirectorCard Component
 const DirectorCard = ({ title, content, media, buttons }) => {
@@ -133,9 +135,8 @@ const IITDelhiInfoCards = () => {
         { text: "Read more", primary: true },
       ],
       media: [
-        "https://picsum.photos/400/300?random=1",
-        "https://picsum.photos/400/300?random=2",
-        "https://picsum.photos/400/300?random=3"
+        college1,
+        college2
       ],
       isVideo: false,
       isDirector: false
