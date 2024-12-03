@@ -3,7 +3,9 @@ const Slides = require('../modals/homeCarouselModal');
 // Get all slides
 exports.getAllSlides = async (req, res) => {
   try {
-    const slidesList = await Slides.findAll();
+    const slidesList = await Slides.findAll({
+      order: [['createdAt', 'DESC']]
+    });
     res.json(slidesList);
   } catch (error) {
     res.status(500).send(error.message);

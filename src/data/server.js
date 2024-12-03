@@ -4,11 +4,13 @@ const cors = require("cors");
 const pool = require("./connection"); // Import the PostgreSQL pool from db.js
 const sequelize = require('./sequelize'); // Sequelize instance
 const newsModal = require('./modals/newsModal');
+const marqueeModal = require('./modals/marqueeModal');
 const achievementsModal = require('./modals/achievementsModal');
 const noticesModal = require('./modals/noticesModal');
 const homeCarouselModal = require('./modals/homeCarouselModal');
 const eventsModal = require('./modals/eventsModal');
 const eventImagesModal = require('./modals/eventImagesModal');
+const redAnnouncementsModal = require('./modals/redAnnouncementsModal')
 // const tendersModal = require('./modals/tendersModal');
 const path = require('path');
 // Create the server
@@ -65,6 +67,8 @@ server.use("/notices", require("./routes/notices")); // Routes for homepage caro
 server.use("/events", require("./routes/events"));
 server.use("/eventImages", require("./routes/eventImages"));
 server.use("/tenders", require("./routes/tenders"));
+server.use("/Marquee", require("./routes/marquee"));
+server.use("/RedAnnouncements", require("./routes/redAnnouncements"));
 
 
 server.use("/facultyInfo",require("./routes/facultyInfo"))

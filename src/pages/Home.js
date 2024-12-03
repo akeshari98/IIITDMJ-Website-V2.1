@@ -23,20 +23,6 @@ import Events from "../components/Events/Events"
 import ImpotantAnnouncement from "../components/ImportantAnnouncement"
 import FocusOn from "../components/FocusOn"
 import Coi from "../components/Coi";
-const notis = [
-  {
-    text: "B-Tech Admissions started.",
-    to: "#",
-  },
-  {
-    text: "M-Tech Admissions started.",
-    to: "#",
-  },
-  {
-    text: "PHD Admissions started.",
-    to: "#",
-  },
-];
 const images = [college_img1, college_img2, college_img3, college_img4];
 const photos = [
   college_img1,
@@ -48,23 +34,16 @@ const photos = [
   home_img3,
   home_img1,
 ];
-
-function App() {
-  return (
-    <div className="App">
-      <ImageSlider images={images} />
-    </div>
-  );
-}
 function Home() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [fetchedMarquee,setFetchedMarquee] = useState('')
   const fetchEvents = async () => {
     try {
       setLoading(true); // Start loading
-      const response = await axios.get("http://localhost:5000/events/events"); // Adjust URL as needed
+      const response = await axiosInstance.get("events/events"); // Adjust URL as needed
       setFetchedEvents(response.data); // Set the fetched events data
       setLoading(false);
     } catch (err) {
@@ -78,14 +57,23 @@ function Home() {
     fetchEvents(); // Call fetch on component load
   }, []);
 
-
-  const [selectedCourse, setSelectedCourse] = useState("");
-  const navigate = useNavigate();
-  const handleSearch = () => {
-    if (selectedCourse) {
-      navigate(`/courses/${selectedCourse}`);
+  const fetchMarquee = async () =>{
+    try {
+      setLoading(true);
+      const response = await axiosInstance.get('/Marquee/Marquee')
+      setFetchedMarquee(response.data)
+      setLoading(false);
     }
-  };
+    catch(err){
+      console.error("Error fetching events:", err);
+      setError("Failed to fetch events. Please try again later.");
+      setLoading(false);
+    }
+  }
+  useEffect(()=>{
+    fetchMarquee();
+  },[])
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -102,7 +90,7 @@ function Home() {
           </h4>
           <div className="w-full px-0 ml-4">
             
-            <Marquee2 data={notis} />
+            <Marquee2 data={fetchedMarquee} />
           </div>
         </div>
         <section className="px-8 pt-6 pb-2 text-center">

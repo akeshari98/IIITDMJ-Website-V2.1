@@ -19,6 +19,10 @@ import {
   Image,
   MedalIcon,
   PinIcon,
+  List,
+  Clock1,
+  AlertCircle,
+  DollarSign,
   LoaderPinwheel,
   Images,
   ImagesIcon
@@ -43,11 +47,14 @@ import EventImagesManager from './adminModules/eventImagesModule';
 // Blog Posts Module
 import { AdminAuth } from './components/AdminAuth';
 import { useSelector } from 'react-redux'
+import MarqueeManager from './adminModules/marqueeModule';
+import ImportantAnnouncementsManager from './adminModules/redAnnouncementsModule';
+import TendersManger from './adminModules/tendersModule';
 // Main Admin Portal Component
 const Page = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeModule, setActiveModule] = useState('faculty');
- 
+
   const modules = [
     { id: 'faculty', name: 'Faculty', icon: GraduationCap },
     { id: 'links', name: 'Manage Links', icon: LinkIcon },
@@ -57,6 +64,9 @@ const Page = () => {
     { id: 'counselling', name: 'Student Counselling', icon: NotebookPen },
     { id: 'shops', name: 'Institue Shops', icon: ShoppingBag },
     { id: 'doctors', name: 'PHC Doctors', icon: HeartPulse },
+    { id: 'marquee', name: 'Marquee', icon: List },
+    { id: 'ImportantAnnouncements', name: 'Important Announcements', icon: AlertCircle },
+    { id: 'tenders', name: 'Tenders', icon: DollarSign },
     { id: 'slides', name: 'Home Page Slides', icon: Image},
     { id: 'news', name: 'News', icon: NewspaperIcon },
     { id: 'achievements', name: 'Achievements', icon: MedalIcon },
@@ -86,13 +96,19 @@ const Page = () => {
       case 'links':
         return <LinksManager />;
       case 'slides':
-        return <SlidesManager />;  
+        return <SlidesManager />;
       case 'news':
         return <NewsManager />;
       case 'achievements':
-        return <AchievementsManager />; 
+        return <AchievementsManager />;
       case 'notices':
-        return <NoticesManager />;  
+        return <NoticesManager />;
+      case 'marquee':
+        return <MarqueeManager />;
+      case 'ImportantAnnouncements':
+        return <ImportantAnnouncementsManager />;
+      case 'tenders':
+        return <TendersManger />;
       case 'events':
         return <EventsManager />;
       case 'eventImages':
@@ -106,9 +122,8 @@ const Page = () => {
     <div className="min-h-screen bg-gray-100">
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-white shadow-lg transition-all duration-300 ${
-          sidebarOpen ? 'w-64' : 'w-20'
-        }`}
+        className={`fixed top-0 left-0 h-full bg-white shadow-lg transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-20'
+          }`}
       >
         <div className="flex items-center justify-between p-4">
           {sidebarOpen && <h1 className="text-xl font-bold">Admin Portal</h1>}
@@ -128,9 +143,8 @@ const Page = () => {
             <button
               key={module.id}
               onClick={() => setActiveModule(module.id)}
-              className={`w-full flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 ${
-                activeModule === module.id ? 'bg-blue-50 text-blue-600' : ''
-              }`}
+              className={`w-full flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 ${activeModule === module.id ? 'bg-blue-50 text-blue-600' : ''
+                }`}
             >
               <module.icon className="h-5 w-5" />
               {sidebarOpen && <span className="ml-3">{module.name}</span>}
@@ -141,9 +155,8 @@ const Page = () => {
 
       {/* Main Content */}
       <div
-        className={`transition-all duration-300 ${
-          sidebarOpen ? 'ml-64' : 'ml-20'
-        }`}
+        className={`transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'
+          }`}
       >
         {/* Header */}
         <header className="bg-white shadow-sm">
@@ -227,9 +240,9 @@ function AdminPortal() {
   const { sessionID, sessionType } = useSelector((state) => state.session)
 
   return (
-  <>
+    <>
       {
-        sessionStorage.getItem('admin') === "admin@gmail.com" || (sessionID === "admin@gmail.com" && sessionType === "admin") ||  localStorage.getItem("testing")
+        sessionStorage.getItem('admin') === "admin@gmail.com" || (sessionID === "admin@gmail.com" && sessionType === "admin") || localStorage.getItem("testing")
           ?
           <Page />
           :

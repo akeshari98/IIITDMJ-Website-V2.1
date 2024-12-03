@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PageHeader from "../../../components/PageHeader";
-import ComplexTable from "./table";
 
 const MainPage = () => {
   const [data, setData] = useState({

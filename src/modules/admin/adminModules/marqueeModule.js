@@ -2,14 +2,28 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Search } from 'lucide-react';
 import axiosInstance from '../../../axios';
 
+// const buildImageUrl = (publicId) => {
+//   const cloudName = "djy2jlthj";
+//   return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_600/${publicId}`;
+// };
+
+// const getImageUrl = (input) => {
+//   // Regular expression to check if input is a URL
+//   const urlRegex = /^(https?:\/\/)/;
+
+//   // If input matches a URL pattern, return it directly; otherwise, treat it as a public ID
+//   if (urlRegex.test(input)) {
+//     return input; // Input is a full URL
+//   } else {
+//     return buildImageUrl(input); // Input is a public ID
+//   }
+// };
+
 // Separate form component with memoization
-const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
+const MarqueeForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
   const [formData, setFormData] = useState({
     title: '',
-    excerpt: '',
-    content: '',
-    link: '',
-    image_url: ''
+    link: ''
   });
 
   // Update form data when initialData changes
@@ -19,10 +33,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
     } else {
       setFormData({
         title: '',
-        excerpt: '',
-        content: '',
-        link: '',
-        image_url: ''
+        link: ''
       });
     }
   }, [initialData]);
@@ -39,12 +50,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
     e.preventDefault();
     const formDataToSend = new FormData();
     formDataToSend.append('title', formData.title);
-    formDataToSend.append('excerpt', formData.excerpt);
-    formDataToSend.append('content', formData.content);
     formDataToSend.append('link', formData.link);
-    if (formData.image_url) {
-      formDataToSend.append('image_url', formData.image_url);
-    }
     
     if (isEditing) {
       formDataToSend.append('id', initialData.id);
@@ -56,7 +62,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
   return (
     <div className="max-w-4xl space-y-6">
       <h3 className="text-lg font-semibold">
-        {isEditing ? 'Edit News' : 'Add New News'}
+        {isEditing ? 'Edit Marquee' : 'Add New Marquee'}
       </h3>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-4">
@@ -75,31 +81,6 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Excerpt
-            </label>
-            <textarea
-              name="excerpt"
-              value={formData.excerpt}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows={3}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Content
-            </label>
-            <textarea
-              name="content"
-              value={formData.content}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows={6}
-              
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
               Link
             </label>
             <input
@@ -109,18 +90,6 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Image URL
-            </label>
-            <input
-              type="text"
-              name="image_url"
-              value={formData.image_url}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -139,7 +108,7 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
             type="submit"
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            {isEditing ? 'Update News' : 'Add News'}
+            {isEditing ? 'Update Marquee' : 'Add Marquee'}
           </button>
         </div>
       </form>
@@ -147,8 +116,8 @@ const NewsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => 
   );
 });
 
-const NewsList = React.memo(({ 
-  newsList, 
+const MarqueeList = React.memo(({ 
+  marqueeList, 
   searchTerm, 
   onEdit, 
   onDelete 
@@ -158,38 +127,31 @@ const NewsList = React.memo(({
       <tr>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Image</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Created At</th>
+        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"> Link</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
       </tr>
     </thead>
     <tbody className="divide-y divide-gray-200">
-      {newsList.map((news) => (
-        <tr key={news.id}>
-          <td className="px-6 py-4">{news.id}</td>
-          <td className="px-6 py-4">{news.title}</td>
+      {marqueeList.map((Marquee) => (
+        <tr key={Marquee.id}>
+          <td className="px-6 py-4">{Marquee.id}</td>
+          <td className="px-6 py-4">{Marquee.title}</td>
+          <td className="px-6 py-4">{Marquee.link}</td>
+          
           <td className="px-6 py-4">
-            {news.image_url ? (
-              <a href={news.image_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
-                View Image
-              </a>
-            ) : (
-              <span className="text-gray-500">No Image</span>
-            )}
-          </td>
-          <td className="px-6 py-4">
-            {new Date(news.createdAt).toLocaleDateString()}
+            {new Date(Marquee.createdAt).toLocaleDateString()}
           </td>
           <td className="px-6 py-4">
             <div className="flex space-x-2">
               <button
-                onClick={() => onEdit(news)}
+                onClick={() => onEdit(Marquee)}
                 className="text-blue-600 hover:text-blue-800"
               >
                 Edit
               </button>
               <button
-                onClick={() => onDelete(news.id)}
+                onClick={() => onDelete(Marquee.id)}
                 className="text-red-600 hover:text-red-800"
               >
                 Delete
@@ -198,10 +160,10 @@ const NewsList = React.memo(({
           </td>
         </tr>
       ))}
-      {newsList.length === 0 && (
+      {marqueeList.length === 0 && (
         <tr>
           <td colSpan="5" className="px-6 py-4 text-center text-gray-500">
-            No news found.
+            No Marquee found.
           </td>
         </tr>
       )}
@@ -209,90 +171,90 @@ const NewsList = React.memo(({
   </table>
 ));
 
-const NewsManager = () => {
+const MarqueeManager = () => {
   const [activeTab, setActiveTab] = useState('add');
-  const [newsList, setNewsList] = useState([]);
+  const [marqueeList, setMarqueeList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [editingNews, setEditingNews] = useState(null);
+  const [editingMarquee, setEditingMarquee] = useState(null);
 
-  const fetchNews = useCallback(async () => {
+  const fetchMarquee = useCallback(async () => {
     try {
-      const response = await axiosInstance.get('/news/news');
-      setNewsList(response.data);
+      const response = await axiosInstance.get('/Marquee/Marquee');
+      setMarqueeList(response.data);
     } catch (error) {
-      console.error('Error fetching news:', error);
+      console.error('Error fetching Marquee:', error);
     }
   }, []);
 
   useEffect(() => {
-    fetchNews();
-  }, [fetchNews]);
+    fetchMarquee();
+  }, [fetchMarquee]);
 
-  const handleAddNews = async (formData) => {
+  const handleAddMarquee = async (formData) => {
     try {
-      const response = await axiosInstance.post('/news/news', formData,{
+      const response = await axiosInstance.post('/Marquee/Marquee', formData,{
         headers: {
           'Content-Type': 'multipart/form-data',
         },
      } );
       if (response.status === 201) {
-        await fetchNews();
+        await fetchMarquee();
         setActiveTab('manage');
-        alert("News added successfully!");
+        alert("Marquee added successfully!");
       }
     } catch (error) {
-      console.error('Error adding news:', error);
-      alert("Failed to add news.");
+      console.error('Error adding Marquee:', error);
+      alert("Failed to add Marquee.");
     }
   };
 
-  const handleUpdateNews = async (formData) => {
+  const handleUpdateMarquee = async (formData) => {
     try {
-      const response = await axiosInstance.put(`/news/news/${editingNews.id}`, formData, {
+      const response = await axiosInstance.put(`/Marquee/Marquee/${editingMarquee.id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       if (response.status === 200) {
-        await fetchNews();
-        setEditingNews(null);
+        await fetchMarquee();
+        setEditingMarquee(null);
         setActiveTab('manage');
-        alert("News updated successfully!");
+        alert("Marquee updated successfully!");
       }
     } catch (error) {
-      console.error('Error updating news:', error);
-      alert("Failed to update news.");
+      console.error('Error updating Marquee:', error);
+      alert("Failed to update Marquee.");
     }
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this news?')) {
+    if (window.confirm('Are you sure you want to delete this Marquee?')) {
       try {
-        const response = await axiosInstance.delete(`/news/news/${id}`);
+        const response = await axiosInstance.delete(`/Marquee/Marquee/${id}`);
         if (response.status === 200) {
-          await fetchNews();
-          alert("News deleted successfully!");
+          await fetchMarquee();
+          alert("Marquee deleted successfully!");
         }
       } catch (error) {
-        console.error('Error deleting news:', error);
-        alert("Failed to delete news.");
+        console.error('Error deleting Marquee:', error);
+        alert("Failed to delete Marquee.");
       }
     }
   };
 
-  const handleEdit = useCallback((news) => {
-    setEditingNews(news);
+  const handleEdit = useCallback((Marquee) => {
+    setEditingMarquee(Marquee);
     setActiveTab('add');
   }, []);
 
-  const filteredNews = useMemo(() => 
-    newsList.filter(news => {
+  const filteredMarquee = useMemo(() => 
+    marqueeList.filter(Marquee => {
       const searchTermLower = searchTerm.toLowerCase();
       return (
-        news.id.toString().includes(searchTermLower) ||
-        news.title.toLowerCase().includes(searchTermLower)
+        Marquee.id.toString().includes(searchTermLower) ||
+        Marquee.title.toLowerCase().includes(searchTermLower)
       );
-    }), [newsList, searchTerm]
+    }), [marqueeList, searchTerm]
   );
 
   return (
@@ -301,8 +263,8 @@ const NewsManager = () => {
         <button
           onClick={() => {
             setActiveTab('add');
-            if (!editingNews) {
-              setEditingNews(null);
+            if (!editingMarquee) {
+              setEditingMarquee(null);
             }
           }}
           className={`px-4 py-2 rounded-lg ${
@@ -311,7 +273,7 @@ const NewsManager = () => {
               : 'bg-gray-100 hover:bg-gray-200'
           }`}
         >
-          {editingNews ? 'Edit News' : 'Add News'}
+          {editingMarquee ? 'Edit Marquee' : 'Add Marquee'}
         </button>
         <button
           onClick={() => setActiveTab('manage')}
@@ -321,35 +283,35 @@ const NewsManager = () => {
               : 'bg-gray-100 hover:bg-gray-200'
           }`}
         >
-          Manage News
+          Manage Marquee
         </button>
       </div>
 
       {activeTab === 'add' ? (
-        <NewsForm
-          onSubmit={editingNews ? handleUpdateNews : handleAddNews}
-          initialData={editingNews}
-          // initialData={editingNews ? {
-          //   title: editingNews.title,
-          //   excerpt: editingNews.excerpt,
-          //   content: editingNews.content,
-          //   image_url: editingNews.image_url || '',
-          //   link: editingNews.link,
+        <MarqueeForm
+          onSubmit={editingMarquee ? handleUpdateMarquee : handleAddMarquee}
+          initialData={editingMarquee}
+          // initialData={editingMarquee ? {
+          //   title: editingMarquee.title,
+          //   excerpt: editingMarquee.excerpt,
+          //   content: editingMarquee.content,
+          //   image_url: editingMarquee.image_url || '',
+          //   link: editingMarquee.link,
           // } : null}
-          isEditing={!!editingNews}
+          isEditing={!!editingMarquee}
           onCancel={() => {
-            setEditingNews(null);
+            setEditingMarquee(null);
             setActiveTab('manage');
           }}
         />
       ) : (
         <div className="space-y-6">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-semibold">Manage News</h3>
+            <h3 className="text-lg font-semibold">Manage Marquee</h3>
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search news..."
+                placeholder="Search Marquee..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-64"
@@ -358,8 +320,8 @@ const NewsManager = () => {
             </div>
           </div>
           <div className="bg-white rounded-lg shadow overflow-hidden">
-            <NewsList 
-              newsList={filteredNews}
+            <MarqueeList 
+              marqueeList={filteredMarquee}
               searchTerm={searchTerm}
               onEdit={handleEdit}
               onDelete={handleDelete}
@@ -371,4 +333,4 @@ const NewsManager = () => {
   );
 };
 
-export default NewsManager;
+export default MarqueeManager;
