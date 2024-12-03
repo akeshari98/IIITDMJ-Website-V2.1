@@ -21,19 +21,22 @@ const TenderForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) =
   const [newAttachment, setNewAttachment] = useState({ url: '', title: '' });
 
   // Update form data when initialData changes
-  useEffect(() => {
-    if (initialData) {
-      setFormData({
-        ...initialData,
-        advertisement_date: initialData.advertisement_date ? 
-          new Date(initialData.advertisement_date).toISOString().split('T')[0] : '',
-        closing_date: initialData.closing_date ? 
-          new Date(initialData.closing_date).toISOString().split('T')[0] : '',
-        attachments: initialData.attachments || []
-      });
-    }
-  }, [initialData]);
-
+// Update form data when initialData changes
+useEffect(() => {
+  if (initialData) {
+    setFormData({
+      ...initialData,
+      advertisement_date: initialData.advertisement_date ? 
+        new Date(initialData.advertisement_date).toISOString().split('T')[0] : '',
+      closing_date: initialData.closing_date ? 
+        new Date(initialData.closing_date).toISOString().split('T')[0] : '',
+      // Parse attachments if it's a JSON string
+      attachments: typeof initialData.attachments === 'string' 
+        ? JSON.parse(initialData.attachments) 
+        : (initialData.attachments || [])
+    });
+  }
+}, [initialData]);
   const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -75,7 +78,7 @@ const TenderForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) =
     Object.keys(formData).forEach(key => {
       if (key === 'attachments') {
         // Convert attachments to JSON string
-        formDataToSend.append(key,formData[key]);
+        formDataToSend.append(key, JSON.stringify(formData[key]));
       } else {
         formDataToSend.append(key, formData[key]);
       }
