@@ -50,7 +50,7 @@ const Notices = () => {
       ) : error ? (
         <p className="text-red-500">{error}</p> // Display error message if any
       ) : (
-        <div className="overflow-y-auto" style={{ height: '449px' }}>
+        <div className="overflow-y-auto" style={{ height: '393px' }}>
           {notices.map((item, index) => (
             <NoticeCard key={`${item.id}-${index}`} {...item} />
           ))}

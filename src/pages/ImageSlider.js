@@ -50,7 +50,7 @@ const ImageSlider = ({ slides }) => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[50vh] overflow-hidden">
       {/* Parallax Image with Tint and Smooth Transition */}
       <div
         className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${

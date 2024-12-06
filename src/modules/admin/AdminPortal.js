@@ -26,7 +26,8 @@ import HostelsManager from './adminModules/hostelsModule';
 import ShopsManager from './adminModules/shopsModule';
 import PositionsManager from './adminModules/positionsModule';
 // Blog Posts Module
-
+import { useSelector } from 'react-redux'
+import { AdminAuth } from './components/AdminAuth'
 // Main Admin Portal Component
 const AdminPortal = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -64,7 +65,7 @@ const AdminPortal = () => {
         return <div>WELCOME TO IIITDMJ WEBSITE ADMIN PORTAL !!!</div>;
     }
   };
-
+  const { sessionID, sessionType } = useSelector((state) => state.session)
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Sidebar */}
@@ -187,6 +188,5 @@ const AdminPortal = () => {
   );
 };
 
-// Add necessary state for profile dropdown
 
 export default AdminPortal;

@@ -4,7 +4,7 @@ import { ChevronRight } from 'lucide-react';
 const Announcement = ({ text, link }) => (
     <a 
       href={link} 
-      className="block w-full bg-red-50 hover:bg-red-100 transition-colors duration-300 py-3 px-4 group"
+      className="block w-full bg-red-50 hover:bg-red-100 transition-colors duration-300 py-3 px-8 group  rounded flex items-center justify-center"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
         <span className="text-red-600 font-medium">{text}</span>
@@ -26,7 +26,7 @@ const ImportantAnnouncement = () => {
         to: "#",
       },]
   return (
-    <div className='flex '>
+    <div className='flex justify-center item-center'>
             {ImportantAnnouncements.map(({text,to})=> {
                return( <Announcement text={text} link = {to} />)
             })}

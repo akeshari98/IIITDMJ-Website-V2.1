@@ -461,7 +461,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminDashboard />,
+    element: <AdminPortal />,
     children: [
       {
         index: "admin",
