@@ -13,7 +13,19 @@ import {
   Building,
   GraduationCap,
   NotebookPen,
-  Pen
+  Pen,
+  LinkIcon,
+  NewspaperIcon,
+  Image,
+  MedalIcon,
+  PinIcon,
+  List,
+  Clock1,
+  AlertCircle,
+  DollarSign,
+  LoaderPinwheel,
+  Images,
+  ImagesIcon
 } from 'lucide-react';
 
 // Products Module
@@ -25,22 +37,42 @@ import CounsellingManager from './adminModules/counsellingModule';
 import HostelsManager from './adminModules/hostelsModule';
 import ShopsManager from './adminModules/shopsModule';
 import PositionsManager from './adminModules/positionsModule';
+import LinksManager from './adminModules/linksModule';
+import NewsManager from './adminModules/newsModule';
+import SlidesManager from './adminModules/slidesModule';
+import AchievementsManager from './adminModules/acheivementsModule';
+import NoticesManager from './adminModules/noticesModule';
+import EventsManager from './adminModules/eventsModule';
+import EventImagesManager from './adminModules/eventImagesModule';
 // Blog Posts Module
+import { AdminAuth } from './components/AdminAuth';
 import { useSelector } from 'react-redux'
-import { AdminAuth } from './components/AdminAuth'
+import MarqueeManager from './adminModules/marqueeModule';
+import ImportantAnnouncementsManager from './adminModules/redAnnouncementsModule';
+import TendersManger from './adminModules/tendersModule';
 // Main Admin Portal Component
-const AdminPortal = () => {
+const Page = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activeModule, setActiveModule] = useState('products');
+  const [activeModule, setActiveModule] = useState('faculty');
 
   const modules = [
-    { id: 'faculty', name: 'View Faculty', icon: GraduationCap },
+    { id: 'faculty', name: 'Faculty', icon: GraduationCap },
+    { id: 'links', name: 'Manage Links', icon: LinkIcon },
     { id: 'staff', name: 'Manage Staff', icon: Users },
-    { id: 'positions', name: 'Positions', icon: Pen },
+    { id: 'positions', name: 'Manage Positions', icon: Pen },
     { id: 'hostels', name: 'Hostel Management', icon: Building },
     { id: 'counselling', name: 'Student Counselling', icon: NotebookPen },
     { id: 'shops', name: 'Institue Shops', icon: ShoppingBag },
     { id: 'doctors', name: 'PHC Doctors', icon: HeartPulse },
+    { id: 'marquee', name: 'Marquee', icon: List },
+    { id: 'ImportantAnnouncements', name: 'Important Announcements', icon: AlertCircle },
+    { id: 'tenders', name: 'Tenders', icon: DollarSign },
+    { id: 'slides', name: 'Home Page Slides', icon: Image},
+    { id: 'news', name: 'News', icon: NewspaperIcon },
+    { id: 'achievements', name: 'Achievements', icon: MedalIcon },
+    { id: 'notices', name: 'Notices', icon: PinIcon },
+    { id: 'events', name: 'Events', icon: LoaderPinwheel },
+    { id: 'eventImages', name: 'Event Images', icon: ImagesIcon },
   ];
   const [profileOpen, setProfileOpen] = useState(false);
   const renderModule = () => {
@@ -61,8 +93,28 @@ const AdminPortal = () => {
         return <ShopsManager />;
       case 'positions':
         return <PositionsManager />;
+      case 'links':
+        return <LinksManager />;
+      case 'slides':
+        return <SlidesManager />;
+      case 'news':
+        return <NewsManager />;
+      case 'achievements':
+        return <AchievementsManager />;
+      case 'notices':
+        return <NoticesManager />;
+      case 'marquee':
+        return <MarqueeManager />;
+      case 'ImportantAnnouncements':
+        return <ImportantAnnouncementsManager />;
+      case 'tenders':
+        return <TendersManger />;
+      case 'events':
+        return <EventsManager />;
+      case 'eventImages':
+        return <EventImagesManager />;
       default:
-        return <div>WELCOME TO IIITDMJ WEBSITE ADMIN PORTAL !!!</div>;
+        return <div className='text-lg'>WELCOME TO IIITDMJ WEBSITE ADMIN PORTAL !!!</div>;
     }
   };
   const { sessionID, sessionType } = useSelector((state) => state.session)
@@ -70,9 +122,8 @@ const AdminPortal = () => {
     <div className="min-h-screen bg-gray-100">
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-white shadow-lg transition-all duration-300 ${
-          sidebarOpen ? 'w-64' : 'w-20'
-        }`}
+        className={`fixed top-0 left-0 h-full bg-white shadow-lg transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-20'
+          }`}
       >
         <div className="flex items-center justify-between p-4">
           {sidebarOpen && <h1 className="text-xl font-bold">Admin Portal</h1>}
@@ -92,9 +143,8 @@ const AdminPortal = () => {
             <button
               key={module.id}
               onClick={() => setActiveModule(module.id)}
-              className={`w-full flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 ${
-                activeModule === module.id ? 'bg-blue-50 text-blue-600' : ''
-              }`}
+              className={`w-full flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 ${activeModule === module.id ? 'bg-blue-50 text-blue-600' : ''
+                }`}
             >
               <module.icon className="h-5 w-5" />
               {sidebarOpen && <span className="ml-3">{module.name}</span>}
@@ -105,9 +155,8 @@ const AdminPortal = () => {
 
       {/* Main Content */}
       <div
-        className={`transition-all duration-300 ${
-          sidebarOpen ? 'ml-64' : 'ml-20'
-        }`}
+        className={`transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'
+          }`}
       >
         {/* Header */}
         <header className="bg-white shadow-sm">
@@ -186,6 +235,20 @@ const AdminPortal = () => {
       </button>
     </div>
   );
+}
+function AdminPortal() {
+  const { sessionID, sessionType } = useSelector((state) => state.session)
+
+  return (
+    <>
+      {
+        sessionStorage.getItem('admin') === "admin@gmail.com" || (sessionID === "admin@gmail.com" && sessionType === "admin") || localStorage.getItem("testing")
+          ?
+          <Page />
+          :
+          <AdminAuth />
+      }
+    </>)
 };
 
 

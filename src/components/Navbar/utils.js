@@ -127,7 +127,9 @@ export const Menus = [
       {
         heading: "ACADEMIC LINKS",
         items: [
-          { name: "Academic Calendar" },
+          { name: "Academic Calendar",
+            href: "/academiccalander",
+           },
           {
             name: "Time Table Sem I, 2024-25",
             href: "https://drive.google.com/file/d/1PTF1d6gE2RmSqp6sUWGgoLCp1NlvLGVM/view",

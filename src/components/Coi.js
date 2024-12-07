@@ -33,7 +33,7 @@ function Coi() {
                             <span className="sm:text-3xl text-2xl font-medium title-font" style={{ color: "#2563EB" }}>Excellence</span>
                         </h1>
                         {/* Horizontal line */}
-                        <div className="w-19 h-0.5 bg-[#2563EB] my-2"></div>
+                        <div className="w-19 h-0.5 bg-[#2563EB] my-1"></div>
                     </div>
                 </div>
             </div>

@@ -4,11 +4,13 @@ const cors = require("cors");
 const pool = require("./connection"); // Import the PostgreSQL pool from db.js
 const sequelize = require('./sequelize'); // Sequelize instance
 const newsModal = require('./modals/newsModal');
+const marqueeModal = require('./modals/marqueeModal');
 const achievementsModal = require('./modals/achievementsModal');
 const noticesModal = require('./modals/noticesModal');
 const homeCarouselModal = require('./modals/homeCarouselModal');
 const eventsModal = require('./modals/eventsModal');
 const eventImagesModal = require('./modals/eventImagesModal');
+const redAnnouncementsModal = require('./modals/redAnnouncementsModal')
 // const tendersModal = require('./modals/tendersModal');
 const path = require('path');
 // Create the server
@@ -59,12 +61,14 @@ server.use("/links", require("./routes/links"));
 // Add these routes for the different sections
 server.use("/news", require("./routes/news")); // Assuming you have routes defined for news
 server.use("/achievements", require("./routes/achievements")); // Assuming you have routes defined for achievements
-// server.use("/notices", require("./routes/notices")); // Routes for notices
+server.use("/notices", require("./routes/notices")); // Routes for notices
 server.use("/carousel", require("./routes/homeCarousel")); // Routes for homepage carousel
 server.use("/notices", require("./routes/notices")); // Routes for homepage carousel
 server.use("/events", require("./routes/events"));
 server.use("/eventImages", require("./routes/eventImages"));
 server.use("/tenders", require("./routes/tenders"));
+server.use("/Marquee", require("./routes/marquee"));
+server.use("/RedAnnouncements", require("./routes/redAnnouncements"));
 
 
 server.use("/facultyInfo",require("./routes/facultyInfo"))
@@ -73,5 +77,5 @@ server.use("/doctorsInfo", require("./routes/doctorsInfo"))
 server.use("/counsellingInfo", require("./routes/counsellingInfo"))
 server.use("/hostelsInfo", require("./routes/hostelsInfo"))
 server.use("/shopsInfo", require("./routes/shopsInfo"))
-// server.use("/positions",require("./controllers/PositionsController"))
 server.use("/positionsInfo", require("./routes/positionsInfo"))
+server.use("/linksInfo", require("./routes/linksInfo"))

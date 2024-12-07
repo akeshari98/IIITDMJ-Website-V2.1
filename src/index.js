@@ -76,6 +76,7 @@ import UgPrograms from "./pages/more/academics/ugprograms";
 import UsefulInformation from "./pages/more/academics/usefulinformation";
 import InternalCirculars from "./pages/more/academics/internalcirculars";
 import ExternalCirculars from "./pages/more/academics/externalcirculars";
+import AcademicCalander from "./pages/more/academics/academiccalander";
 
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
@@ -120,6 +121,9 @@ import TendersPage from "./pages/more/Tenders"
 import AdminPortal from './modules/admin/AdminPortal';
 //misc
 import ScreenReaderAccess from "./pages/ScreenReaderAccess"
+import NewsPage from "./pages/NewsPage"
+import AchievementsPage from "./pages/AchievementsPage"
+import NoticesPage from "./pages/NoticesPage"
 
 const router = createBrowserRouter([
   {
@@ -380,6 +384,10 @@ const router = createBrowserRouter([
       
       //academics
       {
+        path: "/academiccalander",
+        element: <AcademicCalander />,
+      },
+      {
         path: "/convocation",
         element: <Convocation />,
       },
@@ -426,6 +434,18 @@ const router = createBrowserRouter([
       {
         path: "/externalcirculars",
         element: <ExternalCirculars />,
+      },
+      {
+        path: "/newsPage",
+        element: <NewsPage />,
+      },
+      {
+        path: "/achievementsPage",
+        element: <AchievementsPage/>,
+      },
+      {
+        path: "/noticesPage",
+        element: <NoticesPage/>,
       }
     ],
   },
@@ -461,54 +481,6 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminPortal />,
-    children: [
-      {
-        index: "admin",
-        element: <Main />,
-      },
-      {
-        path: "student",
-        element: <Student />,
-      },
-      {
-        path: "student/verify",
-        element: <Verification />,
-      },
-      {
-        path: "faculty",
-        element: <Faculty />,
-        // loader: facultyLoader,
-      },
-      {
-        path: "notice",
-        element: <Notice />,
-      },
-      {
-        path: "feedback",
-        element: <Feedback />,
-        // loader: loadData,
-      },
-      {
-        path: "department",
-        element: <Department />,
-      },
-      {
-        path: "error",
-        element: <Error />,
-      },
-    ],
-  },
-  {
-    path: "/network",
-    element: <NetworkIssue />,
-  },
-  {
-    path: "*",
-    element: <NotFound />,
-  },
-  {
-    path: "/adminP",
     element: <AdminPortal />,
   },
 ]);

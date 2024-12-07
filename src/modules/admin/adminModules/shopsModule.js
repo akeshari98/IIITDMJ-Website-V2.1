@@ -44,7 +44,7 @@ const DoctorsForm = React.memo(
     return (
       <div className="max-w-4xl space-y-6">
         <h3 className="text-lg font-semibold">
-          {isEditing ? "Edit Member" : "Add New Member"}
+          {isEditing ? "Edit Shop" : "Add New Shop"}
         </h3>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">

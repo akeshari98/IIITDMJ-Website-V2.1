@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const noticesController = require('../controllers/NoticesController'); // Adjust the path as necessary
-
+const multer = require('multer');
+const upload = multer();
 // // Route to get all notices
 router.get('/notices', noticesController.getAllNotices);
 
@@ -13,12 +14,12 @@ router.get('/notices/:id', noticesController.getNoticeById);
 
 // // Optional: Add routes for creating, updating, and deleting notices
 // // Route to create a new notice
-// router.post('/notices', noticesController.createNotice);
+router.post('/notices', upload.none(), noticesController.createNotice);
 
 // // Route to update an existing notice by ID
-// router.put('/notices/:id', noticesController.updateNotice);
+router.put('/notices/:id', upload.none(), noticesController.updateNotice);
 
 // // Route to delete a notice by ID
-// router.delete('/notices/:id', noticesController.deleteNotice);
+router.delete('/notices/:id', noticesController.deleteNotice);
 
 module.exports = router;

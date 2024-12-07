@@ -1,7 +1,10 @@
 const Carousel = require('../modals/homeCarouselModal');
+
 exports.getAllCarousels = async (req, res) => {
   try {
-    const carousels = await Carousel.findAll();
+    const carousels = await Carousel.findAll({
+      order: [['createdAt', 'DESC']]
+    });
     res.json(carousels);
   } catch (error) {
     res.status(500).send(error.message);
@@ -11,10 +14,26 @@ exports.getAllCarousels = async (req, res) => {
 exports.createCarousel = async (req, res) => {
   try {
     const { title, subtext, image_url, link } = req.body;
-    const newCarousel = await Carousel.create({ title, subtext, image_url, link });
+    
+    // Add validation
+    if (!image_url) {
+      return res.status(400).json({ error: 'Image URL is required' });
+    }
+
+    const newCarousel = await Carousel.create({ 
+      title, 
+      subtext, 
+      image_url, 
+      link 
+    });
+    
     res.status(201).json(newCarousel);
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error('Detailed create error:', error);
+    res.status(500).json({ 
+      message: 'Error creating carousel', 
+      error: error.message 
+    });
   }
 };
 
@@ -39,16 +58,23 @@ exports.updateCarousel = async (req, res) => {
   }
 };
 
+
 exports.deleteCarousel = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deleted = await Carousel.destroy({ where: { id } });
-
-    if (deleted) {
-      res.status(204).send('Carousel deleted');
-    } else {
-      res.status(404).send('Carousel not found');
+    const carouselId = req.params.id;
+    const carousel = await Carousel.findByPk(carouselId);
+    
+    if (!carousel) {
+      return res.status(404).json({
+        error: 'Carousel not found'
+      });
     }
+
+    await carousel.destroy();
+    res.json({
+      message: 'Carousel deleted successfully',
+      deletedId: carouselId
+    });
   } catch (error) {
     res.status(500).send(error.message);
   }

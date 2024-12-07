@@ -3,13 +3,13 @@ import axiosInstance from '../axios'; // Importing the axios instance
 import { ChevronLeft, ChevronRight,Clock, ExternalLink  } from 'lucide-react';
 import newsPlaceHolder from "../resources/images/newsPlaceHolder.png"
 // Helper function to build Cloudinary image URLs
-const buildImageUrl = (publicId) => {
-  const cloudName = "djy2jlthj";
-  return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_600/${publicId}`;
-};
+// const buildImageUrl = (publicId) => {
+//   const cloudName = "djy2jlthj";
+//   return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto,w_600/${publicId}`;
+// };
 
 const AchievementsCard = ({ title, imagePublicId, excerpt, createdAt, link }) => {
-  const imageUrl = imagePublicId ? buildImageUrl(imagePublicId) : newsPlaceHolder;
+  const imageUrl = imagePublicId ? imagePublicId : newsPlaceHolder;
   
   return (
     <div className="flex-shrink-0 w-64 sm:w-72 md:w-80 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-100">

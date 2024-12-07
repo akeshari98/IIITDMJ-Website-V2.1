@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const Tender = require('../modals/tendersModal');
-
+const multer = require('multer');
+const upload = multer(); // Initialize multer for parsing multipart/form-data
 exports.getTenders = async (req, res) => {
   try {
     const { type } = req.query;
@@ -43,6 +44,7 @@ exports.getTenders = async (req, res) => {
 
 exports.createTender = async (req, res) => {
   try {
+    console.log(req.body)
     const tender = await Tender.create(req.body);
     res.status(201).json(tender);
   } catch (error) {

@@ -9,6 +9,7 @@ const StaffList = React.memo(({
   onEdit, 
   onDelete 
 }) => (
+  
   <table className="min-w-full">
     <thead className="bg-gray-50">
       <tr>

@@ -2,25 +2,6 @@ const express = require("express");
 const pool = require("../connection");
 const router = express.Router();
 
-// Utility function to get committee data
-const getLinks = async (type, res) => {
-  try {
-    const query = `
-      SELECT * 
-      FROM links 
-      WHERE link_type = $1
-      ORDER BY id;
-    `;
-    const result = await pool.query(query, [type]);
-
-    res.status(200).json(result.rows);
-
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server error" });
-  }
-};
-
 
 const getLinks2 = async (type, res) => {
   try {
@@ -49,13 +30,11 @@ router.get("/bogminutes", (req, res) => { getLinks2('bog_minutes', res); });
 router.get("/bogagenda", (req, res) => { getLinks2('bog_agenda', res); });
 router.get("/fcminutes", (req, res) => { getLinks2('fc_minutes', res); });
 router.get("/fcagenda", (req, res) => { getLinks2('fc_agenda', res); });
-
-router.get("/bogminutes", (req, res) => { getLinks2('bog_minutes', res); });
-router.get("/bogagenda", (req, res) => { getLinks2('bog_agenda', res); });
-router.get("/fcminutes", (req, res) => { getLinks2('fc_minutes', res); });
-router.get("/fcagenda", (req, res) => { getLinks2('fc_agenda', res); });
 router.get("/senateminutes", (req, res) => { getLinks2('senate_minutes', res); });
 router.get("/senateagenda", (req, res) => { getLinks2('senate_agenda', res); });
+router.get("/bwcminutes", (req, res) => { getLinks2('bwc_minutes', res); });
+router.get("/bwcagenda", (req, res) => { getLinks2('bwc_agenda', res); });
+router.get("/academiccalander", (req, res) => { getLinks2('academic_calander', res); });
 
 
 module.exports = router;

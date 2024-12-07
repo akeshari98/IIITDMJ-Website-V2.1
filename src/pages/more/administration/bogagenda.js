@@ -50,7 +50,7 @@ const MainPage = () => {
   return (
     <div>
       {/* Full-width image with centered heading */}
-      <PageHeader  breadCrumbs={crumbs} title={" Board Of Governers Agenda"}/>
+      <PageHeader  breadCrumbs={crumbs} title={"Board Of Governers Agenda"}/>
       {/* Main content area with flex for side-by-side layout */}
       <div className="container mx-auto mt-8 mb-8 flex flex-col md:flex-row">
         {/* 70% section */}
@@ -78,7 +78,7 @@ const MainPage = () => {
                 {data.links.map((link, index) => (
                     <li key={index} className="flex items-start ml-3 mb-2">
                         <span className="relative w-1.5 h-1.5 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-                        <a target="_blank" href={link.href} className="-mt-1 text-xl font-medium text-blue-500 no-underline">
+                        <a target="_blank" href={link.href} className="-mt-1 text-lg font-medium text-blue-500 no-underline">
                         {link.name}
                         </a>
                     </li>

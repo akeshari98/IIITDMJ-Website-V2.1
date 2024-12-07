@@ -16,12 +16,15 @@ const Event = sequelize.define('event', {
   },
   external_link: {
     type: DataTypes.STRING,
+    allowNull: true,
   },
   cover_image: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   description: {
     type: DataTypes.STRING,
+    allowNull: false,
   }
 });
 

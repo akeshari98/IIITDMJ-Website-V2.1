@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import college1 from "../resources/images/3.jpg";
+import college2 from "../resources/images/5.jpg";
 
 // DirectorCard Component
 const DirectorCard = ({ title, content, media, buttons }) => {
@@ -25,11 +27,11 @@ const DirectorCard = ({ title, content, media, buttons }) => {
                 </p>
               </div>
             </div>
-            <div className="w-full md:w-1/2 pr-0 md:pr-4 mb-4 md:mb-0">
+            <div className="w-full md:w-2/3 pr-0 md:pr-4 mb-4 md:mb-0">
               <img
                 src={media}
                 alt="Director"
-                className="rounded-lg w-full h-48 md:h-64 object-cover"
+                className="rounded-lg w-48 h-64 object-cover mr-auto ml-auto mt-3"
               />
             </div>
           </div>
@@ -133,9 +135,8 @@ const IITDelhiInfoCards = () => {
         { text: "Read more", primary: true },
       ],
       media: [
-        "https://picsum.photos/400/300?random=1",
-        "https://picsum.photos/400/300?random=2",
-        "https://picsum.photos/400/300?random=3"
+        college1,
+        college2
       ],
       isVideo: false,
       isDirector: false
