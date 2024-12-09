@@ -10,24 +10,33 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Sticky behavior only for desktop/tablet (width >= 768px)
       if (window.scrollY > 200 && window.innerWidth >= 768) {
         setIsSticky(true);
       } else {
+        // For mobile or when not scrolled enough, reset sticky state
         setIsSticky(false);
       }
     };
+
+    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
+
+    // Cleanup
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="navbar w-full">
-      <header 
-        className={`h-20 text-[15px] ${
-          isSticky
-            ? "fixed top-0 z-10 bg-white backdrop-blur-md shadow-lg py-10"
-            : "relative w-full"
-        } inset-0 flex-center transition-all duration-300`}
+    <div className="navbar w-full absolute">
+      <header
+        className={`
+          h-20 text-[15px] 
+          ${isSticky 
+            ? "fixed top-0 z-10 bg-white shadow-lg py-10 transition-all duration-300 opacity-100" 
+            : "relative w-full text-white opacity-80 top-12 transition-all duration-300"
+          } 
+          inset-0 flex-center
+        `}
       >
         <nav className="px-3.5 flex-center-between w-full max-w-7xl mx-auto">
           <div className="flex-center gap-x-3 relative">
@@ -45,11 +54,11 @@ const Navbar = () => {
               <DesktopMenu menu={menu} key={menu.name} />
             ))}
           </ul>
-          
+
           <div className="flex-center gap-x-5">
             <div className="lg:hidden">
-              <MobMenu 
-                Menus={Menus} 
+              <MobMenu
+                Menus={Menus}
                 logo={Logo}
               />
             </div>

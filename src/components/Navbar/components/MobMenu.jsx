@@ -38,7 +38,7 @@ export default function MobMenu({ Menus, logo }) {
         className="lg:hidden relative p-2" 
         onClick={() => setIsOpen(true)}
       >
-        <Menu className="text-black" />
+        <Menu className="text-white" />
       </button>
 
       <AnimatePresence>

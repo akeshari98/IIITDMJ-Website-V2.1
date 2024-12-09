@@ -124,7 +124,7 @@ import ScreenReaderAccess from "./pages/ScreenReaderAccess"
 import NewsPage from "./pages/NewsPage"
 import AchievementsPage from "./pages/AchievementsPage"
 import NoticesPage from "./pages/NoticesPage"
-
+import CalendarCreator from "./components/CalendarCreator"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -133,6 +133,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        // loader: loader,
+      },
+      {
+        path: "/clndr",
+        element: <CalendarCreator/>,
         // loader: loader,
       },
       {
@@ -385,7 +390,7 @@ const router = createBrowserRouter([
       //academics
       {
         path: "/academiccalander",
-        element: <AcademicCalander />,
+        element: <CalendarCreator/>,
       },
       {
         path: "/convocation",

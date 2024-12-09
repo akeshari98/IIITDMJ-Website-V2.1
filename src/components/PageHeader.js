@@ -20,7 +20,7 @@ function PageHeader({ image, title, breadCrumbs }) {
           role="img"
           aria-label="Background image for the page header"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8">
           <div className="container mx-auto">
             {/* Animated Title */}

@@ -13,13 +13,13 @@ export default function DesktopMenu({ menu }) {
     enter: {
       opacity: 1,
       rotateX: 0,
-      transition: { duration: 0.3 },
+      transition: { duration: 0.2 },
       display: "block",
     },
     exit: {
       opacity: 0,
       rotateX: -15,
-      transition: { duration: 0.3 },
+      transition: { duration: 0.2 },
       transitionEnd: { display: "none" },
     },
   };
@@ -111,7 +111,7 @@ export default function DesktopMenu({ menu }) {
         ) : (
           <Link
             to={menu.href}
-            className="flex-center gap-1 hover:bg-white/5 cursor-pointer px-3 py-1 rounded-xl"
+            className="flex-center gap-1 hover:bg-white/5 cursor-pointer px-3 py-1 rounded-xl shadow"
           >
             {menu.name}
           </Link>
@@ -127,7 +127,7 @@ export default function DesktopMenu({ menu }) {
 
       {hasSubMenu && (
         <motion.div
-          className="sub-menu absolute bg-white rounded-lg p-2.5 shadow-lg"
+          className="sub-menu absolute bg-white rounded-lg p-2.5 shadow-lg  bg-opacity-100"
           style={{
             maxWidth: "90vw",
             width: `${Math.min(200 * gridCols, 1200)}px`,
@@ -154,7 +154,7 @@ export default function DesktopMenu({ menu }) {
                   {group.items.map((item, itemIndex) => (
                     <div
                       key={itemIndex}
-                      className="group hover:bg-gray-50 rounded-md transition-all duration-150 cursor-pointer"
+                      className="group hover:bg-gray-50 rounded-md transition-all duration-150 cursor-pointer "
                     >
                       {renderMenuItem(item)}
                     </div>
