@@ -1,47 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect,Suspense } from "react";
+import { Link} from "react-router-dom";
 import {
-  Bell,
   ChevronRight,
-  MoveRight,
-  Newspaper,
-  Paperclip,
-  Zap,
 } from "lucide-react";
-import axios from "axios";
 import axiosInstance from "../axios";
-import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
-import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg";
-import home_img2 from "../resources/illustrations/home/college campus-amico.svg";
-import college_img1 from "../resources/images/3.jpg";
-import college_img2 from "../resources/images/college-image.jpg";
-import college_img3 from "../resources/images/College-img.jpg";
-import college_img4 from "../resources/images/College-img1.jpg";
-import Logo from "../resources/images/IIITDMJ.jpg";
-import Marquee from "./Marquee";
 import Marquee2 from "./Marquee2";
 import ImageSlider from "./ImageSlider";
-import ImageGallery from "../components/ImageGallery";
-import NewsSlider from "../components/NewsSlider/NewsSlider";
-import AchievementsSlider from "../components/AchievementsSlider";
-import Notices from "../components/Notices";
 import AboutAndVisitors from "../components/AboutAndVisitor";
 import Events from "../components/Events/Events";
 import ImpotantAnnouncement from "../components/ImportantAnnouncement";
 import FocusOn from "../components/FocusOn";
 import Coi from "../components/Coi";
-import { ArrowRightCircleIcon } from "lucide-react";
-const images = [college_img1, college_img2, college_img3, college_img4];
-const photos = [
-  college_img1,
-  college_img2,
-  college_img3,
-  college_img4,
-  home_img1,
-  home_img2,
-  home_img3,
-  home_img1,
-];
+import NewsSliderSkeleton from "../components/Skeletons/NewsSkeleton";
+const NewsSlider = React.lazy(() => import('../components/NewsSlider/NewsSlider'));
+const AchievementsSlider = React.lazy(() => import('../components/AchievementsSlider'));
+const Notices = React.lazy(() => import('../components/Notices'));
 function Home() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
 
@@ -79,8 +52,80 @@ function Home() {
   useEffect(() => {
     fetchMarquee();
   }, []);
-  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+  const SectionHeader = ({ 
+    title, 
+    linkTo, 
+    notificationDot = false 
+  }) => {
+    const [isHovered, setIsHovered] = useState(false);
+  
+    return (
+      <h3 className="text-2xl  mb-4 flex items-center justify-center">
+        {title}
+        {notificationDot && (
+          <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse ml-4 mt-2.5"></span>
+        )}
+        <span className="inline-flex items-center">
+          <Link
+            to={linkTo}
+            rel="noopener noreferrer"
+            style={{ color: "#2563EB" }}
+            className="inline-flex items-center gap-2 text-black rounded-lg text-sm font-medium transition-colors ml-1"
+          >
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <ChevronRight
+                size={24}
+                className={`transition-transform transform ${
+                  isHovered
+                    ? "translate-x-2 opacity-0"
+                    : "translate-x-0 opacity-100"
+                }`}
+              />
+              <span
+                className={`text-sm font-medium transition-opacity ${
+                  isHovered ? "opacity-100 -translate-x-7" : "opacity-0 -translate-x-7"
+                }`}
+              >
+                View More
+              </span>
+            </div>
+          </Link>
+        </span>
+      </h3>
+    );
+  };
+  const AchievementsAndNoticesLayout = () => {
+    return (
+      <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
+        {/* Achievements Section */}
+        <div className="lg:w-2/3">
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <SectionHeader 
+              title="Achievements" 
+              linkTo="/achievementsPage"
+            />
+            <AchievementsSlider />
+          </div>
+        </div>
+  
+        {/* Notices Section */}
+        <div className="lg:w-1/3">
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <SectionHeader 
+              title="Notices" 
+              linkTo="/noticespage"
+            />
+            <Notices />
+          </div>
+        </div>
+      </div>
+    );
+  };
   return (
     <div>
       <main >
@@ -99,10 +144,10 @@ function Home() {
             <Marquee2 data={fetchedMarquee} />
           </div>
         </section>
-        <section className="px-8 pt-6 pb-2 text-center">
+        <section className="px-8 pt-20 pb-2 text-center">
           <ImpotantAnnouncement />
         </section>
-        <section className="px-8 pt-20 pb-2 text-center md:py-16 ">
+        <section className="px-8 pt-20 pb-2 text-center ">
           {/*  */}
           <div className="container  pt-2 mx-auto -mt-10 flex flex-col gap-12">
             <div className="flex flex-col w-full text-left max-w-7xl mx-auto ">
@@ -154,7 +199,9 @@ function Home() {
                 <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
               </div>
               <div className="bg-white py-4 w-full">
+              <Suspense fallback={NewsSliderSkeleton}>
                 <NewsSlider />
+               </Suspense> 
               </div>
             </div>
             <div className="bg-white py-8">
@@ -180,88 +227,7 @@ function Home() {
                   </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
-                  <div className="lg:w-2/3">
-                    <div className="bg-white rounded-lg shadow-md ">
-                      <h3 className="text-2xl font mb-4 flex item-center justify-center">
-                        Achievements
-                        <span>
-                         <Link
-                    to={"/achievementsPage"}
-                    rel="noopener noreferrer"
-                    style={{ color: "#2563EB" }}
-                    className="inline-flex items-center gap-2 text-black rounded-lg text-sm font-medium transition-colors  ml-1 "
-                  >
-                    <div
-                      className="flex items-center gap-2 cursor-pointer"
-                      onMouseEnter={() => setIsHovered(true)}
-                      onMouseLeave={() => setIsHovered(false)}
-                    >
-                      <ChevronRight
-                        size={24}
-                        className={`transition-transform transform ${
-                          isHovered
-                            ? "translate-x-2 opacity-0"
-                            : "translate-x-0 opacity-100"
-                        }`}
-                      />
-                      <span
-                        className={`text-sm font-medium transition-opacity ${
-                          isHovered ? "opacity-100 -translate-x-7" : "opacity-0 -translate-x-7"
-                        }`}
-                      >
-                        View More
-                      </span>
-                    </div>
-                    {/* <ExternalLink className="w-4 h-4" /> */}
-                  </Link>
-                        </span>
-                      </h3>
-                      <AchievementsSlider />
-                    </div>
-                  </div>
-                  <div className="lg:w-1/3">
-                    <h3 className="text-2xl font mb-4 flex  justify-center">
-                      Notices
-                      <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse ml-4 mt-2.5"></span>
-                      <span>
-                      <Link
-                    to={"/noticespage"}
-                    rel="noopener noreferrer"
-                    style={{ color: "#2563EB" }}
-                    className="inline-flex items-center gap-2 text-black rounded-lg text-sm font-medium transition-colors  ml-1 "
-                  >
-                    <div
-                      className="flex items-center gap-2 cursor-pointer"
-                      onMouseEnter={() => setIsHovered(true)}
-                      onMouseLeave={() => setIsHovered(false)}
-                    >
-                      <ChevronRight
-                        size={24}
-                        className={`transition-transform transform ${
-                          isHovered
-                            ? "translate-x-2 opacity-0"
-                            : "translate-x-0 opacity-100"
-                        }`}
-                      />
-                      <span
-                        className={`text-sm font-medium transition-opacity ${
-                          isHovered ? "opacity-100 -translate-x-7" : "opacity-0 -translate-x-7"
-                        }`}
-                      >
-                        View More
-                      </span>
-                    </div>
-                    {/* <ExternalLink className="w-4 h-4" /> */}
-                  </Link>
-                      </span>
-                    </h3>
-
-                    <div className="bg-white rounded-lg shadow-md pt-1">
-                      <Notices />
-                    </div>
-                  </div>
-                </div>
+                <AchievementsAndNoticesLayout/>
               </div>
             </div>
 

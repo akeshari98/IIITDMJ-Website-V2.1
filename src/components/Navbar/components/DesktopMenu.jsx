@@ -105,20 +105,20 @@ export default function DesktopMenu({ menu }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {menu.name}
+             <p className="shadow">{menu.name}</p>
             {/* <ExternalLink size={12} className="ml-1" /> */}
           </a>
         ) : (
           <Link
             to={menu.href}
-            className="flex-center gap-1 hover:bg-white/5 cursor-pointer px-3 py-1 rounded-xl shadow"
+            className="flex-center gap-1 hover:bg-white/5 cursor-pointer px-3 py-1 rounded-xl "
           >
-            {menu.name}
+            <p className="shadow">{menu.name}</p>
           </Link>
         )
       ) : (
         <span className="flex-center gap-1 hover:bg-white/5 cursor-pointer px-3 py-1 rounded-xl">
-          {menu.name}
+           <p className="text-shadow-prominent">{menu.name}</p>
           {hasSubMenu && (
             <ChevronDown size={14} className="mt-[0.6px] group-hover/link:rotate-180 duration-200" />
           )}

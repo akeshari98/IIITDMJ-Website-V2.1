@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import axiosInstance from "../axios";
 const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [scrollY, setScrollY] = useState(0);
@@ -9,12 +10,11 @@ const ImageSlider = () => {
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/carousel/carousels"
-        );
-        const data = await response.json();
+        const response = await axiosInstance.get('/carousel/carousels')
+
+        // const data = await response.json();
         setSlidesData(
-          data.map((item) => ({
+          response.data.map((item) => ({
             image_url: item.image_url,
             title: item.title,
             subtext: item.subtext,

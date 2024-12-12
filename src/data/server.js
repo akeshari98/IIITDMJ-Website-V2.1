@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require("express"); // for the server
 const bodyParser = require("body-parser"); // for parsing and reading json data
 const cors = require("cors");
@@ -17,14 +18,19 @@ const path = require('path');
 const server = express(); // starting the server
 
 // Middleware to handle CORS and headers
-server.use((_req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  next();
-});
+// server.use((_req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "*");
+//   next();
+// });
 server.use('/public', express.static(path.join(__dirname, '../../public')));
 server.use(bodyParser.json()); // using the body-parser
-server.use(cors()); // using cors to prevent the CORS error
+const corsOptions = {
+  origin: "*", // Replace with your server's IP
+  optionsSuccessStatus: 200,
+};
+
+server.use(cors(corsOptions));
 
 const port = 5000;
 
@@ -67,6 +73,7 @@ server.use("/notices", require("./routes/notices")); // Routes for homepage caro
 server.use("/events", require("./routes/events"));
 server.use("/eventImages", require("./routes/eventImages"));
 server.use("/tenders", require("./routes/tenders"));
+server.use("/calendars",require("./routes/calendars"))
 server.use("/Marquee", require("./routes/marquee"));
 server.use("/RedAnnouncements", require("./routes/redAnnouncements"));
 

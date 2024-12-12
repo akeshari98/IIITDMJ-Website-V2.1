@@ -25,7 +25,8 @@ import {
   DollarSign,
   LoaderPinwheel,
   Images,
-  ImagesIcon
+  ImagesIcon,
+  Calendar
 } from 'lucide-react';
 
 // Products Module
@@ -50,6 +51,7 @@ import { useSelector } from 'react-redux'
 import MarqueeManager from './adminModules/marqueeModule';
 import ImportantAnnouncementsManager from './adminModules/redAnnouncementsModule';
 import TendersManger from './adminModules/tendersModule';
+import CalendarsManager from './adminModules/calendarsModule';
 // Main Admin Portal Component
 const Page = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -67,6 +69,7 @@ const Page = () => {
     { id: 'marquee', name: 'Marquee', icon: List },
     { id: 'ImportantAnnouncements', name: 'Important Announcements', icon: AlertCircle },
     { id: 'tenders', name: 'Tenders', icon: DollarSign },
+    { id: 'calendars', name: 'Calendars', icon: Calendar },
     { id: 'slides', name: 'Home Page Slides', icon: Image},
     { id: 'news', name: 'News', icon: NewspaperIcon },
     { id: 'achievements', name: 'Achievements', icon: MedalIcon },
@@ -109,6 +112,8 @@ const Page = () => {
         return <ImportantAnnouncementsManager />;
       case 'tenders':
         return <TendersManger />;
+      case 'calendars':
+        return <CalendarsManager/>
       case 'events':
         return <EventsManager />;
       case 'eventImages':

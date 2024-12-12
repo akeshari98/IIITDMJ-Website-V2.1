@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axiosInstance from '../../axios';
 import { ChevronLeft, ChevronRight, Clock, ExternalLink } from 'lucide-react';
 import newsPlaceHolder from "../../resources/images/newsPlaceHolder.png";
+import NewsSliderSkeleton from '../Skeletons/NewsSkeleton';
 
 // const buildImageUrl = (publicId) => {
 //   const cloudName = "djy2jlthj";
@@ -14,7 +15,7 @@ const NewsCard = ({ title, imagePublicId, excerpt, createdAt, link }) => {
   return (
     <div className="flex-shrink-0 w-64 sm:w-72 md:w-80 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-100">
       <div className="relative">
-        <img src={imageUrl} alt={title} className="w-full h-48 sm:h-52 object-cover" />
+        <img src={imageUrl} loading="lazy" alt={title} className="w-full h-48 sm:h-52 object-cover" />
         <div className="absolute top-0 right-0 bg-black bg-opacity-60 text-white text-xs px-3 py-1 m-3 rounded-full flex items-center">
           <Clock className="w-3 h-3 mr-1" />
           {new Date(createdAt).toLocaleDateString()}
@@ -71,15 +72,17 @@ const NewsCarousel = () => {
 
     return () => clearInterval(scrollInterval);
   }, [isPaused]);
-
+  const [loading,setLoading] = useState(null);
   useEffect(() => {
     const fetchNews = async () => {
-      try {
+      try {   
+        setLoading(true)
         const response = await axiosInstance.get('/news/news');
         const newsItems = response.data.map(item => ({
           ...item,
           imagePublicId: item.image_url,
         }));
+        setLoading(false)
         setNewsData(newsItems);
       } catch (error) {
         console.error('Error fetching news:', error);
@@ -147,7 +150,7 @@ const NewsCarousel = () => {
         onMouseEnter={() => setIsPaused(true)}
         // onMouseLeave={() => setIsPaused(false)}
       >
-        {newsData.map((item, index) => (
+        {loading?<NewsSliderSkeleton/>:newsData.map((item, index) => (
           <div key={`${item.id}-${index}`} className="snap-start">
             <NewsCard {...item} />
           </div>
@@ -155,15 +158,15 @@ const NewsCarousel = () => {
       </div>
       <button
         onClick={() => scroll('left')}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10"
+        className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10"
       >
         <ChevronLeft className="w-6 h-6 text-gray-800" />
       </button>
-      <button
+      <button 
         onClick={() => scroll('right')}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10"
+        className=" hidden md:block  absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-10"
       >
-        <ChevronRight className="w-6 h-6 text-gray-800" />
+        <ChevronRight className=" w-6 h-6 text-gray-800" />
       </button>
     </div>
   );

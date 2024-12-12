@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
@@ -12,12 +11,8 @@ import store from "./app/store";
 
 // pages
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
 import Courses from "./pages/Courses";
-import Register from "./pages/Register";
-import SignUpMessage from "./pages/test/SignUpMessage";
 
 //more pages
 import BoardOfGoverners from "./pages/more/administration/boardofgoverners";
@@ -42,8 +37,6 @@ import Event from "./pages/more/Event";
 import Gallery from "./pages/more/Gallery";
 import News from "./pages/more/News";
 import Saptadhara from "./pages/more/Saptadhara";
-import Step from "./pages/more/Step";
-import StudentCorner from "./pages/more/StudentCorner";
 import ResearchStaff from "./pages/more/people/researchstaff";
 import OfficeAdministration from "./pages/more/people/officeadministration";
 import Staff from "./pages/more/people/staff";
@@ -76,37 +69,13 @@ import UgPrograms from "./pages/more/academics/ugprograms";
 import UsefulInformation from "./pages/more/academics/usefulinformation";
 import InternalCirculars from "./pages/more/academics/internalcirculars";
 import ExternalCirculars from "./pages/more/academics/externalcirculars";
-import AcademicCalander from "./pages/more/academics/academiccalander";
-
-// student
-import StudentDashboard from "./modules/student/pages/Dashboard";
-import StudentHome from "./modules/student/pages/Home";
-import Document from "./modules/student/pages/Document";
-import Exam from "./modules/student/pages/Exam";
-import Payment from "./modules/student/pages/Payment";
-import Report from "./modules/student/pages/Report";
-
-// admin
-import AdminDashboard from "./modules/admin/pages/Dashboard";
-import Main from "./modules/admin/pages/Main";
-import Student from "./modules/admin/pages/Student";
-import Faculty from "./modules/admin/pages/Faculty";
-import Notice from "./modules/admin/pages/Notice";
-import Feedback from "./modules/admin/pages/Feedback";
-import Department from "./modules/admin/pages/Department";
-import Error from "./modules/admin/pages/Error";
-// import Gallery from "./modules/admin/pages/Gallery";
-
 // errors
-import NotFound from "./errors/Error_404";
-import NetworkIssue from "./errors/NetworkIssue";
-
+import PageNotFoundError from "./errors/PageNotFoundError";
+import ErrorBoundary from './errors/ErrorBoundary';
 //  Courses
 import Bca from "./pages/Bca";
 import Business from "./pages/Business";
 import Bcom from "./pages/Bcom";
-import Verification from "./modules/admin/components/Verification";
-import { isCompositeComponent } from "react-dom/test-utils";
 
 import RTI from "./pages/more/Footer/RTI"
 
@@ -125,7 +94,13 @@ import NewsPage from "./pages/NewsPage"
 import AchievementsPage from "./pages/AchievementsPage"
 import NoticesPage from "./pages/NoticesPage"
 import CalendarCreator from "./components/CalendarCreator"
+import CalendersPage from './pages/Calenders';
 const router = createBrowserRouter([
+  {
+      path:"*",
+      element:<PageNotFoundError/>
+    
+  },
   {
     path: "/",
     element: <App />,
@@ -163,18 +138,6 @@ const router = createBrowserRouter([
       {
         path: "/courses/bcom",
         element: <Bcom />,
-      },
-      {
-        path: "/signup",
-        element: <Register />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/forgot",
-        element: <Forgot />,
       },
 
       // more pages
@@ -339,14 +302,6 @@ const router = createBrowserRouter([
         element: <Saptadhara />,
       },
       {
-        path: "/step",
-        element: <Step />,
-      },
-      {
-        path: "/student-corner",
-        element: <StudentCorner />,
-      },
-      {
         path: "/rti",
         element: <RTI />,
       },
@@ -381,6 +336,10 @@ const router = createBrowserRouter([
       { 
         path:"/tenders",
         element:<TendersPage/> 
+      },
+      { 
+        path:"/calendars",
+        element:<CalendersPage/> 
       },
       { 
         path:"/screenreaderaccess",
@@ -455,36 +414,6 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/signupmessage",
-    element: <SignUpMessage />,
-  },
-  {
-    path: "/student",
-    element: <StudentDashboard />,
-    children: [
-      {
-        path: "",
-        element: <StudentHome />,
-      },
-      {
-        path: "documents",
-        element: <Document />,
-      },
-      {
-        path: "reports",
-        element: <Report />,
-      },
-      {
-        path: "exams",
-        element: <Exam />,
-      },
-      {
-        path: "payment",
-        element: <Payment />,
-      },
-    ],
-  },
-  {
     path: "/admin",
     element: <AdminPortal />,
   },
@@ -495,7 +424,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <ErrorBoundary>
+        
+      <RouterProvider router={router}  />
+      </ErrorBoundary>
     </Provider>
   </React.StrictMode>
 );

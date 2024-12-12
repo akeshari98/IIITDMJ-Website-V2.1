@@ -14,12 +14,12 @@ import {
   Send,
   Mail,
   LanguagesIcon,
-  School
+  School,
+  SpeakerIcon
 } from 'lucide-react';
 import { Link } from 'react-router-dom'; // Import Link for internal navigation
 import { useDispatch, useSelector } from 'react-redux';
 import { increaseFontSize, decreaseFontSize } from '../app/slice/sessionSlice'; // Update path if needed
-
 const AccessibilityHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -28,12 +28,12 @@ const AccessibilityHeader = () => {
 
   const menuItems = [
     { label: 'Jobs', icon: Briefcase, link: '/jobs' },                // Internal link
-    { label: 'Calendar', icon: Calendar, link: '/calendar' },             // Internal link
+    { label: 'Calendar', icon: Calendar, link: '/calendars' },             // Internal link
     { label: 'Tenders', icon: FileText, link: '/tenders' },              // Internal link
-    { label: 'Payment Gateway', icon: CreditCard, link: 'https://paymentgateway.example.com' },    // External link
+    { label: 'IIIT Council', icon: CreditCard, link: 'https://iiitcouncil.com/' },    // External link
     { label: 'Recruiters/Careers', icon: Users, link: 'https://recruiters.example.com' },      // External link
     { label: 'Rajbhasha', icon: LanguagesIcon, link: 'https://rajbhasha.example.com' },               // External link
-    { label: 'Ordinance', icon: LifeBuoy, link: 'https://ordinance.example.com' },                  // External link
+    { label: 'Ordinance', icon: LifeBuoy, link: 'https://www.iiitdmj.ac.in/administration/downloads/Ordinances%20of%20PDPM-IIITDM%20Jabalpur.pdf' },                  // External link
     { label: 'QIP Program', icon: School, link: 'https://qipprogram.example.com' },                     // External link
   ];
 
@@ -83,6 +83,7 @@ const AccessibilityHeader = () => {
             <Twitter size={16} className="text-white hover:text-gray-300 transition duration-200" />
             <Linkedin size={16} className="text-white hover:text-gray-300 transition duration-200" />
             <Facebook size={16} className="text-white hover:text-gray-300 transition duration-200" />
+            <Link to='/screenreaderaccess'><SpeakerIcon size={16} className="text-white hover:text-gray-300 transition duration-200"/></Link>
             <select className="bg-black text-white border-none text-sm hover:text-gray-300 transition duration-200">
               <option>हिन्दी</option>
               <option>English</option>

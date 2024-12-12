@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Calendar, FileText, ChevronUp, ChevronDown, ExternalLink, IndianRupee } from 'lucide-react';
-import axios from 'axios';
-import axiosInstance from '../../axios';
-import PageHeader from '../../components/PageHeader';
+import { Search, Calendar, FileText, ChevronUp, ChevronDown, ExternalLink } from 'lucide-react';
+import axiosInstance from '../axios';
+import PageHeader from '../components/PageHeader';
 // Database structure suggestion:
 /*
-CREATE TABLE tenders (
+CREATE TABLE calendars (
   id VARCHAR(36) PRIMARY KEY,
-  tender_no VARCHAR(100) NOT NULL,
+  calendar_no VARCHAR(100) NOT NULL,
   title TEXT NOT NULL,
   description TEXT,
   advertisement_date DATE NOT NULL,
@@ -22,28 +21,28 @@ CREATE TABLE tenders (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 */
-const TendersPage = () => {
+const CalendarsPage = () => {
   const [activeTab, setActiveTab] = useState('current');
-  const [tenders, setTenders] = useState([]);
+  const [calendars, setCalendars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortConfig, setSortConfig] = useState({ key: 'advertisement_date', direction: 'desc' });
+  const [sortConfig, setSortConfig] = useState({ key: 'release_date', direction: 'desc' });
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchTenders();
+    fetchCalendars();
   }, [activeTab]);
 
-  const fetchTenders = async () => {
+  const fetchCalendars = async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axiosInstance.get(`/tenders/tenders`, { params: { type: activeTab } });
+      const response = await axiosInstance.get(`/calendars/calendars`, { params: { type: activeTab } });
       
-      setTenders(response.data);
+      setCalendars(response.data);
     } catch (error) {
-      console.error('Error fetching tenders:', error);
-      setError('Failed to load tenders. Please try again later.');
+      console.error('Error fetching calendars:', error);
+      setError('Failed to load calendars. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -65,17 +64,15 @@ const TendersPage = () => {
   //   fetchNews();
   // }, []);
 
-  // Filter tenders based on search query
-  const filteredTenders = tenders.filter(tender => 
-    tender.tender_no.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    tender.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    tender.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    tender.department.toLowerCase().includes(searchQuery.toLowerCase())
+  // Filter calendars based on search query
+  const filteredCalendars = calendars.filter(calendar => 
+    calendar.calendar_no.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    calendar.title.toLowerCase().includes(searchQuery.toLowerCase()) 
   );
 
-  // Sort tenders
-  const sortedTenders = [...filteredTenders].sort((a, b) => {
-    if (sortConfig.key === 'advertisement_date' || sortConfig.key === 'closing_date') {
+  // Sort calendars
+  const sortedCalendars = [...filteredCalendars].sort((a, b) => {
+    if (sortConfig.key === 'release_date') {
       const dateA = new Date(a[sortConfig.key]);
       const dateB = new Date(b[sortConfig.key]);
       return sortConfig.direction === 'asc' ? dateA - dateB : dateB - dateA;
@@ -100,22 +97,22 @@ const TendersPage = () => {
     });
   };
 
-  const getStatusBadge = (tender) => {
-    const currentDate = new Date();
-    const closingDate = new Date(tender.closing_date);
-    const daysRemaining = Math.ceil((closingDate - currentDate) / (1000 * 60 * 60 * 24));
+//   const getStatusBadge = (calendar) => {
+//     const currentDate = new Date();
+//     const closingDate = new Date(calendar.closing_date);
+//     const daysRemaining = Math.ceil((closingDate - currentDate) / (1000 * 60 * 60 * 24));
 
-    if (tender.status === 'ARCHIVED') {
-      return <span className="px-2 py-1 text-xs rounded bg-gray-200 text-gray-700">Archived</span>;
-    } else if (tender.status === 'CANCELLED') {
-      return <span className="px-2 py-1 text-xs rounded bg-red-200 text-red-700">Cancelled</span>;
-    } else if (daysRemaining <= 3 && daysRemaining > 0) {
-      return <span className="px-2 py-1 text-xs rounded bg-yellow-200 text-yellow-700">Closing Soon</span>;
-    }
-    return null;
-  };
+//     if (calendar.status === 'ARCHIVED') {
+//       return <span className="px-2 py-1 text-xs rounded bg-gray-200 text-gray-700">Archived</span>;
+//     } else if (calendar.status === 'CANCELLED') {
+//       return <span className="px-2 py-1 text-xs rounded bg-red-200 text-red-700">Cancelled</span>;
+//     } else if (daysRemaining <= 3 && daysRemaining > 0) {
+//       return <span className="px-2 py-1 text-xs rounded bg-yellow-200 text-yellow-700">Closing Soon</span>;
+//     }
+//     return null;
+//   };
 
-  const TenderTable = ({ tenders }) => (
+  const CalendarTable = ({ calendars }) => (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-200">
         <thead>
@@ -123,10 +120,10 @@ const TendersPage = () => {
             <th className="px-6 py-3 border-b text-left">
               <button 
                 className="flex items-center space-x-1 font-semibold"
-                onClick={() => handleSort('tender_no')}
+                onClick={() => handleSort('calendar_no')}
               >
-                <span>Tender No.</span>
-                {sortConfig.key === 'tender_no' && (
+                <span>Calendar Year</span>
+                {sortConfig.key === 'calendar_no' && (
                   sortConfig.direction === 'asc' ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />
                 )}
               </button>
@@ -135,70 +132,58 @@ const TendersPage = () => {
             <th className="px-6 py-3 border-b text-left">
               <button 
                 className="flex items-center space-x-1 font-semibold"
-                onClick={() => handleSort('advertisement_date')}
+                onClick={() => handleSort('release_date')}
               >
-                <span>Advertisement Date</span>
-                {sortConfig.key === 'advertisement_date' && (
+                <span>Valid Upto</span>
+                {sortConfig.key === 'release_date' && (
                   sortConfig.direction === 'asc' ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />
                 )}
               </button>
             </th>
-            <th className="px-6 py-3 border-b text-left">
-              <button 
-                className="flex items-center space-x-1 font-semibold"
-                onClick={() => handleSort('closing_date')}
-              >
-                <span>Closing Date</span>
-                {sortConfig.key === 'closing_date' && (
-                  sortConfig.direction === 'asc' ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />
-                )}
-              </button>
-            </th>
-            <th className="px-6 py-3 border-b text-left">Documents</th>
-            <th className="px-6 py-3 border-b text-left">Esitmated Value</th>
+            <th className="px-6 py-3 border-b text-left">Link</th>
           </tr>
         </thead>
         <tbody>
-          {tenders.length === 0 ? (
+          {calendars.length === 0 ? (
             <tr>
               <td colSpan="5" className="px-6 py-8 text-center text-gray-500">
-                No tenders found
+                No calendars found
               </td>
             </tr>
           ) : (
-            tenders.map((tender) => (
-              <tr key={tender.id} className="hover:bg-gray-50">
+            calendars.map((calendar) => (
+              <tr key={calendar.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 border-b">
                   <div className="flex items-center space-x-2">
                     <FileText className="w-4 h-4 text-gray-500" />
-                    <span>{tender.tender_no}</span>
+                    <span>{calendar.calendar_no}</span>
                   </div>
                 </td>
                 <td className="px-6 py-4 border-b">
-                  <div className="font-medium">{tender.title}</div>
-                  <div className="text-sm text-gray-500">{tender.description}</div>
+                  <div className="font-medium">{calendar.title}</div>
+                  {/* <div className="text-sm text-gray-500">{calendar.description}</div>
                   <div className="flex items-center space-x-2 mt-1">
                     <div className="text-xs text-gray-400">
-                      {tender.category} | {tender.department}
+                      {calendar.category} | {calendar.department}
                     </div>
-                    {getStatusBadge(tender)}
-                  </div>
+                    {getStatusBadge(calendar)}
+                  </div> */}
                 </td>
                 <td className="px-6 py-4 border-b">
                   <div className="flex items-center space-x-2">
                     <Calendar className="w-4 h-4 text-gray-500" />
-                    <span>{formatDate(tender.advertisement_date)}</span>
+                    <span>{formatDate(calendar.closing_date)}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 border-b">
+                {/* <td className="px-6 py-4 border-b">
                   <div className="flex items-center space-x-2">
                     <Calendar className="w-4 h-4 text-gray-500" />
-                    <span>{formatDate(tender.closing_date)}</span>
+                    <span>{formatDate(calendar.closing_date)}</span>
                   </div>
-                </td>
+                </td> */}
                 <td className="px-6 py-4 border-b">
                   <div className="flex flex-col space-y-1">
-                    {tender.attachments!==null && JSON.parse(tender.attachments).map((doc, index) => (
+                    {calendar.attachments!=null&&JSON.parse(calendar.attachments).map((doc, index) => (
                       <a
                         key={index}
                         href={doc.url}
@@ -212,12 +197,6 @@ const TendersPage = () => {
                     ))}
                   </div>
                 </td>
-                <td>
-                <div className="flex items-center justify-center space-x-2">
-                  <IndianRupee  className="w-4 h-4 text-gray-500" />
-                  {tender.estimated_value}
-                  </div>
-                </td>
               </tr>
             ))
           )}
@@ -225,11 +204,11 @@ const TendersPage = () => {
       </table>
     </div>
   );
-  const crumbs = [{crumb:"Tenders",link:"#"}]
+  const crumbs = [{crumb:"Calendars",link:"#"}]
   return (
     <div className="min-h-screen bg-gray-50">
-      <PageHeader breadCrumbs={crumbs} title={"Tenders"}/>
-      <div className="container mx-auto px-4 py-8">
+      <PageHeader breadCrumbs={crumbs} title={"Calendars"}/>
+      <div className="container mx-auto px-4 py-8">       
         <div className="flex space-x-4 mb-6 border-b">
           <button
             className={`pb-2 px-4 font-medium transition-colors duration-200 ${
@@ -239,7 +218,7 @@ const TendersPage = () => {
             }`}
             onClick={() => setActiveTab('current')}
           >
-            Current Tenders
+            Current Calendars
           </button>
           <button
             className={`pb-2 px-4 font-medium transition-colors duration-200 ${
@@ -249,7 +228,7 @@ const TendersPage = () => {
             }`}
             onClick={() => setActiveTab('archived')}
           >
-            Archived Tenders
+            Archived Calendars
           </button>
         </div>
 
@@ -258,7 +237,7 @@ const TendersPage = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Search tenders by number, title, description or department..."
+              placeholder="Search calendars by Year or Title"
               className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -270,7 +249,7 @@ const TendersPage = () => {
           <div className="text-center py-8 text-red-600">
             <p>{error}</p>
             <button 
-              onClick={fetchTenders}
+              onClick={fetchCalendars}
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Try Again
@@ -281,11 +260,11 @@ const TendersPage = () => {
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
           </div>
         ) : (
-          <TenderTable tenders={sortedTenders} />
+          <CalendarTable calendars={sortedCalendars} />
         )}
       </div>
     </div>
   );
 };
 
-export default TendersPage;
+export default CalendarsPage;

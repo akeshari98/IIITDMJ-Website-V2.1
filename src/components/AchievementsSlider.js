@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axiosInstance from '../axios'; // Importing the axios instance
 import { ChevronLeft, ChevronRight,Clock, ExternalLink  } from 'lucide-react';
 import newsPlaceHolder from "../resources/images/newsPlaceHolder.png"
+import NewsSliderSkeleton from './Skeletons/NewsSkeleton';
 // Helper function to build Cloudinary image URLs
 // const buildImageUrl = (publicId) => {
 //   const cloudName = "djy2jlthj";
@@ -53,16 +54,18 @@ const AchievementsCarousel = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
-
+  const [loading,setLoading] = useState(null);
   // Fetch news data using Axios
   useEffect(() => {
     const fetchNews = async () => {
       try {
+        setLoading(true);
         const response = await axiosInstance.get('/achievements/achievements'); // Fetching news data
         const newsItems = response.data.map(item => ({
           ...item,
           imagePublicId: item.image_url, // Assume the API returns 'image' as publicId
         }));
+        setLoading(false)
         setNewsData(newsItems);
       } catch (error) {
         console.error('Error fetching news:', error);
@@ -123,7 +126,7 @@ const AchievementsCarousel = () => {
         onTouchEnd={handleMouseUp}
         onTouchMove={handleTouchMove}
       >
-        {newsData.map((item, index) => (
+        {loading?<NewsSliderSkeleton/>:newsData.map((item, index) => (
           <div key={`${item.id}-${index}`} className="snap-start px-2 py-4">
             <AchievementsCard {...item} />
           </div>
@@ -131,13 +134,13 @@ const AchievementsCarousel = () => {
       </div>
       <button
         onClick={() => scroll('left')}
-        className="absolute left-0 sm:left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-1 sm:p-2 shadow-md hover:bg-opacity-75 transition-all duration-300 z-10"
+        className="hidden md:block  absolute left-0 sm:left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-1 sm:p-2 shadow-md hover:bg-opacity-75 transition-all duration-300 z-10"
       >
         <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-gray-800" />
       </button>
       <button
         onClick={() => scroll('right')}
-        className="absolute right-0 sm:right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-1 sm:p-2 shadow-md hover:bg-opacity-75 transition-all duration-300 z-10"
+        className="hidden md:block absolute right-0 sm:right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-1 sm:p-2 shadow-md hover:bg-opacity-75 transition-all duration-300 z-10"
       >
         <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-gray-800" />
       </button>
