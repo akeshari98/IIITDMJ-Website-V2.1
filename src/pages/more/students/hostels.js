@@ -5,12 +5,12 @@ import React, { useEffect, useState } from "react";
 import PageHeader from "../../../components/PageHeader";
 
 const MainPage = () => {
-   const image1 = process.env.REACT_APP_Backend + "/public/websiteImages/vasishtha.jpg"
-   const image2 = process.env.REACT_APP_Backend + "/public/websiteImages/aryabhatta.jpg"
-   const image3 = process.env.REACT_APP_Backend + "/public/websiteImages/vivekananda.jpg"
-   const image4 = process.env.REACT_APP_Backend + "/public/websiteImages/nagarjuna.jpg"
-   const image5 = process.env.REACT_APP_Backend + "/public/websiteImages/panini.jpg"
-   const image6 = process.env.REACT_APP_Backend + "/public/websiteImages/maa-saraswati.jpg"
+   const image1 = process.env.REACT_APP_Backend + "/public/WebsiteImages/vasishtha.jpg"
+   const image2 = process.env.REACT_APP_Backend + "/public/WebsiteImages/aryabhatta.jpg"
+   const image3 = process.env.REACT_APP_Backend + "/public/WebsiteImages/vivekananda.jpg"
+   const image4 = process.env.REACT_APP_Backend + "/public/WebsiteImages/nagarjuna.jpg"
+   const image5 = process.env.REACT_APP_Backend + "/public/WebsiteImages/panini.jpg"
+   const image6 = process.env.REACT_APP_Backend + "/public/WebsiteImages/maa-saraswati.jpg"
   const notifications = [
     {
       name: "Notification regarding constitution of Council of Wardens, dated: August 24, 2023 | Corrigendum, dated: August 25, 2023",

@@ -5,9 +5,9 @@ import React, { useEffect, useState } from "react";
 
 import PageHeader from "../../../components/PageHeader";
 const MainPage = () => {
-  const image1 = process.env.REACT_APP_Backend + "/public/websiteImages/phc1-min.png"
-  const image2 = process.env.REACT_APP_Backend + "/public/websiteImages/phc2-min.png"
-  const image3 = process.env.REACT_APP_Backend + "/public/websiteImages/phc3-min.png"
+  const image1 = process.env.REACT_APP_Backend + "/public/WebsiteImages/phc1-min.png"
+  const image2 = process.env.REACT_APP_Backend + "/public/WebsiteImages/phc2-min.png"
+  const image3 = process.env.REACT_APP_Backend + "/public/WebsiteImages/phc3-min.png"
   const quickLinks = [
     { name: "Gymkhana", href: "/gymkhana" },
     { name: "Activities", href: "/activities" },

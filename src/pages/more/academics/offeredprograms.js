@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PageHeader from "../../../components/PageHeader";
 const MainPage = () => {
-    const image7 = process.env.REACT_APP_Backend + "/public/websiteImages/offeredprograms-min.png";
+    const image7 = process.env.REACT_APP_Backend + "/public/WebsiteImages/offeredprograms-min.png";
     const [data, setData] = useState({
         cardsData: [],
     });

@@ -126,8 +126,8 @@ const InfoCard = ({ title, content, buttons, media, isVideo }) => {
 
 // Main Component to render both DirectorCard and InfoCard
 const IITDelhiInfoCards = () => {
-  const college1 = process.env.REACT_APP_Backend + "/public/websiteImages/3.jpg";
-  const college2 = process.env.REACT_APP_Backend + "/public/websiteImages/5.jpg";
+  const college1 = process.env.REACT_APP_Backend + "/public/WebsiteImages/3.jpg";
+  const college2 = process.env.REACT_APP_Backend + "/public/WebsiteImages/5.jpg";
   const dummyData = [
     {
       title: "ABOUT IIITDMJ",

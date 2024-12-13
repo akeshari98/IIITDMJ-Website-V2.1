@@ -8,12 +8,12 @@ const MainPage = () => {
     { name: "Various Clubs Working Under Gymkhana", href: "/" },
     { name: "Office Bearers & Committees of Gymkhana", href: "/" },
   ];
-  const image1 = process.env.REACT_APP_Backend + "/public/websiteImages/senate1.jpg";
-  const image2 = process.env.REACT_APP_Backend + "/public/websiteImages/senate2.jpg";
-  const image3 = process.env.REACT_APP_Backend + "/public/websiteImages/senate3.jpg";
-  const image4 = process.env.REACT_APP_Backend + "/public/websiteImages/senate4.jpg";
-  const image5 = process.env.REACT_APP_Backend + "/public/websiteImages/senate5.jpg";
-  const image6 = process.env.REACT_APP_Backend + "/public/websiteImages/senate6.jpg";
+  const image1 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate1.jpg";
+  const image2 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate2.jpg";
+  const image3 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate3.jpg";
+  const image4 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate4.jpg";
+  const image5 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate5.jpg";
+  const image6 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate6.jpg";
   const forms = [
     {
       name: "H_151_Form_Hostel Accommodation",
