@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from "react";
-import bba1 from "../resources/images/bba/bba1.svg";
-import bba2 from "../resources/images/bba/bb2.svg";
-import bba3 from "../resources/images/bba/bb3.svg";
-import bba4 from "../resources/images/bba/bba4.svg";
+// import bba1 from "../resources/images/bba/bba1.svg";
+// import bba2 from "../resources/images/bba/bb2.svg";
+// import bba3 from "../resources/images/bba/bb3.svg";
+// import bba4 from "../resources/images/bba/bba4.svg";
 import { Link } from "react-router-dom";
 const Business = () => {
   return (
@@ -64,11 +64,11 @@ const Business = () => {
                       </div>
                     </div>
                     <div className="order-first block w-full mt-12 aspect-square lg:mt-0 lg:order-first">
-                      <img
+                      {/* <img
                         className="object-cover object-center w-full mx-auto  lg:ml-auto"
                         alt="hero"
                         src={bba1}
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>
@@ -149,11 +149,11 @@ const Business = () => {
                         </div>
                       </div>
                       <div className="order-first block w-full mt-12 aspect-square lg:mt-0">
-                        <img
+                        {/* <img
                           className="object-cover object-center w-full mx-auto border lg:ml-auto"
                           alt="hero"
                           src={bba2}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>
@@ -167,13 +167,13 @@ const Business = () => {
                   <div className="relative flex-col items-center m-auto align-middle">
                     <div className="items-center gap-12 w-full text-left  lg:gap-24 lg:inline-flex">
                       <div className="order-first block w-screen mt-12  lg:mt-0">
-                        <img
+                        {/* <img
                           className="h-screen object-cover w-screen"
                           // className="object-cover object-center w-full mx-auto   border lg:ml-auto"
 
                           alt="hero"
                           src={bba3}
-                        />
+                        /> */}
                       </div>
                       <div className="flex flex-col mt-6 lg:mt-0">
                         <div className="max-w-xl">
@@ -288,11 +288,11 @@ const Business = () => {
                     </div>
                   </div>
                   <div className="order-first block w-full mt-12 aspect-square lg:mt-0">
-                    <img
+                    {/* <img
                       className="object-cover object-center w-full mx-auto  border lg:ml-auto"
                       alt="hero"
                       src={bba4}
-                    />
+                    /> */}
                   </div>
                   <div className="relative items-center gap-12 m-auto lg:inline-flex md:order-first">
                     <div className="mx-auto lg:max-w-7xl">

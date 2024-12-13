@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import college_img1 from "../../../resources/images/3.jpg";
+// import college_img1 from "../../../resources/images/3.jpg";
 import InfoDiv2 from "../../../components/InfoDiv2";
 import PageHeader from "../../../components/PageHeader";
 

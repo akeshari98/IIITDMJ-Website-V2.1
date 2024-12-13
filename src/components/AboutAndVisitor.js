@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import college1 from "../resources/images/3.jpg";
-import college2 from "../resources/images/5.jpg";
+import React, { useState, useEffect } from 'react';;
 
 // DirectorCard Component
 const DirectorCard = ({ title, content, media, buttons }) => {
@@ -108,7 +106,8 @@ const InfoCard = ({ title, content, buttons, media, isVideo }) => {
         </div>
         <div className="flex justify-start mt-4">
           {buttons.map((button, index) => (
-            <button 
+            <a 
+              href={button.link}
               key={index}
               className={`px-4 py-2 ${
                 button.primary 
@@ -117,7 +116,7 @@ const InfoCard = ({ title, content, buttons, media, isVideo }) => {
               } transition-colors duration-300`}
             >
               {button.text}
-            </button>
+            </a>
           ))}
         </div>
       </div>
@@ -127,12 +126,14 @@ const InfoCard = ({ title, content, buttons, media, isVideo }) => {
 
 // Main Component to render both DirectorCard and InfoCard
 const IITDelhiInfoCards = () => {
+  const college1 = process.env.REACT_APP_Backend + "/public/websiteImages/3.jpg";
+  const college2 = process.env.REACT_APP_Backend + "/public/websiteImages/5.jpg";
   const dummyData = [
     {
       title: "ABOUT IIITDMJ",
       content: "IIIT Jabalpur fosters a vibrant and dynamic learning environment where students pursue degrees in various engineering disciplines, including Computer Science, Electronics, Mechanical, and Information Technology. ",
       buttons: [
-        { text: "Read more", primary: true },
+        { text: "Explore", primary: true, link:'https://www.iiitdmj.ac.in/college_tour.html' },
       ],
       media: [
         college1,
@@ -143,7 +144,7 @@ const IITDelhiInfoCards = () => {
     },
     {
       title: "DIRECTOR'S CORNER",
-      content: "Prof. Bhartendu K Singh has taken over the charge as Director, Indian Institute of Information Technology Jabalpur (IIITDMJ) with effect from the forenoon of 15th February, 2022. He brings with him a wealth of experience and a vision for enhancing the institute's global standing and research impact.",
+      content: "Prof. Bhartendu K Singh has taken over the charge as Director, Indian Institute of Information Technology Jabalpur (IIITDMJ).",
       buttons: [{ text: "Read more", primary: false }],
       media: "https://www.iiitdmj.ac.in/assets/img/faculty/admin/Prof.%20Bhartendu%20K%20Singh.jpg",
       isVideo: false,

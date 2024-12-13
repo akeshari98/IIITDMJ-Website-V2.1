@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Card from '../../../components/CardNew';
-import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
 
 

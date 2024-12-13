@@ -1,5 +1,4 @@
 import React from 'react';
-import college_img1 from "../resources/images/3.jpg";
 import { Link } from "react-router-dom";
 import { ChevronRight } from 'lucide-react';
 import { motion } from "framer-motion";
@@ -10,7 +9,7 @@ function PageHeader({ image, title, breadCrumbs }) {
     hidden: { y: -50, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
   };
-
+  const college_img1 = process.env.REACT_APP_Backend + "/public/websiteImages/3.jpg";
   return (
     <div>
       <div className="h-[50vh] relative">

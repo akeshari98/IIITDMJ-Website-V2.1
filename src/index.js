@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-
 // redux store
 import { Provider } from "react-redux";
 import store from "./app/store";
@@ -95,7 +94,7 @@ import AchievementsPage from "./pages/AchievementsPage"
 import NoticesPage from "./pages/NoticesPage"
 import CalendarCreator from "./components/CalendarCreator"
 import CalendersPage from './pages/Calenders';
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
       path:"*",
       element:<PageNotFoundError/>

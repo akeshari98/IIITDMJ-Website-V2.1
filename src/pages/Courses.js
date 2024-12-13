@@ -1,7 +1,7 @@
 import React from 'react'
-import BCA_IMG from '../resources/images/about/bca.jpg'
-import BCOM_IMG from '../resources/images/about/bcom.jpg'
-import BBA_IMG from '../resources/images/about/bba.jpg'
+// import BCA_IMG from '../resources/images/about/bca.jpg'
+// import BCOM_IMG from '../resources/images/about/bcom.jpg'
+// import BBA_IMG from '../resources/images/about/bba.jpg'
 import { Link } from 'react-router-dom'
 function Courses() {
   return (
@@ -12,7 +12,7 @@ function Courses() {
           <div className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
             <h3 className="mb-3 text-xl font-bold text-indigo-600">B-Tech</h3>
             <div className="relative">
-              <img className="w-full rounded-xl" src={BCA_IMG} alt="Colors" />
+              {/* <img className="w-full rounded-xl" src={BCA_IMG} alt="Colors" /> */}
             </div>
             <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Bachelor's of Technology</h1>
             <div className="my-4">
@@ -48,7 +48,7 @@ function Courses() {
           <div className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
             <h3 className="mb-3 text-xl font-bold text-indigo-600">M-Tech</h3>
             <div className="relative">
-              <img className="w-full rounded-xl" src={BCOM_IMG} alt="Colors" />
+              {/* <img className="w-full rounded-xl" src={BCOM_IMG} alt="Colors" /> */}
             </div>
             <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Masters of Technology</h1>
             <div className="my-4">
@@ -84,7 +84,7 @@ function Courses() {
           <div className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
             <h3 className="mb-3 text-xl font-bold text-indigo-600">PHD</h3>
             <div className="relative">
-              <img className="w-full rounded-xl" src={BBA_IMG} alt="Colors" />
+              {/* <img className="w-full rounded-xl" src={BBA_IMG} alt="Colors" /> */}
             </div>
             <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Doctorate in Engineering</h1>
             <div className="my-4">

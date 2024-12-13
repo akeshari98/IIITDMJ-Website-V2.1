@@ -1,7 +1,8 @@
 {
-  "name": "g-campus",
+  "name": "IIITDMJ",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
     "@mantine/core": "^7.13.4",

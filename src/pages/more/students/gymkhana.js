@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Card from "../../../components/CardNew";
-import college_img1 from "../../../resources/images/3.jpg";
-
-import image1 from "../../../resources/images/gym-1.jpg";
-import image2 from "../../../resources/images/gym-2.jpg";
-
-import image3 from "../../../resources/images/senate1.jpg";
-import image4 from "../../../resources/images/senate2.jpg";
-import image5 from "../../../resources/images/senate3.jpg";
-import image6 from "../../../resources/images/senate4.jpg";
+// import Card from "../../../components/CardNew";
+// import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
 
 const MainPage = () => {
@@ -16,7 +8,12 @@ const MainPage = () => {
     { name: "Various Clubs Working Under Gymkhana", href: "/" },
     { name: "Office Bearers & Committees of Gymkhana", href: "/" },
   ];
-
+  const image1 = process.env.REACT_APP_Backend + "/public/websiteImages/senate1.jpg";
+  const image2 = process.env.REACT_APP_Backend + "/public/websiteImages/senate2.jpg";
+  const image3 = process.env.REACT_APP_Backend + "/public/websiteImages/senate3.jpg";
+  const image4 = process.env.REACT_APP_Backend + "/public/websiteImages/senate4.jpg";
+  const image5 = process.env.REACT_APP_Backend + "/public/websiteImages/senate5.jpg";
+  const image6 = process.env.REACT_APP_Backend + "/public/websiteImages/senate6.jpg";
   const forms = [
     {
       name: "H_151_Form_Hostel Accommodation",

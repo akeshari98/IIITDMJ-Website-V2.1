@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Card from "../../../components/CardNew";
-import college_img1 from "../../../resources/images/3.jpg";
+// import Card from "../../../components/CardNew";
+// import college_img1 from "../../../resources/images/3.jpg";
 
-import image1 from "../../../resources/images/phc1.png";
-import image2 from "../../../resources/images/phc2.png";
-import image3 from "../../../resources/images/phc3.png";
+
 import PageHeader from "../../../components/PageHeader";
 const MainPage = () => {
+  const image1 = process.env.REACT_APP_Backend + "/public/websiteImages/phc1-min.png"
+  const image2 = process.env.REACT_APP_Backend + "/public/websiteImages/phc2-min.png"
+  const image3 = process.env.REACT_APP_Backend + "/public/websiteImages/phc3-min.png"
   const quickLinks = [
     { name: "Gymkhana", href: "/gymkhana" },
     { name: "Activities", href: "/activities" },

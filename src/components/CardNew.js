@@ -72,7 +72,7 @@ const Card = ({
           )}
 
           {email && emailArray.length > 0 && (
-            <div className="flex items-center justify-center text-gray-600">
+            <div className="flex flex-col items-center justify-center text-gray-600">
               <Mail className="h-5 w-5 mr-2 text-gray-400" />
               {emailArray.map((item, index) => (
                 <a

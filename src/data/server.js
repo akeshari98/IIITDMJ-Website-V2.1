@@ -24,6 +24,7 @@ const server = express(); // starting the server
 //   next();
 // });
 server.use('/public', express.static(path.join(__dirname, '../../public')));
+server.use('/app', express.static(path.join(__dirname, '../../build')));
 server.use(bodyParser.json()); // using the body-parser
 const corsOptions = {
   origin: "*", // Replace with your server's IP

@@ -62,7 +62,9 @@ const ImageSlider = () => {
   if (slides.length === 0) {
     return <div>No slides available</div>;
   }
-
+  const urlBuilder = (url)=>{
+    return process.env.REACT_APP_Backend + url;
+  }
   return (
     <div className="relative w-full h-[90vh] overflow-hidden">
      <div
@@ -70,7 +72,7 @@ const ImageSlider = () => {
     transitioning ? "opacity-0" : "opacity-100"
   }`}
   style={{
-    backgroundImage: `url(${slides[currentIndex].image_url})`,
+    backgroundImage: `url(${urlBuilder(slides[currentIndex].image_url)})`,
     backgroundAttachment: "fixed", // Makes the background image static
     backgroundPosition: "center", // Ensures the image is centered
     backgroundSize: "cover", // Ensures the image covers the entire area
