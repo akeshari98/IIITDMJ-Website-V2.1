@@ -19,7 +19,7 @@ function ContactUs() {
   const emptyFormData = () => {
     setFormData({ fullname: "", email: "", phone: "", message: "" });
   };
-
+ 
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -37,7 +37,7 @@ function ContactUs() {
       buttonRef.current.setAttribute("disabled", true);
       try {
         await axios
-          .post("http://localhost:5000/feedbacks/insert", formData)
+          .post(`${process.env.React_APP_Backend}/feedbacks/insert`, formData)
           .then((res) => {
             let response = res.data;
             if (response.isSuccess) {

@@ -4,7 +4,28 @@ import React, { useEffect, useState } from "react";
 
 
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 const MainPage = () => {
+  const renderLink = (item) =>
+              item.href.startsWith("/") ? (
+                <Link
+                  to={item.href}
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </a>
+              );
   const image1 = process.env.REACT_APP_Backend + "/public/WebsiteImages/phc1-min.png"
   const image2 = process.env.REACT_APP_Backend + "/public/WebsiteImages/phc2-min.png"
   const image3 = process.env.REACT_APP_Backend + "/public/WebsiteImages/phc3-min.png"
@@ -40,7 +61,7 @@ const MainPage = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/people/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }
@@ -95,9 +116,7 @@ const MainPage = () => {
               {quickLinks2.map((link, index) => (
                 <li key={index} className="-ml-3">
                   {" "}
-                  <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                  </a>
+               {renderLink(link)}
                 </li>
               ))}
             </ul>
@@ -114,9 +133,7 @@ const MainPage = () => {
               {guidelines.map((link, index) => (
                 <li key={index} className="-ml-3">
                   {" "}
-                  <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                  </a>
+                 {renderLink(link)}
                 </li>
               ))}
             </ul>

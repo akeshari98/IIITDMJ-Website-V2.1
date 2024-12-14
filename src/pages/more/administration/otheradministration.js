@@ -2,9 +2,30 @@ import React, {useState,useEffect} from "react";
 import Card from "../../../components/CardNew";
 // import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 
 
 const MainPage = () => {
+  const renderLink = (item) =>
+              item.href.startsWith("/") ? (
+                <Link
+                  to={item.href}
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </a>
+              );
   const [data, setData] = useState({
     cc: [],
     tp: [],
@@ -22,7 +43,7 @@ const MainPage = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/people/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }
@@ -99,7 +120,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.cc.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -110,7 +131,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.tp.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -121,7 +142,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.iic.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -132,7 +153,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.alumni.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -143,7 +164,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.comm.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -154,7 +175,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.registrar.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -165,7 +186,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.audit.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -176,7 +197,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.cpio.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -187,7 +208,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.rspc.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -198,7 +219,7 @@ const MainPage = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl">
               {data.acad.map((card, index) => (
-                <a href="/" className="no-underline"><Card key={index} {...card} /></a>
+                <a href="#" className="no-underline"><Card key={index} {...card} /></a>
               ))}
             </div>
           </div>
@@ -224,9 +245,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {quickLinks.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 no-underline">
-                  {link.name}
-                </a>
+                {renderLink(link)}
               </li>
             ))}
           </ul>

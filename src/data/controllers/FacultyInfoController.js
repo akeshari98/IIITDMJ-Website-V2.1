@@ -6,7 +6,7 @@ const pool = require("../connection");
 async function getFacultyHonors(userId) {
   const query = `
     SELECT t.id, title, description, "period"
-    FROM dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    FROM dblink('dbname=fusionlab user=superAdmin password=9455957884', 
          'SELECT auth_user.id, eis_honors.title, description, "period" 
           FROM auth_user, globals_extrainfo, eis_faculty_about, eis_honors
           WHERE auth_user.id=globals_extrainfo.user_id

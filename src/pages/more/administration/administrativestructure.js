@@ -2,6 +2,7 @@ import React from "react";
 // import Card from "../../../components/CardNew";
 // import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
 
@@ -14,7 +15,26 @@ const MainPage = () => {
     { name:"Building Works Committee", href: "/buildingworkscommittee" },
     // { name:"Administrative Structure", href: "/administrativestructure" },
   ];
-
+const renderLink = (item) =>
+        item.href.startsWith("/") ? (
+          <Link
+            to={item.href}
+            className="text-blue-500 no-underline"
+          >
+          
+            <span>{item.name}</span>
+          </Link>
+        ) : (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 no-underline"
+          >
+          
+            <span>{item.name}</span>
+          </a>
+        );
  const crumbs = [{crumb:"Administrative Structure",link:"#"}]
   return (
     <div>
@@ -119,9 +139,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {quickLinks.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 no-underline">
-                  {link.name}
-                </a>
+               {renderLink(link.name)}
               </li>
             ))}
           </ul>

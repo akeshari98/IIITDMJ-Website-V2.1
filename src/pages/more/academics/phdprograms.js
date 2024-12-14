@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 // import Card from "../../../components/CardNew";
 // import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 const MainPage = () => {
     const notices = [
         // { name: "Request letter for withdrawal/Cancellation of Admission", href: "https://docs.google.com/forms/d/e/1FAIpQLScz5Vlu2hatEO5MC_qzJml6lLj4F_1ltMTEBKlDrMfj-Qa56g/viewform" },
@@ -31,7 +32,26 @@ const MainPage = () => {
             href: "/",
         },
     ];
-
+    const renderLink = (item) =>
+            item.href.startsWith("/") ? (
+              <Link
+                to={item.href}
+                className="text-blue-500 no-underline"
+              >
+              
+                <span>{item.name}</span>
+              </Link>
+            ) : (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 no-underline"
+              >
+              
+                <span>{item.name}</span>
+              </a>
+            );
     const [data, setData] = useState({
         cardsData: [],
     });
@@ -40,7 +60,7 @@ const MainPage = () => {
 
     const fetchData = async (endpoint, key) => {
         try {
-            const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+            const response = await fetch(`${process.env.REACT_APP_Backend}/people/${endpoint}`);
             if (!response.ok) {
                 throw new Error(`Failed to fetch ${key} data`);
             }
@@ -540,9 +560,7 @@ const MainPage = () => {
                     <ul className="list-disc ml-5">
                         {notices.map((link, index) => (
                             <li key={index} className="mb-2 -ml-3">
-                                <a href={link.href} className="text-blue-500 no-underline">
-                                    {link.name}
-                                </a>
+                               {renderLink(link)}
                             </li>
                         ))}
                     </ul>
@@ -552,9 +570,7 @@ const MainPage = () => {
                     <ul className="list-disc ml-5">
                         {otherlinks.map((link, index) => (
                             <li key={index} className="mb-2 -ml-3">
-                                <a href={link.href} className="text-blue-500 no-underline">
-                                    {link.name}
-                                </a>
+                                {renderLink(link)}
                             </li>
                         ))}
                     </ul>

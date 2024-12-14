@@ -6,7 +6,7 @@ const getAllPositions = async (req, res, { position_type }) => {
     const query = `
         (SELECT t.id, user_type, first_name, last_name, p.email, address, phone_no, profile_picture, role, imp
         FROM 
-            dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+            dblink('dbname=fusionlab user=superAdmin password=9455957884', 
                 'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture FROM auth_user, globals_extrainfo, globals_faculty 
                 WHERE auth_user.id=globals_extrainfo.user_id 
                 AND globals_extrainfo.id=globals_faculty.id_id') AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, address text, phone_no bigint, profile_picture varchar)
