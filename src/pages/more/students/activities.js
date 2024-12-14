@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Card from "../../../components/CardNew";
-import college_img1 from "../../../resources/images/3.jpg";
+// import Card from "../../../components/CardNew";
+// import college_img1 from "../../../resources/images/3.jpg";
 
-import image1 from "../../../resources/images/activities1.jpg";
+// import image1 from "../../../resources/images/activities1.jpg";
 import PageHeader from "../../../components/PageHeader";
 
 const MainPage = () => {
+  const image1 = process.env.REACT_APP_Backend + "/public/WebsiteImages/activities.jpg"
     const quickLinks = [
         { name: "Gymkhana", href: "/gymkhana" },
         { name: "Activities", href: "/activities" },

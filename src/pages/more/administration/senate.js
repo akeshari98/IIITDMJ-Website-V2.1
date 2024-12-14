@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from "react";
 import InfoDiv from "../../../components/InfoDiv";
-import college_img1 from "../../../resources/images/3.jpg";
+// import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
 
 const MainPage = () => {

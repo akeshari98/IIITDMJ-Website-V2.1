@@ -6,7 +6,7 @@ import {
   Cpu, 
   ExternalLink
 } from 'lucide-react';
-
+import PageHeader from '../components/PageHeader';
 const ScreenReaderInfo = () => {
   const screenReaderData = [
     {
@@ -35,8 +35,10 @@ const ScreenReaderInfo = () => {
       type: 'Commercial'
     }
   ];
-
+  const crumbs = [{crumb:"Screen Reader Access",link:"#"}]
   return (
+     <>
+      <PageHeader breadCrumbs={crumbs} title={"Screen Readers"}/>
     <div className="bg-white rounded-lg shadow-md p-12">
       <div className="flex items-center mb-4">
         <Monitor size={24} className="mr-2 text-blue-500" />
@@ -81,6 +83,7 @@ const ScreenReaderInfo = () => {
         </table>
       </div>
     </div>
+     </>
   );
 };
 

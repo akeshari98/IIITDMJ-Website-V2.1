@@ -9,7 +9,7 @@ export const AdminAuth = () => {
   const { sessionID, sessionType } = useSelector((state) => state.session)
 
   useEffect(()=>{
-    document.title = `G-Campus | Authentication`
+    document.title = `IIITDMJ | Authentication`
   },[])
 
   const handleAdminAuthentication = (e) => {

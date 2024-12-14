@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Globe, FileText, Twitter, Linkedin, Github, ChevronDown, ChevronUp, Calendar, Building, GraduationCap, Trophy, Briefcase, Presentation,BookCopy, BookOpenText, ScrollText, CalendarRange, Users, Brain } from 'lucide-react';
 import axiosInstance from '../../../axios'; // Assuming you have axios instance configured
 import { useParams } from 'react-router-dom';
+import PageHeader from '../../../components/PageHeader';
 const Collapsible = ({ title, children, defaultOpen = false, icon }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   
   return (
+    
     <div className="border rounded-lg mb-2 shadow-sm hover:shadow-md transition-shadow">
+
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-2 rounded-lg flex justify-between items-center hover:bg-gray-50"
@@ -462,9 +465,11 @@ const ProfilePage = () => {
     fetchData()
   },[userId])
   console.log(basicInfo);
+  const crumbs = [{crumb:"Faculties",link:"/employee"},{crumb:basicInfo.first_name + basicInfo.last_name, link:"#"}]
 // (id int, first_name varchar, last_name varchar, designation varchar, email varchar, contact varchar, address text, profile_picture varchar, department varchar, about varchar, interests varchar, linkedin varchar, github varchar)
   return (
     <div className="min-h-screen bg-gray-100">
+      <PageHeader breadCrumbs={crumbs} title={"Faculties"}/>
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Profile Sidebar */}

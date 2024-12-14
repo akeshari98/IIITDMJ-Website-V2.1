@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Card from "../../../components/CardNew";
-import college_img1 from "../../../resources/images/3.jpg";
-import image7 from "../../../resources/images/offeredprograms.png";
 import PageHeader from "../../../components/PageHeader";
 const MainPage = () => {
-
+    const image7 = process.env.REACT_APP_Backend + "/public/WebsiteImages/offeredprograms-min.png";
     const [data, setData] = useState({
         cardsData: [],
     });

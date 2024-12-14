@@ -25,7 +25,7 @@ const sessionSlice = createSlice({
 // Font Size Slice
 const fontSizeSlice = createSlice({
   name: 'fontSize',
-  initialState: 16, // Default font size in px
+  initialState: 14, // Default font size in px
   reducers: {
     increaseFontSize: (state) => Math.min(state + 2, 32), // Max size: 32px
     decreaseFontSize: (state) => Math.max(state - 2, 10), // Min size: 10px

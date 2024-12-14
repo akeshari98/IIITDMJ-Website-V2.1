@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import team from "../resources/images/College-img.jpg";
+// import team from "../resources/images/College-img.jpg";
 // import team_1 from "../resources/illustrations/home/team-1.jpg";
 // import team_2 from "../resources/illustrations/home/team-2.jpg";
 // import team_3 from "../resources/illustrations/home/team-3.jpg";
@@ -26,12 +26,12 @@ function AboutUs() {
 
               <div className="relative mt-12 lg:mt-24">
                 <div className="absolute inset-x-0 inset-y-0 rounded-3xl bg-gradient-to-b  blur-md lg:top-4 lg:-bottom-4 lg:blur-xl"></div>
-                <img
+                {/* <img
                   // src="https://res.cloudinary.com/dbbfbpsc2/image/upload/v1664091452/saasblocks-tdg1/assets/penta_about_hero.png"
                   src={team}
                   alt="people looking at laptop while smiling"
                   className="relative z-10 aspect-[2/1] w-full rounded-3xl"
-                />
+                /> */}
               </div>
             </section>
 

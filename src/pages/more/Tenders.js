@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Calendar, FileText, ChevronUp, ChevronDown, ExternalLink } from 'lucide-react';
+import { Search, Calendar, FileText, ChevronUp, ChevronDown, ExternalLink, IndianRupee } from 'lucide-react';
 import axios from 'axios';
 import axiosInstance from '../../axios';
+import PageHeader from '../../components/PageHeader';
 // Database structure suggestion:
 /*
 CREATE TABLE tenders (
@@ -154,6 +155,7 @@ const TendersPage = () => {
               </button>
             </th>
             <th className="px-6 py-3 border-b text-left">Documents</th>
+            <th className="px-6 py-3 border-b text-left">Esitmated Value</th>
           </tr>
         </thead>
         <tbody>
@@ -196,7 +198,7 @@ const TendersPage = () => {
                 </td>
                 <td className="px-6 py-4 border-b">
                   <div className="flex flex-col space-y-1">
-                    {tender.attachments.map((doc, index) => (
+                    {tender.attachments!==null && JSON.parse(tender.attachments).map((doc, index) => (
                       <a
                         key={index}
                         href={doc.url}
@@ -210,6 +212,12 @@ const TendersPage = () => {
                     ))}
                   </div>
                 </td>
+                <td>
+                <div className="flex items-center justify-center space-x-2">
+                  <IndianRupee  className="w-4 h-4 text-gray-500" />
+                  {tender.estimated_value}
+                  </div>
+                </td>
               </tr>
             ))
           )}
@@ -217,12 +225,11 @@ const TendersPage = () => {
       </table>
     </div>
   );
-
+  const crumbs = [{crumb:"Tenders",link:"#"}]
   return (
     <div className="min-h-screen bg-gray-50">
+      <PageHeader breadCrumbs={crumbs} title={"Tenders"}/>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Tenders</h1>
-        
         <div className="flex space-x-4 mb-6 border-b">
           <button
             className={`pb-2 px-4 font-medium transition-colors duration-200 ${

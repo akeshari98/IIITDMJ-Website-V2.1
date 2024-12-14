@@ -1,7 +1,6 @@
 import React from "react";
-import { FaPhoneAlt, FaEnvelope, FaGlobe, FaTwitter, FaLinkedin, FaFacebook, FaAngleRight, FaInstagram, FaYoutube } from "react-icons/fa";
-import Weather from "./weather/weather";
-import logo from "../../resources/images/IIIT_logo.png";
+// import ErrorThrowingComponent from "../../errors/TestError";
+import { FaPhoneAlt, FaGlobe, FaTwitter, FaLinkedin, FaFacebook, FaAngleRight, FaInstagram, FaYoutube } from "react-icons/fa";
 const Footer = () => {
   const about_links = [
     { name: 'Home', href: '/' },
@@ -57,6 +56,8 @@ const Footer = () => {
   
   return (
     <footer className="relative z-10">
+      {/* <ErrorThrowingComponent/> */}
+       {/* <ErrorThrowingComponent/> */}
       {/* Top Footer Area */}
       <div className="bg-[#15151e] text-white py-20">
         <div className="container mx-auto px-4">

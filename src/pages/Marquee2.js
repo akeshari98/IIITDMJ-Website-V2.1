@@ -25,7 +25,7 @@ const Marquee2 = ({ data }) => {
   return (
     <div>
       <marquee
-        className="border-2 h-8 rounded-lg w-full text-gray-500 font-semibold"
+        className=" h-8 rounded-lg w-full text-gray-500 font-semibold"
         behavior="scroll"
         direction="left"
         scrollamount="10"
