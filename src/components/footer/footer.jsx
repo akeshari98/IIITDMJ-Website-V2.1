@@ -187,8 +187,8 @@ const Footer = () => {
                 <h5 className="text-white font-medium text-lg mb-6 text-left">Contact Us</h5>
                 <div className="flex flex-col items-left space-y-4">
                 <div className="flex items-center space-x-3">
-                    <span className="text-gray-400"><a className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200" href="/mapsanddirections">Indian Institute of Information Technology<br></br> Design & Manufacturing Jabalpur<br></br>
-                    Dumna Airport Road,<br></br> Dumna - 482005</a></span>
+                    <span className="text-gray-400"><Link className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200" to="/mapsanddirections">Indian Institute of Information Technology<br></br> Design & Manufacturing Jabalpur<br></br>
+                    Dumna Airport Road,<br></br> Dumna - 482005</Link></span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <FaPhoneAlt className="text-gray-400" />
