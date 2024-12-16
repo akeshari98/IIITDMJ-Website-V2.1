@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - production_branch # Replace with the branch you want to monitor
+      - production_branch 
 
 jobs:
   deploy:
