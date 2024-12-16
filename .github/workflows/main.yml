@@ -25,7 +25,7 @@ jobs:
             # Navigate to the project directory
             cd app
             # Pull the latest changes
-            git pull
+            git pull origin production_branch
             # Install dependencies
             npm install
             # Build the project (if applicable)
