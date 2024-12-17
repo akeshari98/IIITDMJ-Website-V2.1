@@ -12,7 +12,7 @@ import store from "./app/store";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Courses from "./pages/Courses";
-
+import Job from "./pages/Jobs"
 //more pages
 import BoardOfGoverners from "./pages/more/administration/boardofgoverners";
 import FinanceCommittee from "./pages/more/administration/financecommittee";
@@ -108,6 +108,10 @@ const router = createHashRouter([
         path: "/",
         element: <Home />,
         // loader: loader,
+      },
+      {
+        path:'/jobs',
+        element: <Job/>
       },
       {
         path: "/clndr",

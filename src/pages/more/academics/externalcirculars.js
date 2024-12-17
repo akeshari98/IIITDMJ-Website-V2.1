@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
   const [data, setData] = useState({
@@ -11,7 +12,7 @@ const MainPage = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`http://localhost:5000/links/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/links/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }
@@ -100,9 +101,9 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {quickLinks.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 no-underline">
+                <Link to={link.href} className="text-blue-500 no-underline">
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

@@ -5,6 +5,7 @@ import { Menus } from "./utils";
 import Logo from "../../resources/images/IIIT_logo.png";
 import './Navbar.css';
 import InstituteBanner from "../InstiLogo";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -47,7 +48,7 @@ const Navbar = () => {
       >
         <nav className="px-3.5 flex-center-between w-full max-w-7xl mx-auto">
           <div className="flex-center gap-x-3 relative">
-            <a href="/">
+            <Link to="/">
               {/* Conditionally render logo based on banner visibility */}
               {!isBannerVisible && (
                 <img
@@ -56,7 +57,7 @@ const Navbar = () => {
                   alt="logo"
                 />
               )}
-            </a>
+            </Link>
           </div>
 
           <ul className="gap-x-1 lg:flex-center hidden">

@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import ErrorThrowingComponent from "../../errors/TestError";
 import { FaPhoneAlt, FaGlobe, FaTwitter, FaLinkedin, FaFacebook, FaAngleRight, FaInstagram, FaYoutube } from "react-icons/fa";
 const Footer = () => {
   const about_links = [
     { name: 'Home', href: '/' },
-    { name: 'PBI', href: '#' },
+    { name: 'PBI', href: '/#' },
     { name: 'IIIT Act', href: 'https://www.iiitdmj.ac.in/downloads/IIIT%20Act%2030_of_2014.pdf' },
     { name: 'RTI', href: '/rti' },
     { name: 'Statuses', href: 'https://www.iiitdmj.ac.in/downloads/The%20Gazette%20publication%20of%20Statutes%20of%20IIITDM%20Jabalpur.pdf' },
@@ -17,8 +18,8 @@ const Footer = () => {
   const imporatnt_links = [
     { name: 'Electronics and ICT Academy', href: 'https://www.iiitdmj.ac.in/administration/ict.iiitdmj.ac.in' },
     { name: 'Online Fee Payment', href: 'https://www.iiitdmj.ac.in/administration/efee.iiitdmj.ac.in/efee' },
-    { name: 'Annual Report', href: 'annualreport' },
-    { name: 'Annual Account', href: 'annualaccount' },
+    { name: 'Annual Report', href: '/annualreport' },
+    { name: 'Annual Account', href: '/annualaccount' },
     { name: 'World e-book Library', href: 'https://community.worldlibrary.in/?Affiliatikey=NDL-ZY1239' },
     { name: 'Consortium for Educational Communication (CEC)', href: 'https://cec.nic.in/Pages/Home.aspx' },
     { name: 'National Academic Depository (NAD)', href: 'https://nad.gov.in/index.html' },
@@ -53,7 +54,26 @@ const Footer = () => {
     { name: '2023', href: 'https://www.iiitdmj.ac.in/downloads/RH-2023.pdf' },
     { name: '2024', href: 'https://www.iiitdmj.ac.in/downloads/Restricted-Holiday-2024.pdf' },
   ];
-  
+  const renderLink = (item) =>
+    item.href.startsWith("/") ? (
+      <Link
+        to={item.href}
+        className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200"
+      >
+        <FaAngleRight className="text-xs" />
+        <span>{item.name}</span>
+      </Link>
+    ) : (
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200"
+      >
+        <FaAngleRight className="text-xs" />
+        <span>{item.name}</span>
+      </a>
+    );
   return (
     <footer className="relative z-10">
       {/* <ErrorThrowingComponent/> */}
@@ -70,13 +90,7 @@ const Footer = () => {
                 <ul className="space-y-3">
   {about_links.map((item) => (
     <li key={item.name}>
-      <a
-        href={item.href}
-        className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200"
-      >
-        <FaAngleRight className="text-xs" />
-        <span>{item.name}</span>
-      </a>
+     {renderLink(item)}
     </li>
   ))}
 </ul>
@@ -104,13 +118,7 @@ const Footer = () => {
                 <ul className="space-y-3">
   {imporatnt_links.map((item) => (
     <li key={item.name}>
-      <a
-        href={item.href}
-        className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200"
-      >
-        <FaAngleRight className="text-xs" />
-        <span>{item.name}</span>
-      </a>
+     {renderLink(item)}
     </li>
   ))}
 </ul>
@@ -136,13 +144,7 @@ const Footer = () => {
                 <ul className="space-y-3">
   {other_links.map((item) => (
     <li key={item.name}>
-      <a
-        href={item.href}
-        className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200"
-      >
-        <FaAngleRight className="text-xs" />
-        <span>{item.name}</span>
-      </a>
+      {renderLink(item)}
     </li>
   ))}
 </ul>
@@ -185,8 +187,8 @@ const Footer = () => {
                 <h5 className="text-white font-medium text-lg mb-6 text-left">Contact Us</h5>
                 <div className="flex flex-col items-left space-y-4">
                 <div className="flex items-center space-x-3">
-                    <span className="text-gray-400"><a className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200" href="/mapsanddirections">Indian Institute of Information Technology<br></br> Design & Manufacturing Jabalpur<br></br>
-                    Dumna Airport Road,<br></br> Dumna - 482005</a></span>
+                    <span className="text-gray-400"><Link className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200" to="/mapsanddirections">Indian Institute of Information Technology<br></br> Design & Manufacturing Jabalpur<br></br>
+                    Dumna Airport Road,<br></br> Dumna - 482005</Link></span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <FaPhoneAlt className="text-gray-400" />

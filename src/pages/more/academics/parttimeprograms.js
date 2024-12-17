@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 // import Card from "../../../components/CardNew";
 // import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 const MainPage = () => {
     const [data, setData] = useState({
         cardsData: [],
@@ -11,7 +12,7 @@ const MainPage = () => {
 
     const fetchData = async (endpoint, key) => {
         try {
-            const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+            const response = await fetch(`${process.env.REACT_APP_Backend}/people/${endpoint}`);
             if (!response.ok) {
                 throw new Error(`Failed to fetch ${key} data`);
             }
@@ -120,8 +121,8 @@ const MainPage = () => {
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="mr-2 text-gray-800">Other details are given in <a href="#" className="no-underline">Annexure III
-                                </a> </span>
+                                <span className="mr-2 text-gray-800">Other details are given in <Link to="#" className="no-underline">Annexure III
+                                </Link> </span>
                             </li>
                         </ul>
 

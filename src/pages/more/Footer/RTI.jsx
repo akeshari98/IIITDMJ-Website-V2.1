@@ -317,7 +317,7 @@ const RTI = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`http://localhost:5000/people/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/people/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }

@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
+
 // import Card from "../../../components/CardNew";
 // import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 
 
 const MainPage = () => {
@@ -14,7 +16,7 @@ const MainPage = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`http://localhost:5000/links/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/links/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }
@@ -42,7 +44,26 @@ const MainPage = () => {
     { name:"Finanace Committee", href: "/financecommittee" },
     { name:"Administrative Structure", href: "/administrativestructure" },
   ];
-
+  const renderLink = (item) =>
+              item.href.startsWith("/") ? (
+                <Link
+                  to={item.href}
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </a>
+              );
   const crumbs = [{crumb:"Building Works Committee Minutes",link:"#"}]
   return (
     <div>
@@ -104,9 +125,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {quickLinks.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 no-underline">
-                  {link.name}
-                </a>
+                {renderLink(link)}
               </li>
             ))}
           </ul>
