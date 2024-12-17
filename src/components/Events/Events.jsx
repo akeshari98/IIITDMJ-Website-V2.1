@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 
 const EventCard = ({ event }) => (
   <motion.div
     whileHover={{ scale: 1.02 }}
-    className="relative min-w-[300px] h-[200px] overflow-hidden shadow-lg group"
+    className="relative min-w-[260px] md:min-w-[295px] h-[200px] rounded-xl overflow-hidden shadow-lg group"
   >
     <Link to={`/event/${event.id}`}>
       <div 
@@ -52,12 +52,29 @@ const EventsSection = ({ events }) => {
     }
   };
 
+  React.useEffect(() => {
+    const { current } = scrollRef;
+    const interval = setInterval(() => {
+      if (current) {
+        if (
+          current.scrollLeft + current.offsetWidth >= current.scrollWidth
+        ) {
+          current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          current.scrollBy({ left: 350, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="w-full bg-gray-50 px-4 py-16 rounded-lg">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">Events Gallary</h2>
+            <h2 className="text-3xl font-bold text-gray-900">Events Gallery</h2>
             <p className="text-gray-600 mt-2">Discover our recent and upcoming events</p>
           </div>
           <div className="flex gap-2">

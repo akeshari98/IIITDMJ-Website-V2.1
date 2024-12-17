@@ -1,11 +1,31 @@
 import React, {useState, useEffect} from "react";
-import Card from "../../../components/CardNew";
-import college_img1 from "../../../resources/images/3.jpg";
+// import Card from "../../../components/CardNew";
+// import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 
 
 const MainPage = () => {
-
+  const renderLink = (item) =>
+              item.href.startsWith("/") ? (
+                <Link
+                  to={item.href}
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </a>
+              );
   const [data, setData] = useState({
     links: [],
   });
@@ -14,7 +34,7 @@ const MainPage = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_Server_Name}/links/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/links/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }
@@ -79,9 +99,7 @@ const MainPage = () => {
                 {data.links.map((link, index) => (
                     <li key={index} className="flex items-start ml-3 mb-2">
                         <span className="relative w-1.5 h-1.5 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-                        <a target="_blank" href={link.href} className="-mt-1 text-lg font-medium text-blue-500 no-underline">
-                        {link.name}
-                        </a>
+{renderLink(link)}
                     </li>
                     ))}
                 </ul>

@@ -1,39 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Bell, Newspaper, Paperclip, Zap } from "lucide-react";
-import axios from "axios";
+import React, { useState, useEffect,Suspense } from "react";
+import { Link} from "react-router-dom";
+import {
+  ChevronRight,
+} from "lucide-react";
 import axiosInstance from "../axios";
-import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
-import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg";
-import home_img2 from "../resources/illustrations/home/college campus-amico.svg";
-import college_img1 from "../resources/images/3.jpg";
-import college_img2 from "../resources/images/college-image.jpg";
-import college_img3 from "../resources/images/College-img.jpg";
-import college_img4 from "../resources/images/College-img1.jpg";
-import Logo from "../resources/images/IIITDMJ.jpg";
-import Marquee from "./Marquee";
 import Marquee2 from "./Marquee2";
 import ImageSlider from "./ImageSlider";
-import ImageGallery from "../components/ImageGallery";
-import NewsSlider from "../components/NewsSlider/NewsSlider";
-import AchievementsSlider from "../components/AchievementsSlider";
-import Notices from "../components/Notices";
 import AboutAndVisitors from "../components/AboutAndVisitor";
 import Events from "../components/Events/Events";
 import ImpotantAnnouncement from "../components/ImportantAnnouncement";
 import FocusOn from "../components/FocusOn";
 import Coi from "../components/Coi";
-const images = [college_img1, college_img2, college_img3, college_img4];
-const photos = [
-  college_img1,
-  college_img2,
-  college_img3,
-  college_img4,
-  home_img1,
-  home_img2,
-  home_img3,
-  home_img1,
-];
+import NewsSliderSkeleton from "../components/Skeletons/NewsSkeleton";
+const NewsSlider = React.lazy(() => import('../components/NewsSlider/NewsSlider'));
+const AchievementsSlider = React.lazy(() => import('../components/AchievementsSlider'));
+const Notices = React.lazy(() => import('../components/Notices'));
 function Home() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
 
@@ -52,7 +33,6 @@ function Home() {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchEvents(); // Call fetch on component load
   }, []);
@@ -72,60 +52,156 @@ function Home() {
   useEffect(() => {
     fetchMarquee();
   }, []);
-  const navigate = useNavigate();
-
+  const [isHovered, setIsHovered] = useState(false);
+  const SectionHeader = ({ 
+    title, 
+    linkTo, 
+    notificationDot = false 
+  }) => {
+    const [isHovered, setIsHovered] = useState(false);
+  
+    return (
+      <h3 className="text-2xl  mb-4 flex items-center justify-center">
+        {title}
+        {notificationDot && (
+          <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse ml-4 mt-2.5"></span>
+        )}
+        <span className="inline-flex items-center">
+          <Link
+            to={linkTo}
+            rel="noopener noreferrer"
+            style={{ color: "#2563EB" }}
+            className="inline-flex items-center gap-2 text-black rounded-lg text-sm font-medium transition-colors ml-1"
+          >
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <ChevronRight
+                size={24}
+                className={`transition-transform transform ${
+                  isHovered
+                    ? "translate-x-2 opacity-0"
+                    : "translate-x-0 opacity-100"
+                }`}
+              />
+              <span
+                className={`text-sm font-medium transition-opacity ${
+                  isHovered ? "opacity-100 -translate-x-7" : "opacity-0 -translate-x-7"
+                }`}
+              >
+                View More
+              </span>
+            </div>
+          </Link>
+        </span>
+      </h3>
+    );
+  };
+  const AchievementsAndNoticesLayout = () => {
+    return (
+      <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
+        {/* Achievements Section */}
+        <div className="lg:w-2/3">
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <SectionHeader 
+              title="Achievements" 
+              linkTo="/achievementsPage"
+            />
+            <AchievementsSlider />
+          </div>
+        </div>
+  
+        {/* Notices Section */}
+        <div className="lg:w-1/3">
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <SectionHeader 
+              title="Notices" 
+              linkTo="/noticespage"
+            />
+            <Notices />
+          </div>
+        </div>
+      </div>
+    );
+  };
   return (
     <div>
-      <main>
-        <div>
-          <ImageSlider />
+      <main >
+        <div className="relative">
+          <ImageSlider/>
         </div>
         <br></br>
-        <div className="flex flex-row items-center w-[90vw] ml-auto mr-auto">
-          <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse mr-4 mb-2"></span>
-          <h4 className="h-8 w-auto whitespace-nowrap font-semibold">
-            Impotant Updates:
-          </h4>
+        <div className="bg-white w-[95vw] mx-auto rounded-2xl shadow-2xl relative -top-24 pt-12"
+  style={{
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backdropFilter: 'saturate(200%) blur(30px)',
+    boxShadow: 'rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem',
+  }}>
+        <section className="flex flex-row items-center w-[90vw] ml-auto mr-auto">
           <div className="w-full px-0 ml-4">
             <Marquee2 data={fetchedMarquee} />
           </div>
-        </div>
-        <section className="max-w-[90vw] mx-auto px-8 pt-6 pb-2 text-center">
+        </section>
+        <section className="px-8 pt-20 pb-2 text-center">
           <ImpotantAnnouncement />
         </section>
-        <section className="px-8  pt-6 pb-2 text-center md:py-16 ">
+        <section className="px-8 pt-20 pb-2 text-center ">
           {/*  */}
-          <div className="container  pt-10 mx-auto -mt-10 flex flex-col gap-12">
-            <div className="flex flex-col max-w-[80vw] mx-auto text-left">
+          <div className="container  pt-2 mx-auto -mt-10 flex flex-col gap-12">
+            <div className="flex flex-col w-full text-left max-w-7xl mx-auto ">
               <div className="flex flex-col ">
-                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 flex gap-3  item-center">
                   Latest{" "}
                   <span
                     className="sm:text-3xl text-2xl font-medium title-font text-gray-900"
                     style={{ color: "#2563EB" }}
                   >
-                    Updates
+                    Updates{" "}
                   </span>
+                  <Link
+                    to={"/newsPage"}
+                    rel="noopener noreferrer"
+                    style={{ color: "#2563EB" }}
+                    className="inline-flex items-center gap-2 text-black rounded-lg text-sm font-medium transition-colors  ml-1 "
+                  >
+                    <div
+                      className="flex items-center gap-2 cursor-pointer"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
+                    >
+                      <ChevronRight
+                        size={24}
+                        className={`transition-transform transform ${
+                          isHovered
+                            ? "translate-x-2 opacity-0"
+                            : "translate-x-0 opacity-100"
+                        }`}
+                      />
+                      <span
+                        className={`text-sm font-medium transition-opacity ${
+                          isHovered ? "opacity-100 -translate-x-7" : "opacity-0 -translate-x-7"
+                        }`}
+                      >
+                        View More
+                      </span>
+                    </div>
+                    {/* <ExternalLink className="w-4 h-4" /> */}
+                  </Link>
                 </h1>
                 {/* Horizontal line */}
 
                 <p className="lg:w-2/3 leading-relaxed text-base text-gray-600">
                   Get all the latest information here
-                  <span>
-                    <Link
-                      to={"/newsPage"}
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300 ml-4"
-                    >
-                      View All
-                      {/* <ExternalLink className="w-4 h-4" /> */}
-                    </Link>
-                  </span>
+                  <span></span>
                 </p>
                 <div className="w-12 h-1 bg-[#2563EB] my-2"></div>
               </div>
               <div className="bg-white py-4 w-full">
+              <Suspense fallback={NewsSliderSkeleton}>
                 <NewsSlider />
+               </Suspense> 
               </div>
             </div>
             <div className="bg-white py-8">
@@ -151,46 +227,7 @@ function Home() {
                   </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
-                  <div className="lg:w-2/3">
-                    <div className="bg-white rounded-lg shadow-md ">
-                      <h3 className="text-2xl font mb-4">
-                        Achievements
-                        <span>
-                          <Link
-                            to={"/achievementsPage"}
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300 ml-6 -mt-3"
-                          >
-                            View All
-                            {/* <ExternalLink className="w-4 h-4" /> */}
-                          </Link>
-                        </span>
-                      </h3>
-                      <AchievementsSlider />
-                    </div>
-                  </div>
-                  <div className="lg:w-1/3">
-                    <h3 className="text-2xl font mb-4 flex  justify-center">
-                      Notices
-                      <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse ml-4 mt-2.5"></span>
-                      <span>
-                        <Link
-                          to={"/noticesPage"}
-                          rel="noopener noreferrer"
-                          className="ml-10 inline-flex items-center gap-2 bg-black text-white px-2 py-1 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
-                        >
-                          View All
-                          {/* <ExternalLink className="w-4 h-4" /> */}
-                        </Link>
-                      </span>
-                    </h3>
-
-                    <div className="bg-white rounded-lg shadow-md pt-1">
-                      <Notices />
-                    </div>
-                  </div>
-                </div>
+                <AchievementsAndNoticesLayout/>
               </div>
             </div>
 
@@ -208,6 +245,7 @@ function Home() {
         if (error) return <p>{error}</p>; */}
           <Events events={fetchedEvents} />
         </section>
+        </div>
       </main>
     </div>
   );

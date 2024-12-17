@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from "react";
-import bcom1 from "../resources/images/bcom/bcom1.svg";
-import bcom2 from "../resources/images/bcom/bcom2.svg";
-import bcom3 from "../resources/images/bcom/bcom3.svg";
-import bcom4 from "../resources/images/bcom/bcom4.svg";
+// import bcom1 from "../resources/images/bcom/bcom1.svg";
+// import bcom2 from "../resources/images/bcom/bcom2.svg";
+// import bcom3 from "../resources/images/bcom/bcom3.svg";
+// import bcom4 from "../resources/images/bcom/bcom4.svg";
 import { Link } from "react-router-dom";
 
 const Bcom = () => {
@@ -67,11 +67,11 @@ const Bcom = () => {
                       </div>
                     </div>
                     <div className="order-first block w-full mt-12 aspect-square lg:mt-0 lg:order-first">
-                      <img
+                      {/* <img
                         className="object-cover object-center w-full mx-auto  lg:ml-auto"
                         alt="hero"
                         src={bcom1}
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>
@@ -153,11 +153,11 @@ const Bcom = () => {
                         </div>
                       </div>
                       <div className="order-first block w-full mt-12 aspect-square lg:mt-0">
-                        <img
+                        {/* <img
                           className="object-cover object-center w-full mx-auto  lg:ml-auto"
                           alt="hero"
                           src={bcom2}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>
@@ -171,11 +171,11 @@ const Bcom = () => {
                   <div className="relative flex-col items-center m-auto align-middle">
                     <div className="items-center gap-12 text-left lg:gap-24 lg:inline-flex">
                       <div className="order-first block w-full mt-12 aspect-square lg:mt-0">
-                        <img
+                        {/* <img
                           className="object-cover object-center w-full mx-auto   lg:ml-auto"
                           alt="hero"
                           src={bcom3}
-                        />
+                        /> */}
                       </div>
                       <div className="flex flex-col mt-6 lg:mt-0">
                         <div className="max-w-xl">
@@ -293,11 +293,11 @@ const Bcom = () => {
                     </div>
                   </div>
                   <div className="order-first block w-full mt-12 aspect-square lg:mt-0">
-                    <img
+                    {/* <img
                       className="object-cover object-center w-full mx-auto lg:ml-auto"
                       alt="hero"
                       src={bcom4}
-                    />
+                    /> */}
                   </div>
                   <div className="relative items-center gap-12 m-auto lg:inline-flex md:order-first">
                     <div className="mx-auto lg:max-w-7xl">

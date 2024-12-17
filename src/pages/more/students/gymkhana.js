@@ -1,22 +1,40 @@
 import React, { useEffect, useState } from "react";
-import Card from "../../../components/CardNew";
-import college_img1 from "../../../resources/images/3.jpg";
-
-import image1 from "../../../resources/images/gym-1.jpg";
-import image2 from "../../../resources/images/gym-2.jpg";
-
-import image3 from "../../../resources/images/senate1.jpg";
-import image4 from "../../../resources/images/senate2.jpg";
-import image5 from "../../../resources/images/senate3.jpg";
-import image6 from "../../../resources/images/senate4.jpg";
+// import Card from "../../../components/CardNew";
+// import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
   const links = [
     { name: "Various Clubs Working Under Gymkhana", href: "/" },
     { name: "Office Bearers & Committees of Gymkhana", href: "/" },
   ];
-
+  const image1 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate1.jpg";
+  const image2 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate2.jpg";
+  const image3 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate3.jpg";
+  const image4 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate4.jpg";
+  const image5 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate5.jpg";
+  const image6 = process.env.REACT_APP_Backend + "/public/WebsiteImages/senate6.jpg";
+  const renderLink = (item) =>
+              item.href.startsWith("/") ? (
+                <Link
+                  to={item.href}
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 no-underline"
+                >
+                
+                  <span>{item.name}</span>
+                </a>
+              );
   const forms = [
     {
       name: "H_151_Form_Hostel Accommodation",
@@ -74,7 +92,7 @@ const MainPage = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_Server_Name}/people/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/people/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }
@@ -314,9 +332,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {links.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 no-underline">
-                  {link.name}
-                </a>
+                {renderLink(link)}
               </li>
             ))}
           </ul>
@@ -326,9 +342,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {forms.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 no-underline">
-                  {link.name}
-                </a>
+                {renderLink(link)}
               </li>
             ))}
           </ul>
@@ -338,9 +352,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {guidelines.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 no-underline">
-                  {link.name}
-                </a>
+                {renderLink(link)}
               </li>
             ))}
           </ul>
@@ -350,9 +362,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {notifications.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 no-underline">
-                  {link.name}
-                </a>
+                {renderLink(link)}
               </li>
             ))}
           </ul>

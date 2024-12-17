@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Card from "../../../components/CardNew";
-import college_img1 from "../../../resources/images/3.jpg";
+// import Card from "../../../components/CardNew";
+// import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 const MainPage = () => {
     const [data, setData] = useState({
         cardsData: [],
@@ -11,7 +12,7 @@ const MainPage = () => {
 
     const fetchData = async (endpoint, key) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_Server_Name}/people/${endpoint}`);
+            const response = await fetch(`${process.env.REACT_APP_Backend}/people/${endpoint}`);
             if (!response.ok) {
                 throw new Error(`Failed to fetch ${key} data`);
             }
@@ -102,14 +103,14 @@ const MainPage = () => {
                             Equivalent to M.Tech./MDes for first two years or till formal admission in Ph.D. programme (clearance of comprehensive exam) whichever is earlier. After this period it will be equivalent to Ph.D. programme fees of equivalent batch (for example a student who has taken admission in 2021 then Ph.D. fees will be applicable for the Ph.D. students admitted in 2021 from 2023 onwards)
                         </p>
 
-                        <a href="#" className="text-blue-600 no-underline mb-6">Details of Fee Structure</a>
+                        <Link to="#" className="text-blue-600 no-underline mb-6">Details of Fee Structure</Link>
 
 
                         <h6 className="font-semibold text-gray-800 pt-8">Assistantship for Integrated Master+PhD:</h6>
                         <p className=" text-gray-800 ">
                             Equivalent to M.Tech. for first two years or till formal admission in Ph.D. programme (clearance of comprehensive exam) whichever is earlier. After this period it will be equivalent to Ph.D. programme assistantship.
                         </p>
-                        <a href="#" className="text-blue-600 no-underline mb-4">PhD Curriculum</a>
+                        <Link to="#" className="text-blue-600 no-underline mb-4">PhD Curriculum</Link>
 
 
                     </div>

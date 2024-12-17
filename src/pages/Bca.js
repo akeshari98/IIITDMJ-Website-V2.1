@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from "react";
-import img1 from "../resources/images/bca/pic1.svg";
-import img2 from "../resources/images/bca/pic2.svg";
-import img3 from "../resources/images/bca/pic3.svg";
+// import img1 from "../resources/images/bca/pic1.svg";
+// import img2 from "../resources/images/bca/pic2.svg";
+// import img3 from "../resources/images/bca/pic3.svg";
 import { Link } from "react-router-dom";
 
 function Bca() {
@@ -88,11 +88,11 @@ function Bca() {
                       </div>
                     </div>
                     <div className="order-first block w-full mt-12 aspect-square lg:mt-0 lg:order-first">
-                      <img
+                      {/* <img
                         className="object-cover object-center w-full mx-auto  lg:ml-auto"
                         alt="hero"
                         src={img2}
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>
@@ -173,11 +173,11 @@ function Bca() {
                         </div>
                       </div>
                       <div className="order-first block w-full mt-12 aspect-square lg:mt-0">
-                        <img
+                        {/* <img
                           className="object-cover object-center w-full mx-auto lg:ml-auto"
                           alt="hero"
                           src={img3}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>
@@ -191,11 +191,11 @@ function Bca() {
                   <div className="relative flex-col items-center m-auto align-middle">
                     <div className="items-center gap-12 text-left lg:gap-24 lg:inline-flex">
                       <div className="order-first block w-full mt-12 aspect-square lg:mt-0">
-                        <img
+                        {/* <img
                           className="object-cover object-center w-full mx-auto  lg:ml-auto"
                           alt="hero"
                           src={img1}
-                        />
+                        /> */}
                       </div>
                       <div className="flex flex-col mt-6 lg:mt-0">
                         <div className="max-w-xl">
@@ -312,11 +312,11 @@ function Bca() {
                     </div>
                   </div>
                   <div className="order-first block w-full mt-12 aspect-square lg:mt-0">
-                    <img
+                    {/* <img
                       className="object-cover object-center w-full mx-auto lg:ml-auto"
                       alt="hero"
                       src={img1}
-                    />
+                    /> */}
                   </div>
                   <div className="relative items-center gap-12 m-auto lg:inline-flex md:order-first">
                     <div className="mx-auto lg:max-w-7xl">

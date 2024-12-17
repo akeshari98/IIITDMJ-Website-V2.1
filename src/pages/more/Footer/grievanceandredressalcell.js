@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 
 
 const MainPage = () => {
@@ -11,7 +12,7 @@ const MainPage = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_Server_Name}/links/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/links/${endpoint}`);;
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }
@@ -23,7 +24,26 @@ const MainPage = () => {
       setLoading(false);
     }
   };
-
+ const renderLink = (item) =>
+             item.href.startsWith("/") ? (
+               <Link
+                 to={item.href}
+                 className="text-blue-500 no-underline"
+               >
+               
+                 <span>{item.name}</span>
+               </Link>
+             ) : (
+               <a
+                 href={item.href}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="text-blue-500 no-underline"
+               >
+               
+                 <span>{item.name}</span>
+               </a>
+             );
   useEffect(() => {
     const endpoints = [{ key: "links", endpoint: "grievance_redressal_cell" }];
     endpoints.forEach(({ endpoint, key }) => {

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Card from "../../../components/CardNew";
-import college_img1 from "../../../resources/images/3.jpg";
-import image7 from "../../../resources/images/offeredprograms.png";
 import PageHeader from "../../../components/PageHeader";
 const MainPage = () => {
-
+    const image7 = process.env.REACT_APP_Backend + "/public/WebsiteImages/offeredprograms-min.png";
     const [data, setData] = useState({
         cardsData: [],
     });
@@ -13,7 +10,7 @@ const MainPage = () => {
 
     const fetchData = async (endpoint, key) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_Server_Name}/people/${endpoint}`);
+            const response = await fetch(`${process.env.REACT_APP_Backend}/people/${endpoint}`);
             if (!response.ok) {
                 throw new Error(`Failed to fetch ${key} data`);
             }

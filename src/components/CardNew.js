@@ -1,15 +1,14 @@
 import React from "react";
-import profile from "../resources/images/admin/profile.jpg";
 import { Link } from "react-router-dom";
-// Function to split phone number by '.' and return an array of strings
-const splitPhoneNumber = (phone_no) => {
-  return phone_no.toString().split("."); // Splits wherever there is a '.'
-};
+import { MapPin, Phone, Mail, User } from "lucide-react";
+import profile from "../resources/images/admin/profile.jpg";
 
-// Function to split a comma-separated email string into an array of strings
-const splitEmailString = (email) => {
-  return email.split(",").map((item) => item.trim()); // Trims any extra spaces
-};
+// Utility functions
+const splitPhoneNumber = (phone_no) => 
+  phone_no.toString().split(".").filter(Boolean);
+
+const splitEmailString = (email) => 
+  email.split(",").map((item) => item.trim()).filter(Boolean);
 
 const Card = ({
   first_name,
@@ -22,59 +21,83 @@ const Card = ({
   id,
   user_type,
 }) => {
-  // Initialize variables for phoneArray and emailArray
-  const phoneArray = phone_no ? splitPhoneNumber(phone_no) : []; // Only split if phone_no is not null
-  const emailArray = email ? splitEmailString(email) : []; // Only split if email is not null
-  return (
+  // Process phone and email
+  const phoneArray = phone_no ? splitPhoneNumber(phone_no) : [];
+  const emailArray = email ? splitEmailString(email) : [];
 
-    <div className="max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform flex flex-col h-full">
-      <img
-        src={profile_picture || profile}
-        alt={first_name}
-        className="w-40 h-40 object-cover object-top rounded-md mx-auto"
-      />
-      <div className="mt-4 flex-grow">
-        {first_name && (
-          <h3 className="text-lg font-semibold break-words -mb-1 leading-tight">
-            {first_name} {last_name}
-          </h3>
-        )}
-        {role && <p className="text-md text-gray-400 font-semibold break-words">{role}</p>}
-        {address && <p className="text-gray-600 break-words">{address}</p>}
-        {phone_no && phoneArray.length > 0 && (
-          <div className="text-gray-600 mt-1 -mb-1">
-            {phoneArray.map((item, index) => (
-              <p key={index} className="break-words">
-                {item}
-              </p>
-            ))}
-          </div>
-        )}
-        {email && emailArray.length > 0 && (
-          <div className="text-gray-600 ">
-            {emailArray.map((item, index) => (
-              <div key={index} className="break-words">
+  return (
+    <div className="w-full max-w-sm mx-auto bg-white rounded-md shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl group">
+      <div className="relative h-48 bg-gray-100">
+        {/* Profile Picture */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src={profile_picture || profile}
+            alt={`${first_name} ${last_name}`}
+            className="w-40 h-40 object-cover object-top rounded-full border-4 border-white shadow-lg z-10"
+          />
+        </div>
+      </div>
+
+      {/* Content Area */}
+      <div className="px-6 py-4 text-center">
+        <div className="mb-4">
+          {first_name && (
+            <h3 className="text-xl font-bold text-gray-800 leading-tight">
+              {first_name} {last_name}
+            </h3>
+          )}
+          {role && (
+            <p className="text-sm text-gray-500 font-medium uppercase tracking-wide mt-1">
+              {role}
+            </p>
+          )}
+        </div>
+
+        {/* Contact Information */}
+        <div className="space-y-2 mb-4">
+          {address && (
+            <div className="flex items-center justify-center text-gray-600">
+              <MapPin className="h-5 w-5 mr-2 text-gray-400" />
+              <span className="text-sm">{address}</span>
+            </div>
+          )}
+
+          {phone_no && phoneArray.length > 0 && (
+            <div className="flex items-center justify-center text-gray-600">
+              <Phone className="h-5 w-5 mr-2 text-gray-400" />
+              {phoneArray.map((item, index) => (
+                <span key={index} className="text-sm mr-2">{item}</span>
+              ))}
+            </div>
+          )}
+
+          {email && emailArray.length > 0 && (
+            <div className="flex flex-col items-center justify-center text-gray-600">
+              <Mail className="h-5 w-5 mr-2 text-gray-400" />
+              {emailArray.map((item, index) => (
                 <a
+                  key={index}
                   href={`mailto:${item}`}
-                  className="no-underline text-blue-500 -mb-2"
+                  className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
                 >
                   {item}
                 </a>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      {user_type === "faculty" && (
-        <div className="mt-auto">
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Profile View Button */}
+        {user_type === "faculty" && (
           <Link
             to={`/profilepage/${id}`}
-            className="mt-4 bg-gray-700 text-white rounded px-2 py-2 hover:bg-gray-900 transition duration-300 text-center block w-full"
+            className="w-full block text-center px-4 py-2 bg-gray-700 text-white font-semibold rounded-md hover:bg-gray-800 transition-all duration-300 ease-in-out"
           >
-            View Profile
+            <User className="inline-block w-5 h-5 mr-2" />
+            View Full Profile
           </Link>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

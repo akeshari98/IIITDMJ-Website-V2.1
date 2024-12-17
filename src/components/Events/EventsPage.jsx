@@ -4,7 +4,7 @@ import axios from "axios"; // You can also use fetch() if preferred
 import { ExternalLink, Calendar, MapPin, Clock } from "lucide-react";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
-import axiosInstance from "../../axios";
+import axiosInstance from '../../axios'
 const container = {
   hidden: { opacity: 0 }, // When hidden, the element has 0 opacity (not visible).
   show: {
@@ -29,7 +29,7 @@ const EventDetailPage = () => {
   // Fetch event data based on eventId
   const fetchEventData = async () => {
     try {
-      const response = await axiosInstance.get(`/events/events/${eventId}`);
+      const response = await axiosInstance.get(`events/events/${eventId}`);
       setEvent(response.data); // Set the event data
       setLoading(false); // Stop loading
     } catch (err) {
@@ -42,7 +42,7 @@ const EventDetailPage = () => {
   // Fetch event images based on eventId
   const fetchEventImages = async () => {
     try {
-      const response = await axiosInstance.get(`/eventImages/eventImages/${eventId}`);
+      const response = await axiosInstance.get(`eventImages/eventImages/${eventId}`);
       setEventImages(response.data); // Set the event images
     } catch (err) {
       console.error("Error fetching event images:", err);
@@ -70,7 +70,7 @@ const EventDetailPage = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${event.cover_image})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8">
           <div className="container mx-auto">
             <h1 className="text-4xl font-bold text-white mb-4">{event.name}</h1>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-
+import { motion } from "framer-motion";
+import axiosInstance from "../axios";
 const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [scrollY, setScrollY] = useState(0);
@@ -9,10 +10,11 @@ const ImageSlider = () => {
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_Server_Name}/carousel/carousels`);
-        const data = await response.json();
+        const response = await axiosInstance.get('/carousel/carousels')
+
+        // const data = await response.json();
         setSlidesData(
-          data.map((item) => ({
+          response.data.map((item) => ({
             image_url: item.image_url,
             title: item.title,
             subtext: item.subtext,
@@ -60,26 +62,45 @@ const ImageSlider = () => {
   if (slides.length === 0) {
     return <div>No slides available</div>;
   }
-
+  const urlBuilder = (url)=>{
+    return process.env.REACT_APP_Backend + url;
+  }
   return (
-    <div className="relative w-full h-[70vh] overflow-hidden">
-      <div
-        className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-          transitioning ? "opacity-0" : "opacity-100"
-        }`}
-        style={{
-          backgroundImage: `url(${slides[currentIndex].image_url})`,
-          transform: `translateY(${scrollY * 0.4}px)`,
-        }}
-      >
-        <div className="absolute inset-0 bg-black opacity-30"></div>
-      </div>
+    <div className="relative w-full h-[90vh] overflow-hidden">
+     <div
+  className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+    transitioning ? "opacity-0" : "opacity-100"
+  }`}
+  style={{
+    backgroundImage: `url(${urlBuilder(slides[currentIndex].image_url)})`,
+    backgroundAttachment: "fixed", // Makes the background image static
+    backgroundPosition: "center", // Ensures the image is centered
+    backgroundSize: "cover", // Ensures the image covers the entire area
+  }}
+>
+  <div className="absolute inset-0 bg-black opacity-30"></div>
+</div>
 
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4 md:px-10">
-        <h1 className="text-3xl md:text-5xl font-bold text-center">
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4 md:px-10 absolute inset-0 bg-gradient-to-b from-black/60 to-transparent">
+        <motion.h1
+          className="text-3xl md:text-8xl font-bold text-center"
+          style={{
+            fontFamily: "Canela Deck Web, serif",
+            fontStyle: "normal",
+            fontWeight: "400",
+            letterSpacing: "-0.1px",
+            lineHeight: "1.15",
+          }}
+          initial={{ opacity: 0, y: 50 }} // Initial state: fully transparent and 50px down
+          animate={{ opacity: 1, y: 0 }} // End state: fully visible and in normal position
+          transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
+        >
           {slides[currentIndex].title}
-        </h1>
-        <p className="mt-2 text-lg md:text-2xl text-center max-w-[80%]">
+        </motion.h1>
+        <p
+          className="mt-2 text-lg md:text-2xl text-center max-w-[80%]"
+          style={{ letterSpacing: "-.1px", lineHeight: "1.5",fontWeight:'light' }}
+        >
           {slides[currentIndex].subtext}
         </p>
         {slides[currentIndex].link && (
@@ -108,8 +129,8 @@ const ImageSlider = () => {
       >
         &#10095;
       </button>
-
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 opacity-40">
+      {/* 
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {slides.map((_, index) => (
           <div
             key={index}
@@ -119,7 +140,7 @@ const ImageSlider = () => {
             onClick={() => setCurrentIndex(index)}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

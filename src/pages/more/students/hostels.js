@@ -1,16 +1,37 @@
 import React, { useEffect, useState } from "react";
-import Card from "../../../components/CardNew";
-import college_img1 from "../../../resources/images/3.jpg";
+// import Card from "../../../components/CardNew";
+// import college_img1 from "../../../resources/images/3.jpg";
 
-import image1 from "../../../resources/images/vasishtha.jpg";
-import image2 from "../../../resources/images/aryabhatta.jpg";
-import image3 from "../../../resources/images/vivekananda.jpg";
-import image4 from "../../../resources/images/nagarjuna.jpg";
-import image5 from "../../../resources/images/panini.jpg";
-import image6 from "../../../resources/images/maa-saraswati.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
+   const image1 = process.env.REACT_APP_Backend + "/public/WebsiteImages/vasishtha.jpg"
+   const image2 = process.env.REACT_APP_Backend + "/public/WebsiteImages/aryabhatta.jpg"
+   const image3 = process.env.REACT_APP_Backend + "/public/WebsiteImages/vivekananda.jpg"
+   const image4 = process.env.REACT_APP_Backend + "/public/WebsiteImages/nagarjuna.jpg"
+   const image5 = process.env.REACT_APP_Backend + "/public/WebsiteImages/panini.jpg"
+   const image6 = process.env.REACT_APP_Backend + "/public/WebsiteImages/maa-saraswati.jpg"
+   const renderLink = (item) =>
+               item.href.startsWith("/") ? (
+                 <Link
+                   to={item.href}
+                   className="text-blue-500 no-underline"
+                 >
+                 
+                   <span>{item.name}</span>
+                 </Link>
+               ) : (
+                 <a
+                   href={item.href}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="text-blue-500 no-underline"
+                 >
+                 
+                   <span>{item.name}</span>
+                 </a>
+               );
   const notifications = [
     {
       name: "Notification regarding constitution of Council of Wardens, dated: August 24, 2023 | Corrigendum, dated: August 25, 2023",
@@ -103,7 +124,7 @@ const MainPage = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_Server_Name}/people/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/people/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }
@@ -279,9 +300,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
               {notifications.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
-                  <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                  </a>
+                  {renderLink(link)}
                 </li>
               ))}
             </ul>
@@ -292,9 +311,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
                 {vasishtha.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
-                    <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                    </a>
+                    {renderLink(link)}
                 </li>
                 ))}
             </ul>
@@ -302,9 +319,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
                 {aryabhatta.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
-                    <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                    </a>
+                    {renderLink(link)}
                 </li>
                 ))}
             </ul>
@@ -312,9 +327,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
                 {vivekananda.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
-                    <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                    </a>
+                    {renderLink(link)}
                 </li>
                 ))}
             </ul>
@@ -322,9 +335,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
                 {nagarjuna.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
-                    <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                    </a>
+                    {renderLink(link)}
                 </li>
                 ))}
             </ul>
@@ -332,9 +343,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
                 {panini.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
-                    <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                    </a>
+                    {renderLink(link)}
                 </li>
                 ))}
             </ul>
@@ -342,9 +351,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
                 {saraswati.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
-                    <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                    </a>
+                    {renderLink(link)}
                 </li>
                 ))}
             </ul>
@@ -352,9 +359,7 @@ const MainPage = () => {
             <ul className="list-disc ml-5">
                 {rewa.map((link, index) => (
                 <li key={index} className="mb-2 -ml-3">
-                    <a href={link.href} className="text-blue-500 no-underline">
-                    {link.name}
-                    </a>
+                    {renderLink(link)}
                 </li>
                 ))}
             </ul>
@@ -372,9 +377,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {info.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a href={link.href} className="text-blue-500 no-underline">
-                  {link.name}
-                </a>
+               {renderLink(link)}
               </li>
             ))}
           </ul>

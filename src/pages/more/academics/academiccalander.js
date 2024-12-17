@@ -11,7 +11,7 @@ const MainPage = () => {
 
   const fetchData = async (endpoint, key) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_Server_Name}/links/${endpoint}`);
+      const response = await fetch(`${process.env.REACT_APP_Backend}/links/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${key} data`);
       }

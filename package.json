@@ -1,7 +1,8 @@
 {
-  "name": "g-campus",
+  "name": "IIITDMJ",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
     "@mantine/core": "^7.13.4",
@@ -25,6 +26,7 @@
     "express": "^4.21.1",
     "firebase": "^10.7.1",
     "framer-motion": "^11.11.11",
+    "git": "^0.1.5",
     "lucide-react": "^0.451.0",
     "multer": "^1.4.5-lts.1",
     "mysql": "github:mysqljs/mysql",
@@ -36,6 +38,7 @@
     "querystring-es3": "^0.2.1",
     "razorpay": "^2.9.2",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.16.3",
     "react-bootstrap": "^2.10.5",
     "react-chartjs-2": "^5.2.0",
     "react-countup": "^6.5.0",
@@ -49,7 +52,8 @@
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",

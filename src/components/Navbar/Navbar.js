@@ -3,41 +3,61 @@ import DesktopMenu from "./components/DesktopMenu";
 import MobMenu from "./components/MobMenu";
 import { Menus } from "./utils";
 import Logo from "../../resources/images/IIIT_logo.png";
-import './Navbar.css'
+import './Navbar.css';
+import InstituteBanner from "../InstiLogo";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isBannerVisible, setIsBannerVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Sticky behavior only for desktop/tablet (width >= 768px)
       if (window.scrollY > 200 && window.innerWidth >= 768) {
         setIsSticky(true);
+        setIsBannerVisible(false);
       } else {
+        // For mobile or when not scrolled enough, reset sticky state
         setIsSticky(false);
+        setIsBannerVisible(true);
       }
     };
+
+    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
+
+    // Cleanup
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="navbar w-full">
-      <header 
-        className={`h-20 text-[15px] ${
-          isSticky
-            ? "fixed top-0 z-10 bg-white backdrop-blur-md shadow-lg py-10"
-            : "relative w-full"
-        } inset-0 flex-center transition-all duration-300`}
+    <div className="navbar w-full absolute">
+      {/* Institute Banner - Positioned above Navbar */}
+      <InstituteBanner isVisible={isBannerVisible} />
+
+      <header
+        className={`
+          h-20 text-[15px]
+          ${isSticky
+            ? "fixed top-0 z-10 bg-white shadow-lg py-10 transition-all duration-300 opacity-100"
+            : "relative w-full text-white opacity-100 transition-all duration-300 relative -top-10"
+          }
+          inset-0 flex-center
+        `}
       >
         <nav className="px-3.5 flex-center-between w-full max-w-7xl mx-auto">
           <div className="flex-center gap-x-3 relative">
-            <a href="/">
-              <img
-                className="w-48 opacity-100 transition-all duration-300 -ml-2"
-                src={Logo}
-                alt="logo"
-              />
-            </a>
+            <Link to="/">
+              {/* Conditionally render logo based on banner visibility */}
+              {!isBannerVisible && (
+                <img
+                  className="w-48 opacity-100 transition-all duration-300 -ml-2"
+                  src={Logo}
+                  alt="logo"
+                />
+              )}
+            </Link>
           </div>
 
           <ul className="gap-x-1 lg:flex-center hidden">
@@ -45,11 +65,11 @@ const Navbar = () => {
               <DesktopMenu menu={menu} key={menu.name} />
             ))}
           </ul>
-          
+
           <div className="flex-center gap-x-5">
             <div className="lg:hidden">
-              <MobMenu 
-                Menus={Menus} 
+              <MobMenu
+                Menus={Menus}
                 logo={Logo}
               />
             </div>

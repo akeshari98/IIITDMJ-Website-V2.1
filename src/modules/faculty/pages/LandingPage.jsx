@@ -4,6 +4,7 @@ import axiosInstance from '../../../axios';
 import profile from '../../../resources/images/admin/profile.jpg';
 import Loader from '../../../components/Loader'
 import { Link } from 'react-router-dom';
+import PageHeader from '../../../components/PageHeader';
 const departments = {
   CSE: 51,
   ECE: 30,
@@ -53,16 +54,17 @@ const LandingPage = () => {
      faculty.designation.toLowerCase().includes(searchTerm.toLowerCase()) ||
      faculty.areasOfInterest.some(area => area.toLowerCase().includes(searchTerm.toLowerCase())))
   );
-
+  const crumbs = [{crumb:"Faculties",link:"#"}]
   return (
     <div className='bg-gray-50'>
+      <PageHeader breadCrumbs={crumbs} title={"Faculties"}/>
     <div className="container mx-auto p-4 bg-gray-50">
       {/* <h1 className="font-semibold text-3xl text-left mb-12">Faculty Profiles</h1> */}
-      <nav className="flex items-center mb-8 text-gray-600">
+      {/* <nav className="flex items-center mb-8 text-gray-600">
         <a href="/" className="hover:underline">Home</a>
         <ChevronRight size={16} className="mx-2" />
         <span>Faculty Page</span>
-      </nav>
+      </nav> */}
 
       <div className="flex justify-between items-center mb-6">
         {/* <nav className="flex space-x-4">

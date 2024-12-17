@@ -42,7 +42,7 @@ export const Menus = [
       {
         items: [
           {
-            name: "About",
+            name: "Go Home",
             icon: Book,
             href: "/",
           },
