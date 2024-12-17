@@ -137,7 +137,6 @@ const LandingPage = () => {
             <div
               key={index}
               className="max-w-[400px] bg-white rounded-lg shadow-lg p-4 transition-transform duration-200 transform flex flex-col h-full"
-              style={{ height: '500px' }}
             >
               <img src={faculty.photo} alt={`${faculty.name}'s Profile`} className="w-48 h-48 object-cover rounded-md mx-auto" />
               <div className="flex flex-col items-center text-center mt-5">
@@ -153,14 +152,14 @@ const LandingPage = () => {
                   )}
                 </div>
               </div>
-              <div className="mt-auto">
-              <Link
-                to={`/profilepage/${faculty.id}`}
-                className="mt-4 bg-gray-700 text-white rounded px-2 py-2 hover:bg-gray-900 transition duration-300 text-center block w-full"
-              >
-                View Profile
-              </Link>
-            </div>
+              <div className="mt-20">
+                <Link
+                  to={`/profilepage/${faculty.id}`}
+                  className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-[80%] block text-center px-4 py-2 bg-gray-700 text-white font-semibold rounded-md hover:bg-gray-800 transition-all duration-300 ease-in-out"
+                >
+                  View Profile
+                </Link>
+              </div>
             </div>
           ))
         ) : (
