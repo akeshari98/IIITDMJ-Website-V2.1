@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ExternalLink } from "lucide-react";
+// import { ExternalLink } from "lucide-react";
 import axiosInstance from "../axios";
 
 const Announcement = ({ text, link }) => (
@@ -11,7 +11,7 @@ const Announcement = ({ text, link }) => (
   >
     <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
       <span className="text-red-600 font-medium">{text}</span>
-      <ExternalLink className="w-4 h-4 text-red-600 group-hover:translate-x-0.5 transition-transform" />
+      {/* <ExternalLink className="w-4 h-4 text-red-600 group-hover:translate-x-0.5 transition-transform" /> */}
     </div>
   </a>
 );
@@ -35,7 +35,8 @@ const ImportantAnnouncement = () => {
   }, []); // Use `useEffect` for fetching data on component mount
 
   return (
-    <div className="flex ">
+    <div className="text-red-500 font-semibold flex flex-col md:flex-row justify-center items-center">
+
       {error ? (
         <div className="text-red-500 font-semibold">{error}</div>
       ) : data.length > 0 ? (

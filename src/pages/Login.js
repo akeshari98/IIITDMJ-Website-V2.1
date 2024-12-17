@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Sign_In from "../resources/images/Sign_In.jpg";
 import { validateForm } from "../utils/validateData";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axios";
 
 function Login() {
   // const [formData, setFormData] = useState([]);
@@ -14,8 +15,8 @@ function Login() {
     let formObject = Object.fromEntries(data.entries());
     if (validateForm(formObject)) {
       try {
-        await axios
-          .post("http://localhost:5000/students/auth", formObject)
+        await axiosInstance
+          .post(`${process.env.REACT_APP_Server_Name}/students/auth`, formObject)
           .then((res) => {
             let response = res.data;
             if (response.isSuccess) {
@@ -115,7 +116,7 @@ export default Login;
 function getStudentDetail(sid) {
   let data = { sid: sid };
   return axios
-    .post("http://localhost:5000/students/student", data)
+    .post("${process.env.REACT_APP_Server_Name}/students/student", data)
     .then((res) => res.data)
     .then((response) => {
       if (response.isSuccess) {

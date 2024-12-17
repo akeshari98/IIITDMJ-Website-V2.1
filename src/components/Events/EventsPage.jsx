@@ -4,6 +4,7 @@ import axios from "axios"; // You can also use fetch() if preferred
 import { ExternalLink, Calendar, MapPin, Clock } from "lucide-react";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
+import axiosInstance from "../../axios";
 const container = {
   hidden: { opacity: 0 }, // When hidden, the element has 0 opacity (not visible).
   show: {
@@ -28,7 +29,7 @@ const EventDetailPage = () => {
   // Fetch event data based on eventId
   const fetchEventData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/events/events/${eventId}`);
+      const response = await axiosInstance.get(`/events/events/${eventId}`);
       setEvent(response.data); // Set the event data
       setLoading(false); // Stop loading
     } catch (err) {
@@ -41,7 +42,7 @@ const EventDetailPage = () => {
   // Fetch event images based on eventId
   const fetchEventImages = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/eventImages/eventImages/${eventId}`);
+      const response = await axiosInstance.get(`/eventImages/eventImages/${eventId}`);
       setEventImages(response.data); // Set the event images
     } catch (err) {
       console.error("Error fetching event images:", err);

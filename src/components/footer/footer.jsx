@@ -2,6 +2,7 @@ import React from "react";
 import { FaPhoneAlt, FaEnvelope, FaGlobe, FaTwitter, FaLinkedin, FaFacebook, FaAngleRight, FaInstagram, FaYoutube } from "react-icons/fa";
 import Weather from "./weather/weather";
 import logo from "../../resources/images/IIIT_logo.png";
+import { Link } from "react-router-dom";
 const Footer = () => {
   const about_links = [
     { name: 'Home', href: '/' },
@@ -224,6 +225,9 @@ const Footer = () => {
                     <span className="text-gray-400"><a className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200 mb-4" href="https://moodle.iiitdmj.ac.in/">Moodle E-Learning Portal</a></span>
                   </div><div className="flex items-center space-x-3">
                     <span className="text-gray-400"><a className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200 mb-4" href="https://iiitdm.iweb.ltd/">ERP Fcaulty Login</a></span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Link to="/admin"><span className="text-gray-400">Admin Portal</span></Link>
                   </div>
               </div>
               

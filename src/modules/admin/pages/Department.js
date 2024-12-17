@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
+import axiosInstance from "../../../axios";
 
 function Department() {
   const [isLoading, setIsLoading] = useState(true);
@@ -68,8 +69,8 @@ function Department() {
 
 function loadData() {
   try {
-    return axios
-      .get("http://localhost:5000/departments/getdepartments")
+    return axiosInstance
+      .get("/departments/getdepartments")
       .then((res) => res.data)
       .then((response) => {
         return response;

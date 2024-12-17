@@ -37,7 +37,7 @@ function ContactUs() {
       buttonRef.current.setAttribute("disabled", true);
       try {
         await axios
-          .post("http://localhost:5000/feedbacks/insert", formData)
+          .post(`${process.env.REACT_APP_Server_Name}/feedbacks/insert`, formData)
           .then((res) => {
             let response = res.data;
             if (response.isSuccess) {

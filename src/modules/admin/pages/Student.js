@@ -7,6 +7,7 @@ import CountUp from "react-countup/";
 import { Link, useNavigate } from "react-router-dom";
 import DepartmentShortener from "../../../utils/Shortener";
 import Loader from "./Loader";
+import axiosInstance from "../../../axios";
 
 const Student = () => {
   const [Students, setStudents] = useState([]);
@@ -282,8 +283,8 @@ const Student = () => {
 
 async function studentLoader() {
   try {
-    const response = await axios.get(
-      "http://localhost:5000/students/studentinfo"
+    const response = await axiosInstance.get(
+      "/students/studentinfo"
     );
     return response.data;
   } catch (err) {

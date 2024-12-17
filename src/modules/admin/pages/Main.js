@@ -5,6 +5,7 @@ import Loader from "./Loader";
 import CountUp from "react-countup/";
 import { Doughnut } from "react-chartjs-2";
 import DepartmentShortener from "../../../utils/Shortener";
+import axiosInstance from "../../../axios";
 
 const Main = () => {
   const [Students, setStudents] = useState({});
@@ -178,8 +179,8 @@ const Main = () => {
 
 function loader() {
   try {
-    return axios
-      .get("http://localhost:5000/admin/getalldetails")
+    return axiosInstance
+      .get("/admin/getalldetails")
       .then((response) => {
         if (response.data) {
           return response.data;

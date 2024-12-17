@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import User from "../resources/images/user.png";
 import { validateForm } from "../utils/validateData";
+import axiosInstance from "../axios";
 
 function ProfileDetail({ display, handlePrevious, formData, setFormData }) {
   const [imageUrl, setImageUrl] = useState(null);
@@ -28,8 +29,8 @@ function ProfileDetail({ display, handlePrevious, formData, setFormData }) {
       setLoading(true);
       //   buttonRef.current.setAttribute("disabled", true);
       try {
-        await axios
-          .post("http://localhost:5000/students/insert", formData, {
+        await axiosInstance
+          .post("/students/insert", formData, {
             headers: { "Content-Type": "multipart/form-data" },
           })
           .then((res) => {

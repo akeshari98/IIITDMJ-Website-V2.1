@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import getDate from "../../../utils/GetDate";
 import DepartmentShortener from "../../../utils/Shortener";
 import Loader from "../pages/Loader";
+import axiosInstance from "../../../axios";
 
 export default function Verification() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,8 +28,8 @@ export default function Verification() {
         deptId: student.deptId,
         email: student.email,
       };
-      await axios
-        .post("http://localhost:5000/students/verifystudent", studentData)
+      await axiosInstance
+        .post("/students/verifystudent", studentData)
         .then(async (res) => {
           if (res.data.isSuccess) {
             await emailjs.send(
@@ -159,8 +160,8 @@ export default function Verification() {
 
 async function loader() {
   try {
-    return axios
-      .get("http://localhost:5000/students/unverifiedstudent")
+    return axiosInstance
+      .get("/students/unverifiedstudent")
       .then((res) => {
         if (res.data) {
           return res.data;

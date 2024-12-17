@@ -15,7 +15,7 @@ const Payment = () => {
   const [orderID, setOrderID] = useState("");
 
   const handleStudentPaymentInfo = async () => {
-    await fetch("http://localhost:5000/students/paymentinfo", {
+    await fetch("/students/paymentinfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const Payment = () => {
         },
         handler: (res) => {
           alert("Payment successful!");
-          fetch("http://localhost:5000/students/payment", {
+          fetch("/students/payment", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

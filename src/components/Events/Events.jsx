@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const EventCard = ({ event }) => (
   <motion.div
     whileHover={{ scale: 1.02 }}
-    className="relative min-w-[300px] h-[200px] rounded-xl overflow-hidden shadow-lg group"
+    className="relative min-w-[300px] h-[200px] overflow-hidden shadow-lg group"
   >
     <Link to={`/event/${event.id}`}>
       <div 
@@ -53,7 +53,7 @@ const EventsSection = ({ events }) => {
   };
 
   return (
-    <div className="w-full bg-gray-50 py-16">
+    <div className="w-full bg-gray-50 px-4 py-16 rounded-lg">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <div>
