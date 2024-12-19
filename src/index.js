@@ -13,6 +13,8 @@ import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Courses from "./pages/Courses";
 import Job from "./pages/Jobs"
+import QIP from "./pages/Qip"
+import TeamPage from "./pages/Developers"
 //more pages
 import BoardOfGoverners from "./pages/more/administration/boardofgoverners";
 import FinanceCommittee from "./pages/more/administration/financecommittee";
@@ -112,6 +114,14 @@ const router = createHashRouter([
       {
         path:'/jobs',
         element: <Job/>
+      },
+      {
+        path:'/Qip',
+        element: <QIP/>
+      },
+      {
+        path:'/developers',
+        element: <TeamPage/>
       },
       {
         path: "/clndr",

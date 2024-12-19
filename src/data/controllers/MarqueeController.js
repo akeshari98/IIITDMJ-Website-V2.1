@@ -16,7 +16,7 @@ exports.getAllMarquee = async (req, res) => {
 exports.getMarqueeOverview = async (req, res) => {
   try {
     const marqueeOverview = await Marquee.findAll({
-      attributes: ['id', 'title','link','createdAt'],
+      attributes: ['id', 'title','link','status','createdAt'],
       order: [['createdAt', 'DESC']]
     });
     res.json(marqueeOverview);
@@ -42,15 +42,16 @@ exports.getMarqueeById = async (req, res) => {
 // Create new Marquee
 exports.createMarquee = async (req, res) => {
   try {
-    const { title,link } = req.body;
-    if (!title || !link) {
+    const { title,link,status } = req.body;
+    if (!title || !link || !status) {
       return res.status(400).json({
         error: 'Required fields missing. Title and link are required.'
       });
     }
     const newMarquee = await Marquee.create({
       title,
-      link
+      link,
+      status,
     });
 
     res.status(201).json(newMarquee);
@@ -63,8 +64,9 @@ exports.createMarquee = async (req, res) => {
 exports.updateMarquee = async (req, res) => {
   try {
     const marqueeId = req.params.id;
-    const { title, link } = req.body;
-
+    const { title, link,status } = req.body;
+    console.log(req.body);
+    
     const marqueeItems = await Marquee.findByPk(marqueeId);
     
     if (!marqueeItems) {
@@ -77,9 +79,10 @@ exports.updateMarquee = async (req, res) => {
     const updates = {};
     if (title !== undefined) updates.title = title;
     if (link !== undefined) updates.link = link;
-
+    if (status !== undefined) updates.status = status;
+    console.log(updates);
     await marqueeItems.update(updates);
-
+    updates.test=true;
     // Fetch and return the updated Marquee
     const updatedMarquee = await Marquee.findByPk(marqueeId);
     res.json(updatedMarquee);

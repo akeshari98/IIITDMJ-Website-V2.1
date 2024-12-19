@@ -12,6 +12,7 @@ const homeCarouselModal = require('./modals/homeCarouselModal');
 const eventsModal = require('./modals/eventsModal');
 const eventImagesModal = require('./modals/eventImagesModal');
 const redAnnouncementsModal = require('./modals/redAnnouncementsModal')
+// const textModal = require('./modals/textModal')
 // const tendersModal = require('./modals/tendersModal');
 const path = require('path');
 // Create the server
@@ -47,20 +48,20 @@ server.get("/test", async (req, res) => {
 });
 
 // Synchronize Sequelize models and start the server
-// sequelize.sync()
-//   .then(() => {
-//     console.log('Database synchronized');
-//     // Start the server after successful sync
-//     server.listen(port, () => {
-//       console.log(`Server is running on port ${port}`);
-//     });
-//   })
-//   .catch((err) => {
-//     console.error('Unable to synchronize the database:', err);
-//   });
-server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+sequelize.sync()
+  .then(() => {
+    console.log('Database synchronized');
+    // Start the server after successful sync
+    server.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Unable to synchronize the database:', err);
+  });
+// server.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
 // Use the routes for each section
 server.use("/people", require("./routes/people"));
 server.use("/links", require("./routes/links"));

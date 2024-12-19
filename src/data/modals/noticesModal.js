@@ -18,6 +18,14 @@ const Notices = sequelize.define('Notices', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  status: {
+    type: DataTypes.STRING(20),
+    allowNull: false,
+    defaultValue: 'ACTIVE',
+    validate: {
+      isIn: [['ACTIVE', 'ARCHIVED', 'CANCELLED']]
+    }
+  },
 });
 
 module.exports = Notices;

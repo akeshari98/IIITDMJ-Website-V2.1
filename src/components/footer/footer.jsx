@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import ErrorThrowingComponent from "../../errors/TestError";
 import { FaPhoneAlt, FaGlobe, FaTwitter, FaLinkedin, FaFacebook, FaAngleRight, FaInstagram, FaYoutube } from "react-icons/fa";
+import WordOfDay from "../WordOfDay";
 const Footer = () => {
   const about_links = [
     { name: 'Home', href: '/' },
@@ -226,8 +227,9 @@ const Footer = () => {
 <div className="flex items-center space-x-3">
                     <span className="text-gray-400"><a className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200 mb-4" href="https://moodle.iiitdmj.ac.in/">Moodle E-Learning Portal</a></span>
                   </div><div className="flex items-center space-x-3">
-                    <span className="text-gray-400"><a className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200 mb-4" href="https://iiitdm.iweb.ltd/">ERP Fcaulty Login</a></span>
+                    <span className="text-gray-400"><Link className="text-gray-400 hover:text-white text-sm flex items-center space-x-2 transition-colors duration-200 mb-4" to='/admin'>Admin Console</Link></span>
                   </div>
+                  <WordOfDay/>
               </div>
               
               {/* <Weather /> */}
@@ -246,6 +248,14 @@ const Footer = () => {
                 <a href="#" className="text-gray-400 hover:text-gray-200">
                   PDPM IIITDM Jabalpur
                 </a>
+              </p>
+            </div>
+            <div className="flex items-center space-x-1">
+              <p className="text-sm">
+               
+                <Link to="/developers" className="text-gray-400 hover:text-gray-200">
+                  Developers
+                </Link>
               </p>
             </div>
             <div>
