@@ -4,11 +4,14 @@ import { MapPin, Phone, Mail, User } from "lucide-react";
 import profile from "../resources/images/admin/profile.jpg";
 
 // Utility functions
-const splitPhoneNumber = (phone_no) => 
+const splitPhoneNumber = (phone_no) =>
   phone_no.toString().split(".").filter(Boolean);
 
-const splitEmailString = (email) => 
-  email.split(",").map((item) => item.trim()).filter(Boolean);
+const splitEmailString = (email) =>
+  email
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
 
 const Card = ({
   first_name,
@@ -26,7 +29,7 @@ const Card = ({
   const emailArray = email ? splitEmailString(email) : [];
 
   return (
-    <div className="w-full max-w-sm mx-auto bg-white rounded-md shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl group">
+    <div className="w-full max-w-sm mx-auto bg-white rounded-md shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl group relative h-full">
       <div className="relative h-48 bg-gray-100">
         {/* Profile Picture */}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -39,7 +42,7 @@ const Card = ({
       </div>
 
       {/* Content Area */}
-      <div className="px-6 py-4 text-center">
+      <div className="px-6 py-4 text-center pb-16">
         <div className="mb-4">
           {first_name && (
             <h3 className="text-xl font-bold text-gray-800 leading-tight">
@@ -66,7 +69,9 @@ const Card = ({
             <div className="flex items-center justify-center text-gray-600">
               <Phone className="h-5 w-5 mr-2 text-gray-400" />
               {phoneArray.map((item, index) => (
-                <span key={index} className="text-sm mr-2">{item}</span>
+                <span key={index} className="text-sm mr-2">
+                  {item}
+                </span>
               ))}
             </div>
           )}
@@ -75,29 +80,29 @@ const Card = ({
             <div className="flex flex-col items-center justify-center text-gray-600">
               <Mail className="h-5 w-5 mr-2 text-gray-400" />
               {emailArray.map((item, index) => (
-                <a
+                <Link
                   key={index}
                   href={`mailto:${item}`}
                   className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
                 >
                   {item}
-                </a>
+                </Link>
               ))}
             </div>
           )}
         </div>
-
-        {/* Profile View Button */}
-        {user_type === "faculty" && (
-          <Link
-            to={`/profilepage/${id}`}
-            className="w-full block text-center px-4 py-2 bg-gray-700 text-white font-semibold rounded-md hover:bg-gray-800 transition-all duration-300 ease-in-out"
-          >
-            <User className="inline-block w-5 h-5 mr-2" />
-            View Full Profile
-          </Link>
-        )}
       </div>
+
+      {/* Profile View Button */}
+      {user_type === "faculty" && (
+        <Link
+          to={`/profilepage/${id}`}
+          className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-[80%] block text-center px-4 py-2 bg-gray-700 text-white font-semibold rounded-md hover:bg-gray-800 transition-all duration-300 ease-in-out"
+        >
+          <User className="inline-block w-5 h-5 mr-2" />
+          View Full Profile
+        </Link>
+      )}
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import deleteImage from "../../../resources/images/delete.svg";
 import Loader from "./Loader";
+import axiosInstance from "../../../axios";
 
 // import Table from "../components/Table";
 
@@ -34,8 +35,8 @@ const Feedback = () => {
     let data = { srno: srno };
     // e.target.value !== undefined ? srno = e.target.value :
     try {
-      await axios
-        .post("http://localhost:5000/feedbacks/deleteOne", data)
+      await axiosInstance
+        .post("/feedbacks/deleteOne", data)
         .then((res) => res.data)
         .then(async (response) => {
           // delete login has to build
@@ -57,8 +58,8 @@ const Feedback = () => {
     if (window.confirm("Are really wanna delete all the feedbacks?")) {
       setIsLoading(true);
       try {
-        await axios
-          .post("http://localhost:5000/feedbacks/deleteAll")
+        await axiosInstance
+          .post("/feedbacks/deleteAll")
           .then((res) => res.data)
           .then(async (response) => {
             if (!response.isSuccess) {
@@ -136,8 +137,8 @@ const Feedback = () => {
 
 export async function loadData() {
   try {
-    return await axios
-      .get("http://localhost:5000/feedbacks/allfeedbacks")
+    return await axiosInstance
+      .get("/feedbacks/allfeedbacks")
       .then((res) => res.data)
       .then((response) => {
         if (!response.isSuccess) {

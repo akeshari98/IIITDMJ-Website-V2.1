@@ -17,7 +17,7 @@ const Forgot = () => {
     // await setOTP(generateRandomNumber(6).toString());
     try {
       await axios
-        .post("http://localhost:5000/students/emailverification", formObject)
+        .post(`${process.env.REACT_APP_Server_Name}/students/emailverification`, formObject)
         .then(async (res) => {
           if (!res.data?.data) {
             let result = await sendOTP({
@@ -69,7 +69,7 @@ const Forgot = () => {
           alert("Passwords don't match. Please try again!");
         } else {
           axios
-            .post("http://localhost:5000/students/forgetpassword", formObject)
+            .post("${process.env.REACT_APP_Server_Name}/students/forgetpassword", formObject)
             .then((res) => {
               if (res.data.isSuccess) {
                 if (res.data.data > 0) {

@@ -205,7 +205,7 @@ function Home() {
               </div>
             </div>
             <div className="bg-white py-8">
-              <div className="max-w-7xl mx-auto">
+              <div className="max-w-[80vw] mx-auto">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
                     <div className="flex flex-col w-full text-left">
@@ -240,7 +240,7 @@ function Home() {
         <section className="px-2 pt-20 md:p-10">
           <Coi />
         </section>
-        <section className="px-2 pt-20 md:p-10">
+        <section className="max-w-[90vw] mx-auto px-2 pt-20 md:p-10">
           {/* if (loading) return <p>Loading events...</p>;
         if (error) return <p>{error}</p>; */}
           <Events events={fetchedEvents} />

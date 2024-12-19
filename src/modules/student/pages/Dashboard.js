@@ -6,6 +6,7 @@ import greet from "../../../utils/Greeting";
 import Loader from "../components/Loader";
 import axios from "axios";
 import StudentSkeleton from "../components/StudentSkeleton"
+import axiosInstance from "../../../axios";
 
 const asideMenuList = [
   {
@@ -366,8 +367,8 @@ export async function studentLoader() {
     sid: sid,
   };
   try {
-    const res = await axios.post(
-      "http://localhost:5000/students/student",
+    const res = await axiosInstance.post(
+      "/students/student",
       data
     );
     return res.data;

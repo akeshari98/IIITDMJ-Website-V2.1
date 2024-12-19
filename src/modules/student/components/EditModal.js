@@ -3,6 +3,7 @@ import DepartmentShortener from "../../../utils/Shortener";
 import axios from "axios";
 import { studentLoader } from "../pages/Dashboard";
 import Loader from "./Loader";
+import axiosInstance from "../../../axios";
 
 const EditModal = ({ toggle }) => {
   const [Student, setStudent] = useState(
@@ -18,8 +19,8 @@ const EditModal = ({ toggle }) => {
       let formData = new FormData(e.target);
       let formObject = Object.fromEntries(formData.entries());
       console.log(formObject);
-      await axios
-        .post("http://localhost:5000/students/updatedetails", formObject, {
+      await axiosInstance
+        .post("/students/updatedetails", formObject, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => {

@@ -127,10 +127,10 @@ const Page = () => {
     <div className="min-h-screen bg-gray-100">
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-white shadow-lg transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-20'
+        className={`overflow-y-scroll fixed top-0 left-0 h-full bg-white shadow-lg transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-20'
           }`}
       >
-        <div className="flex items-center justify-between p-4">
+        <div className="absolute flex items-center justify-between p-4">
           {sidebarOpen && <h1 className="text-xl font-bold">Admin Portal</h1>}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -143,7 +143,7 @@ const Page = () => {
             )}
           </button>
         </div>
-        <nav className="mt-4">
+        <nav className="mt-20">
           {modules.map((module) => (
             <button
               key={module.id}

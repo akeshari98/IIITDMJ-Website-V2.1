@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Profile from "../../../resources/images/profileDetail.svg";
-import axios from "axios";
+import axiosInstance from "../../../axios";
 import { useNavigate } from "react-router-dom";
 import { validateForm } from "../../../utils/validateData";
 
@@ -16,8 +16,8 @@ const AddFacultyModal = ({ toggle }) => {
     console.log(formObject);
     if (validateForm(formObject)) {
       try {
-        axios
-          .post("http://localhost:5000/faculties/insert", formObject, {
+        axiosInstance
+          .post("/faculties/insert", formObject, {
             headers: { "Content-Type": "multipart/form-data" },
           })
           .then((res) => {

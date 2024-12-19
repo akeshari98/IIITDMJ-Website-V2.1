@@ -5,6 +5,7 @@ import Card from "../components/Card";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import AddFacultyModal from "../components/AddFacultyModal";
+import axiosInstance from "../../../axios";
 
 const Faculty = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -73,8 +74,8 @@ const Faculty = () => {
 
 export function facultyLoader() {
   try {
-    return axios
-      .get("http://localhost:5000/faculties/allfaculties")
+    return axiosInstance
+      .get("/faculties/allfaculties")
       .then((res) => res.data)
       .then((response) => {
         return response;

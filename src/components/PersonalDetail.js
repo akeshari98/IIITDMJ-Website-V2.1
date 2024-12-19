@@ -3,6 +3,7 @@ import personaldetail from "../resources/images/personal-details.svg";
 import { useNavigate } from "react-router-dom";
 import { validateForm } from "../utils/validateData";
 import axios from "axios";
+import axiosInstance from "../axios";
 
 function PersonalDetail({
   display,
@@ -106,8 +107,8 @@ function PersonalDetail({
       let email = e.target.value;
       // alert(email);
       let emaildata = { email: email };
-      let respone = await axios.post(
-        "http://localhost:5000/students/emailverification",
+      let respone = await axiosInstance.post(
+        "/students/emailverification",
         emaildata
       );
       let responedata = await respone.data;

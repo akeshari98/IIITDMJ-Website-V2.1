@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../axios";
 
 function Error() {
   const navigate = useNavigate();
@@ -28,8 +29,8 @@ function Error() {
 
 async function refreshCall() {
   try {
-    return axios
-      .get("http://localhost:5000/test")
+    return axiosInstance
+      .get("/test")
       .then((res) => {
         if (res.data) {
           return res.data;
