@@ -162,13 +162,11 @@ const TeamsPage = () => {
   };
   const crumbs = [{crumb: "Team Of Developers", link:"#"}]
   return (
-    <div className="min-h-screen bg-gray-50 py-16">
-        <PageHeader breadCrumbs={crumbs} title={"Team Of Developers"}/>
+    <div className="min-h-screen bg-gray-50 ">
+        <PageHeader breadCrumbs={crumbs} title={"Team Of Developers"} />
       <div className="container mx-auto px-4">
-        
-
         {/* Mentor Section */}
-        <div className="mb-16">
+        <div className="mb-16 pt-12">
           <div className="flex items-center gap-3 mb-8">
             <Users className="h-6 w-6 text-purple-600" />
             <h2 className="text-2xl font-semibold text-gray-900">Project Mentor</h2>
