@@ -15,7 +15,7 @@ const StickyWordOfDay = () => {
   };
 
   return (
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex items-center">
+    <div className="relative lg:fixed right-8 top-1/2 -translate-y-1/2 z-50 flex items-center">
       {/* Main Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
