@@ -15,6 +15,7 @@ import Courses from "./pages/Courses";
 import Job from "./pages/Jobs"
 import QIP from "./pages/Qip"
 import TeamPage from "./pages/Developers"
+import ImportantAnnouncementPage from "./pages/ImportantAnnouncementsPage"
 //more pages
 import BoardOfGoverners from "./pages/more/administration/boardofgoverners";
 import FinanceCommittee from "./pages/more/administration/financecommittee";
@@ -114,6 +115,10 @@ const router = createHashRouter([
       {
         path:'/jobs',
         element: <Job/>
+      },
+      {
+        path:'/allImportantAnnouncements',
+        element: <ImportantAnnouncementPage/>
       },
       {
         path:'/Qip',

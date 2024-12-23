@@ -3,15 +3,48 @@ const Marquee = require('../modals/marqueeModal');
 // Get all Marquee
 exports.getAllMarquee = async (req, res) => {
   try {
-    const MarqueeList = await Marquee.findAll({
+    const { type } = req.query;
+    let whereClause = {};
+    if (type === 'current') {
+      whereClause = {
+        status: 'ACTIVE'
+      };
+    } else if (type === 'archived') {
+      whereClause = {  
+            status: 'ARCHIVED'     
+      };
+    }
+     else {
+      whereClause= null;
+     }
+
+    const marquee = await Marquee.findAll({
+      where: whereClause,
       order: [['createdAt', 'DESC']]
     });
-    res.json(MarqueeList);
+
+    res.json(marquee);
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error('Error fetching marquee:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
+
+exports.getAllActiveMarquee = async (req,res) =>{
+  try {
+    const MarqueeList = await Marquee.findAll({
+      order: [['createdAt', 'DESC']],
+      where: {
+        status:'ACTIVE'
+      }
+    });
+    res.json(MarqueeList)
+  }
+  catch (error){
+    res.status(500).send(error.message);
+  }
+}
 // Get Marquee overview (limited fields)
 exports.getMarqueeOverview = async (req, res) => {
   try {

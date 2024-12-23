@@ -36,11 +36,11 @@ function Home() {
   useEffect(() => {
     fetchEvents(); // Call fetch on component load
   }, []);
-
+  const [activeTab, setActiveTab] = useState('current');
   const fetchMarquee = async () => {
     try {
       setLoading(true);
-      const response = await axiosInstance.get("/Marquee/Marquee");
+      const response = await axiosInstance.get("/Marquee/Marquee", {params: {type:activeTab}});
       setFetchedMarquee(response.data);
       setLoading(false);
     } catch (err) {
@@ -144,13 +144,13 @@ function Home() {
             <Marquee2 data={fetchedMarquee} />
           </div>
         </section>
-        <section className="px-8 pt-20 pb-2 text-center">
+        <section className="px-2 pt-20 pb-2 text-center">
           <ImpotantAnnouncement />
         </section>
-        <section className="px-8 pt-20 pb-2 text-center ">
+        <section className="px-2 pt-20 pb-2 text-center ">
           {/*  */}
           <div className="container  pt-2 mx-auto -mt-10 flex flex-col gap-12">
-            <div className="flex flex-col w-full text-left max-w-7xl mx-auto ">
+            <div className="flex flex-col w-full text-left max-w-[80vw] mx-auto ">
               <div className="flex flex-col ">
                 <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 flex gap-3  item-center">
                   Latest{" "}

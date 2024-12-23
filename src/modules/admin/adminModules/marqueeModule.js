@@ -28,7 +28,7 @@ const MarqueeForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) 
   });
 
   // Update form data when initialData changes
-  useEffect(() => {
+  useEffect(() => { 
     if (initialData) {
       setFormData(initialData);
     } else {

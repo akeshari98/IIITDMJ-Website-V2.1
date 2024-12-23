@@ -86,19 +86,19 @@ const TeamMember = ({ member }) => (
 const TeamsPage = () => {
   const teamData = {
     mentor: {
-      name: "Dr. Sarah Wilson",
-      role: "Project Lead & Senior Researcher",
+      name: "Prof. Atul Gupta",
+      role: "Project Mentor ",
       type: "Mentor",
       email: "sarah.wilson@institute.edu",
-      duration: "2020 - Present",
+      duration: "2024 - Present",
       contribution: "Project Oversight & Architecture",
-      image: "/api/placeholder/400/400",
+      image: "http://faculty.iiitdmj.ac.in/proPic/1486987342.jpg",
       socials: {
         github: "https://github.com",
         linkedin: "https://linkedin.com",
         twitter: "https://twitter.com"
       },
-      profileUrl: "/profile/sarah-wilson"
+      profileUrl: "/profilepage/5318"
     },
     maintainer: {
       name: "Alex Chen",
