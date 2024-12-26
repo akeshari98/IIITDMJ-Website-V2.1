@@ -401,7 +401,7 @@ export const Menus = [
           {
             name: "Downloads",
             icon: Download,
-            href: "/",
+            href: "/downloads",
           },
         ],
       },

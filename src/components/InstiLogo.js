@@ -18,7 +18,7 @@ const InstituteBanner = ({ isVisible }) => {
   if (!isVisible) return null;
 
   return (
-    <div className="w-full py-4 shadow-sm relative overflow-hidden">
+    <div className="w-full py-4 shadow-sm relative overflow-hidden z-10">
       <div className="flex items-center justify-center max-w-7xl mx-auto px-4">
         <div className="flex items-center space-x-6 w-full">
           {/* Logo */}

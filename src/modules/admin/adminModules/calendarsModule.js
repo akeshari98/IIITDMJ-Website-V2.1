@@ -22,7 +22,7 @@ useEffect(() => {
       ...initialData,
       closing_date: initialData.closing_date ? 
         new Date(initialData.closing_date).toISOString().split('T')[0] : '',
-      // Parse attachments if it's a JSON string
+
       attachments: typeof initialData.attachments === 'string' 
         ? JSON.parse(initialData.attachments) 
         : (initialData.attachments || [])
@@ -69,7 +69,7 @@ useEffect(() => {
     // Append all form fields
     Object.keys(formData).forEach(key => {
       if (key === 'attachments') {
-        // Convert attachments to JSON string
+   
         formDataToSend.append(key, JSON.stringify(formData[key]));
       } else {
         formDataToSend.append(key, formData[key]);
@@ -329,7 +329,7 @@ const CalendarsManager = () => {
         },
       });
       if (response.status === 201) {
-        await fetchCalendars();
+        await fetchCalendars(); 
         setActiveTab('manage');
         alert("Calendar added successfully!");
       }

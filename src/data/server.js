@@ -4,6 +4,7 @@ const bodyParser = require("body-parser"); // for parsing and reading json data
 const cors = require("cors");
 const pool = require("./connection"); // Import the PostgreSQL pool from db.js
 const sequelize = require('./sequelize'); // Sequelize instance
+const downloadsModal = require('./modals/downloadsModal')
 const newsModal = require('./modals/newsModal');
 const marqueeModal = require('./modals/marqueeModal');
 const achievementsModal = require('./modals/achievementsModal');
@@ -88,3 +89,4 @@ server.use("/hostelsInfo", require("./routes/hostelsInfo"))
 server.use("/shopsInfo", require("./routes/shopsInfo"))
 server.use("/positionsInfo", require("./routes/positionsInfo"))
 server.use("/linksInfo", require("./routes/linksInfo"))
+server.use("/downloads", require("./routes/downloads"))

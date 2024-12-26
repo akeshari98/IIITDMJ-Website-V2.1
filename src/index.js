@@ -97,6 +97,7 @@ import AchievementsPage from "./pages/AchievementsPage"
 import NoticesPage from "./pages/NoticesPage"
 import CalendarCreator from "./components/CalendarCreator"
 import CalendersPage from './pages/Calenders';
+import DownloadsPage from './pages/Downloads';
 const router = createHashRouter([
   {
       path:"*",
@@ -115,6 +116,10 @@ const router = createHashRouter([
       {
         path:'/jobs',
         element: <Job/>
+      },
+      {
+        path:'/downloads',
+        element: <DownloadsPage/>
       },
       {
         path:'/allImportantAnnouncements',

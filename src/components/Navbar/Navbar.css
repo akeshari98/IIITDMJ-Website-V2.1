@@ -1,4 +1,4 @@
-/* Navbar.module.css or in a global stylesheet */
+Navbar.module.css or in a global stylesheet
 .navbar * {
     z-index: 10000 !important;
   }
@@ -51,4 +51,34 @@
     padding: 10px 0; /* You can adjust the padding as needed */
     background-color: rgba(24, 24, 26, 0.9); /* Dark background when sticky */
   }
+  /* Add these styles to your Navbar.css file */
+@keyframes expandBorder {
+  0% {
+    width: 0;
+    transform: translateX(-50%);
+  }
+  100% {
+    width: 100%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes contractBorder {
+  0% {
+    width: 100%;
+    transform: translateX(-50%);
+  }
+  100% {
+    width: 0;
+    transform: translateX(-50%);
+  }
+}
+
+.animate-expand-border {
+  animation: expandBorder 0.7s ease-in-out forwards;
+}
+
+.animate-contract-border {
+  animation: contractBorder 0.2s ease-in-out forwards;
+}
   
