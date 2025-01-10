@@ -279,7 +279,7 @@ export const Menus = [
           {
             name: "Dean RSPC",
             icon: Palette,
-            href: "/",
+            href: "https://www.iiitdmj.ac.in/rspc.iiitdmj.ac.in/office.php?pid=7",
           },
           {
             name: "Dean P&D",
@@ -327,7 +327,7 @@ export const Menus = [
           {
             name: "Students Portal",
             icon: Book,
-            href: "https://iiitdm.iweb.ltd/Account/LoginMVC",
+            href: "http://fusion.iiitdmj.ac.in:8000/",
           },
           {
             name: "Placement",
