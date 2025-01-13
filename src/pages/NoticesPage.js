@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ExternalLink, Calendar, ChevronRight, Search, SortAsc, SortDesc, ChevronDown, ChevronUp, ImageOff } from 'lucide-react';
 import axiosInstance from '../axios';
 import newsPlaceHolder from "../resources/images/newsPlaceHolder.png";
-import PageHeader from '../components/PageHeader';
+import PageHeader from '../components/PageHeader'; 
 const NewsPage = () => {
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(true);

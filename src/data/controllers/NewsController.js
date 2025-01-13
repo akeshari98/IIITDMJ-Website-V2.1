@@ -3,14 +3,33 @@ const News = require('../modals/newsModal');
 // Get all news
 exports.getAllNews = async (req, res) => {
   try {
-    const newsList = await News.findAll({
+    const { type } = req.query;
+    let whereClause = {};
+    if (type === 'current') {
+      whereClause = {
+        status: 'ACTIVE'
+      };
+    } else if (type === 'archived') {
+      whereClause = {  
+            status: 'ARCHIVED'     
+      };
+    }
+     else {
+      whereClause= null;
+     }
+
+    const news = await News.findAll({
+      where: whereClause,
       order: [['createdAt', 'DESC']]
     });
-    res.json(newsList);
+
+    res.json(news);
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error('Error fetching news:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 
 // Get news overview (limited fields)
 exports.getNewsOverview = async (req, res) => {
@@ -43,8 +62,8 @@ exports.getNewsById = async (req, res) => {
 exports.createNews = async (req, res) => {
   try {
     console.log(req.body)
-    const { title, excerpt, content, image_url, link } = req.body;
-    if (!title || !link) {
+    const { title, excerpt, content, image_url, link,status } = req.body;
+    if (!title || !link || !status) {
       return res.status(400).json({
         error: 'Required fields missing. Title and link are required.'
       });
@@ -54,7 +73,8 @@ exports.createNews = async (req, res) => {
       excerpt,
       content,
       image_url,
-      link
+      link,
+      status
     });
 
     res.status(201).json(newNews);
@@ -67,7 +87,7 @@ exports.createNews = async (req, res) => {
 exports.updateNews = async (req, res) => {
   try {
     const newsId = req.params.id;
-    const { title, excerpt, content, image_url, link } = req.body;
+    const { title, excerpt, content, image_url, link, status } = req.body;
 
     const news = await News.findByPk(newsId);
     
@@ -84,6 +104,7 @@ exports.updateNews = async (req, res) => {
     if (content !== undefined) updates.content = content;
     if (image_url !== undefined) updates.image_url = image_url;
     if (link !== undefined) updates.link = link;
+    if (status !== undefined) updates.status = status;
 
     await news.update(updates);
 

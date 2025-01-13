@@ -26,7 +26,8 @@ import {
   LoaderPinwheel,
   Images,
   ImagesIcon,
-  Calendar
+  Calendar,
+  Download
 } from 'lucide-react';
 
 // Products Module
@@ -45,6 +46,7 @@ import AchievementsManager from './adminModules/acheivementsModule';
 import NoticesManager from './adminModules/noticesModule';
 import EventsManager from './adminModules/eventsModule';
 import EventImagesManager from './adminModules/eventImagesModule';
+import DownloadsManager from './adminModules/downloadsModule'
 // Blog Posts Module
 import { AdminAuth } from './components/AdminAuth';
 import { useSelector } from 'react-redux'
@@ -76,6 +78,7 @@ const Page = () => {
     { id: 'notices', name: 'Notices', icon: PinIcon },
     { id: 'events', name: 'Events', icon: LoaderPinwheel },
     { id: 'eventImages', name: 'Event Images', icon: ImagesIcon },
+    { id: 'downloads', name: 'Downloads Page', icon: Download },
   ];
   const [profileOpen, setProfileOpen] = useState(false);
   const renderModule = () => {
@@ -118,6 +121,8 @@ const Page = () => {
         return <EventsManager />;
       case 'eventImages':
         return <EventImagesManager />;
+      case 'downloads':
+        return <DownloadsManager />;
       default:
         return <div className='text-lg'>WELCOME TO IIITDMJ WEBSITE ADMIN PORTAL !!!</div>;
     }

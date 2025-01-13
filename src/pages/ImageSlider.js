@@ -63,7 +63,7 @@ const ImageSlider = () => {
     return <div>No slides available</div>;
   }
   const urlBuilder = (url)=>{
-    return process.env.REACT_APP_Backend + url;
+    return  url;
   }
   return (
     <div className="relative w-full h-[90vh] overflow-hidden">

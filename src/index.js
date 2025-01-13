@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
+import {  createHashRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 // redux store
 import { Provider } from "react-redux";
@@ -13,6 +13,9 @@ import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Courses from "./pages/Courses";
 import Job from "./pages/Jobs"
+import QIP from "./pages/Qip"
+import TeamPage from "./pages/Developers"
+import ImportantAnnouncementPage from "./pages/ImportantAnnouncementsPage"
 //more pages
 import BoardOfGoverners from "./pages/more/administration/boardofgoverners";
 import FinanceCommittee from "./pages/more/administration/financecommittee";
@@ -94,6 +97,7 @@ import AchievementsPage from "./pages/AchievementsPage"
 import NoticesPage from "./pages/NoticesPage"
 import CalendarCreator from "./components/CalendarCreator"
 import CalendersPage from './pages/Calenders';
+import DownloadsPage from './pages/Downloads';
 const router = createHashRouter([
   {
       path:"*",
@@ -112,6 +116,22 @@ const router = createHashRouter([
       {
         path:'/jobs',
         element: <Job/>
+      },
+      {
+        path:'/downloads',
+        element: <DownloadsPage/>
+      },
+      {
+        path:'/allImportantAnnouncements',
+        element: <ImportantAnnouncementPage/>
+      },
+      {
+        path:'/Qip',
+        element: <QIP/>
+      },
+      {
+        path:'/developers',
+        element: <TeamPage/>
       },
       {
         path: "/clndr",

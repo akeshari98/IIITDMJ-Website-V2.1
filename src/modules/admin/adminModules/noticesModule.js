@@ -26,6 +26,7 @@ const NoticesForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) 
     excerpt: '',
     content: '',
     link: '',
+    status: 'ACTIVE'
   });
 
   // Update form data when initialData changes
@@ -38,6 +39,7 @@ const NoticesForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) 
         excerpt: '',
         content: '',
         link: '',
+        status: 'ACTIVE'
       });
     }
   }, [initialData]);
@@ -57,6 +59,7 @@ const NoticesForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) 
     formDataToSend.append('excerpt', formData.excerpt);
     formDataToSend.append('content', formData.content);
     formDataToSend.append('link', formData.link);
+    formDataToSend.append('status', formData.status);
     
     if (isEditing) {
       formDataToSend.append('id', initialData.id);
@@ -123,6 +126,22 @@ const NoticesForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) 
               required
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Status
+            </label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            >
+              <option value="ACTIVE">Active</option>
+              <option value="ARCHIVED">Archived</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
+          </div>
         </div>
 
         <div className="flex justify-end space-x-3">
@@ -169,6 +188,15 @@ const NoticesList = React.memo(({
           <td className="px-6 py-4">{notice.title}</td>
           <td className="px-6 py-4">
             {new Date(notice.createdAt).toLocaleDateString()}
+          </td>
+          <td className="px-6 py-4">
+            <span className={`px-2 py-1 text-xs rounded ${
+              notice.status === 'ACTIVE' ? 'bg-green-100 text-green-800' :
+              notice.status === 'ARCHIVED' ? 'bg-gray-100 text-gray-800' :
+              'bg-red-100 text-red-800'
+            }`}>
+              {notice.status}
+            </span>
           </td>
           <td className="px-6 py-4">
             <div className="flex space-x-2">

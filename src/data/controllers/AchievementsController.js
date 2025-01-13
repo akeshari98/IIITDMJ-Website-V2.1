@@ -4,14 +4,33 @@ const Achievements = require('../modals/achievementsModal');
 // Get all achievements in descending order of createdAt
 exports.getAllAchievements = async (req, res) => {
   try {
-    const achievementsList = await Achievements.findAll({
-      order: [['createdAt', 'DESC']]  // Sort by createdAt in descending order
+    const { type } = req.query;
+    let whereClause = {};
+    if (type === 'current') {
+      whereClause = {
+        status: 'ACTIVE'
+      };
+    } else if (type === 'archived') {
+      whereClause = {  
+            status: 'ARCHIVED'     
+      };
+    }
+     else {
+      whereClause= null;
+     }
+
+    const achievements = await Achievements.findAll({
+      where: whereClause,
+      order: [['createdAt', 'DESC']]
     });
-    res.json(achievementsList);
+
+    res.json(achievements);
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error('Error fetching achievements:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 
 // Get achievements overview (limited fields) in descending order of createdAt
 exports.getAchievementsOverview = async (req, res) => {
@@ -44,8 +63,8 @@ exports.getAchievementById = async (req, res) => {
 // Create new news
 exports.createAchievements = async (req, res) => {
   try {
-    const { title, excerpt, content, image_url, link } = req.body;
-    if (!title || !link) {
+    const { title, excerpt, content, image_url, link,status } = req.body;
+    if (!title || !link || !status) {
       return res.status(400).json({
         error: 'Required fields missing. Title and link are required.'
       });
@@ -55,7 +74,8 @@ exports.createAchievements = async (req, res) => {
       excerpt,
       content,
       image_url,
-      link
+      link,
+      status
     });
 
     res.status(201).json(newNews);
@@ -68,7 +88,7 @@ exports.createAchievements = async (req, res) => {
 exports.updateAchievements = async (req, res) => {
   try {
     const newsId = req.params.id;
-    const { title, excerpt, content, image_url, link } = req.body;
+    const { title, excerpt, content, image_url, link, status } = req.body;
 
     const news = await Achievements.findByPk(newsId);
     
@@ -85,6 +105,7 @@ exports.updateAchievements = async (req, res) => {
     if (content !== undefined) updates.content = content;
     if (image_url !== undefined) updates.image_url = image_url;
     if (link !== undefined) updates.link = link;
+    if (status !== undefined) updates.status = status;
 
     await news.update(updates);
 

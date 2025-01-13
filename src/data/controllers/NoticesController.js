@@ -3,14 +3,34 @@ const Notices = require('../modals/noticesModal');
 // Get all notice
 exports.getAllNotices = async (req, res) => {
   try {
-    const noticesList = await Notices.findAll({
+    const { type } = req.query;
+    let whereClause = {};
+    if (type === 'current') {
+      whereClause = {
+        status: 'ACTIVE'
+      };
+    } else if (type === 'archived') {
+      whereClause = {  
+            status: 'ARCHIVED'     
+      };
+    }
+     else {
+      whereClause= null;
+     }
+
+    const notices = await Notices.findAll({
+      where: whereClause,
       order: [['createdAt', 'DESC']]
     });
-    res.json(noticesList);
+
+    res.json(notices);
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error('Error fetching notices:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+
 
 // Get notice overview (limited fields)
 exports.getNoticesOverview = async (req, res) => {
@@ -42,7 +62,7 @@ exports.getNoticeById = async (req, res) => {
 // Create new notice
 exports.createNotice = async (req, res) => {
   try {
-    const { title, excerpt, content, link } = req.body;
+    const { title, excerpt, content, link, status } = req.body;
     if (!title || !link) {
       return res.status(400).json({
         error: 'Required fields missing. Title and link are required.'
@@ -52,7 +72,8 @@ exports.createNotice = async (req, res) => {
       title,
       excerpt,
       content,
-      link
+      link,
+      status
     });
 
     res.status(201).json(newNews);
@@ -65,7 +86,7 @@ exports.createNotice = async (req, res) => {
 exports.updateNotice = async (req, res) => {
   try {
     const noticeId = req.params.id;
-    const { title, excerpt, content, link } = req.body;
+    const { title, excerpt, content, link, status } = req.body;
 
     const notice = await Notices.findByPk(noticeId);
     
@@ -81,6 +102,7 @@ exports.updateNotice = async (req, res) => {
     if (excerpt !== undefined) updates.excerpt = excerpt;
     if (content !== undefined) updates.content = content;
     if (link !== undefined) updates.link = link;
+    if (status !== undefined) updates.status = status;
 
     await notice.update(updates);
 

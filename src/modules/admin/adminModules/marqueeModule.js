@@ -23,17 +23,19 @@ import axiosInstance from '../../../axios';
 const MarqueeForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
   const [formData, setFormData] = useState({
     title: '',
-    link: ''
+    link: '',
+    status: 'ACTIVE',
   });
 
   // Update form data when initialData changes
-  useEffect(() => {
+  useEffect(() => { 
     if (initialData) {
       setFormData(initialData);
     } else {
       setFormData({
         title: '',
-        link: ''
+        link: '',
+        status:'ACTIVE'
       });
     }
   }, [initialData]);
@@ -49,13 +51,14 @@ const MarqueeForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
-    formDataToSend.append('title', formData.title);
-    formDataToSend.append('link', formData.link);
-    
+    Object.keys(formData).forEach(key => {
+      
+        formDataToSend.append(key, formData[key]);
+    });
     if (isEditing) {
       formDataToSend.append('id', initialData.id);
     }
-
+   console.log(formDataToSend);
     onSubmit(formDataToSend);
   };
 
@@ -91,6 +94,22 @@ const MarqueeForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) 
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Status
+            </label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            >
+              <option value="ACTIVE">Active</option>
+              <option value="ARCHIVED">Archived</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
           </div>
         </div>
 
@@ -129,6 +148,7 @@ const MarqueeList = React.memo(({
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Created At</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"> Link</th>
+        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"> Status</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
       </tr>
     </thead>
@@ -141,6 +161,15 @@ const MarqueeList = React.memo(({
           
           <td className="px-6 py-4">
             {new Date(Marquee.createdAt).toLocaleDateString()}
+          </td>
+          <td className="px-6 py-4">
+            <span className={`px-2 py-1 text-xs rounded ${
+              Marquee.status === 'ACTIVE' ? 'bg-green-100 text-green-800' :
+              Marquee.status === 'ARCHIVED' ? 'bg-gray-100 text-gray-800' :
+              'bg-red-100 text-red-800'
+            }`}>
+              {Marquee.status}
+            </span>
           </td>
           <td className="px-6 py-4">
             <div className="flex space-x-2">

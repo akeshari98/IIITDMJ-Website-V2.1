@@ -24,11 +24,11 @@ const Notices = () => {
   const [notices, setNotices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [activeTab, setActiveTab] = useState('current');
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await axiosInstance.get('/notices/notices');
+        const response = await axiosInstance.get(`/notices/notices`, { params: { type: activeTab } });
         setNotices(response.data);
         setLoading(false);
       } catch (err) {

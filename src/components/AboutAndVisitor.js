@@ -154,7 +154,7 @@ const IITDelhiInfoCards = () => {
 
   return (
     <div className="bg-white ">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[80vw] mx-auto">
         <div className="flex flex-col md:flex-row gap-8">
           {dummyData.map((card, index) => 
             card.isDirector ? (

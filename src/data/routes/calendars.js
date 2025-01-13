@@ -9,4 +9,4 @@ router.post('/calendars', upload.none(), calendarController.createCalendar);
 router.put('/calendars/:id', upload.none(), calendarController.updateCalendar);
 router.delete('/calendars/:id', calendarController.deleteCalendar);
 
-module.exports = router;
+module.exports = router; 

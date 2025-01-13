@@ -22,6 +22,14 @@ const Achievements = sequelize.define('achievements', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  status: {
+    type: DataTypes.STRING(20),
+    allowNull: false,
+    defaultValue: 'ACTIVE',
+    validate: {
+      isIn: [['ACTIVE', 'ARCHIVED', 'CANCELLED']]
+    }
+  }
 });
 
 module.exports = Achievements;

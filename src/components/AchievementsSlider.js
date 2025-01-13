@@ -55,12 +55,13 @@ const AchievementsCarousel = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [loading,setLoading] = useState(null);
+    const [activeTab, setActiveTab] = useState('current');
   // Fetch news data using Axios
   useEffect(() => {
     const fetchNews = async () => {
       try {
         setLoading(true);
-        const response = await axiosInstance.get('/achievements/achievements'); // Fetching news data
+        const response = await axiosInstance.get('/achievements/achievements', { params: { type: activeTab } }); // Fetching news data
         const newsItems = response.data.map(item => ({
           ...item,
           imagePublicId: item.image_url, // Assume the API returns 'image' as publicId
