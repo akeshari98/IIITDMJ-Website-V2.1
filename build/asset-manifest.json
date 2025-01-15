@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.0b6cb65a.css",
-    "main.js": "./static/js/main.02f2a678.js",
+    "main.js": "./static/js/main.2c58da25.js",
     "static/js/653.a61a64aa.chunk.js": "./static/js/653.a61a64aa.chunk.js",
     "static/js/6.2d8520a6.chunk.js": "./static/js/6.2d8520a6.chunk.js",
     "static/js/270.bd1d2228.chunk.js": "./static/js/270.bd1d2228.chunk.js",
@@ -12,7 +12,7 @@
     "static/media/IIIT_logo_1.png": "./static/media/IIIT_logo_1.64a006379d6acc84fd22.png",
     "index.html": "./index.html",
     "main.0b6cb65a.css.map": "./static/css/main.0b6cb65a.css.map",
-    "main.02f2a678.js.map": "./static/js/main.02f2a678.js.map",
+    "main.2c58da25.js.map": "./static/js/main.2c58da25.js.map",
     "653.a61a64aa.chunk.js.map": "./static/js/653.a61a64aa.chunk.js.map",
     "6.2d8520a6.chunk.js.map": "./static/js/6.2d8520a6.chunk.js.map",
     "270.bd1d2228.chunk.js.map": "./static/js/270.bd1d2228.chunk.js.map",
@@ -20,6 +20,6 @@
   },
   "entrypoints": [
     "static/css/main.0b6cb65a.css",
-    "static/js/main.02f2a678.js"
+    "static/js/main.2c58da25.js"
   ]
 }
