@@ -3,14 +3,235 @@ import { Image, Search } from 'lucide-react';
 import axiosInstance from '../../../axios';
 import profile from "../../../resources/images/admin/profile.jpg";
 
-// Separate form component with memoization
+import { Upload, X } from 'lucide-react';
+import * as XLSX from 'xlsx';
+
+const ExcelUpload = ({ onUploadSuccess }) => {
+  const [error, setError] = useState('');
+  const [preview, setPreview] = useState([]);
+  const [studentType, setStudentType] = useState('ug');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const validateData = (data) => {
+    const requiredColumns = ['name', 'roll_no', 'role', 'batch', 'email'];
+    const headers = Object.keys(data[0]).map(key => key.toLowerCase().trim());
+    
+    const missingColumns = requiredColumns.filter(col => 
+      !headers.includes(col.toLowerCase())
+    );
+
+    if (missingColumns.length > 0) {
+      throw new Error(`Missing required columns: ${missingColumns.join(', ')}`);
+    }
+
+    return data.map(row => ({
+      name: row.name || '',
+      roll_no: row.roll_no || '',
+      role: row.role || '',
+      batch: row.batch || '',
+      email: row.email || '',
+      student_type: studentType
+    }));
+  };
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    setError('');
+    setPreview([]);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const workbook = XLSX.read(e.target.result, { type: 'array' });
+          const firstSheetName = workbook.SheetNames[0];
+          const worksheet = workbook.Sheets[firstSheetName];
+          const data = XLSX.utils.sheet_to_json(worksheet);
+
+          if (data.length === 0) {
+            setError('The Excel file is empty');
+            return;
+          }
+
+          const validatedData = validateData(data);
+          setPreview(validatedData.slice(0, 5)); // Show first 5 entries as preview
+        } catch (error) {
+          setError(error.message);
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (preview.length === 0) return;
+      
+      const response = await axiosInstance.post('/counsellingInfo/bulkAddCounsellingMembers', {
+        members: preview,
+        studentType: studentType
+      });
+
+      if (response.status === 200) {
+        onUploadSuccess();
+        setPreview([]);
+        setError('');
+        setIsModalOpen(false);
+      }
+    } catch (error) {
+      setError('Failed to upload members: ' + error.message);
+    }
+  };
+
+  return (
+    <div>
+      {/* Upload Button */}
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2"
+      >
+        <Upload size={16} />
+        Bulk Upload
+      </button>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-2xl mx-4">
+            {/* Modal Header */}
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Upload Excel File</h2>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Student Type Selection */}
+            <div className="flex gap-4 mb-4">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  value="ug"
+                  checked={studentType === 'ug'}
+                  onChange={(e) => setStudentType(e.target.value)}
+                  className="form-radio"
+                />
+                <span>UG Students</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  value="pg"
+                  checked={studentType === 'pg'}
+                  onChange={(e) => setStudentType(e.target.value)}
+                  className="form-radio"
+                />
+                <span>PG Students</span>
+              </label>
+            </div>
+
+            {/* Upload Area */}
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+              <input
+                type="file"
+                accept=".xlsx,.xls"
+                onChange={handleFileUpload}
+                className="hidden"
+                id="excel-upload"
+              />
+              <label
+                htmlFor="excel-upload"
+                className="cursor-pointer text-blue-600 hover:text-blue-800"
+              >
+                Click to upload Excel file
+              </label>
+              <p className="text-sm text-gray-500 mt-2">
+                File should contain: name, roll_no, role, batch, email columns
+              </p>
+            </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
+                {error}
+              </div>
+            )}
+
+            {/* Preview Table */}
+            {preview.length > 0 && (
+              <div className="mt-6">
+                <h4 className="font-semibold mb-2">Preview (First 5 entries):</h4>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        {Object.keys(preview[0]).map((header) => (
+                          <th
+                            key={header}
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+                          >
+                            {header}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {preview.map((row, index) => (
+                        <tr key={index}>
+                          {Object.values(row).map((value, i) => (
+                            <td
+                              key={i}
+                              className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                            >
+                              {value}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="mt-6 flex justify-end space-x-3">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmit}
+                disabled={preview.length === 0}
+                className={`px-4 py-2 rounded-lg ${
+                  preview.length === 0
+                    ? 'bg-gray-300 cursor-not-allowed'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                }`}
+              >
+                Upload
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 const DoctorsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) => {
+  const [studentType, setStudentType] = useState('ug');
   const [formData, setFormData] = useState({
     name: '',
     roll_no: '',
     role: '',
     batch: '',
     email: '',
+    student_type:studentType
   });
 
   // Update form data when initialData changes
@@ -25,6 +246,7 @@ const DoctorsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) 
         role: '',
         batch: '',
         email: '',
+        student_type:studentType
       });
     }
   }, [initialData]);
@@ -48,6 +270,28 @@ const DoctorsForm = React.memo(({ onSubmit, initialData, isEditing, onCancel }) 
         {isEditing ? 'Edit Member' : 'Add New Member'}
       </h3>
       <form className="space-y-4" onSubmit={handleSubmit}>
+      <div className="flex gap-4 mb-4">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  value="ug"
+                  checked={studentType === 'ug'}
+                  onChange={(e) => setStudentType(e.target.value)}
+                  className="form-radio"
+                />
+                <span>UG Students</span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  value="pg"
+                  checked={studentType === 'pg'}
+                  onChange={(e) => setStudentType(e.target.value)}
+                  className="form-radio"
+                />
+                <span>PG Students</span>
+              </label>
+            </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -150,6 +394,7 @@ const DoctorsList = React.memo(({
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Batch</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Student Type</th>
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
       </tr>
     </thead>
@@ -173,6 +418,7 @@ const DoctorsList = React.memo(({
           <td className="px-6 py-4">{staff.role}</td>
           <td className="px-6 py-4">{staff.batch}</td>
           <td className="px-6 py-4">{staff.email}</td>
+          <td className="px-6 py-4">{staff.student_type}</td>
           <td className="px-6 py-4">
             <div className="flex space-x-2">
               <button
@@ -201,7 +447,7 @@ const DoctorsList = React.memo(({
     </tbody>
   </table>
 ));
-
+// Update the CounsellingManager component to include the ExcelUpload component
 const CounsellingManager = () => {
   const [activeTab, setActiveTab] = useState('add');
   const [staffList, setDoctorsList] = useState([]);
@@ -285,7 +531,7 @@ const CounsellingManager = () => {
         (staff.roll_no || '').toLowerCase().includes(searchTermLower) ||
         (staff.role || '').toLowerCase().includes(searchTermLower) ||
         (staff.batch || '').toLowerCase().includes(searchTermLower) ||
-        (staff.email || '').toLowerCase().includes(searchTermLower)
+        (staff.email || '').toLowerCase().includes(searchTermLower) 
       );
     }), [staffList, searchTerm]
   );
@@ -318,7 +564,35 @@ const CounsellingManager = () => {
         >
           Manage Members
         </button>
+        <ExcelUpload onUploadSuccess={fetchDoctors} />
       </div>
+      {/* <div className="flex space-x-4">
+        <button
+          onClick={() => {
+            setActiveTab('add');
+            if (!editingDoctors) {
+              setEditingDoctors(null);
+            }
+          }}
+          className={`px-4 py-2 rounded-lg ${
+            activeTab === 'add'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-100 hover:bg-gray-200'
+          }`}
+        >
+          {editingDoctors ? 'Edit Member' : 'Add Member'}
+        </button>
+        <button
+          onClick={() => setActiveTab('manage')}
+          className={`px-4 py-2 rounded-lg ${
+            activeTab === 'manage'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-100 hover:bg-gray-200'
+          }`}
+        >
+          Manage Members
+        </button>
+      </div> */}
 
       {activeTab === 'add' ? (
         <DoctorsForm
@@ -328,7 +602,8 @@ const CounsellingManager = () => {
             roll_no: editingDoctors.roll_no,
             role: editingDoctors.role,
             batch: editingDoctors.batch,
-            email: editingDoctors.email
+            email: editingDoctors.email,
+            student_type: editingDoctors.student_type
           } : null}
           isEditing={!!editingDoctors}
           onCancel={() => {

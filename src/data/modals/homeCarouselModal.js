@@ -16,7 +16,7 @@ const Carousel = sequelize.define('Carousel', {
   },
   link: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 });
 

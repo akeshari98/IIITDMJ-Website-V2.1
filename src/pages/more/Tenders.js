@@ -1,27 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Calendar, FileText, ChevronUp, ChevronDown, ExternalLink, IndianRupee } from 'lucide-react';
+import { Search, Calendar, FileText, ChevronUp, ChevronDown, ExternalLink, IndianRupee, AlertCircle } from 'lucide-react';
 import axios from 'axios';
 import axiosInstance from '../../axios';
 import PageHeader from '../../components/PageHeader';
-// Database structure suggestion:
-/*
-CREATE TABLE tenders (
-  id VARCHAR(36) PRIMARY KEY,
-  tender_no VARCHAR(100) NOT NULL,
-  title TEXT NOT NULL,
-  description TEXT,
-  advertisement_date DATE NOT NULL,
-  closing_date DATE NOT NULL,
-  category VARCHAR(50), -- e.g., 'PROCUREMENT', 'CONSTRUCTION', 'SERVICES'
-  status VARCHAR(20), -- 'ACTIVE', 'ARCHIVED', 'CANCELLED'
-  type VARCHAR(50), -- 'TENDER', 'EOI', 'NIQ', etc.
-  attachments JSON, -- Array of {title: string, url: string}
-  department VARCHAR(100),
-  estimated_value DECIMAL(15,2),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-*/
+
 const TendersPage = () => {
   const [activeTab, setActiveTab] = useState('current');
   const [tenders, setTenders] = useState([]);
@@ -155,76 +137,88 @@ const TendersPage = () => {
               </button>
             </th>
             <th className="px-6 py-3 border-b text-left">Documents</th>
-            <th className="px-6 py-3 border-b text-left">Esitmated Value</th>
+            <th className="px-6 py-3 border-b text-left">Estimated Value</th>
           </tr>
         </thead>
         <tbody>
           {tenders.length === 0 ? (
             <tr>
-              <td colSpan="5" className="px-6 py-8 text-center text-gray-500">
+              <td colSpan="6" className="px-6 py-8 text-center text-gray-500">
                 No tenders found
               </td>
             </tr>
           ) : (
             tenders.map((tender) => (
-              <tr key={tender.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 border-b">
-                  <div className="flex items-center space-x-2">
-                    <FileText className="w-4 h-4 text-gray-500" />
-                    <span>{tender.tender_no}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 border-b">
-                  <div className="font-medium">{tender.title}</div>
-                  <div className="text-sm text-gray-500">{tender.description}</div>
-                  <div className="flex items-center space-x-2 mt-1">
-                    <div className="text-xs text-gray-400">
-                      {tender.category} | {tender.department}
+              <React.Fragment key={tender.id}>
+                <tr className="hover:bg-gray-50">
+                  <td className="px-6 py-4 border-b">
+                    <div className="flex items-center space-x-2">
+                      <FileText className="w-4 h-4 text-gray-500" />
+                      <span>{tender.tender_no}</span>
                     </div>
-                    {getStatusBadge(tender)}
-                  </div>
-                </td>
-                <td className="px-6 py-4 border-b">
-                  <div className="flex items-center space-x-2">
-                    <Calendar className="w-4 h-4 text-gray-500" />
-                    <span>{formatDate(tender.advertisement_date)}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 border-b">
-                  <div className="flex items-center space-x-2">
-                    <Calendar className="w-4 h-4 text-gray-500" />
-                    <span>{formatDate(tender.closing_date)}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 border-b">
-                  <div className="flex flex-col space-y-1">
-                    {tender.attachments!==null && JSON.parse(tender.attachments).map((doc, index) => (
-                      <a
-                        key={index}
-                        href={doc.url}
-                        className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        <span>{doc.title}</span>
-                      </a>
-                    ))}
-                  </div>
-                </td>
-                <td>
-                <div className="flex items-center justify-center space-x-2">
-                  <IndianRupee  className="w-4 h-4 text-gray-500" />
-                  {tender.estimated_value}
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                  <td className="px-6 py-4 border-b">
+                    <div className="font-medium">{tender.title}</div>
+                    <div className="text-sm text-gray-500">{tender.description}</div>
+                    <div className="flex items-center space-x-2 mt-1">
+                      <div className="text-xs text-gray-400">
+                        {tender.category} | {tender.department}
+                      </div>
+                      {getStatusBadge(tender)}
+                    </div>
+                    {tender.importantUpdate && (
+                      <div className="mt-2 flex items-start space-x-2 bg-red-50 p-2 rounded-md">
+                        <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-red-800">Important Update</p>
+                          <p className="text-sm text-red-600">{tender.importantUpdate}</p>
+                        </div>
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-6 py-4 border-b">
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="w-4 h-4 text-gray-500" />
+                      <span>{formatDate(tender.advertisement_date)}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 border-b">
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="w-4 h-4 text-gray-500" />
+                      <span>{formatDate(tender.closing_date)}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 border-b">
+                    <div className="flex flex-col space-y-1">
+                      {tender.attachments !== null && JSON.parse(tender.attachments).map((doc, index) => (
+                        <a
+                          key={index}
+                          href={doc.url}
+                          className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          <span>{doc.title}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 border-b">
+                    <div className="flex items-center justify-center space-x-2">
+                      <IndianRupee className="w-4 h-4 text-gray-500" />
+                      {tender.estimated_value}
+                    </div>
+                  </td>
+                </tr>
+              </React.Fragment>
             ))
           )}
         </tbody>
       </table>
     </div>
   );
+
   const crumbs = [{crumb:"Tenders",link:"#"}]
   return (
     <div className="min-h-screen bg-gray-50">

@@ -77,7 +77,7 @@ const Page = () => {
     { id: 'achievements', name: 'Achievements', icon: MedalIcon },
     { id: 'notices', name: 'Notices', icon: PinIcon },
     { id: 'events', name: 'Events', icon: LoaderPinwheel },
-    { id: 'eventImages', name: 'Event Images', icon: ImagesIcon },
+    { id: 'eventImages', name: 'Event Media', icon: ImagesIcon },
     { id: 'downloads', name: 'Downloads Page', icon: Download },
   ];
   const [profileOpen, setProfileOpen] = useState(false);
