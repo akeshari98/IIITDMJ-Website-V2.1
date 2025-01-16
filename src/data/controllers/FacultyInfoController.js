@@ -144,7 +144,6 @@ async function getAllFaculties(branch_id) {
   return rows;
 }
 
-
 async function getFacultyCourses(userId) {
   const query = `
     SELECT DISTINCT course_code, course_name, discipline
@@ -202,8 +201,40 @@ async function getProjects(userId) {
   const { rows } = await pool.query(query);
   return rows;
 }
+async function getPatents(userId){
+  const query = `
+  SELECT title, p_no, status, p_year
+  FROM 
+  dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+          'SELECT petents.title as title , p_no,status,p_year
+           FROM auth_user
+          JOIN eis_emp_patents AS petents 
+          ON CAST(auth_user.id AS varchar) = petents.pf_no
+          WHERE auth_user.id = ${userId}'
+          ) AS t(title text, p_no varchar, status varchar, p_year integer);
+          
+  `;
+  const {rows} = await pool.query(query);
+  return rows;
+}
+async function getConsultancyProjects(userId){
+  const query = `
+  SELECT title, consultants, client, financial_outlay, start_date, end_date, status, remarks
+  FROM 
+  dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+         'SELECT consultancy_projects.title, consultants, client, financial_outlay, start_date, end_date, status, remarks
+          FROM auth_user
+          JOIN eis_emp_consultancy_projects AS consultancy_projects 
+          ON CAST(auth_user.id AS varchar) = consultancy_projects.pf_no
+          WHERE auth_user.id = ${userId}'
+        ) AS t(title text, consultants varchar, client varchar, financial_outlay integer, start_date date, end_date date, status varchar, remarks text);
+`;
 
+const { rows } = await pool.query(query);
+return rows;
+}
 
+//Publications
 async function getBooks(userId) {
   const query = `
     SELECT title, authors, publisher, pyear
@@ -224,15 +255,15 @@ async function getBooks(userId) {
 
 async function getPublications(userId) {
   const query = `
-    SELECT authors, title_paper, name, volume_no, page_no, year, doi
+    SELECT authors, title_paper, name, volume_no, page_no, year, doi, rtype
     FROM 
     dblink('dbname=fusionlab user=superAdmin password=9455957884', 
-           'SELECT authors, title_paper, name, volume_no, page_no, year, doi
+           'SELECT authors, title_paper, name, volume_no, page_no, year, doi, rtype
             FROM auth_user
             JOIN eis_emp_research_papers AS research_papers 
               ON CAST(auth_user.id as varchar) = research_papers.pf_no
             WHERE auth_user.id = ${userId}'
-          ) AS t(authors varchar, title_paper varchar, name varchar, volume_no varchar, page_no varchar, year varchar, doi varchar);
+          ) AS t(authors varchar, title_paper varchar, name varchar, volume_no varchar, page_no varchar, year varchar, doi varchar, rtype varchar);
 `;
   const { rows } = await pool.query(query);
   return rows;
@@ -263,6 +294,36 @@ async function getConferences(userId) {
           ) AS t(role varchar, name varchar, venue varchar, start_date date))
            ;
 `;
+  const { rows } = await pool.query(query);
+  return rows;
+}
+async function getOrganizedEvents(userId) {
+  const query = `
+    SELECT role, name, venue, start_date
+    FROM 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+           'SELECT role, name, venue, start_date
+            FROM auth_user
+            JOIN eis_emp_event_organized AS event_organized 
+              ON CAST(auth_user.id as varchar) = event_organized.pf_no
+            WHERE auth_user.id = ${userId}'
+          ) AS t(role varchar, name varchar, venue varchar, start_date date);
+  `;
+  const { rows } = await pool.query(query);
+  return rows;
+}
+async function getOrganizedConferences(userId) {
+  const query = `
+    SELECT role, name, venue, start_date
+    FROM 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+           'SELECT role1 AS role, name, venue, start_date
+            FROM auth_user
+            JOIN eis_emp_confrence_organised AS confrence_organised 
+              ON CAST(auth_user.id as varchar) = confrence_organised.pf_no
+            WHERE auth_user.id = ${userId}'
+          ) AS t(role varchar, name varchar, venue varchar, start_date date);
+  `;
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -303,7 +364,57 @@ const getAllFaculty = async (req, res) => {
     return res.status(500).json({ error: "Server error" });
   }
 };
+const getFacultyVisits = async (userId) =>{
+  const query = `
+  SELECT country, place, purpose, start_date, end_date
+  FROM 
+  dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+         'SELECT visits.country, visits.place, visits.purpose, visits.start_date, visits.end_date
+          FROM auth_user
+          JOIN eis_emp_visits AS visits 
+          ON CAST(auth_user.id AS varchar) = visits.pf_no
+          WHERE auth_user.id = ${userId}'
+        ) AS t(country varchar, place varchar, purpose varchar, start_date date, end_date date);
+`;
 
+const { rows } = await pool.query(query);
+return rows;
+
+} 
+const getFacultyAchievements = async (userId) =>{
+  const query = `
+  SELECT a_type,details,a_year
+  FROM 
+  dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+         'SELECT achievements.a_type,achievements.details,achievements.a_year
+          FROM auth_user
+          JOIN eis_emp_achievement AS achievements 
+          ON CAST(auth_user.id AS varchar) = achievements.pf_no
+          WHERE auth_user.id = ${userId}'
+        ) AS t(a_type varchar, details varchar, a_year integer);
+`;
+
+const { rows } = await pool.query(query);
+return rows;
+
+} 
+const getFacultyExpertLectures = async (userId) =>{
+  const query = `
+  SELECT l_type,title,l_date, place
+  FROM 
+  dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+         'SELECT expertLecture.l_type,expertLecture.title,expertLecture.l_date,expertLecture.place
+          FROM auth_user
+          JOIN eis_emp_expert_lectures AS expertLecture 
+          ON CAST(auth_user.id AS varchar) = expertLecture.pf_no
+          WHERE auth_user.id = ${userId}'
+        ) AS t(l_type varchar,title varchar,l_date date, place varchar);
+`;
+
+const { rows } = await pool.query(query);
+return rows;
+
+} 
 // Export the functions
 module.exports = {
   getFacultyHonors,
@@ -314,11 +425,18 @@ module.exports = {
   getAllFaculties,
   getFacultyCourses,
   getSpecialization,
+  getConsultancyProjects,
   getProjects,
+  getPatents,
   getBooks,
   getPublications,
   getConferences,
+  getOrganizedEvents,
+  getOrganizedConferences,
   getStudents,
-  getAllFaculty
+  getAllFaculty,
+  getFacultyVisits,
+  getFacultyAchievements,
+  getFacultyExpertLectures
 };
 
