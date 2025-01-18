@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';;
+import React, { useState, useEffect } from 'react';import { Link } from 'react-router-dom';
+;
 
 // DirectorCard Component
 const DirectorCard = ({ title, content, media, buttons }) => {
-  const [showFullContent, setShowFullContent] = useState(false);
-
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-full md:w-1/2">
       <div className="p-6 bg-blue-50 h-full flex flex-col justify-between">
@@ -36,16 +35,30 @@ const DirectorCard = ({ title, content, media, buttons }) => {
         </div>
         <div className="flex justify-start mt-4">
           {buttons.map((button, index) => (
-            <button 
-              key={index}
-              className={`px-4 py-2 ${
-                button.primary 
-                  ? "bg-blue-600 text-white hover:bg-blue-700" 
-                  : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
-              } transition-colors duration-300`}
-            >
-              {button.text}
-            </button>
+            button.link ? (
+              <Link 
+                key={index}
+                to={button.link}
+                className={`px-4 py-2 ${
+                  button.primary 
+                    ? "bg-blue-600 text-white hover:bg-blue-700" 
+                    : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
+                } transition-colors duration-300`}
+              >
+                {button.text}
+              </Link>
+            ) : (
+              <button 
+                key={index}
+                className={`px-4 py-2 ${
+                  button.primary 
+                    ? "bg-blue-600 text-white hover:bg-blue-700" 
+                    : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
+                } transition-colors duration-300`}
+              >
+                {button.text}
+              </button>
+            )
           ))}
         </div>
       </div>
