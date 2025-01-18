@@ -13,7 +13,7 @@ const AchievementsCard = ({ title, imagePublicId, excerpt, createdAt, link }) =>
   const imageUrl = imagePublicId ? imagePublicId : newsPlaceHolder;
   
   return (
-    <div className="flex-shrink-0 w-64 sm:w-72 md:w-80 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-100">
+    <div className="flex-shrink-0 w-[80vw] sm:w-72 md:w-80 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-100">
       <div className="relative">
         <img src={imageUrl} alt={title} className="w-full h-48 sm:h-52 object-cover" />
         <div className="absolute top-0 right-0 bg-black bg-opacity-60 text-white text-xs px-3 py-1 m-3 rounded-full flex items-center">
@@ -31,12 +31,12 @@ const AchievementsCard = ({ title, imagePublicId, excerpt, createdAt, link }) =>
             dangerouslySetInnerHTML={{ __html: excerpt }}
           />
         </div>
-        <div className="mt-auto">
+        <div className="mt-auto text-right">
           <a
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
+            className="inline-flex items-center  gap-2 bg-black text-white px-4 py-2 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
           >
             Read More
             {/* <ExternalLink className="w-4 h-4" /> */}
@@ -117,7 +117,7 @@ const AchievementsCarousel = () => {
     <div className="relative max-w-full">
       <div
         ref={carouselRef}
-        className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory cursor-grab active:cursor-grabbing"
+        className="flex overflow-x-auto gap-6 scrollbar-hide snap-x snap-mandatory cursor-grab active:cursor-grabbing"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -128,7 +128,7 @@ const AchievementsCarousel = () => {
         onTouchMove={handleTouchMove}
       >
         {loading?<NewsSliderSkeleton/>:newsData.map((item, index) => (
-          <div key={`${item.id}-${index}`} className="snap-start px-2 py-4">
+          <div key={`${item.id}-${index}`} className="snap-start py-4">
             <AchievementsCard {...item} />
           </div>
         ))}

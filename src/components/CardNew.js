@@ -36,7 +36,7 @@ const Card = ({
           <img
             src={profile_picture || profile}
             alt={`${first_name} ${last_name}`}
-            className="w-40 h-40 object-cover object-top rounded-full border-4 border-white shadow-lg z-10"
+            className="w-40 h-40 object-cover object-top rounded-full border-4 border-white shadow-lg z-2"
           />
         </div>
       </div>
