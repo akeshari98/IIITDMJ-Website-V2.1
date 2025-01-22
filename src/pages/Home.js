@@ -238,7 +238,7 @@ function Home() {
         <section className="px-2 pt-20 md:p-10 md:pt-0">
           <Coi />
         </section>
-        <section className="max-w-[90vw] mx-auto px-2 pt-20 md:p-10">
+        <section className="  px-2 pt-20 md:p-10">
           {/* if (loading) return <p>Loading events...</p>;
         if (error) return <p>{error}</p>; */}
           <Events events={fetchedEvents} />
