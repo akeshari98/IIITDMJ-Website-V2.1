@@ -53,7 +53,7 @@ const BackgroundPattern = () => (
 const TabButton = ({ active, onClick, children, icon: Icon }) => (
   <button
     onClick={onClick}
-    className={`flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all relative ${
+    className={`flex items-center gap-2 px-6 py-3 text-md font-medium transition-all relative ${
       active 
         ? 'text-blue-600 before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-blue-600 before:rounded-t-full' 
         : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
@@ -582,7 +582,7 @@ const ProfilePage = () => {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-transparent rounded-xl" />
                 <div className="flex flex-col items-center relative">
-                  <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden mb-4">
+                  <div className="w-32 h-32 border-4 border-white shadow-lg overflow-hidden mb-4">
                     <img
                       src={basicInfo.profile_picture || '/api/placeholder/150/150'}
                       alt="Profile"
