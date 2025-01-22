@@ -5,6 +5,7 @@ import {
   RefreshCw, 
   Bell,
   X,
+  ChevronRight,
 } from "lucide-react";
 import axiosInstance from "../axios";
 import { Link } from "react-router-dom";
@@ -183,12 +184,16 @@ const ImportantAnnouncement = () => {
         </div>
         
         {hasMoreAnnouncements && (
-          <Link
-            to='/allImportantAnnouncements'
-            className="mt-6 mx-auto block bg-red-100 text-red-600 px-6 py-2 rounded-full hover:bg-red-200 transition-colors font-medium w-[20vw]"
-          >
-            See All Announcements
-          </Link>
+           <Link
+           to="/allImportantAnnouncements"
+           className="group flex items-center justify-center gap-2 w-full max-w-md mx-auto mt-6 px-6 py-3 text-sm text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium"
+         >
+           See All Announcements
+           <ChevronRight
+             size={16} 
+             className="transition-transform duration-200 group-hover:translate-x-1" 
+           />
+         </Link>
         )}
 
         <Modal

@@ -4,8 +4,9 @@ const {
   addCounsellingMembers,
   updateCounsellingMembers,
   deleteCounsellingMembers,
-  getAllCounsellingMembers
-} = require('../controllers/CounsellingMembersController')
+  getAllCounsellingMembers,
+  bulkAddCounsellingMembers
+} = require('../controllers/CounsellingMembersController');
 
 router.post("/addCounsellingMembers", async (req, res) => {
   try {
@@ -17,7 +18,40 @@ router.post("/addCounsellingMembers", async (req, res) => {
   }
 });
 
-// Update non-faculty information
+// New route for bulk upload
+router.post("/bulkAddCounsellingMembers", async (req, res) => {
+  try {
+    const { members } = req.body;
+    
+    // Validate the request body
+    if (!Array.isArray(members) || members.length === 0) {
+      return res.status(400).json({ error: "Invalid request format. Expected array of members." });
+    }
+
+    // Validate each member object
+    const requiredFields = ['name', 'roll_no', 'role', 'batch', 'email', 'student_type'];
+    for (const member of members) {
+      const missingFields = requiredFields.filter(field => !member[field]);
+      if (missingFields.length > 0) {
+        return res.status(400).json({
+          error: `Missing required fields: ${missingFields.join(', ')} for member with roll number ${member.roll_no || 'unknown'}`
+        });
+      }
+    }
+
+    await bulkAddCounsellingMembers(members);
+    res.status(200).json({ 
+      message: `Successfully added ${members.length} members!`
+    });
+  } catch (error) {
+    console.error('Error in bulk upload:', error);
+    res.status(500).json({ 
+      error: "Failed to process bulk upload",
+      details: error.message 
+    });
+  }
+});
+
 router.put("/updateCounsellingMembers", async (req, res) => {
   try {
     await updateCounsellingMembers(req.body);
@@ -28,7 +62,6 @@ router.put("/updateCounsellingMembers", async (req, res) => {
   }
 });
 
-// Delete a non-faculty member
 router.delete("/deleteCounsellingMembers", async (req, res) => {
   try {
     const { id } = req.body;
@@ -40,10 +73,8 @@ router.delete("/deleteCounsellingMembers", async (req, res) => {
   }
 });
 
-//Get all non faculties
 router.get("/getAllCounsellingMembers", async (req, res) => {
   try {
-    // Pass `req` and `res` to `getCounsellingMembers` so it can handle the response
     await getAllCounsellingMembers(req, res);
   } catch (error) {
     console.error("Error in /getCounsellingMembers route:", error);

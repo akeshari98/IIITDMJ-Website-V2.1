@@ -35,10 +35,6 @@ import Buildingagenda from "./pages/more/administration/buildingagenda";
 import DeanAcademics from "./pages/more/deans/deanacademics";
 import DeanStudents from "./pages/more/deans/deanstudents";
 import Club from "./pages/more/Club";
-import Event from "./pages/more/Event";
-import Gallery from "./pages/more/Gallery";
-import News from "./pages/more/News";
-import Saptadhara from "./pages/more/Saptadhara";
 import ResearchStaff from "./pages/more/people/researchstaff";
 import OfficeAdministration from "./pages/more/people/officeadministration";
 import Staff from "./pages/more/people/staff";
@@ -98,6 +94,7 @@ import NoticesPage from "./pages/NoticesPage"
 import CalendarCreator from "./components/CalendarCreator"
 import CalendersPage from './pages/Calenders';
 import DownloadsPage from './pages/Downloads';
+import DirectorsMessage from './pages/DirectorsPage';
 const router = createHashRouter([
   {
       path:"*",
@@ -116,6 +113,10 @@ const router = createHashRouter([
       {
         path:'/jobs',
         element: <Job/>
+      },
+      {
+        path:'/directorPage',
+        element: <DirectorsMessage/>
       },
       {
         path:'/downloads',
@@ -307,22 +308,6 @@ const router = createHashRouter([
       {
         path: "/staff",
         element: <Staff />,
-      },
-      {
-        path: "/event",
-        element: <Event />,
-      },
-      {
-        path: "/gallery",
-        element: <Gallery />,
-      },
-      {
-        path: "/news",
-        element: <News />,
-      },
-      {
-        path: "/saptadhara",
-        element: <Saptadhara />,
       },
       {
         path: "/rti",

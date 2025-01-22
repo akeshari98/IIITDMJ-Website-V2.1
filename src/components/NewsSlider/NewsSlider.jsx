@@ -13,7 +13,7 @@ const NewsCard = ({ title, imagePublicId, excerpt, createdAt, link }) => {
   const imageUrl = imagePublicId ? imagePublicId : newsPlaceHolder;
   
   return (
-    <div className="flex-shrink-0 w-64 sm:w-72 md:w-80 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-100">
+    <div className="flex-shrink-0 w-[80vw] sm:w-[74vw] md:w-80 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-100">
       <div className="relative">
         <img src={imageUrl} loading="lazy" alt={title} className="w-full h-48 sm:h-52 object-cover" />
         <div className="absolute top-0 right-0 bg-black bg-opacity-60 text-white text-xs px-3 py-1 m-3 rounded-full flex items-center">
@@ -31,7 +31,7 @@ const NewsCard = ({ title, imagePublicId, excerpt, createdAt, link }) => {
             dangerouslySetInnerHTML={{ __html: excerpt }}
           />
         </div>
-        <div className="mt-auto">
+        <div className="mt-auto text-right">
           <a
             href={link}
             target="_blank"
@@ -135,7 +135,7 @@ const NewsCarousel = () => {
   };
 
   return (
-    <div className="relative px-4">
+    <div className="relative">
       <div
         ref={carouselRef}
         className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory cursor-grab active:cursor-grabbing py-6"

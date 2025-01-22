@@ -7,11 +7,11 @@ const NoticeCard = ({ title, excerpt, createdAt, link }) => (
     href={link} // Redirect to the link when clicked
     target="_blank" // Open in a new tab
     rel="noopener noreferrer" // Security feature for opening links
-    className="block bg-gray-90 shadow-md p-4 mb-4 border border-gray-300 hover:shadow-lg transition-shadow duration-300 no-underline" // Remove underline
+    className="block w-[80vw] md:w-auto bg-gray-90 shadow-md p-4 mb-4 border border-gray-300 hover:shadow-lg transition-shadow duration-300 no-underline" // Remove underline
     style={{ textDecoration: 'none', color: 'inherit' }} // Additional styles to ensure no link styling
   >
     <div className="flex justify-between items-start mb-2">
-      <h3 className="text-lg  line-clamp-1 text-left">{title}</h3>
+      <h3 className="text-lg   text-left">{title}</h3>
       <span className="text-xs text-gray-500 ml-2 whitespace-nowrap">
         {new Date(createdAt).toLocaleDateString()}
       </span>
@@ -58,7 +58,7 @@ const Notices = () => {
   }
 
   return (
-    <div className="p-2">
+    <div className="">
       {/* Mobile: Horizontal Scroll */}
       <div className="block md:hidden">
         <div 
@@ -70,7 +70,7 @@ const Notices = () => {
           }}
         >
           {notices.map((item, index) => (
-            <div key={`${item.id}-${index}`} className="first:ml-2 last:mr-2">
+            <div key={`${item.id}-${index}`} className=" last:mr-2">
               <NoticeCard {...item} />
             </div>
           ))}

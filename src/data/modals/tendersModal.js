@@ -19,7 +19,12 @@ Tender.init({
     allowNull: true
   },
   description: {
-    type: DataTypes.TEXT
+    type: DataTypes.TEXT,
+    allowNull: true
+  },
+  importantUpdate: {
+    type: DataTypes.TEXT,
+    allowNull: true
   },
   advertisement_date: {
     type: DataTypes.DATE,

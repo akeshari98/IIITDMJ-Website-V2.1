@@ -20,7 +20,7 @@ const News = sequelize.define('News', {
   },
   link: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   status: {
     type: DataTypes.STRING(20),

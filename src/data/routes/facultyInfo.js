@@ -14,7 +14,14 @@ const {
   getPublications,
   getConferences,
   getStudents,
-  getAllFaculty
+  getAllFaculty,
+  getConsultancyProjects,
+  getPatents,
+  getOrganizedEvents,
+  getOrganizedConferences,
+  getFacultyVisits,
+  getFacultyAchievements,
+  getFacultyExpertLectures
 } = require("../controllers/FacultyInfoController"); // Update with the actual module name if it's different
 
 // Route 1: Get Faculty Honors
@@ -177,6 +184,91 @@ router.get("/getAllFaculty", async (req, res) => {
   } catch (error) {
     console.error("Error in /getAllFaculty route:", error);
     res.status(500).json({ error: "Server Error" });
+  }
+});
+
+
+// Consultancy Projects
+router.get("/faculty/:userId/consultancy-projects", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const consultancyProjects = await getConsultancyProjects(userId);
+    res.status(200).json(consultancyProjects);
+  } catch (error) {
+    console.error("Error fetching consultancy projects:", error);
+    res.status(500).json({ error: "Error fetching consultancy projects" });
+  }
+});
+
+// Patents
+router.get("/faculty/:userId/patents", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const patents = await getPatents(userId);
+    res.status(200).json(patents);
+  } catch (error) {
+    console.error("Error fetching patents:", error);
+    res.status(500).json({ error: "Error fetching patents" });
+  }
+});
+
+// Organized Events
+router.get("/faculty/:userId/organized-events", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const organizedEvents = await getOrganizedEvents(userId);
+    res.status(200).json(organizedEvents);
+  } catch (error) {
+    console.error("Error fetching organized events:", error);
+    res.status(500).json({ error: "Error fetching organized events" });
+  }
+});
+
+// Organized Conferences
+router.get("/faculty/:userId/organized-conferences", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const organizedConferences = await getOrganizedConferences(userId);
+    res.status(200).json(organizedConferences);
+  } catch (error) {
+    console.error("Error fetching organized conferences:", error);
+    res.status(500).json({ error: "Error fetching organized conferences" });
+  }
+});
+
+// Faculty Visits
+router.get("/faculty/:userId/visits", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const visits = await getFacultyVisits(userId);
+    res.status(200).json(visits);
+  } catch (error) {
+    console.error("Error fetching faculty visits:", error);
+    res.status(500).json({ error: "Error fetching faculty visits" });
+  }
+});
+
+// Faculty Achievements
+router.get("/faculty/:userId/achievements", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const achievements = await getFacultyAchievements(userId);
+    res.status(200).json(achievements);
+  } catch (error) {
+    console.error("Error fetching faculty achievements:", error);
+    res.status(500).json({ error: "Error fetching faculty achievements" });
+  }
+});
+
+// Faculty Expert Lectures
+router.get("/faculty/:userId/expert-lectures", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const expertLectures = await getFacultyExpertLectures(userId);
+    res.status(200).json(expertLectures);
+  } catch (error) {
+    console.error("Error fetching expert lectures:", error);
+    res.status(500).json({ error: "Error fetching expert lectures" });
   }
 });
 

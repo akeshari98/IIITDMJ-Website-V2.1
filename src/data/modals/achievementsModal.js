@@ -20,7 +20,7 @@ const Achievements = sequelize.define('achievements', {
   },
   link: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   status: {
     type: DataTypes.STRING(20),

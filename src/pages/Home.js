@@ -61,7 +61,7 @@ function Home() {
     const [isHovered, setIsHovered] = useState(false);
   
     return (
-      <h3 className="text-2xl  mb-4 flex items-center justify-center">
+      <h3 className="text-2xl  mb-4 flex items-center">
         {title}
         {notificationDot && (
           <span className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_20px_5px] shadow-blue-500 animate-pulse ml-4 mt-2.5"></span>
@@ -71,27 +71,25 @@ function Home() {
             to={linkTo}
             rel="noopener noreferrer"
             style={{ color: "#2563EB" }}
-            className="inline-flex items-center gap-2 text-black rounded-lg text-sm font-medium transition-colors ml-1"
+            className="inline-flex items-center gap-2 text-black rounded-lg text-sm font-small transition-colors ml-1"
           >
             <div
               className="flex items-center gap-2 cursor-pointer"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <ChevronRight
+              {/* <ChevronRight
                 size={24}
                 className={`transition-transform transform ${
                   isHovered
                     ? "translate-x-2 opacity-0"
                     : "translate-x-0 opacity-100"
                 }`}
-              />
+              /> */}
               <span
-                className={`text-sm font-medium transition-opacity ${
-                  isHovered ? "opacity-100 -translate-x-7" : "opacity-0 -translate-x-7"
-                }`}
+                className={`text-sm font-medium transition-opacity bg-blue-500 text-white px-2 rounded-sm`} 
               >
-                View More
+                View All
               </span>
             </div>
           </Link>
@@ -101,7 +99,7 @@ function Home() {
   };
   const AchievementsAndNoticesLayout = () => {
     return (
-      <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
+      <div className="flex flex-col lg:flex-row space-y-24 lg:space-y-0 lg:space-x-6">
         {/* Achievements Section */}
         <div className="lg:w-2/3">
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -115,7 +113,7 @@ function Home() {
   
         {/* Notices Section */}
         <div className="lg:w-1/3">
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+          <div className="bg-white rounded-lg w-[100vw] md:w-auto md:shadow-md overflow-hidden ">
             <SectionHeader 
               title="Notices" 
               linkTo="/noticespage"
@@ -179,13 +177,13 @@ function Home() {
                             : "translate-x-0 opacity-100"
                         }`}
                       />
-                      <span
-                        className={`text-sm font-medium transition-opacity ${
-                          isHovered ? "opacity-100 -translate-x-7" : "opacity-0 -translate-x-7"
-                        }`}
-                      >
-                        View More
-                      </span>
+                    
+                         <span
+                         className={`text-sm font-medium transition-opacity bg-blue-500 text-white px-2 rounded-sm`} 
+                       >
+                         View All
+                       </span>
+                    
                     </div>
                     {/* <ExternalLink className="w-4 h-4" /> */}
                   </Link>
@@ -234,10 +232,10 @@ function Home() {
             <AboutAndVisitors />
           </div>
         </section>
-        <section className="px-2 pt-20 md:p-10">
+        <section className="px-2 pt-40 md:p-10">
           <FocusOn />
         </section>
-        <section className="px-2 pt-20 md:p-10">
+        <section className="px-2 pt-20 md:p-10 md:pt-0">
           <Coi />
         </section>
         <section className="max-w-[90vw] mx-auto px-2 pt-20 md:p-10">
