@@ -25,7 +25,7 @@ function FocusOn() {
     ];
     return (
         <div className="space-y-8 p-4 flex flex-col item-center">
-            <div className="flex items-center justify-between mb-6 max-width-100 ml-auto mr-auto ">
+            <div className="flex items-center justify-between mb-6 max-w-[80vw] ml-auto mr-auto ">
                 <div className="flex items-center">
                     <div className="flex flex-col w-full text-left">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">

@@ -4,7 +4,7 @@ import axiosInstance from '../axios';
 import newsPlaceHolder from "../resources/images/newsPlaceHolder.png";
 import PageHeader from '../components/PageHeader';
 const NewsPage = () => {
-  const [newsData, setNewsData] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('desc');
@@ -26,22 +26,26 @@ const NewsPage = () => {
   //     return buildImageUrl(input); // Input is a public ID
   //   }
   // };
+  const fetchData = async (showLoading = true) => {
+    if (showLoading) setLoading(true);
+    // setError(null);
+
+    try {
+      const response = await axiosInstance.get("RedAnnouncements/RedAnnouncements", {params:{type:'current'}});
+      setData(response.data); 
+      setLoading(false);
+    } catch (err) {
+      console.error("Error fetching Announcements:", err);
+      // setError({
+      //   message: "Failed to fetch Announcements",
+      //   details: err.response?.data?.message || "Network error or server unavailable"
+      // });
+      setLoading(false);
+    }
+  };  
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await axiosInstance.get('/news/news');
-        const newsItems = response.data.map(item => ({
-          ...item,
-          imagePublicId: item.image_url,
-        }));
-        setNewsData(newsItems);
-      } catch (error) {
-        console.error('Error fetching news:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchNews();
+    
+    fetchData();
   }, []);
 
   const formatDate = (dateString) => {
@@ -59,7 +63,7 @@ const NewsPage = () => {
     }));
   };
 
-  const filteredAndSortedNews = newsData
+  const filteredAndSortedNews = data
     .filter(news => 
       news.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       news.excerpt.toLowerCase().includes(searchTerm.toLowerCase())

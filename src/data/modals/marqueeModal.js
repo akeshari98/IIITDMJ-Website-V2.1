@@ -10,6 +10,14 @@ const Marquee = sequelize.define('Marquee', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  status: {
+    type: DataTypes.STRING(20),
+    allowNull: false,
+    defaultValue: 'ACTIVE',
+    validate: {
+      isIn: [['ACTIVE', 'ARCHIVED', 'CANCELLED']]
+    }
+  },
 });
 
 module.exports = Marquee;

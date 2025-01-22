@@ -5,6 +5,7 @@ const multer = require('multer');
 const upload = multer(); // Create an instance for parsing `multipart/form-data`
 // Route to get full Marquee for the Marquee page
 router.get('/Marquee', MarqueeController.getAllMarquee);
+router.get('/MarqueeActive', MarqueeController.getAllActiveMarquee);
 
 // Route to get overview for the homepage
 router.get('/Marquee-overview', MarqueeController.getMarqueeOverview);

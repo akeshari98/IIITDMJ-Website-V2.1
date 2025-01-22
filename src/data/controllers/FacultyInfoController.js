@@ -6,7 +6,7 @@ const pool = require("../connection");
 async function getFacultyHonors(userId) {
   const query = `
     SELECT t.id, title, description, "period"
-    FROM dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    FROM dblink('dbname=fusionlab user=superAdmin password=9455957884', 
          'SELECT auth_user.id, eis_honors.title, description, "period" 
           FROM auth_user, globals_extrainfo, eis_faculty_about, eis_honors
           WHERE auth_user.id=globals_extrainfo.user_id
@@ -23,7 +23,7 @@ async function getFacultyHonors(userId) {
 async function getFacultyQualifications(userId) {
   const query = `
     SELECT t.id, "degree", college
-    FROM dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    FROM dblink('dbname=fusionlab user=superAdmin password=9455957884', 
          'SELECT auth_user.id, "degree", college 
           FROM auth_user, globals_extrainfo, eis_faculty_about, eis_qualifications
           WHERE auth_user.id=globals_extrainfo.user_id
@@ -40,7 +40,7 @@ async function getFacultyQualifications(userId) {
 async function getFacultyExperience(userId) {
   const query = `
     SELECT t.id, title, description, "from", "to"
-    FROM dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    FROM dblink('dbname=fusionlab user=superAdmin password=9455957884', 
          'SELECT auth_user.id, eis_professional_experience.title, description, "from", "to" 
           FROM auth_user, globals_extrainfo, eis_faculty_about, eis_professional_experience
           WHERE auth_user.id=globals_extrainfo.user_id
@@ -57,7 +57,7 @@ async function getFacultyExperience(userId) {
 async function getFacultyAdminPosition(userId) {
   const query = `
     SELECT t.id, title, description, "from", "to"
-    FROM dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    FROM dblink('dbname=fusionlab user=superAdmin password=9455957884', 
          'SELECT auth_user.id, eis_administrative_position.title, description, "from", "to" 
           FROM auth_user, globals_extrainfo, eis_faculty_about, eis_administrative_position
           WHERE auth_user.id=globals_extrainfo.user_id
@@ -74,7 +74,7 @@ async function getFacultyBasicInfo(userId) {
   const query = `
   SELECT id, first_name, last_name, designation, email, contact, address, profile_picture, department, about, interests, linkedin, github
 FROM 
-    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT auth_user.id AS id, 
                    auth_user.first_name AS first_name, 
                    auth_user.last_name AS last_name, 
@@ -112,7 +112,7 @@ async function getAllFaculties(branch_id) {
   const query = `
     SELECT id, first_name, last_name, designation, email, contact, address, profile_picture, department, about, interests
     FROM 
-      dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+      dblink('dbname=fusionlab user=superAdmin password=9455957884', 
              'SELECT auth_user.id AS id, 
                      auth_user.first_name AS first_name, 
                      auth_user.last_name AS last_name, 
@@ -149,7 +149,7 @@ async function getFacultyCourses(userId) {
   const query = `
     SELECT DISTINCT course_code, course_name, discipline
     FROM 
-    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT pc_course.code AS course_code, 
                    pc_course.name AS course_name, 
                    pc_discipline.name AS discipline
@@ -173,7 +173,7 @@ async function getSpecialization(userId) {
   const query = `
     SELECT about
     FROM 
-    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT faculty_about.about AS about
             FROM auth_user
             JOIN eis_faculty_about AS faculty_about 
@@ -190,7 +190,7 @@ async function getProjects(userId) {
   const query = `
     SELECT title, pi, co_pi, start_date, finish_date
     FROM 
-    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT research_projects.title AS title,pi,co_pi,start_date,finish_date
             FROM auth_user
             JOIN eis_emp_research_projects AS research_projects 
@@ -208,7 +208,7 @@ async function getBooks(userId) {
   const query = `
     SELECT title, authors, publisher, pyear
     FROM 
-    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT published_books.title AS title,authors,publisher,pyear
             FROM auth_user
             JOIN eis_emp_published_books AS published_books 
@@ -226,7 +226,7 @@ async function getPublications(userId) {
   const query = `
     SELECT authors, title_paper, name, volume_no, page_no, year, doi
     FROM 
-    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT authors, title_paper, name, volume_no, page_no, year, doi
             FROM auth_user
             JOIN eis_emp_research_papers AS research_papers 
@@ -244,7 +244,7 @@ async function getConferences(userId) {
   const query = `
     (SELECT role, name, venue, start_date
     FROM 
-    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT role, name, venue, start_date
             FROM auth_user
             JOIN eis_emp_event_organized AS event_organized 
@@ -254,7 +254,7 @@ async function getConferences(userId) {
     UNION
     (SELECT role, name, venue, start_date
     FROM 
-    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT role1 AS role, name, venue, start_date
             FROM auth_user
             JOIN eis_emp_confrence_organised AS confrence_organised 
@@ -272,7 +272,7 @@ async function getStudents(userId) {
   const query = `
     SELECT rollno, s_name, status, s_year, title, co_supervisors
     FROM 
-    dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT rollno, s_name, status, s_year, title, co_supervisors
             FROM auth_user
             JOIN eis_emp_mtechphd_thesis AS mtech_phd_thesis 
@@ -290,7 +290,7 @@ const getAllFaculty = async (req, res) => {
     const query = `
       SELECT t.id, user_type, first_name, last_name, email, address, phone_no, profile_picture
       FROM 
-          dblink('dbname=${process.env.Fusion_DB_NAME} user=${process.env.Fusion_DB_USER} password=${process.env.Fusion_DB_PASSWORD}', 
+          dblink('dbname=fusionlab user=superAdmin password=9455957884', 
               'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture FROM auth_user, globals_extrainfo, globals_faculty 
               WHERE auth_user.id=globals_extrainfo.user_id 
               AND globals_extrainfo.id=globals_faculty.id_id') AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, address text, phone_no bigint, profile_picture varchar)

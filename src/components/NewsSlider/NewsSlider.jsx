@@ -54,7 +54,7 @@ const NewsCarousel = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-
+  const [activeTab, setActiveTab] = useState('current');
   // Auto-scroll functionality
   useEffect(() => {
     const scrollInterval = setInterval(() => {
@@ -77,7 +77,7 @@ const NewsCarousel = () => {
     const fetchNews = async () => {
       try {   
         setLoading(true)
-        const response = await axiosInstance.get('/news/news');
+        const response = await axiosInstance.get('/news/news', { params: { type: activeTab } });
         const newsItems = response.data.map(item => ({
           ...item,
           imagePublicId: item.image_url,

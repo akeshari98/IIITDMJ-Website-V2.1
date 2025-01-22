@@ -27,14 +27,14 @@ const AccessibilityHeader = () => {
   const fontSize = useSelector((state) => state.fontSize); // Get font size from Redux store
 
   const menuItems = [
-    // { label: 'Jobs', icon: Briefcase, link: '/jobs' },                // Internal link
+    { label: 'Jobs', icon: Briefcase, link: '/jobs' },                // Internal link
     { label: 'Calendar', icon: Calendar, link: '/calendars' },             // Internal link
     { label: 'Tenders', icon: FileText, link: '/tenders' },              // Internal link
     { label: 'IIIT Council', icon: CreditCard, link: 'https://iiitcouncil.com/' },    // External link
     // { label: 'Recruiters/Careers', icon: Users, link: 'https://recruiters.example.com' },      // External link
-    { label: 'Rajbhasha', icon: LanguagesIcon, link: 'https://rajbhasha.example.com' },               // External link
+    { label: 'Rajbhasha', icon: LanguagesIcon, link: 'https://www.iiitdmj.ac.in/rajbhasha.iiitdmj.ac.in/' },               // External link
     { label: 'Ordinance', icon: LifeBuoy, link: 'https://www.iiitdmj.ac.in/administration/downloads/Ordinances%20of%20PDPM-IIITDM%20Jabalpur.pdf' },                  // External link
-    // { label: 'QIP Program', icon: School, link: 'https://qipprogram.example.com' },                     // External link
+    { label: 'QIP Program', icon: School, link: '/Qip' },                     // External link
   ];
 
   return (
