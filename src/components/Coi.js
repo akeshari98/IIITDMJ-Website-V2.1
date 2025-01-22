@@ -30,23 +30,24 @@ const FocusOn = () => {
   ];
 
   return (
-    <div className="w-full overflow-x-auto md:overflow-x-visible">
-      <div className="flex flex-row md:flex-row space-x-0 min-w-max md:min-w-0">
+    <div className="w-full overflow-x-auto md:overflow-x-visible border rounded-md">
+      <div  className="flex flex-row md:flex-row space-x-0 min-w-max md:min-w-0 transform-gpu" // Add transform-gpu
+    style={{ willChange: 'transform' }} >
         {cards.map((card, index) => (
           <motion.a 
             key={index}
             href={card.link}
-            className="relative w-64 h-96 flex-shrink-0 md:w-1/4 group overflow-visible font-sans"
+            className="relative w-64 h-96 flex-shrink-0 md:w-1/4 group overflow-visible font-sans rounded-md"
             whileHover="hover"
             initial="initial"
             variants={{
               initial: { zIndex: 1, scale: 1 },
               hover: { zIndex: 10, scale: 1.01 }
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
           >
             <motion.div 
-              className="absolute inset-0 bg-cover bg-center"
+              className="absolute inset-0 bg-cover bg-center rounded-md"
               style={{
                 backgroundImage: `url(${card.bgImage})`
               }}
@@ -54,7 +55,7 @@ const FocusOn = () => {
                 initial: { scale: 1 },
                 hover: { scale: 1.01 }
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             >
               <motion.div 
                 className="absolute inset-0 bg-black"
@@ -62,30 +63,25 @@ const FocusOn = () => {
                   initial: { opacity: 0.4 },
                   hover: { opacity: 0.7 }
                 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
               />
             </motion.div>
             
             <div className="relative p-4 h-full flex flex-col justify-between">
               <div>
                 <div className="relative">
-                  <motion.h3 
+                  <h3
                     className="text-white text-[30px] font-light tracking-wide leading-tight"
-                    variants={{
-                      initial: { scale: 1 },
-                      hover: { scale: 1 }
-                    }}
-                    transition={{ duration: 0.3 }}
                   >
                     {card.title}
-                  </motion.h3>
+                  </h3>
                   <motion.div
                     className="absolute -bottom-2 left-0 h-0.5 bg-white"
                     variants={{
                       initial: { width: 0 },
                       hover: { width: "100%" }
                     }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2 }}
                   />
                 </div>
                 
@@ -95,7 +91,7 @@ const FocusOn = () => {
                     initial: { opacity: 0, y: 20 },
                     hover: { opacity: 1, y: 0 }
                   }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
+                  transition={{ duration: 0.2, delay: 0.1 }}
                 >
                   {card.description}
                 </motion.p>
@@ -107,7 +103,7 @@ const FocusOn = () => {
                   initial: { opacity: 0, x: -20 },
                   hover: { opacity: 1, x: 0 }
                 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
+                transition={{ duration: 0.2, delay: 0.2 }}
               >
                 Explore →
               </motion.span>
