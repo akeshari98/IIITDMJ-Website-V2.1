@@ -1,118 +1,119 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { Globe, Cpu, Rocket, Zap } from "lucide-react";
 
-const FocusOn = () => {
-  const cards = [
+const FocusCard = ({
+  title,
+  icon: Icon,
+  link,
+  description = "IIITDMJ's annual flagship design workshop.",
+  bgImage 
+}) => (
+  <a href={link} className="group block w-full">
+    <div className="relative h-56 rounded-lg shadow-sm hover:shadow-md transition-all duration-150 border border-gray-300 overflow-hidden">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center rounded-lg transition-transform duration-300 group-hover:scale-110"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      ></div>
+
+      {/* Bottom Shadow */}
+      <div className="absolute bottom-0 left-0 right-0 h-60 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg pointer-events-none"></div>
+
+      {/* Overlay Text on Hover */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50"></div>
+
+      {/* Description - Slides down from top */}
+      <div className="absolute top-0 left-0 right-0 p-4 transform -translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-gradient-to-b from-black/80 to-transparent z-10">
+        <p className="text-blue-50 text-sm">
+          {description}
+        </p>
+      </div>
+
+      {/* Bottom Content Container */}
+      <div className="absolute bottom-3 left-3 z-10">
+        <div className="flex items-center gap-2">
+          <Icon className="w-8 h-8 text-blue-50 transition-colors" />
+          <h1 className="font-bold text-blue-50 transition-colors text-lg">
+            {title}
+          </h1>
+        </div>
+        
+        {/* Animated Underline */}
+        <div className="h-[1px] w-0 group-hover:w-full bg-blue-600 transition-all duration-100 mt-1"></div>
+      </div>
+
+      {/* Arrow */}
+      <div className="absolute bottom-4 right-0 translate-x-8 group-hover:-translate-x-3 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
+        <svg 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="2" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+          className="text-blue-50"
+        >
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </div>
+    </div>
+  </a>
+);
+
+function Coi() {
+  const focusAreas = [
     {
-      title: "Research",
-      description: "Explore groundbreaking research initiatives and discoveries done on IIITDM Jabalpur",
-      link: "https://www.iiitdmj.ac.in/rspc.iiitdmj.ac.in/",
+      title: 'DEW',
+      icon: Globe,
+      to: 'https://www.iiitdmj.ac.in/dew.iiitdmj.ac.in/Home.html',
       bgImage: `${process.env.REACT_APP_Backend}/public/WebsiteImages/Home/research.jpg`,
     },
     {
-      title: "Electronics and ICT",
-      description: "The Ministry of Electronics and Information Technology (MeitY), Government of India has instituted Electronics and ICT Academies in the year 2015. The academy at PDPM IIITDM Jabalpur aims at scalable training programmes in niche areas of Electronics and ICT for the development of the required knowledge base, skills and tools.",
-      link: "https://www.iiitdmj.ac.in/ict.iiitdmj.ac.in/",
+      title: 'Electronics & ICT',
+      icon: Cpu,
+      to: 'https://www.iiitdmj.ac.in/ict.iiitdmj.ac.in/',
       bgImage: `${process.env.REACT_APP_Backend}/public/WebsiteImages/Home/electronics.jpg`,
     },
     {
-      title: "Innovation",
-      description: "An Institute Innovation Council (IIC) has been established at IITDM Jabalpur as per the norms and directives of Ministry of Human Resource Development (MHRD) Innovation Cell (MIC). Ministry of Human Resource Development, Govt. of India has established MIC at AICTE with a purpose to systematically foster the culture of Innovation in all Higher Education Institutions (HEIs) across the country.",
-      link: "http://www.iiitdmj.ac.in/MIC.php",
+      title: 'Innovation',
+      icon: Rocket,
+      to: 'http://www.iiitdmj.ac.in/MIC.php',
       bgImage: `${process.env.REACT_APP_Backend}/public/WebsiteImages/Home/innovation.jpg`,
     },
     {
-      title: "Startup",
-      description: "Supporting next-generation entrepreneurs and visionaries under the guidance of esteemed faculties and industry experts, IIITDMJ forsters a vibrant startup culture",
-      link: "http://startup.iiitdmj.ac.in/",
+      title: 'Startup',
+      icon: Zap,
+      to: 'http://startup.iiitdmj.ac.in/',
       bgImage: `${process.env.REACT_APP_Backend}/public/WebsiteImages/Home/startup.jpg`,
     }
   ];
 
   return (
-    <div className="w-full overflow-x-auto md:overflow-x-visible border rounded-md">
-      <div  className="flex flex-row md:flex-row space-x-0 min-w-max md:min-w-0 transform-gpu" // Add transform-gpu
-    style={{ willChange: 'transform' }} >
-        {cards.map((card, index) => (
-          <motion.a 
-            key={index}
-            href={card.link}
-            className="relative w-64 h-96 flex-shrink-0 md:w-1/4 group overflow-visible font-sans rounded-md"
-            whileHover="hover"
-            initial="initial"
-            variants={{
-              initial: { zIndex: 1, scale: 1 },
-              hover: { zIndex: 10, scale: 1.01 }
-            }}
-            transition={{ duration: 0.2 }}
-          >
-            <motion.div 
-              className="absolute inset-0 bg-cover bg-center rounded-md"
-              style={{
-                backgroundImage: `url(${card.bgImage})`
-              }}
-              variants={{
-                initial: { scale: 1 },
-                hover: { scale: 1.01 }
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <motion.div 
-                className="absolute inset-0 bg-black"
-                variants={{
-                  initial: { opacity: 0.4 },
-                  hover: { opacity: 0.7 }
-                }}
-                transition={{ duration: 0.2 }}
-              />
-            </motion.div>
-            
-            <div className="relative p-4 h-full flex flex-col justify-between">
-              <div>
-                <div className="relative">
-                  <h3
-                    className="text-white text-[30px] font-light tracking-wide leading-tight"
-                  >
-                    {card.title}
-                  </h3>
-                  <motion.div
-                    className="absolute -bottom-2 left-0 h-0.5 bg-white"
-                    variants={{
-                      initial: { width: 0 },
-                      hover: { width: "100%" }
-                    }}
-                    transition={{ duration: 0.2 }}
-                  />
-                </div>
-                
-                <motion.p
-                  className="text-white mt-4 text-sm font-light leading-relaxed tracking-wide"
-                  variants={{
-                    initial: { opacity: 0, y: 20 },
-                    hover: { opacity: 1, y: 0 }
-                  }}
-                  transition={{ duration: 0.2, delay: 0.1 }}
-                >
-                  {card.description}
-                </motion.p>
-              </div>
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-medium text-gray-900">
+          Centers Of{" "}
+          <span className="text-blue-600 text-3xl">Excellence</span>
+        </h1>
+        <div className="w-20 h-0.5 bg-blue-600 mt-1"></div>
+      </div>
 
-              <motion.span 
-                className="text-white text-base font-light tracking-wider uppercase"
-                variants={{
-                  initial: { opacity: 0, x: -20 },
-                  hover: { opacity: 1, x: 0 }
-                }}
-                transition={{ duration: 0.2, delay: 0.2 }}
-              >
-                Explore →
-              </motion.span>
-            </div>
-          </motion.a>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {focusAreas.map((area) => (
+          <FocusCard
+            key={area.title}
+            title={area.title}
+            icon={area.icon}
+            link={area.to}
+            bgImage={area.bgImage}
+          />
         ))}
       </div>
     </div>
   );
-};
+}
 
-export default FocusOn;
+export default Coi;

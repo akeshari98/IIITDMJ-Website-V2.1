@@ -233,12 +233,12 @@ function Home() {
           </div>
         </section>
         <section className="px-2 pt-40 md:p-10">
-          <FocusOn />
+           <FocusOn /> 
         </section>
         <section className="px-2 pt-20 md:p-10 md:pt-0">
           <Coi />
         </section>
-        <section className="  px-2 pt-20 md:p-10">
+        <section className="pt-20 md:p-10 ">
           {/* if (loading) return <p>Loading events...</p>;
         if (error) return <p>{error}</p>; */}
           <Events events={fetchedEvents} />
