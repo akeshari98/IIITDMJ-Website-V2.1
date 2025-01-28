@@ -13,7 +13,7 @@ const NewsCard = ({ title, imagePublicId, excerpt, createdAt, link }) => {
   const imageUrl = imagePublicId ? imagePublicId : newsPlaceHolder;
   
   return (
-    <div className="flex-shrink-0 w-[80vw] sm:w-[74vw] md:w-80 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-100">
+    <div className="flex-shrink-0 w-[80vw] sm:w-[74vw] md:w-80 bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-100">
       <div className="relative">
         <img src={imageUrl} loading="lazy" alt={title} className="w-full h-48 sm:h-52 object-cover" />
         <div className="absolute top-0 right-0 bg-black bg-opacity-60 text-white text-xs px-3 py-1 m-3 rounded-full flex items-center">
