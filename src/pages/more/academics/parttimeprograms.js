@@ -147,14 +147,13 @@ const MainPage = () => {
                         Equivalent to M.Tech./MDes programme (Hostel is not alloted for Part time program so Hostel fee is not required in part time Program).
                         </p>
 
-                        <a href="#" className="text-blue-600 no-underline mb-6">Details of Fee Structure</a>
-
+                       <Link to="/feestructure" className="text-blue-600 no-underline mb-6">Details of Fee Structure</Link>
 
                         <h6 className="font-semibold text-gray-800 pt-8">Courses for Special Part Time MTech/MDes Programmes in:</h6>
                         <p className=" text-gray-800 ">
                         courses are also equvalance to MTech/MDes program.
                         </p>
-                        <a href="#" className="text-blue-600 no-underline mb-4">PG Curriculum</a>
+                        <Link to="/pgcurriculum" className="text-blue-600 no-underline mb-4">PG Curriculum</Link>
 
 
                     </div>
@@ -183,9 +182,7 @@ const MainPage = () => {
                         <ul className="list-disc ml-3 ">
 
                             <li className="mb-2 -ml-3">
-                                <a className="text-blue-500 no-underline">
-                                    More Info
-                                </a>
+                                <Link to="/gymkhana" className="text-blue-500 no-underline">More Info</Link>
                             </li>
                         </ul>
                     </div>
@@ -212,9 +209,7 @@ const MainPage = () => {
                         <ul className="list-disc ml-3">
 
                             <li className="mb-2 -ml-3">
-                                <a className="text-blue-500 no-underline">
-                                    More Info
-                                </a>
+                                <Link to="/hostels" className="text-blue-500 no-underline">More Info</Link>
                             </li>
                         </ul>
                     </div>

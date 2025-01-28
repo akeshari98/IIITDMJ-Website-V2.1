@@ -67,6 +67,7 @@ import UgPrograms from "./pages/more/academics/ugprograms";
 import UsefulInformation from "./pages/more/academics/usefulinformation";
 import InternalCirculars from "./pages/more/academics/internalcirculars";
 import ExternalCirculars from "./pages/more/academics/externalcirculars";
+import PGCurriculum from './pages/more/academics/pgcurriculum';
 // errors
 import PageNotFoundError from "./errors/PageNotFoundError";
 import ErrorBoundary from './errors/ErrorBoundary';
@@ -366,6 +367,10 @@ const router = createHashRouter([
       {
         path: "/curriculum",
         element: <Curriculum />,
+      },
+      {
+        path: "/pgcurriculum",
+        element: <PGCurriculum/>,
       },
       {
         path: "/feestructure",

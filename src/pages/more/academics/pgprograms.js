@@ -146,18 +146,18 @@ const MainPage = () => {
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/Documents%20list%20for%20PG%20admission.pdf" className="text-blue-600 no-underline ">
                                         List of documents required at the time of document verification</a>.
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="https://formbuilder.ccavenue.com/live/indian-bank/iiitdm-jabalapur/newly-admitted-student/application-form" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Steps for Balance Fee payments  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Steps for Balance Fee payments  </span> <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/Payment%20Steps%20for%20MTech.pdf" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
                         </ul>
@@ -191,7 +191,7 @@ const MainPage = () => {
                         <ul className="list-none space-y-2 text-black p-3 mb-4">
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">List of selected candidates for MDes SPOT Round </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">List of selected candidates for MDes SPOT Round </span> <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/List%20of%20selected%20candidate%20for%20MDes%20SPOT.pdf" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
                             <li className="flex items-start">
@@ -200,12 +200,12 @@ const MainPage = () => {
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="https://formbuilder.ccavenue.com/live/indian-bank/iiitdm-jabalapur/newly-admitted-student/application-form" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Upload Payment Link  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Upload Payment Link  </span> <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-MSbnpRiU_RG_Cdo6LawDmpZ4z2bQkJlkHzGTS6w1yiC3Gg/viewform" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
                             <li className="flex items-start mb-6 pb-4 border-b border-gray-200 translate-y-1">
@@ -217,7 +217,7 @@ const MainPage = () => {
                             <li className="flex items-start pt-4">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span className="font-semibold mr-2 text-black">Advertisement</span>
-                                <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/M.Des.Program%20(SPOT)%20advertisement%20for%20Session%202024-25.pdf" className="text-blue-600 no-underline">
                                     Click Here
                                 </a>
                             </li>
@@ -231,12 +231,12 @@ const MainPage = () => {
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Online Application form:  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Online Application form:  </span> <a href="https://docs.google.com/forms/d/e/1FAIpQLScizQvZM8BhnKD_xGd9_bXfnchWbpUTgNqNPiI6GtgDkXKxOA/viewform" className="text-blue-600 no-underline">
                                     Click Here </a>.
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="https://formbuilder.ccavenue.com/live/indian-bank/iiitdm-jabalapur/newly-admitted-student/application-form" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
                         </ul>
@@ -271,21 +271,21 @@ const MainPage = () => {
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/M.Des.Program%20(SPOT)%20advertisement%20for%20Session%202024-25.pdf" className="text-blue-600 no-underline ">
                                         Request letter for withdrawal/Cancellation of Admission</a>.
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/downloads/Notification_Revised_refund_rule.pdf" className="text-blue-600 no-underline ">
                                         Refund Rule</a>.
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/MDes%20admission%20waiting%20list%203.pdf" className="text-blue-600 no-underline ">
                                         Selected Candidate for MDes Waiting List 3 due to vacant seat positions</a>.
                                 </span>
                             </li>
@@ -295,20 +295,20 @@ const MainPage = () => {
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="https://formbuilder.ccavenue.com/live/indian-bank/iiitdm-jabalapur/newly-admitted-student/application-form" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
 
                             <li className="flex items-start mb-6 pb-4 border-b border-gray-200 translate-y-1">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Upload Payment Link  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Upload Payment Link  </span> <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-MSbnpRiU_RG_Cdo6LawDmpZ4z2bQkJlkHzGTS6w1yiC3Gg/viewform" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
 
                             <li className="flex items-start pt-4">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/MDes%20admission%20waiting%20list%202.pdf" className="text-blue-600 no-underline ">
                                         Selected Candidate for MDes Waiting List 2 due to vacant seat positions</a>.
                                 </span>
                             </li>
@@ -316,7 +316,7 @@ const MainPage = () => {
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/Selected%20candidates%20for%20MDes.%20Programme%20admission%20(1st%20Waiting%20List).pdf" className="text-blue-600 no-underline ">
                                         Selected Candidate for MDes Waiting List 1 due to vacant seat positions</a>.
                                 </span>
                             </li>
@@ -324,25 +324,25 @@ const MainPage = () => {
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/M.Des.Program%20cutoff%201st%20sheet.pdf" className="text-blue-600 no-underline ">
                                         Selected candidates for M.Des Programme (Full Time) | Cutoff score for selected Candidates</a>.
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="https://formbuilder.ccavenue.com/live/indian-bank/iiitdm-jabalapur/newly-admitted-student/application-form" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
 
                             <li className="flex items-start mb-6 pb-4 border-b border-gray-200 translate-y-1">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Upload Payment Link  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Upload Payment Link  </span> <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-MSbnpRiU_RG_Cdo6LawDmpZ4z2bQkJlkHzGTS6w1yiC3Gg/viewform" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
 
                             <li className="flex items-start pt-4">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Advertisement  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Advertisement  </span> <a href="https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/2024-25/Admission%2024-25/M.Des.Program%20advertisement%20for%20Session%202024-25.pdf" className="text-blue-600 no-underline">
                                     Click Here </a>.
                             </li>
                             <li className="flex items-start">
@@ -355,12 +355,12 @@ const MainPage = () => {
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Online Application form:  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Online Application form:  </span> <a href="https://docs.google.com/forms/d/e/1FAIpQLSdnRpA-4KZtplWFZx5DB_qcybEKyhEgzmG16O2x1ekPUt2Zxg/viewform" className="text-blue-600 no-underline">
                                     Click Here </a>.
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline">
+                                <span className="font-semibold mr-2 text-black">Payment Link  </span> <a href="https://services.sabpaisa.in/pages/iitdm.html#ChildVerticalTab_12" className="text-blue-600 no-underline">
                                     Click Here</a>.
                             </li>
                         </ul>
@@ -396,7 +396,7 @@ const MainPage = () => {
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://ccmt.admissions.nic.in/" className="text-blue-600 no-underline ">
                                         MTech Admission through CCMT</a>.
                                 </span>
                             </li>

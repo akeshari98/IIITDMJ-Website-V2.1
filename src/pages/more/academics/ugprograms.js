@@ -63,10 +63,16 @@ const MainPage = () => {
                         {/* Links at the top aligned to the right */}
                         <div className="flex flex-col items-end mb-6">
                             <a
+                                href="https://www.iiitdmj.ac.in/downloads/Counselling-Students-Committee-2024.pdf"
+                                className="text-blue-500 text-lg font-medium no-underline hover:text-blue-800 transition duration-300"
+                            >
+                                Need Help for Physical Reporting 
+                            </a>
+                            <a
                                 href="https://www.iiitdmj.ac.in/downloads/FAQ-2024-25.pdf"
                                 className="text-blue-500 text-lg font-medium no-underline hover:text-blue-800 transition duration-300"
                             >
-                                Need Help for Physical Reporting || FAQ
+                                 FAQ
                             </a>
                             <a
                                 href="https://www.iiitdmj.ac.in/downloads/Bus-Schedule_orient-16&17-Aug2024.pdf"

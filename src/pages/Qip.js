@@ -41,16 +41,19 @@ const QIPPage = () => {
     { 
       title: "Ph.D Programme under QIP", 
       icon: GraduationCap,
+      link:"https://www.iiitdmj.ac.in/downloads/QIP%20DATA%2006.02.2020.pdf",
       description: "Comprehensive doctoral program focused on quality improvement in engineering education."
     },
     { 
       title: "Ph.D/M.Tech Admission 2018-2019", 
       icon: School,
+      link:"#",
       description: "Advanced degree programs offering specialized research opportunities."
     },
     { 
       title: "Application Form for STC AI", 
       icon: BookOpen,
+      link:"https://www.iiitdmj.ac.in/downloads/Application_Form_STC_AI.pdf",
       description: "Short Term Course in Artificial Intelligence and its applications."
     }
   ];
@@ -117,7 +120,7 @@ const QIPPage = () => {
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Available Programs</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {programs.map((program, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+              <a href={program.link} key={index} className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="bg-blue-100 p-3 rounded-lg">
                     <program.icon className="w-6 h-6 text-blue-600" />
@@ -125,7 +128,7 @@ const QIPPage = () => {
                   <h3 className="font-semibold text-gray-800">{program.title}</h3>
                 </div>
                 <p className="text-gray-600 text-sm">{program.description}</p>
-              </div>
+              </a>
             ))}
           </div>
         </section>
