@@ -87,7 +87,7 @@ function Home() {
                 }`}
               /> */}
               <span
-                className={`text-sm font-medium transition-opacity bg-blue-500 text-white px-2 rounded-sm`} 
+                className={`text-sm font-medium transition-opacity bg-blue-500 text-white px-2 rounded-sm ml-3`} 
               >
                 View All
               </span>
@@ -162,21 +162,14 @@ function Home() {
                     to={"/newsPage"}
                     rel="noopener noreferrer"
                     style={{ color: "#2563EB" }}
-                    className="inline-flex items-center gap-2 text-black rounded-lg text-sm font-medium transition-colors  ml-1 "
+                    className="inline-flex items-center gap-2 text-black rounded-lg text-sm font-medium transition-colors  "
                   >
                     <div
                       className="flex items-center gap-2 cursor-pointer"
                       onMouseEnter={() => setIsHovered(true)}
                       onMouseLeave={() => setIsHovered(false)}
                     >
-                      <ChevronRight
-                        size={24}
-                        className={`transition-transform transform ${
-                          isHovered
-                            ? "translate-x-2 opacity-0"
-                            : "translate-x-0 opacity-100"
-                        }`}
-                      />
+                      
                     
                          <span
                          className={`text-sm font-medium transition-opacity bg-blue-500 text-white px-2 rounded-sm`} 
@@ -202,7 +195,7 @@ function Home() {
                </Suspense> 
               </div>
             </div>
-            <div className="bg-white py-8">
+            <div className="bg-white py-4">
               <div className="max-w-[80vw] mx-auto">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
@@ -232,13 +225,13 @@ function Home() {
             <AboutAndVisitors />
           </div>
         </section>
-        <section className="px-2 pt-40 md:p-10">
+        <section className="mt-[3vh] px-2 pt-15 md:p-10 bg-blue-10">
            <FocusOn /> 
         </section>
-        <section className="px-2 pt-20 md:p-10 md:pt-0">
+        <section className="px-2 pt-10 md:p-10 md:pt-0 bg-blue-10">
           <Coi />
         </section>
-        <section className="pt-20 md:p-10 ">
+        <section className="pt-20 md:p-10 bg-blue-10">
           {/* if (loading) return <p>Loading events...</p>;
         if (error) return <p>{error}</p>; */}
           <Events events={fetchedEvents} />

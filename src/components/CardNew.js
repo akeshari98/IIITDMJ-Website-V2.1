@@ -97,10 +97,10 @@ const Card = ({
       {user_type === "faculty" && (
         <Link
           to={`/profilepage/${id}`}
-          className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-[80%] block text-center px-4 py-2 bg-gray-700 text-white font-semibold rounded-md hover:bg-gray-800 transition-all duration-300 ease-in-out"
+          className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-[80%] block text-center px-4 py-2  text-grey font-light rounded-md hover:bg-gray-800 hover:text-white transition-all duration-300 ease-in-out"
         >
           <User className="inline-block w-5 h-5 mr-2" />
-          View Full Profile
+          Visit Profile
         </Link>
       )}
     </div>

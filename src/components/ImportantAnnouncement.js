@@ -78,7 +78,7 @@ const Announcement = ({ text, link, createdAt, isInModal = false }) => {
       <div className="flex flex-col justify-between h-full">
         <div className="flex items-start space-x-3">
           <Bell className="w-5 h-5 text-red-600 flex-shrink-0 mt-1" />
-          <span className={`text-red-800 font-medium ${isInModal ? 'text-base' : 'text-sm line-clamp-2'}`}>
+          <span className={`text-red-800 font-medium ${isInModal ? 'text-base' : 'text-md line-clamp-2'}`}>
             {text}
           </span>
         </div>
@@ -172,7 +172,7 @@ const ImportantAnnouncement = () => {
 
     return (
       <>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {displayedAnnouncements.map(({ title, link, createdAt }, index) => (
             <Announcement 
               key={index} 

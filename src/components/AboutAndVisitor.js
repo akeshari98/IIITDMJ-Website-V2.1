@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';import { Link } from 'react-router-dom';
-;
-
 // DirectorCard Component
 const DirectorCard = ({ title, content, media, buttons }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-full md:w-1/2">
       <div className="p-6 bg-blue-50 h-full flex flex-col justify-between">
         <div>
-          <h2 className="text-2xl font-bold mb-2 text-left">
+          <h3 className="font-bold text-lg mb-2 text-left">
             {title.split(' ').map((word, index) => (
               <span key={index} className={index === title.split(' ').length - 1 ? "text-blue-600" : ""}>
                 {word}{' '}
               </span>
             ))}
-          </h2>
+          </h3>
           <div className="w-12 h-1 bg-blue-600 mb-4"></div>
           <div className="flex flex-col md:flex-row">
             <div className="w-full md:w-1/2 flex flex-col justify-between mr-10">
