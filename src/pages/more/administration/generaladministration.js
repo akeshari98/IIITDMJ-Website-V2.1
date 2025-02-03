@@ -64,8 +64,8 @@ const MainPage = () => {
   }, []);
 
   const quickLinks = [
-    { name: "IIIT Act", href:"/"},
-    { name: "Institue Rules", href:"/"},
+    { name: "IIIT Act", href:"https://www.iiitdmj.ac.in/downloads/IIIT%20Act%2030_of_2014.pdf"},
+    { name: "Institue Rules", href:"http://web.iiitdmj.ac.in/instrules.html"},
     { name: "Director Portfolio", href:"/"},
     { name:"Board of Governers", href: "/boardofgoverners" },
     { name:"Finance Committee", href: "/financecommittee" },

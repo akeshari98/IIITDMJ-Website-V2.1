@@ -49,7 +49,7 @@ const MainPage = () => {
   const downloads = [
     { name: "BOG Minutes", href: "/bogminutes" },
     { name: "BOG Agenda", href: "/bogagenda" },
-    { name: "BOG Meetings Renumbered", href: "/" },
+    { name: "BOG Meetings Renumbered", href: "https://www.iiitdmj.ac.in/administration/downloads/BOG%20meetings%20renumbered%20list%2012-11-13.pdf" },
   ];
   const renderLink = (item) =>
           item.href.startsWith("/") ? (

@@ -164,7 +164,7 @@ export const Menus = [
         items: [
           {
             name: "Important Forms",
-            href: "https://www.iiitdmj.ac.in/admission.iiitdmj.ac.in/Details%20of%20Services.htm",
+            href: "/importantForms",
           },
 
           { name: "Internal Circulars", href: "/internalcirculars" },
