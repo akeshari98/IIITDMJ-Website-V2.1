@@ -6,23 +6,34 @@ const router = express.Router();
 const withAddress = async (committee, res) => {
   try {
     const query = `
-      (SELECT t.id, user_type, first_name, last_name, address, phone_no, profile_picture, role,imp, COALESCE(p.email, t.email) AS email
-      FROM 
-          dblink('dbname=fusionlab user=superAdmin password=9455957884', 
-              'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture FROM auth_user, globals_extrainfo, globals_faculty 
-              WHERE auth_user.id=globals_extrainfo.user_id 
-              AND globals_extrainfo.id=globals_faculty.id_id') AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, address text, phone_no bigint, profile_picture varchar)
-      JOIN 
-          faculty_positions p ON t.id=p.id
-      WHERE position_type=$1)
-      UNION
-      (SELECT p.id, user_type, first_name, last_name, address, phone_no, profile_picture, role, imp, COALESCE(pos.email, p.email) AS email
-      FROM 
-          non_faculty_info p
-      JOIN 
-          non_faculty_positions pos ON p.id=pos.id
-      WHERE position_type=$1)
-      ORDER BY imp ASC;
+      (
+    SELECT t.id, user_type, first_name, last_name, address, phone_no, 
+           COALESCE(fpp.profile_pic, t.profile_picture) AS profile_picture, 
+           role, imp, COALESCE(p.email, t.email) AS email
+    FROM 
+        dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+              'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture 
+               FROM auth_user 
+               JOIN globals_extrainfo ON auth_user.id = globals_extrainfo.user_id
+               JOIN globals_faculty ON globals_extrainfo.id = globals_faculty.id_id'
+        ) 
+        AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
+             address text, phone_no bigint, profile_picture varchar)
+    LEFT JOIN faculty_profile_pic fpp ON t.id = fpp.id
+    JOIN faculty_positions p ON t.id = p.id
+    WHERE position_type = $1
+)
+UNION
+(
+    SELECT p.id, user_type, first_name, last_name, address, phone_no, 
+           profile_picture, role, imp, COALESCE(pos.email, p.email) AS email
+    FROM 
+        non_faculty_info p
+    JOIN 
+        non_faculty_positions pos ON p.id = pos.id
+    WHERE position_type = $1
+)
+ORDER BY imp ASC;
     `;
 
     const result = await pool.query(query, [committee]);
@@ -36,23 +47,35 @@ const withAddress = async (committee, res) => {
 const withoutAddress = async (committee, res) => {
   try {
     const query = `
-      (SELECT t.id, user_type, first_name, last_name, phone_no, profile_picture, role,imp, COALESCE(p.email, t.email) AS email
-      FROM 
-          dblink('dbname=fusionlab user=superAdmin password=9455957884', 
-              'SELECT auth_user.id, user_type, first_name, last_name, email, phone_no, profile_picture FROM auth_user, globals_extrainfo, globals_faculty 
-              WHERE auth_user.id=globals_extrainfo.user_id 
-              AND globals_extrainfo.id=globals_faculty.id_id') AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, phone_no bigint, profile_picture varchar)
-      JOIN 
-          faculty_positions p ON t.id=p.id
-      WHERE position_type=$1)
-      UNION
-      (SELECT p.id, user_type, first_name, last_name, phone_no, profile_picture, role, imp, COALESCE(pos.email, p.email) AS email
-      FROM 
-          non_faculty_info p
-      JOIN 
-          non_faculty_positions pos ON p.id=pos.id
-      WHERE position_type=$1)
-      ORDER BY imp ASC;
+      (
+    SELECT t.id, user_type, first_name, last_name, phone_no, 
+           COALESCE(fpp.profile_pic, t.profile_picture) AS profile_picture, 
+           role, imp, COALESCE(p.email, t.email) AS email
+    FROM 
+        dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+              'SELECT auth_user.id, user_type, first_name, last_name, email, phone_no, profile_picture 
+               FROM auth_user 
+               JOIN globals_extrainfo ON auth_user.id = globals_extrainfo.user_id
+               JOIN globals_faculty ON globals_extrainfo.id = globals_faculty.id_id'
+        ) 
+        AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
+             phone_no bigint, profile_picture varchar)
+    LEFT JOIN faculty_profile_pic fpp ON t.id = fpp.id
+    JOIN faculty_positions p ON t.id = p.id
+    WHERE position_type = $1
+)
+UNION
+(
+    SELECT p.id, user_type, first_name, last_name, phone_no, 
+           profile_picture, role, imp, COALESCE(pos.email, p.email) AS email
+    FROM 
+        non_faculty_info p
+    JOIN 
+        non_faculty_positions pos ON p.id = pos.id
+    WHERE position_type = $1
+)
+ORDER BY imp ASC;
+
     `;
     const result = await pool.query(query, [committee]);
     res.json(result.rows);
@@ -65,26 +88,28 @@ const withoutAddress = async (committee, res) => {
 const professors = async (res) => {
   try {
     const query = `
-      SELECT p.id, user_type, first_name, last_name, address, phone_no, profile_picture, COALESCE(p.email, pos.email) AS email
-      FROM 
-          dblink('dbname=fusionlab user=superAdmin password=9455957884', 
-              'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture 
-              FROM auth_user, globals_extrainfo, globals_faculty 
-              WHERE auth_user.id=globals_extrainfo.user_id 
-              AND globals_extrainfo.id=globals_faculty.id_id 
-              AND first_name LIKE ''Prof.%'' ') 
-          AS p(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, address text, phone_no bigint, profile_picture varchar)
-      LEFT JOIN 
-          faculty_positions pos ON p.id = pos.id
-      WHERE 
-          NOT EXISTS (
-              SELECT 1 
-              FROM faculty_positions pos2 
-              WHERE pos2.id = p.id 
-              AND pos2.position_type IN ('dean', 'hod', 'director')
-          )
-      ORDER BY 
-          p.first_name;
+      SELECT p.id, user_type, first_name, last_name, address, phone_no, 
+       COALESCE(fpp.profile_pic, p.profile_picture) AS profile_picture, 
+       COALESCE(p.email, pos.email) AS email
+FROM 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+          'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture 
+           FROM auth_user
+           JOIN globals_extrainfo ON auth_user.id = globals_extrainfo.user_id
+           JOIN globals_faculty ON globals_extrainfo.id = globals_faculty.id_id
+           WHERE first_name LIKE ''Prof.%'' ') 
+    AS p(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
+         address text, phone_no bigint, profile_picture varchar)
+LEFT JOIN faculty_profile_pic fpp ON p.id = fpp.id
+LEFT JOIN faculty_positions pos ON p.id = pos.id
+WHERE 
+    NOT EXISTS (
+        SELECT 1 
+        FROM faculty_positions pos2 
+        WHERE pos2.id = p.id 
+        AND pos2.position_type IN ('dean', 'hod', 'director')
+    )
+ORDER BY p.first_name;
     `;
     const result = await pool.query(query);
     res.json(result.rows);
