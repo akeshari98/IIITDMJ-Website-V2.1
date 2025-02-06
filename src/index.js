@@ -96,6 +96,7 @@ import CalendarCreator from "./components/CalendarCreator"
 import CalendersPage from './pages/Calenders';
 import DownloadsPage from './pages/Downloads';
 import DirectorsMessage from './pages/DirectorsPage';
+import ImportantForms from './pages/more/facilities/importantForms';
 const router = createHashRouter([
   {
       path:"*",
@@ -423,6 +424,10 @@ const router = createHashRouter([
       {
         path: "/noticesPage",
         element: <NoticesPage/>,
+      },
+      {
+        path: "/importantForms",
+        element: <ImportantForms/>,
       }
     ],
   },

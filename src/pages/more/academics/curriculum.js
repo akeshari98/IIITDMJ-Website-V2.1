@@ -70,7 +70,7 @@ const MainPage = () => {
                                         B.Tech Course Curriculum
                                     </td>
                                     <td class="p-3">
-                                        <a href="#" class="text-blue-600 no-underline">General Curriculum with effect from 2020 batch</a>
+                                        <a href="" class="text-blue-600 no-underline">General Curriculum with effect from 2020 batch</a>
                                         
                                         
                                     </td>
@@ -89,9 +89,6 @@ const MainPage = () => {
                                         <a href="#" class="text-blue-600 no-underline">BTech in Computer Science and Engineering Curriculum structure</a>
                                         <hr class="my-2 border-gray-300" />
                                         <a href="#" class="text-blue-600 no-underline">BTech in Mechanical Engineering Curriculum V7</a>
-                                        <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">BDes Curriculum structure</a>
-                                        
                                     </td>
                                 </tr>
                                 <tr class="border-b border-gray-300">
@@ -99,13 +96,13 @@ const MainPage = () => {
                                     Syllabus
                                     </td>
                                     <td class="p-3">
-                                        <a href="#" class="text-blue-600 no-underline">B.Tech - B.Des Syllabus Batch 2021 & Onwards</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/B.Tech_B.Des%20Syllabus.pdf" class="text-blue-600 no-underline">B.Tech - B.Des Syllabus Batch 2021 & Onwards</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">Annexure-1</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/B.Tech_B.Des%20Syllabus.pdf" class="text-blue-600 no-underline">Annexure-1</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">Annexure-2</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/B.Tech_B.Des%20Syllabus.pdf" class="text-blue-600 no-underline">Annexure-2</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">B.Des Syllabus</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/BDes_curriculumSept%202016.pdf" class="text-blue-600 no-underline">B.Des Syllabus</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -122,21 +119,21 @@ const MainPage = () => {
                             <tbody>
                                 <tr class="border-b border-gray-300">
                                     <td class="p-3 text-blue-700 font-semibold align-top border-r border-gray-300">
-                                        <a href="#" class="text-blue-600 no-underline">Course Structure and Evaluation Scheme of M.Tech. Program</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/PG%20course%20structure_evaluation%20scheme28092017.pdf" class="text-blue-600 no-underline">Course Structure and Evaluation Scheme of M.Tech. Program</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">Computer Science</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/PG%20CSE_02112017.pdf" class="text-blue-600 no-underline">Computer Science</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">Electronics and Communication</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/PG%20ECE_03112017.pdf" class="text-blue-600 no-underline">Electronics and Communication</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">Mechanical</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/PG%20ME_02112017.pdf" class="text-blue-600 no-underline">Mechanical</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">Mechatronics</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/PG%20ME_02112017.pdf" class="text-blue-600 no-underline">Mechatronics</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">Natural Science</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/PG%20ME_02112017.pdf" class="text-blue-600 no-underline">Natural Science</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">Liberal Arts</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/PG%20ME_02112017.pdf" class="text-blue-600 no-underline">Liberal Arts</a>
                                         <hr class="my-2 border-gray-300" />
-                                        <a href="#" class="text-blue-600 no-underline">Course Structure and Evaluation Scheme of MDes Program</a>
+                                        <a href="https://www.iiitdmj.ac.in/academics/download/MDes_Sept2016.pdf" class="text-blue-600 no-underline">Course Structure and Evaluation Scheme of MDes Program</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -192,5 +189,3 @@ const MainPage = () => {
 };
 
 export default MainPage;
-
-

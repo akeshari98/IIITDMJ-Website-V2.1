@@ -155,12 +155,7 @@ const MainPage = () => {
           <ul className="list-disc ml-5">
             {downloads.map((download, index) => (
               <li key={index} className="mb-2 -ml-3">
-                <a
-                  href={download.href}
-                  className="text-blue-500 no-underline"
-                >
-                  {download.name}
-                </a>
+                {renderLink(download)}
               </li>
             ))}
           </ul>
