@@ -72,7 +72,10 @@ async function getFacultyAdminPosition(userId) {
 
 async function getFacultyBasicInfo(userId) {
   const query = `
-  SELECT id, first_name, last_name, designation, email, contact, address, profile_picture, department, about, interests, linkedin, github
+  SELECT 
+    t.id, t.first_name, t.last_name, t.designation, t.email, 
+    t.contact, t.address, fpp.profile_pic AS profile_picture, 
+    t.department, t.about, t.interests, t.linkedin, t.github
 FROM 
     dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT auth_user.id AS id, 
@@ -82,7 +85,6 @@ FROM
                    auth_user.email AS email, 
                    faculty_about.contact AS contact, 
                    extra_info.address AS address, 
-                   extra_info.profile_picture AS profile_picture, 
                    department.name AS department, 
                    faculty_about.about AS about, 
                    faculty_about.interest AS interests,
@@ -100,7 +102,13 @@ FROM
             JOIN eis_faculty_about AS faculty_about 
               ON extra_info.user_id = faculty_about.user_id
             WHERE auth_user.id = ${userId}'
-          ) AS t(id int, first_name varchar, last_name varchar, designation varchar, email varchar, contact varchar, address text, profile_picture varchar, department varchar, about varchar, interests varchar, linkedin varchar, github varchar);
+          ) AS t(
+              id int, first_name varchar, last_name varchar, designation varchar, 
+              email varchar, contact varchar, address text, 
+              department varchar, about varchar, interests varchar, 
+              linkedin varchar, github varchar
+          )
+LEFT JOIN faculty_profile_pic AS fpp ON t.id = fpp.id;
 `;
   
   const { rows } = await pool.query(query);
@@ -110,34 +118,39 @@ FROM
 
 async function getAllFaculties(branch_id) {
   const query = `
-    SELECT id, first_name, last_name, designation, email, contact, address, profile_picture, department, about, interests
-    FROM 
-      dblink('dbname=fusionlab user=superAdmin password=9455957884', 
-             'SELECT auth_user.id AS id, 
-                     auth_user.first_name AS first_name, 
-                     auth_user.last_name AS last_name, 
-                     designation.name AS designation, 
-                     auth_user.email AS email, 
-                     faculty_about.contact AS contact, 
-                     extra_info.address AS address, 
-                     extra_info.profile_picture AS profile_picture, 
-                     department.name AS department, 
-                     faculty_about.about AS about, 
-                     faculty_about.interest AS interests
-              FROM auth_user
-              JOIN globals_holdsdesignation AS holds_designation 
-                ON holds_designation.user_id = auth_user.id
-              JOIN globals_designation AS designation 
-                ON designation.id = holds_designation.designation_id
-              JOIN globals_extrainfo AS extra_info 
-                ON extra_info.user_id = auth_user.id
-              JOIN globals_departmentinfo AS department 
-                ON extra_info.department_id = department.id
-              JOIN eis_faculty_about AS faculty_about 
-                ON extra_info.user_id = faculty_about.user_id
-              WHERE extra_info.department_id = ${branch_id} 
-                AND designation.name LIKE ''%Prof%''
-            ') AS t(id int, first_name varchar, last_name varchar, designation varchar, email varchar, contact varchar, address text, profile_picture varchar, department varchar, about varchar, interests varchar);
+    SELECT 
+    t.id, t.first_name, t.last_name, t.designation, t.email, 
+    t.contact, t.address, fpp.profile_pic AS profile_picture, 
+    t.department, t.about, t.interests
+FROM 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+           'SELECT auth_user.id AS id, 
+                   auth_user.first_name AS first_name, 
+                   auth_user.last_name AS last_name, 
+                   designation.name AS designation, 
+                   auth_user.email AS email, 
+                   faculty_about.contact AS contact, 
+                   extra_info.address AS address, 
+                   department.name AS department, 
+                   faculty_about.about AS about, 
+                   faculty_about.interest AS interests
+            FROM auth_user
+            JOIN globals_holdsdesignation AS holds_designation 
+              ON holds_designation.user_id = auth_user.id
+            JOIN globals_designation AS designation 
+              ON designation.id = holds_designation.designation_id
+            JOIN globals_extrainfo AS extra_info 
+              ON extra_info.user_id = auth_user.id
+            JOIN globals_departmentinfo AS department 
+              ON extra_info.department_id = department.id
+            JOIN eis_faculty_about AS faculty_about 
+              ON extra_info.user_id = faculty_about.user_id
+            WHERE extra_info.department_id = ${branch_id} 
+              AND designation.name LIKE ''%Prof%''
+            ') 
+    AS t(id int, first_name varchar, last_name varchar, designation varchar, email varchar, 
+         contact varchar, address text, department varchar, about varchar, interests varchar)
+LEFT JOIN faculty_profile_pic fpp ON t.id = fpp.id;
   `;
 
   const { rows } = await pool.query(query);
@@ -349,12 +362,19 @@ async function getStudents(userId) {
 const getAllFaculty = async (req, res) => {
   try {
     const query = `
-      SELECT t.id, user_type, first_name, last_name, email, address, phone_no, profile_picture
-      FROM 
-          dblink('dbname=fusionlab user=superAdmin password=9455957884', 
-              'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture FROM auth_user, globals_extrainfo, globals_faculty 
-              WHERE auth_user.id=globals_extrainfo.user_id 
-              AND globals_extrainfo.id=globals_faculty.id_id') AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, address text, phone_no bigint, profile_picture varchar)
+      SELECT 
+    t.id, t.user_type, t.first_name, t.last_name, t.email, 
+    t.address, t.phone_no, fpp.profile_pic AS profile_picture
+FROM 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+          'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no 
+           FROM auth_user 
+           JOIN globals_extrainfo ON auth_user.id = globals_extrainfo.user_id
+           JOIN globals_faculty ON globals_extrainfo.id = globals_faculty.id_id'
+    ) 
+    AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
+         address text, phone_no bigint)
+LEFT JOIN faculty_profile_pic fpp ON t.id = fpp.id
     `;
     // console.log(res);
     const result = await pool.query(query);
