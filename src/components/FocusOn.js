@@ -1,86 +1,105 @@
-import React from 'react';
-import { Users, GraduationCap, Trophy, UserCircle } from 'lucide-react';
+import React, { useRef, useEffect } from 'react';
+import Lottie from 'react-lottie';
+import placement from '../resources/Vectors/placement.json';
+import dew from '../resources/Vectors/dew.json';
+import nirf from '../resources/Vectors/nirf.json';
+import alumni from '../resources/Vectors/alumni.json';
 
-const FocusCard = ({ title, icon: Icon, link, bgImage }) => (
-  <a href={link} className="block aspect-square">
-    <div className="relative md:min-w-[240px] group overflow-hidden rounded-lg border border-gray-300">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 transition-transform duration-100 group-hover:scale-110">
-  <div 
-    className="absolute inset-0 bg-cover bg-center transition-opacity duration-100 "
-    style={{ 
-    //   backgroundImage: `url(${bgImage})`,
-      // backgroundColor: 'rgba(0, 0, 0, 0.5)'
-    }}
-  />
-</div>
+const FocusCard = ({ title, animation, link }) => {
+  const lottieRef = useRef(null);
 
-      
-      {/* Content */}
-      <div className="relative h-full p-6 flex flex-col items-center justify-center text-center space-y-4 bg-opacity-90  to-transparent  transition-all duration-100">
-        <div className="p-3 rounded-full bg-white/10 backdrop-blur-sm text-gray-600 group-hover:bg-blue-50 transition-all duration-100">
-          <Icon className="w-8 h-8 text-gray-600 group-hover:text-blue-600 transition-colors duration-100" />
+  const defaultOptions = {
+    loop: false,
+    autoplay: false,
+    animationData: animation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const handleMouseEnter = () => {
+    const anim = lottieRef.current?.anim;
+    if (anim) {
+      anim.goToAndPlay(0);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const anim = lottieRef.current?.anim;
+    if (anim) {
+      anim.goToAndStop(0);
+    }
+  };
+
+  return (
+    <a 
+      href={link} 
+      className="block aspect-rectangle"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="shadow-lg relative h-full p-8 flex flex-col items-center justify-center rounded-lg text-center bg-opacity-90 transition-all duration-300 hover:shadow-2xl overflow-hidden">
+        <div className="w-26 h-26 cursor-pointer">
+          <Lottie
+            options={defaultOptions}
+            height={100}
+            width={100}
+            isClickToPauseDisabled={true}
+            ref={lottieRef}
+          />
         </div>
-        
-        <h3 className="font-medium text-lg text-gray-600 group-hover:text-[#2563EB] transition-colors duration-100">
+        <h3 className="font-light text-lg text-black group-hover:text-blue-800 transition-colors duration-300 mt-4">
           {title}
         </h3>
       </div>
-    </div>
-  </a>
-);
+    </a>
+  );
+};
 
 const FocusOn = () => {
   const focusAreas = [
     {
-      title: 'Research',
-      icon: Users,
+      title: 'DEW',
+      animation: dew,
       to: 'https://www.iiitdmj.ac.in/rspc.iiitdmj.ac.in/',
-      bgImage:`${process.env.REACT_APP_Backend}/public/WebsiteImages/Home/research.jpg`
     },
     {
-      title: 'Placements',
-      icon: GraduationCap,
+      title: 'PLACEMENTS',
+      animation: placement,
       to: 'https://www.iiitdmj.ac.in/placement.iiitdmj.ac.in/',
-      bgImage:`${process.env.REACT_APP_Backend}/public/WebsiteImages/Home/placement.jpg`
     },
     {
       title: 'NIRF',
-      icon: Trophy,
+      animation: nirf,
       to: 'https://www.iiitdmj.ac.in/nirf.iiitdmj.ac.in/index.html#res',
-      bgImage:`${process.env.REACT_APP_Backend}/public/WebsiteImages/Home/nirf.jpg`
     },
     {
-      title: 'Alumni',
-      icon: UserCircle,
+      title: 'ALUMNI',
+      animation: alumni,
       to: 'https://alumni.iiitdmj.ac.in/',
-      bgImage:`${process.env.REACT_APP_Backend}/public/WebsiteImages/Home/alumni.jpg`
     }
   ];
 
   return (
     <div className="space-y-8 p-4">
-      {/* Header */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col text-center">
           <h1 className="text-3xl font-medium text-gray-900">
             Focus{" "}
             <span className="text-3xl text-blue-600">On</span>
           </h1>
-          <div className="w-32 h-0.5 bg-blue-600 mt-1 ml-auto mr-auto"></div>
+          {/* <div className="w-32 h-[2px] bg-blue-600 mt-1 mx-auto"></div> */}
         </div>
       </div>
 
-      {/* Grid */}
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[82vw] mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {focusAreas.map((area) => (
             <FocusCard
               key={area.title}
               title={area.title}
-              icon={area.icon}
+              animation={area.animation}
               link={area.to}
-              bgImage={area.bgImage}
             />
           ))}
         </div>

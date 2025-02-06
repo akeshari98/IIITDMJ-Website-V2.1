@@ -67,6 +67,7 @@ import UgPrograms from "./pages/more/academics/ugprograms";
 import UsefulInformation from "./pages/more/academics/usefulinformation";
 import InternalCirculars from "./pages/more/academics/internalcirculars";
 import ExternalCirculars from "./pages/more/academics/externalcirculars";
+import PGCurriculum from './pages/more/academics/pgcurriculum';
 // errors
 import PageNotFoundError from "./errors/PageNotFoundError";
 import ErrorBoundary from './errors/ErrorBoundary';
@@ -95,6 +96,7 @@ import CalendarCreator from "./components/CalendarCreator"
 import CalendersPage from './pages/Calenders';
 import DownloadsPage from './pages/Downloads';
 import DirectorsMessage from './pages/DirectorsPage';
+import ImportantForms from './pages/more/facilities/importantForms';
 const router = createHashRouter([
   {
       path:"*",
@@ -368,6 +370,10 @@ const router = createHashRouter([
         element: <Curriculum />,
       },
       {
+        path: "/pgcurriculum",
+        element: <PGCurriculum/>,
+      },
+      {
         path: "/feestructure",
         element: <FeeStructure />,
       },
@@ -418,6 +424,10 @@ const router = createHashRouter([
       {
         path: "/noticesPage",
         element: <NoticesPage/>,
+      },
+      {
+        path: "/importantForms",
+        element: <ImportantForms/>,
       }
     ],
   },

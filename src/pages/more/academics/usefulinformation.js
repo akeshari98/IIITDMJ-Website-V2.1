@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 // import Card from "../../../components/CardNew";
 // import college_img1 from "../../../resources/images/3.jpg";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 const MainPage = () => {
 
     const [data, setData] = useState({
@@ -68,22 +69,21 @@ const MainPage = () => {
                         <ul className="list-none space-y-2 text-gray-800 p-3 mb-2">
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
-                                <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
-                                        Orientation Information</a>.
+                                <span >
+                                Orientation Information
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
-                                        Counseling Service Information</a>.
+                                    <Link to="/counselling" className="text-blue-600 no-underline ">
+                                        Counseling Service Information</Link>.
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/academics/download/Registration%20Information.pdf" className="text-blue-600 no-underline ">
 
                                         Registration Information</a>.
                                 </span>
@@ -91,7 +91,7 @@ const MainPage = () => {
                             <li className="flex items-start">
                                 <span className="font-semibold mr-2 text-gray-600">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="" className="text-blue-600 no-underline ">
 
                                         Anti-Ragging Measures</a>.
                                 </span>
@@ -104,7 +104,7 @@ const MainPage = () => {
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/academics/download/Proforma%20for%20Affidavit%20of%20Anti-Ragging%20.pdf" className="text-blue-600 no-underline ">
 
                                         Proforma for Affidavit of Anti-Ragging</a>.
                                 </span>
@@ -112,35 +112,35 @@ const MainPage = () => {
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/academics/download/Proforma%20for%20Medical%20certificate.pdf" className="text-blue-600 no-underline ">
                                         Proforma for Medical certificate</a>.
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/academics/download/Proforma%20for%20Medical%20certificate.pdf" className="text-blue-600 no-underline ">
                                         Proforma for OBC Certificate</a>.
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/academics/download/Proforma%20for%20PH%20Certificate.pdf" className="text-blue-600 no-underline ">
                                         Proforma for PH Certificate</a>.
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/academics/download/Proforma%20for%20SC%20ST%20Certificate.pdf" className="text-blue-600 no-underline ">
                                         Proforma for SC ST Certificate</a>.
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-xl mr-2">&bull;</span>
                                 <span>
-                                    <a href="mailto:vh@iiitdmj.ac.in" className="text-blue-600 no-underline ">
+                                    <a href="https://www.iiitdmj.ac.in/academics/download/Proforma%20of%20Declaration_Undertaking%20of%20Non-%20Creamy%20Layer%20For%20%20%20OBC%20(1).pdf" className="text-blue-600 no-underline ">
                                         Proforma of Declaration_Undertaking of Non- Creamy Layer For OBC</a>.
                                 </span>
                             </li>
@@ -160,12 +160,12 @@ const MainPage = () => {
                                 </a>
                     </li>
                     <li  className="mb-2 -ml-3">
-                                <a href="#" className="text-blue-500 no-underline">
+                                <a href="https://www.iiitdmj.ac.in/academics/download/NOTIFICATION-SC_ST%20&%20MINORITY_CELL.pdf" className="text-blue-500 no-underline">
                                 HNotification - SC/ST & Minority Cell
                                 </a>
                     </li>
                     <li  className="mb-2 -ml-3">
-                                <a href="#" className="text-blue-500 no-underline">
+                                <a href="https://www.iiitdmj.ac.in/academics/download/Ministry%20of%20Tribal%20Affairs.pdf" className="text-blue-500 no-underline">
                                 National Fellowship and Scholarship for Higher Education of ST Students
                                 </a>
                     </li>

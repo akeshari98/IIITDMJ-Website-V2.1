@@ -5,41 +5,40 @@ import PageHeader from "../../../components/PageHeader";
 import { Link } from "react-router-dom";
 
 const MainPage = () => {
-
   const quickLinks = [
-    { name:"Board of Governers", href: "/boardofgoverners" },
-    { name:"Finance Committee", href: "/financecommittee" },
+    { name: "Board of Governers", href: "/boardofgoverners" },
+    { name: "Finance Committee", href: "/financecommittee" },
     // { name:"General Administration", href: "/generaladministration" },
     // { name:"Other Administration", href: "/otheradministration" },
-    { name:"Senate", href: "/senate" },
-    { name:"Building Works Committee", href: "/buildingworkscommittee" },
+    { name: "Senate", href: "/senate" },
+    { name: "Building Works Committee", href: "/buildingworkscommittee" },
     // { name:"Administrative Structure", href: "/administrativestructure" },
   ];
-const renderLink = (item) =>
-        item.href.startsWith("/") ? (
-          <Link
-            to={item.href}
-            className="text-blue-500 no-underline"
-          >
-          
-            <span>{item.name}</span>
-          </Link>
-        ) : (
-          <a
-            href={item.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 no-underline"
-          >
-          
-            <span>{item.name}</span>
-          </a>
-        );
- const crumbs = [{crumb:"Administrative Structure",link:"#"}]
+  // const renderLink = (item) =>
+  //         item.href.startsWith("/") ? (
+  //           <Link
+  //             to={item.href}
+  //             className="text-blue-500 no-underline"
+  //           >
+
+  //             <span>{item.name}</span>
+  //           </Link>
+  //         ) : (
+  //           <a
+  //             href={item.href}
+  //             target="_blank"
+  //             rel="noopener noreferrer"
+  //             className="text-blue-500 no-underline"
+  //           >
+
+  //             <span>{item.name}</span>
+  //           </a>
+  //         );
+  const crumbs = [{ crumb: "Administrative Structure", link: "#" }];
   return (
     <div>
       {/* Full-width image with centered heading */}
-      <PageHeader breadCrumbs={crumbs} title={"Administrative Structure"}/>
+      <PageHeader breadCrumbs={crumbs} title={"Administrative Structure"} />
       {/* Main content area with flex for side-by-side layout */}
       <div className="container mx-auto mt-8 mb-8 flex flex-col md:flex-row">
         {/* 70% section */}
@@ -62,62 +61,75 @@ const renderLink = (item) =>
           </div>
 
           {/* Text content area with formatted text and circular bullets */}
-        <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
-        <p className="text-black mb-4 font-medium">
-        The Institute was initially governed under MOA of the Institute, but after the enactment of the IIIT Act 2014, the Institute is now governed by it.  As per the said Act the following are authorities of the Institute:
-        </p>
+          <div className="bg-white-200 p-7 rounded-lg shadow-2xl">
+            <p className="text-black mb-4 font-medium">
+              The Institute was initially governed under MOA of the Institute,
+              but after the enactment of the IIIT Act 2014, the Institute is now
+              governed by it. As per the said Act the following are authorities
+              of the Institute:
+            </p>
 
-        {/* <h4 className="text-xl font-semibold mb-2">Key Points</h4> */}
-        <ul className="list-none ml-4 mb-4 font-medium">
-            <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-            Board of Governors
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-            Senate
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-            Finance Committee
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-            Building and Works Committee
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-            Research Council
-            </li>
-        </ul>
-        <p className="text-black mb-4 font-medium">
-            The Board of Governors is the principle executive body of the Institute, with an eminent technologist or industrialist or educationist as its Chairman who is nominated by the Visitor. The other members of the Board consist of persons who are chosen as per clause 13 (2) of the said Act.
-        </p>
-        <p className="text-black mb-4 font-medium">
-        The Board is responsible for the general superintendence, direction and control of the affairs of the Institute and possesses the power to frame, amend, modify or rescind the Statutes and Ordinances governing the affairs of the Institute. The Director apart from being the Executive and Academic Head of the Institute is also a member of the Board with Registrar as its ex-officio Secretary. The day-to-day administration of the Institute is to be looked after by the Director of the Institute and his administrative team comprising of:
-        </p>
-        {/* <h4 className="text-xl font-semibold mb-2">Responsibilities of the Administration</h4> */}
-        <ul className="list-none ml-4 mb-4">
-            <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-            The Deputy Director  (to be nominated on appointment)
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-            The Deans
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-            The Heads of various disciplines
-            </li>
-            <li className="flex items-start mb-1">
-            <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
-            The Registrar
-            </li>
-        </ul>
-
-        </div>
-        
+            {/* <h4 className="text-xl font-semibold mb-2">Key Points</h4> */}
+            <ul className="list-none ml-4 mb-4 font-medium">
+              <li className="flex items-start mb-1">
+                <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                Board of Governors
+              </li>
+              <li className="flex items-start mb-1">
+                <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                Senate
+              </li>
+              <li className="flex items-start mb-1">
+                <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                Finance Committee
+              </li>
+              <li className="flex items-start mb-1">
+                <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                Building and Works Committee
+              </li>
+              <li className="flex items-start mb-1">
+                <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                Research Council
+              </li>
+            </ul>
+            <p className="text-black mb-4 font-medium">
+              The Board of Governors is the principle executive body of the
+              Institute, with an eminent technologist or industrialist or
+              educationist as its Chairman who is nominated by the Visitor. The
+              other members of the Board consist of persons who are chosen as
+              per clause 13 (2) of the said Act.
+            </p>
+            <p className="text-black mb-4 font-medium">
+              The Board is responsible for the general superintendence,
+              direction and control of the affairs of the Institute and
+              possesses the power to frame, amend, modify or rescind the
+              Statutes and Ordinances governing the affairs of the Institute.
+              The Director apart from being the Executive and Academic Head of
+              the Institute is also a member of the Board with Registrar as its
+              ex-officio Secretary. The day-to-day administration of the
+              Institute is to be looked after by the Director of the Institute
+              and his administrative team comprising of:
+            </p>
+            {/* <h4 className="text-xl font-semibold mb-2">Responsibilities of the Administration</h4> */}
+            <ul className="list-none ml-4 mb-4">
+              <li className="flex items-start mb-1">
+                <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                The Deputy Director (to be nominated on appointment)
+              </li>
+              <li className="flex items-start mb-1">
+                <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                The Deans
+              </li>
+              <li className="flex items-start mb-1">
+                <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                The Heads of various disciplines
+              </li>
+              <li className="flex items-start mb-1">
+                <span className="relative w-2 h-2 mt-1.5 mr-2 bg-black rounded-full flex-shrink-0"></span>
+                The Registrar
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* 30% Quick Links section */}
@@ -125,25 +137,26 @@ const renderLink = (item) =>
           <div className="flex flex-row">
             <h2 className="text-2xl font-semibold mb-2">See Also</h2>
             <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="black"
-                  className="bi bi-link-45deg w-8 h-8 ml-1 mt-1 inline-block"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
-                  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="black"
+              className="bi bi-link-45deg w-8 h-8 ml-1 mt-1 inline-block"
+              viewBox="0 0 16 16"
+            >
+              <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
+              <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
             </svg>
           </div>
           <ul className="list-disc ml-5">
             {quickLinks.map((link, index) => (
               <li key={index} className="mb-2 -ml-3">
-               {renderLink(link.name)}
+                <Link to={link.href} className="text-blue-500 no-underline">
+                  <span>{link.name}</span>
+                </Link>
               </li>
             ))}
           </ul>
-
         </div>
       </div>
     </div>
