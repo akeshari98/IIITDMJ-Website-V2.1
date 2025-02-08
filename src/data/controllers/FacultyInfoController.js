@@ -1,5 +1,5 @@
 // Import required modules
-require('dotenv').config();
+require("dotenv").config();
 const pool = require("../connection");
 
 // Function 1: Get Faculty Honors
@@ -14,7 +14,7 @@ async function getFacultyHonors(userId) {
           AND auth_user.id=eis_honors.user_id
           AND auth_user.id=${userId}')
     AS t(id int, title varchar, description varchar, "period" varchar)`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -31,7 +31,7 @@ async function getFacultyQualifications(userId) {
           AND auth_user.id=eis_qualifications.user_id
           AND auth_user.id=${userId}')
     AS t(id int, "degree" varchar, college varchar)`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -48,7 +48,7 @@ async function getFacultyExperience(userId) {
           AND auth_user.id=eis_professional_experience.user_id
           AND auth_user.id=${userId}')
     AS t(id int, title varchar, description varchar, "from" varchar, "to" varchar)`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -65,7 +65,7 @@ async function getFacultyAdminPosition(userId) {
           AND auth_user.id=eis_administrative_position.user_id
           AND auth_user.id=${userId}')
     AS t(id int, title varchar, description varchar, "from" varchar, "to" varchar)`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -108,13 +108,12 @@ FROM
               department varchar, about varchar, interests varchar, 
               linkedin varchar, github varchar
           )
-LEFT JOIN faculty_profile_pic AS fpp ON t.id = fpp.id;
+LEFT JOIN "FacultyPic" AS fpp ON t.id = fpp.fac_id;
 `;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
-
 
 async function getAllFaculties(branch_id) {
   const query = `
@@ -150,7 +149,7 @@ FROM
             ') 
     AS t(id int, first_name varchar, last_name varchar, designation varchar, email varchar, 
          contact varchar, address text, department varchar, about varchar, interests varchar)
-LEFT JOIN faculty_profile_pic fpp ON t.id = fpp.id;
+LEFT JOIN "FacultyPic" fpp ON t.id = fpp.fac_id;
   `;
 
   const { rows } = await pool.query(query);
@@ -176,7 +175,7 @@ async function getFacultyCourses(userId) {
               ON pc_instructor.instructor_id_id = globals_info.id
             WHERE globals_info.user_id = ${userId}'
           ) AS t(course_code varchar, course_name varchar, discipline varchar);`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -193,7 +192,7 @@ async function getSpecialization(userId) {
             WHERE auth_user.id = ${userId}'
           ) AS t(about varchar);
 `;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -210,11 +209,11 @@ async function getProjects(userId) {
             WHERE auth_user.id = ${userId}'
           ) AS t(title text, pi varchar, co_pi varchar, start_date date, finish_date date);
 `;
- 
+
   const { rows } = await pool.query(query);
   return rows;
 }
-async function getPatents(userId){
+async function getPatents(userId) {
   const query = `
   SELECT title, p_no, status, p_year
   FROM 
@@ -227,10 +226,10 @@ async function getPatents(userId){
           ) AS t(title text, p_no varchar, status varchar, p_year integer);
           
   `;
-  const {rows} = await pool.query(query);
+  const { rows } = await pool.query(query);
   return rows;
 }
-async function getConsultancyProjects(userId){
+async function getConsultancyProjects(userId) {
   const query = `
   SELECT title, consultants, client, financial_outlay, start_date, end_date, status, remarks
   FROM 
@@ -243,8 +242,8 @@ async function getConsultancyProjects(userId){
         ) AS t(title text, consultants varchar, client varchar, financial_outlay integer, start_date date, end_date date, status varchar, remarks text);
 `;
 
-const { rows } = await pool.query(query);
-return rows;
+  const { rows } = await pool.query(query);
+  return rows;
 }
 
 //Publications
@@ -260,11 +259,10 @@ async function getBooks(userId) {
             WHERE auth_user.id = ${userId}'
           ) AS t(title text, authors varchar, publisher varchar, pyear int);
 `;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
-
 
 async function getPublications(userId) {
   const query = `
@@ -281,8 +279,6 @@ async function getPublications(userId) {
   const { rows } = await pool.query(query);
   return rows;
 }
-
-
 
 async function getConferences(userId) {
   const query = `
@@ -341,7 +337,6 @@ async function getOrganizedConferences(userId) {
   return rows;
 }
 
-
 async function getStudents(userId) {
   const query = `
     SELECT rollno, s_name, status, s_year, title, co_supervisors
@@ -358,7 +353,6 @@ async function getStudents(userId) {
   return rows;
 }
 
-
 const getAllFaculty = async (req, res) => {
   try {
     const query = `
@@ -374,7 +368,7 @@ FROM
     ) 
     AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
          address text, phone_no bigint)
-LEFT JOIN faculty_profile_pic fpp ON t.id = fpp.id
+LEFT JOIN "FacultyPic" fpp ON t.id = fpp.fac_id
     `;
     // console.log(res);
     const result = await pool.query(query);
@@ -384,7 +378,7 @@ LEFT JOIN faculty_profile_pic fpp ON t.id = fpp.id
     return res.status(500).json({ error: "Server error" });
   }
 };
-const getFacultyVisits = async (userId) =>{
+const getFacultyVisits = async (userId) => {
   const query = `
   SELECT country, place, purpose, start_date, end_date
   FROM 
@@ -397,11 +391,10 @@ const getFacultyVisits = async (userId) =>{
         ) AS t(country varchar, place varchar, purpose varchar, start_date date, end_date date);
 `;
 
-const { rows } = await pool.query(query);
-return rows;
-
-} 
-const getFacultyAchievements = async (userId) =>{
+  const { rows } = await pool.query(query);
+  return rows;
+};
+const getFacultyAchievements = async (userId) => {
   const query = `
   SELECT a_type,details,a_year
   FROM 
@@ -414,11 +407,10 @@ const getFacultyAchievements = async (userId) =>{
         ) AS t(a_type varchar, details varchar, a_year integer);
 `;
 
-const { rows } = await pool.query(query);
-return rows;
-
-} 
-const getFacultyExpertLectures = async (userId) =>{
+  const { rows } = await pool.query(query);
+  return rows;
+};
+const getFacultyExpertLectures = async (userId) => {
   const query = `
   SELECT l_type,title,l_date, place
   FROM 
@@ -431,10 +423,9 @@ const getFacultyExpertLectures = async (userId) =>{
         ) AS t(l_type varchar,title varchar,l_date date, place varchar);
 `;
 
-const { rows } = await pool.query(query);
-return rows;
-
-} 
+  const { rows } = await pool.query(query);
+  return rows;
+};
 // Export the functions
 module.exports = {
   getFacultyHonors,
@@ -457,6 +448,5 @@ module.exports = {
   getAllFaculty,
   getFacultyVisits,
   getFacultyAchievements,
-  getFacultyExpertLectures
+  getFacultyExpertLectures,
 };
-

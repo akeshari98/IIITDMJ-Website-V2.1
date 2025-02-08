@@ -18,15 +18,26 @@ const FocusCard = ({ title, link, animation }) => {
     },
   };
 
+  const handleMouseEnter = () => {
+    const anim = lottieRef.current?.anim;
+    if (anim) {
+      anim.goToAndPlay(0);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const anim = lottieRef.current?.anim;
+    if (anim) {
+      anim.goToAndStop(0);
+    }
+  };
+
   return (
     <a 
       href={link} 
       className="block group"
-      onMouseEnter={() => lottieRef.current?.play()} 
-      onMouseLeave={() => {
-        lottieRef.current?.stop();
-        // lottieRef.current?.goToAndStop(0, true);
-      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="shadow-lg relative h-full p-8 flex flex-col items-center justify-center rounded-lg text-center bg-opacity-90 transition-all duration-300 hover:shadow-2xl overflow-hidden">
         <div className="w-26 h-26 cursor-pointer">

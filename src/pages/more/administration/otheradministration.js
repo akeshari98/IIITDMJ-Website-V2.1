@@ -228,28 +228,16 @@ const MainPage = () => {
 
         {/* 30% Quick Links section */}
         <div className="w-full md:w-3/12 px-4">
-          <div className="flex flex-row">
-            <h2 className="text-2xl font-semibold mb-2">See Also</h2>
-            <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="black"
-                  className="bi bi-link-45deg w-8 h-8 ml-1 mt-1 inline-block"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
-                  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
-            </svg>
+          <div className="bg-white rounded-xl shadow-lg p-6 space-y-8">
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">See Also</h2>
+              <ul className="space-y-2">
+                {quickLinks.map((link, index) => (
+                  <li key={index}>{renderLink(link)}</li>
+                ))}
+              </ul>
+            </section>
           </div>
-          <ul className="list-disc ml-5">
-            {quickLinks.map((link, index) => (
-              <li key={index} className="mb-2 -ml-3">
-                {renderLink(link)}
-              </li>
-            ))}
-          </ul>
-
         </div>
       </div>
     </div>

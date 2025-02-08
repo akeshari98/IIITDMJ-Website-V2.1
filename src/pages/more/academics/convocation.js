@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 const MainPage = () => {
     const [data, setData] = useState({
         cardsData: [],
@@ -30,6 +31,52 @@ const MainPage = () => {
             fetchData(endpoint, key);
         });
     }, []);
+    const convocations = [
+                {
+                    name: "12th Convocation, 11th July 2024",
+                    href: "/",
+                },
+                {
+                    name: "List of Graduates - 2022",
+                    href: "/",
+                },
+                {
+                    name: "List of Graduates - 2021",
+                    href: "/",
+                },
+                {
+                    name: "List of Graduates - 2020",
+                    href: "/",
+                },
+                {
+                    name: "List of Graduates - 2018-19",
+                    href: "/",
+                },
+                {
+                    name: "List of Graduates - 2017",
+                    href: "/",
+                },
+            ];
+            const renderLink = (item) =>
+                    item.href.startsWith("/") ? (
+                      <Link
+                        to={item.href}
+                        className="text-blue-500 no-underline"
+                      >
+                      
+                        <span>{item.name}</span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 no-underline"
+                      >
+                      
+                        <span>{item.name}</span>
+                      </a>
+                    );
     const crumbs = [{crumb: "Convocation", link:"#"}]
     return (
         <div>
@@ -118,41 +165,16 @@ const MainPage = () => {
                 </div>
                 {/* 30% Quick Links section */}
                 <div className="w-full md:w-3/12 px-4">
-                    <div className="flex flex-row">
-                        <h2 className="text-2xl font-semibold mb-2">Past Convocation</h2>
-                    </div>
-                    <ul className="list-disc ml-5">
-                    <li  className="mb-2 -ml-3">
-                                <a href="#" className="text-blue-500 no-underline">
-                                12th Convocation, 11th July 2024
-                                </a>
-                    </li>
-                    <li  className="mb-2 -ml-3">
-                                <a href="#" className="text-blue-500 no-underline">
-                                List of Graduates - 2022
-                                </a>
-                    </li>
-                    <li  className="mb-2 -ml-3">
-                                <a href="#" className="text-blue-500 no-underline">
-                                List of Graduates - 2021
-                                </a>
-                    </li>
-                    <li  className="mb-2 -ml-3">
-                                <a href="#" className="text-blue-500 no-underline">
-                                List of Graduates - 2020    
-                                </a>
-                    </li>
-                    <li  className="mb-2 -ml-3">
-                                <a href="#" className="text-blue-500 no-underline">
-                                List of Graduates - 2018-2019
-                                </a>
-                    </li>
-                    <li  className="mb-2 -ml-3">
-                                <a href="#" className="text-blue-500 no-underline">
-                                List of Graduates - 2017
-                                </a>
-                    </li>
-                    </ul>
+                <div className="bg-white rounded-xl shadow-lg p-6 space-y-8">
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">Past Convocations</h2>
+              <ul className="space-y-2">
+                {convocations.map((link, index) => (
+                  <li key={index}>{renderLink(link)}</li>
+                ))}
+              </ul>
+            </section>
+          </div>
                 </div>
             </div>
         </div>

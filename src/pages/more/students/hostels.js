@@ -369,37 +369,38 @@ const MainPage = () => {
 
         {/* 30% Quick Links section */}
         <div className="w-full md:w-3/12 px-4">
-          <div className="flex flex-row">
-            <h2 className="text-2xl font-semibold mb-2">
-              Important Information
-            </h2>
+          <div className="bg-white rounded-xl shadow-lg p-6 space-y-8">
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">Important Information</h2>
+              <ul className="space-y-2">
+                {info.map((link, index) => (
+                  <li key={index}>{renderLink(link)}</li>
+                ))}
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">
+                Downloads
+              </h2>
+              <ul className="space-y-2">
+                {amenities.map((link, index) => (
+                  <li key={index} className="mb-2">
+                  <a
+                    href={link.href}
+                    className={
+                      link.href
+                        ? "text-blue-600 no-underline"
+                        : "text-black no-underline"
+                    }
+                  >
+                    {link.name}
+                  </a>
+                </li>
+                ))}
+              </ul>
+            </section>
           </div>
-          <ul className="list-disc ml-5">
-            {info.map((link, index) => (
-              <li key={index} className="mb-2 -ml-3">
-               {renderLink(link)}
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-row">
-            <h2 className="text-2xl font-semibold mb-2">Amenities</h2>
-          </div>
-          <ul className="list-disc ml-5">
-            {amenities.map((link, index) => (
-              <li key={index} className="mb-2 -ml-3">
-                <a
-                  href={link.href}
-                  className={
-                    link.href
-                      ? "text-blue-600 no-underline"
-                      : "text-black no-underline"
-                  }
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </div>

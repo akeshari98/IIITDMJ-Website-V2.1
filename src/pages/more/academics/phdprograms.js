@@ -554,26 +554,27 @@ const MainPage = () => {
 
                 {/* 30% Quick Links section */}
                 <div className="w-full md:w-3/12 px-4">
-                    <div className="flex flex-row">
-                        <h2 className="text-2xl font-semibold mb-2">Notices</h2>
-                    </div>
-                    <ul className="list-disc ml-5">
-                        {notices.map((link, index) => (
-                            <li key={index} className="mb-2 -ml-3">
-                               {renderLink(link)}
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="flex flex-row">
-                        <h2 className="text-2xl font-semibold mb-2">Other Important Link</h2>
-                    </div>
-                    <ul className="list-disc ml-5">
-                        {otherlinks.map((link, index) => (
-                            <li key={index} className="mb-2 -ml-3">
-                                {renderLink(link)}
-                            </li>
-                        ))}
-                    </ul>
+                <div className="bg-white rounded-xl shadow-lg p-6 space-y-8">
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">Notices</h2>
+              <ul className="space-y-2">
+                {notices.map((link, index) => (
+                  <li key={index}>{renderLink(link)}</li>
+                ))}
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">
+                Other Important Links
+              </h2>
+              <ul className="space-y-2">
+                {otherlinks.map((form, index) => (
+                  <li key={index}>{renderLink(form)}</li>
+                ))}
+              </ul>
+            </section>
+          </div>
                 </div>
             </div>
         </div >
