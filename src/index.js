@@ -11,7 +11,6 @@ import store from "./app/store";
 // pages
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
-import Courses from "./pages/Courses";
 import Job from "./pages/Jobs"
 import QIP from "./pages/Qip"
 import TeamPage from "./pages/Developers"
@@ -72,9 +71,6 @@ import PGCurriculum from './pages/more/academics/pgcurriculum';
 import PageNotFoundError from "./errors/PageNotFoundError";
 import ErrorBoundary from './errors/ErrorBoundary';
 //  Courses
-import Bca from "./pages/Bca";
-import Business from "./pages/Business";
-import Bcom from "./pages/Bcom";
 
 import RTI from "./pages/more/Footer/RTI"
 
@@ -92,7 +88,6 @@ import ScreenReaderAccess from "./pages/ScreenReaderAccess"
 import NewsPage from "./pages/NewsPage"
 import AchievementsPage from "./pages/AchievementsPage"
 import NoticesPage from "./pages/NoticesPage"
-import CalendarCreator from "./components/CalendarCreator"
 import CalendersPage from './pages/Calenders';
 import DownloadsPage from './pages/Downloads';
 import DirectorsMessage from './pages/DirectorsPage';
@@ -136,11 +131,7 @@ const router = createHashRouter([
         path:'/developers',
         element: <TeamPage/>
       },
-      {
-        path: "/clndr",
-        element: <CalendarCreator/>,
-        // loader: loader,
-      },
+      
       {
         path: "/about",
         element: <AboutUs />,
@@ -149,22 +140,7 @@ const router = createHashRouter([
         path: "/contact",
         element: <ContactUs />,
       },
-      {
-        path: "/courses",
-        element: <Courses />,
-      },
-      {
-        path: "/courses/bca",
-        element: <Bca />,
-      },
-      {
-        path: "/courses/bba",
-        element: <Business />,
-      },
-      {
-        path: "/courses/bcom",
-        element: <Bcom />,
-      },
+      
 
       // more pages
       {
@@ -357,10 +333,10 @@ const router = createHashRouter([
       },
       
       //academics
-      {
-        path: "/academiccalander",
-        element: <CalendarCreator/>,
-      },
+      // {
+      //   path: "/academiccalander",
+      //   element: <CalendarCreator/>,
+      // },
       {
         path: "/convocation",
         element: <Convocation />,

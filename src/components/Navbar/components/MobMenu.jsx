@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function MobMenu({ Menus, logo }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function MobMenu({ Menus, logo, isOpen, setIsOpen }) {
   const [clicked, setClicked] = useState(null);
   const [subGroupClicked, setSubGroupClicked] = useState(null);
 
@@ -28,7 +27,6 @@ export default function MobMenu({ Menus, logo }) {
   const handleItemClick = (to) => {
     if (to) {
       setIsOpen(false);
-      // Use router's `navigate` if necessary for external URLs or further control.
     }
   };
 
@@ -51,7 +49,7 @@ export default function MobMenu({ Menus, logo }) {
             transition={{ type: "tween", duration: 0.3 }}
           >
             {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/10">
+            <div className="sticky top-0 z-50 flex items-center justify-between p-4 border-b border-white/10 bg-[#18181A]">
               <Link to="/">
                 <img
                   src={logo}

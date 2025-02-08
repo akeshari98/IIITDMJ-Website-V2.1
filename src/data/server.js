@@ -13,6 +13,8 @@ const homeCarouselModal = require('./modals/homeCarouselModal');
 const eventsModal = require('./modals/eventsModal');
 const eventImagesModal = require('./modals/eventImagesModal');
 const redAnnouncementsModal = require('./modals/redAnnouncementsModal')
+const gymkhanaNotificationsModal = require('./modals/gymkhanaNotificationsModal')
+const facultyPicModal = require('./modals/facultyPicModal')
 // const textModal = require('./modals/textModal')
 // const tendersModal = require('./modals/tendersModal');
 const path = require('path');
@@ -32,7 +34,13 @@ const corsOptions = {
   origin: "*", // Replace with your server's IP
   optionsSuccessStatus: 200,
 };
-
+server.use('/dist', express.static(path.join(__dirname, '../../dist'), {
+  setHeaders: (res, path) => {
+      if (path.endsWith('.css')) {
+          res.setHeader('Content-Type', 'text/css');
+      }
+  }
+}));
 server.use(cors(corsOptions));
 
 const port = 5000;
@@ -79,7 +87,8 @@ server.use("/tenders", require("./routes/tenders"));
 server.use("/calendars",require("./routes/calendars"))
 server.use("/Marquee", require("./routes/marquee"));
 server.use("/RedAnnouncements", require("./routes/redAnnouncements"));
-
+server.use("/GymkhanaNotifications",require("./routes/gymkhanaNotifications"));
+server.use("/FacultyPics",require("./routes/facultyPic"));
 
 server.use("/facultyInfo",require("./routes/facultyInfo"))
 server.use("/nonFacultyInfo", require("./routes/nonFacultyInfo"))

@@ -1,77 +1,122 @@
-import React from 'react';
-import { Clock, ExternalLink } from 'lucide-react';
-import { useState,useEffect } from 'react';
+import React from "react";
+import { Clock, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
 import axiosInstance from "../axios";
-import PageHeader from '../components/PageHeader';
+import PageHeader from "../components/PageHeader";
 
-// const announcements = [
-//   { id: 1, title: "Q4 Company Updates", date: "2024-12-20" },
-//   { id: 2, title: "New Product Launch", date: "2024-12-15" },
-//   { id: 3, title: "Team Building Event", date: "2024-12-10" },
-//   { id: 4, title: "Holiday Schedule", date: "2024-12-05" }
-// ];
- 
 const AnnouncementsTimeline = () => {
-    const [data, setData] = useState([]); 
-const [error, setError] = useState(null);   
-const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-const fetchData = async (showLoading = true) => {
-  if (showLoading) setIsLoading(true);
-  setError(null);
+  const fetchData = async (showLoading = true) => {
+    if (showLoading) setIsLoading(true);
+    setError(null);
 
-  try {
-    const response = await axiosInstance.get("RedAnnouncements/RedAnnouncements");
-    setData(response.data); 
-    setIsLoading(false);
-  } catch (err) {
-    console.error("Error fetching Announcements:", err);
-    setError({
-      message: "Failed to fetch Announcements",
-      details: err.response?.data?.message || "Network error or server unavailable"
-    });
-    setIsLoading(false);
+    try {
+      const response = await axiosInstance.get(
+        "RedAnnouncements/RedAnnouncements"
+      );
+      setData(response.data);
+      setIsLoading(false);
+    } catch (err) {
+      console.error("Error fetching Announcements:", err);
+      setError({
+        message: "Failed to fetch Announcements",
+        details:
+          err.response?.data?.message || "Network error or server unavailable",
+      });
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const crumbs = [{ crumb: "Important Announcements", link: "#" }];
+
+  if (isLoading) {
+    return (
+      <>
+        <PageHeader breadCrumbs={crumbs} title={"Important Announcements"} />
+        <div className="flex justify-center items-center h-48">
+          <p className="text-gray-600">Loading announcements...</p>
+        </div>
+      </>
+    );
   }
-};   
 
-React.useEffect(() => {
-  fetchData();
-}, []);
-const crumbs = [{crumb: "Important Announcements", link:"#"}]
+  if (error) {
+    return (
+      <>
+        <PageHeader breadCrumbs={crumbs} title={"Important Announcements"} />
+        <div className="flex justify-center items-center h-48">
+          <div className="text-red-500">
+            Error: {error.message}
+            <details>
+              <summary>Details</summary>
+              <p>{error.details}</p>
+            </details>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-        <PageHeader breadCrumbs={crumbs} title={"Important Announcements"}/>
-    <div className="max-w-2xl mx-auto px-6  py-6">
-      {/* <h2 className="text-2xl font-bold mb-8 text-gray-800">Announcements</h2> */}
-      <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-4 top-0 h-full w-0.5 bg-red-200"></div>
+      <PageHeader breadCrumbs={crumbs} title={"Important Announcements"} />
+      <div className="max-w-3xl mx-auto px-6 py-10">
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-8 top-4 h-full w-0.5 bg-gray-300"></div>
 
-        {/* Announcements */}
-        <div className="space-y-6">
-          {data.map((announcement) => (
-            <div key={announcement.id} className="relative pl-12">
-              {/* Timeline dot */}
-              <div className="absolute left-2 -translate-x-1/2 w-6 h-6 bg-red-500 rounded-full border-4 border-white"></div>
-              
-              {/* Content */}
-              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <h3 className="font-semibold text-lg text-gray-800 mb-2">
-                  {announcement.title}
-                </h3>
-                <div className="flex items-center text-gray-500 text-sm justify-between">
-                 <div className='flex item-center'>
-                 <Clock size={14} className="mr-1" />
-                 {new Date(announcement.createdAt).toLocaleDateString()}
-                 </div>
-                  <a href={announcement.link}><ExternalLink/></a>
+          {/* Announcements */}
+          <div className="space-y-8">
+            {data.map((announcement) => (
+              <div
+                key={announcement.id}
+                className="relative pl-20 group transition-all duration-300"
+              >
+                {/* Timeline dot */}
+                <div className="absolute left-0 top-0 flex items-center justify-center w-16 h-16 rounded-full bg-white border-4 border-blue-500 text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
+                  <Clock size={24} />
+                </div>
+
+                {/* Content */}
+                <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                  <h3 className="font-semibold text-xl text-gray-900 mb-3">
+                    {announcement.title}
+                  </h3>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-gray-600 text-sm">
+                      <span className="mr-2">
+                        {new Date(announcement.createdAt).toLocaleDateString(
+                          undefined,
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
+                      </span>
+                    </div>
+                    <a
+                      href={announcement.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:text-blue-700 transition-colors duration-200"
+                    >
+                      <ExternalLink size={20} />
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
