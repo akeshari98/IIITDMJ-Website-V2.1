@@ -19,7 +19,7 @@ const withAddress = async (committee, res) => {
         ) 
         AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
              address text, phone_no bigint, profile_picture varchar)
-    LEFT JOIN "FacultyPic" fpp ON t.id = fpp.fac_id
+    LEFT JOIN "FacultyPics" fpp ON t.id = fpp.fac_id
     JOIN faculty_positions p ON t.id = p.id
     WHERE position_type = $1
 )
@@ -60,7 +60,7 @@ const withoutAddress = async (committee, res) => {
         ) 
         AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
              phone_no bigint, profile_picture varchar)
-    LEFT JOIN "FacultyPic" fpp ON t.id = fpp.fac_id
+    LEFT JOIN "FacultyPics" fpp ON t.id = fpp.fac_id
     JOIN faculty_positions p ON t.id = p.id
     WHERE position_type = $1
 )
@@ -100,7 +100,7 @@ FROM
            WHERE first_name LIKE ''Prof.%'' ') 
     AS p(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
          address text, phone_no bigint, profile_picture varchar)
-LEFT JOIN "FacultyPic" fpp ON p.id = fpp.fac_id
+LEFT JOIN "FacultyPics" fpp ON p.id = fpp.fac_id
 LEFT JOIN faculty_positions pos ON p.id = pos.id
 WHERE 
     NOT EXISTS (
