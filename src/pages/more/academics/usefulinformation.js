@@ -34,6 +34,40 @@ const MainPage = () => {
             fetchData(endpoint, key);
         });
     }, []);
+    const downloads = [
+        {
+            name: "Mediclaim",
+            href: "#",
+        },
+        {
+            name: "Notification - SC/ST & Minority Cell",
+            href: "https://www.iiitdmj.ac.in/academics/download/NOTIFICATION-SC_ST%20&%20MINORITY_CELL.pdf",
+        },
+        {
+            name: "National Fellowship and Scholarship for Higher Education of ST Students",
+            href: "https://www.iiitdmj.ac.in/academics/download/Ministry%20of%20Tribal%20Affairs.pdf",
+        },
+    ];
+    const renderLink = (item) =>
+            item.href.startsWith("/") ? (
+              <Link
+                to={item.href}
+                className="text-blue-500 no-underline"
+              >
+              
+                <span>{item.name}</span>
+              </Link>
+            ) : (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 no-underline"
+              >
+              
+                <span>{item.name}</span>
+              </a>
+            );
     const crumbs = [{crumb: "Useful Information", link:"#"}]
     return (
         <div>
@@ -150,26 +184,16 @@ const MainPage = () => {
                 </div>
                 {/* 30% Quick Links section */}
                 <div className="w-full md:w-3/12 px-4">
-                    <div className="flex flex-row">
-                        <h2 className="text-2xl font-semibold mb-2">Mode of online payment</h2>
-                    </div>
-                    <ul className="list-disc ml-5">
-                    <li  className="mb-2 -ml-3">
-                                <a href="#" className="text-blue-500 no-underline">
-                                Mediclaim
-                                </a>
-                    </li>
-                    <li  className="mb-2 -ml-3">
-                                <a href="https://www.iiitdmj.ac.in/academics/download/NOTIFICATION-SC_ST%20&%20MINORITY_CELL.pdf" className="text-blue-500 no-underline">
-                                HNotification - SC/ST & Minority Cell
-                                </a>
-                    </li>
-                    <li  className="mb-2 -ml-3">
-                                <a href="https://www.iiitdmj.ac.in/academics/download/Ministry%20of%20Tribal%20Affairs.pdf" className="text-blue-500 no-underline">
-                                National Fellowship and Scholarship for Higher Education of ST Students
-                                </a>
-                    </li>
-                    </ul>
+                <div className="bg-white rounded-xl shadow-lg p-6 space-y-8">
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">Downloads</h2>
+              <ul className="space-y-2">
+                {downloads.map((link, index) => (
+                  <li key={index}>{renderLink(link)}</li>
+                ))}
+              </ul>
+            </section>
+          </div>
                 </div>
             </div>
         </div>

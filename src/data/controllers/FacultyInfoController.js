@@ -1,5 +1,5 @@
 // Import required modules
-require('dotenv').config();
+require("dotenv").config();
 const pool = require("../connection");
 
 // Function 1: Get Faculty Honors
@@ -14,7 +14,7 @@ async function getFacultyHonors(userId) {
           AND auth_user.id=eis_honors.user_id
           AND auth_user.id=${userId}')
     AS t(id int, title varchar, description varchar, "period" varchar)`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -31,7 +31,7 @@ async function getFacultyQualifications(userId) {
           AND auth_user.id=eis_qualifications.user_id
           AND auth_user.id=${userId}')
     AS t(id int, "degree" varchar, college varchar)`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -48,7 +48,7 @@ async function getFacultyExperience(userId) {
           AND auth_user.id=eis_professional_experience.user_id
           AND auth_user.id=${userId}')
     AS t(id int, title varchar, description varchar, "from" varchar, "to" varchar)`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -65,14 +65,17 @@ async function getFacultyAdminPosition(userId) {
           AND auth_user.id=eis_administrative_position.user_id
           AND auth_user.id=${userId}')
     AS t(id int, title varchar, description varchar, "from" varchar, "to" varchar)`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
 
 async function getFacultyBasicInfo(userId) {
   const query = `
-  SELECT id, first_name, last_name, designation, email, contact, address, profile_picture, department, about, interests, linkedin, github
+  SELECT 
+    t.id, t.first_name, t.last_name, t.designation, t.email, 
+    t.contact, t.address, fpp.profile_pic AS profile_picture, 
+    t.department, t.about, t.interests, t.linkedin, t.github
 FROM 
     dblink('dbname=fusionlab user=superAdmin password=9455957884', 
            'SELECT auth_user.id AS id, 
@@ -82,7 +85,6 @@ FROM
                    auth_user.email AS email, 
                    faculty_about.contact AS contact, 
                    extra_info.address AS address, 
-                   extra_info.profile_picture AS profile_picture, 
                    department.name AS department, 
                    faculty_about.about AS about, 
                    faculty_about.interest AS interests,
@@ -100,44 +102,54 @@ FROM
             JOIN eis_faculty_about AS faculty_about 
               ON extra_info.user_id = faculty_about.user_id
             WHERE auth_user.id = ${userId}'
-          ) AS t(id int, first_name varchar, last_name varchar, designation varchar, email varchar, contact varchar, address text, profile_picture varchar, department varchar, about varchar, interests varchar, linkedin varchar, github varchar);
+          ) AS t(
+              id int, first_name varchar, last_name varchar, designation varchar, 
+              email varchar, contact varchar, address text, 
+              department varchar, about varchar, interests varchar, 
+              linkedin varchar, github varchar
+          )
+LEFT JOIN "FacultyPic" AS fpp ON t.id = fpp.fac_id;
 `;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
 
-
 async function getAllFaculties(branch_id) {
   const query = `
-    SELECT id, first_name, last_name, designation, email, contact, address, profile_picture, department, about, interests
-    FROM 
-      dblink('dbname=fusionlab user=superAdmin password=9455957884', 
-             'SELECT auth_user.id AS id, 
-                     auth_user.first_name AS first_name, 
-                     auth_user.last_name AS last_name, 
-                     designation.name AS designation, 
-                     auth_user.email AS email, 
-                     faculty_about.contact AS contact, 
-                     extra_info.address AS address, 
-                     extra_info.profile_picture AS profile_picture, 
-                     department.name AS department, 
-                     faculty_about.about AS about, 
-                     faculty_about.interest AS interests
-              FROM auth_user
-              JOIN globals_holdsdesignation AS holds_designation 
-                ON holds_designation.user_id = auth_user.id
-              JOIN globals_designation AS designation 
-                ON designation.id = holds_designation.designation_id
-              JOIN globals_extrainfo AS extra_info 
-                ON extra_info.user_id = auth_user.id
-              JOIN globals_departmentinfo AS department 
-                ON extra_info.department_id = department.id
-              JOIN eis_faculty_about AS faculty_about 
-                ON extra_info.user_id = faculty_about.user_id
-              WHERE extra_info.department_id = ${branch_id} 
-                AND designation.name LIKE ''%Prof%''
-            ') AS t(id int, first_name varchar, last_name varchar, designation varchar, email varchar, contact varchar, address text, profile_picture varchar, department varchar, about varchar, interests varchar);
+    SELECT 
+    t.id, t.first_name, t.last_name, t.designation, t.email, 
+    t.contact, t.address, fpp.profile_pic AS profile_picture, 
+    t.department, t.about, t.interests
+FROM 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+           'SELECT auth_user.id AS id, 
+                   auth_user.first_name AS first_name, 
+                   auth_user.last_name AS last_name, 
+                   designation.name AS designation, 
+                   auth_user.email AS email, 
+                   faculty_about.contact AS contact, 
+                   extra_info.address AS address, 
+                   department.name AS department, 
+                   faculty_about.about AS about, 
+                   faculty_about.interest AS interests
+            FROM auth_user
+            JOIN globals_holdsdesignation AS holds_designation 
+              ON holds_designation.user_id = auth_user.id
+            JOIN globals_designation AS designation 
+              ON designation.id = holds_designation.designation_id
+            JOIN globals_extrainfo AS extra_info 
+              ON extra_info.user_id = auth_user.id
+            JOIN globals_departmentinfo AS department 
+              ON extra_info.department_id = department.id
+            JOIN eis_faculty_about AS faculty_about 
+              ON extra_info.user_id = faculty_about.user_id
+            WHERE extra_info.department_id = ${branch_id} 
+              AND designation.name LIKE ''%Prof%''
+            ') 
+    AS t(id int, first_name varchar, last_name varchar, designation varchar, email varchar, 
+         contact varchar, address text, department varchar, about varchar, interests varchar)
+LEFT JOIN "FacultyPic" fpp ON t.id = fpp.fac_id;
   `;
 
   const { rows } = await pool.query(query);
@@ -163,7 +175,7 @@ async function getFacultyCourses(userId) {
               ON pc_instructor.instructor_id_id = globals_info.id
             WHERE globals_info.user_id = ${userId}'
           ) AS t(course_code varchar, course_name varchar, discipline varchar);`;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -180,7 +192,7 @@ async function getSpecialization(userId) {
             WHERE auth_user.id = ${userId}'
           ) AS t(about varchar);
 `;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -197,11 +209,11 @@ async function getProjects(userId) {
             WHERE auth_user.id = ${userId}'
           ) AS t(title text, pi varchar, co_pi varchar, start_date date, finish_date date);
 `;
- 
+
   const { rows } = await pool.query(query);
   return rows;
 }
-async function getPatents(userId){
+async function getPatents(userId) {
   const query = `
   SELECT title, p_no, status, p_year
   FROM 
@@ -214,10 +226,10 @@ async function getPatents(userId){
           ) AS t(title text, p_no varchar, status varchar, p_year integer);
           
   `;
-  const {rows} = await pool.query(query);
+  const { rows } = await pool.query(query);
   return rows;
 }
-async function getConsultancyProjects(userId){
+async function getConsultancyProjects(userId) {
   const query = `
   SELECT title, consultants, client, financial_outlay, start_date, end_date, status, remarks
   FROM 
@@ -230,8 +242,8 @@ async function getConsultancyProjects(userId){
         ) AS t(title text, consultants varchar, client varchar, financial_outlay integer, start_date date, end_date date, status varchar, remarks text);
 `;
 
-const { rows } = await pool.query(query);
-return rows;
+  const { rows } = await pool.query(query);
+  return rows;
 }
 
 //Publications
@@ -247,11 +259,10 @@ async function getBooks(userId) {
             WHERE auth_user.id = ${userId}'
           ) AS t(title text, authors varchar, publisher varchar, pyear int);
 `;
-  
+
   const { rows } = await pool.query(query);
   return rows;
 }
-
 
 async function getPublications(userId) {
   const query = `
@@ -268,8 +279,6 @@ async function getPublications(userId) {
   const { rows } = await pool.query(query);
   return rows;
 }
-
-
 
 async function getConferences(userId) {
   const query = `
@@ -328,7 +337,6 @@ async function getOrganizedConferences(userId) {
   return rows;
 }
 
-
 async function getStudents(userId) {
   const query = `
     SELECT rollno, s_name, status, s_year, title, co_supervisors
@@ -345,16 +353,22 @@ async function getStudents(userId) {
   return rows;
 }
 
-
 const getAllFaculty = async (req, res) => {
   try {
     const query = `
-      SELECT t.id, user_type, first_name, last_name, email, address, phone_no, profile_picture
-      FROM 
-          dblink('dbname=fusionlab user=superAdmin password=9455957884', 
-              'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no, profile_picture FROM auth_user, globals_extrainfo, globals_faculty 
-              WHERE auth_user.id=globals_extrainfo.user_id 
-              AND globals_extrainfo.id=globals_faculty.id_id') AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, address text, phone_no bigint, profile_picture varchar)
+      SELECT 
+    t.id, t.user_type, t.first_name, t.last_name, t.email, 
+    t.address, t.phone_no, fpp.profile_pic AS profile_picture
+FROM 
+    dblink('dbname=fusionlab user=superAdmin password=9455957884', 
+          'SELECT auth_user.id, user_type, first_name, last_name, email, address, phone_no 
+           FROM auth_user 
+           JOIN globals_extrainfo ON auth_user.id = globals_extrainfo.user_id
+           JOIN globals_faculty ON globals_extrainfo.id = globals_faculty.id_id'
+    ) 
+    AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
+         address text, phone_no bigint)
+LEFT JOIN "FacultyPic" fpp ON t.id = fpp.fac_id
     `;
     // console.log(res);
     const result = await pool.query(query);
@@ -364,7 +378,7 @@ const getAllFaculty = async (req, res) => {
     return res.status(500).json({ error: "Server error" });
   }
 };
-const getFacultyVisits = async (userId) =>{
+const getFacultyVisits = async (userId) => {
   const query = `
   SELECT country, place, purpose, start_date, end_date
   FROM 
@@ -377,11 +391,10 @@ const getFacultyVisits = async (userId) =>{
         ) AS t(country varchar, place varchar, purpose varchar, start_date date, end_date date);
 `;
 
-const { rows } = await pool.query(query);
-return rows;
-
-} 
-const getFacultyAchievements = async (userId) =>{
+  const { rows } = await pool.query(query);
+  return rows;
+};
+const getFacultyAchievements = async (userId) => {
   const query = `
   SELECT a_type,details,a_year
   FROM 
@@ -394,11 +407,10 @@ const getFacultyAchievements = async (userId) =>{
         ) AS t(a_type varchar, details varchar, a_year integer);
 `;
 
-const { rows } = await pool.query(query);
-return rows;
-
-} 
-const getFacultyExpertLectures = async (userId) =>{
+  const { rows } = await pool.query(query);
+  return rows;
+};
+const getFacultyExpertLectures = async (userId) => {
   const query = `
   SELECT l_type,title,l_date, place
   FROM 
@@ -411,10 +423,9 @@ const getFacultyExpertLectures = async (userId) =>{
         ) AS t(l_type varchar,title varchar,l_date date, place varchar);
 `;
 
-const { rows } = await pool.query(query);
-return rows;
-
-} 
+  const { rows } = await pool.query(query);
+  return rows;
+};
 // Export the functions
 module.exports = {
   getFacultyHonors,
@@ -437,6 +448,5 @@ module.exports = {
   getAllFaculty,
   getFacultyVisits,
   getFacultyAchievements,
-  getFacultyExpertLectures
+  getFacultyExpertLectures,
 };
-

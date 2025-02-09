@@ -34,16 +34,6 @@ const StudentActivities = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <PageHeader  breadCrumbs={crumbs} title={"Student Activity"}/>
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-blue-700 to-blue-900 text-white">
-        <div className="absolute inset-0 bg-black opacity-10 pattern-grid"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* <h1 className="text-5xl font-bold mb-6">Student Activities</h1> */}
-          <p className="text-xl text-blue-100 max-w-3xl">
-            Fostering holistic development through diverse extracurricular activities at IIITDMJ
-          </p>
-        </div>
-      </div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

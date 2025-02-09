@@ -219,22 +219,16 @@ const MainPage = () => {
 
         {/* 30% Quick Links section */}
         <div className="w-full md:w-3/12 px-4">
-          <div className="flex flex-row">
-            <h2 className="text-2xl font-semibold mb-2">Head Counselling Service</h2>
-          </div>
-          <ul className="list-disc ml-5">
+          <div className="bg-white rounded-xl shadow-lg p-6 space-y-8">
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">Head Counselling Service</h2>
+              <ul className="list-disc ml-5">
             {data.head.map((info, index) => (
               <InfoDiv2 key={index} {...info} />
             ))}
           </ul>
-          {/* <div className="flex flex-row">
-            <h2 className="text-2xl font-semibold mb-2">Core Faculty Team(Counseling):</h2>
+            </section>
           </div>
-          <ul className="list-disc ml-5">
-            {data.core.map((info, index) => (
-              <InfoDiv2 key={index} {...info} />
-            ))}
-          </ul> */}
         </div>
       </div>
     </div>

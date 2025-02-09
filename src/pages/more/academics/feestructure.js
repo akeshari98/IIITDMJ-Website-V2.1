@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PageHeader from "../../../components/PageHeader";
+import { Link } from "react-router-dom";
 const MainPage = () => {
 
     const [data, setData] = useState({
@@ -31,6 +32,40 @@ const MainPage = () => {
             fetchData(endpoint, key);
         });
     }, []);
+    const quicklinks = [
+        {
+            name: "Indian Bank - SabPaisa fee payment link",
+            href: "https://services.sabpaisa.in/pages/iitdm.html#ChildVerticalTab_12",
+        },
+        {
+            name: "HDFC Fee Payment link",
+            href: "https://iiitdm.iweb.ltd/Account/LoginMVC",
+        },
+        {
+            name: "Axis Easy pay - fee Payment link",
+            href: "https://easypay.axisbank.co.in/easyPay/makePayment?mid=MzY3NjY%3D",
+        },
+    ];
+    const renderLink = (item) =>
+            item.href.startsWith("/") ? (
+              <Link
+                to={item.href}
+                className="text-blue-500 no-underline"
+              >
+              
+                <span>{item.name}</span>
+              </Link>
+            ) : (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 no-underline"
+              >
+              
+                <span>{item.name}</span>
+              </a>
+            );
     const crumbs = [{crumb: "Fee Structure", link:"#"}]
     return (
         <div>
@@ -455,26 +490,16 @@ const MainPage = () => {
                 
                  {/* 30% Quick Links section */}
                  <div className="w-full md:w-3/12 px-4">
-                    <div className="flex flex-row">
-                        <h2 className="text-2xl font-semibold mb-2">Mode of online payment</h2>
-                    </div>
-                    <ul className="list-disc ml-5">
-                    <li  className="mb-2 -ml-3">
-                                <a href="https://services.sabpaisa.in/pages/iitdm.html#ChildVerticalTab_12" className="text-blue-500 no-underline">
-                                Indian Bank - SabPaisa fee payment link
-                                </a>
-                    </li>
-                    <li  className="mb-2 -ml-3">
-                                <a href="https://iiitdm.iweb.ltd/Account/LoginMVC" className="text-blue-500 no-underline">
-                                HDFC Fee Payment link
-                                </a>
-                    </li>
-                    <li  className="mb-2 -ml-3">
-                                <a href="https://easypay.axisbank.co.in/easyPay/makePayment?mid=MzY3NjY%3D" className="text-blue-500 no-underline">
-                                Axis Easy pay - fee Payment lin
-                                </a>
-                    </li>
-                    </ul>
+                 <div className="bg-white rounded-xl shadow-lg p-6 space-y-8">
+            <section>
+              <h2 className="text-xl font-bold text-gray-800 mb-4">Mode of online payment</h2>
+              <ul className="space-y-2">
+                {quicklinks.map((link, index) => (
+                  <li key={index}>{renderLink(link)}</li>
+                ))}
+              </ul>
+            </section>
+          </div>
                 </div>
             </div>
         </div>
