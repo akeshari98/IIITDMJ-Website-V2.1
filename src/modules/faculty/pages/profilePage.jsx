@@ -2,41 +2,63 @@ import React, { useState, useEffect } from 'react';
 import { 
   User, Book, Rocket, Globe, Mail, Phone, MapPin, FileText, 
   Linkedin, Github, GraduationCap, Building, Briefcase, Trophy,
-  ScrollText, BookCopy, Lightbulb, Award, Users, CalendarRange,
-  BookOpenText, Navigation, Presentation, Brain, Bookmark, 
-  BookOpen, GlobeIcon, Map, Sparkles, ChevronDownCircle
+  ScrollText, BookCopy, Lightbulb, Award, CalendarRange,
+  ChevronDownCircle, Map, Presentation
 } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../../../axios';
 import PageHeader from '../../../components/PageHeader';
-const ExpandableSection = ({ children, maxHeight = "24rem" }) => {
+import NoData from "../../../resources/images/No-Data.svg" 
+const ExpandableSection = ({ children }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [shouldShowButton, setShouldShowButton] = useState(false);
+  const contentRef = React.useRef(null);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setShouldShowButton(contentRef.current.scrollHeight > 300);
+    }
+  }, [children]);
 
   return (
     <div className="relative">
       <div
+        ref={contentRef}
         className={`${
           isExpanded ? "h-auto" : "h-[20rem]"
         } overflow-hidden transition-all duration-500`}
       >
         {children}
-        {/* {!isExpanded && (
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
-        )} */}
       </div>
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-center py-3 mt-2 text-blue-600 hover:text-blue-800 transition-colors group"
-      >
-        <span className="mr-2">{isExpanded ? "Show Less" : "View More"}</span>
-        <ChevronDownCircle className={`w-4 h-4 transition-transform duration-300 ${
-          isExpanded ? "rotate-180" : ""
-        } group-hover:scale-110`} />
-      </button>
+      {shouldShowButton && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-full flex items-center justify-center py-3 mt-2 text-blue-600 hover:text-blue-800 transition-colors group bg-gradient-to-t from-white via-white to-transparent"
+        >
+          <span className="mr-2">{isExpanded ? "Show Less" : "View More"}</span>
+          <ChevronDownCircle className={`w-4 h-4 transition-transform duration-300 ${
+            isExpanded ? "rotate-180" : ""
+          } group-hover:scale-110`} />
+        </button>
+      )}
     </div>
   );
 };
-// Decorative background pattern component
+
+const NoDataDisplay = () => (
+  <div className="flex flex-col items-center justify-center py-12 px-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200">
+    <img src={NoData} alt="No Data" className="w-56 h-56 mb-4 opacity-90" />
+    {/* <p className="text-gray-500 text-center">No data available</p> */}
+  </div>
+);
+
+const Card = ({ children, className = "" }) => (
+  <div className={`group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border-l-4 border-blue-500 relative overflow-hidden ${className}`}>
+    <div className="absolute top-0 right-0 w-16 h-16 transform translate-x-8 -translate-y-8 rotate-45 bg-blue-50 opacity-50 group-hover:opacity-100 transition-opacity" />
+    {children}
+  </div>
+);
+
 const BackgroundPattern = () => (
   <div className="absolute inset-0 -z-10 overflow-hidden">
     <svg className="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]" aria-hidden="true">
@@ -78,12 +100,12 @@ const SubTabButton = ({ active, onClick, children }) => (
   </button>
 );
 
-const Card = ({ children, className = "" }) => (
-  <div className={`bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border-l-4 border-blue-500 relative overflow-hidden ${className}`}>
-    <div className="absolute top-0 right-0 w-16 h-16 transform translate-x-8 -translate-y-8 rotate-45 bg-blue-50 opacity-50" />
-    {children}
-  </div>
-);
+// const Card = ({ children, className = "" }) => (
+//   <div className={`bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border-l-4 border-blue-500 relative overflow-hidden ${className}`}>
+//     <div className="absolute top-0 right-0 w-16 h-16 transform translate-x-8 -translate-y-8 rotate-45 bg-blue-50 opacity-50" />
+//     {children}
+//   </div>
+// );
 const ContentSection = ({ title, icon: Icon, children }) => (
   <div className="mb-8">
     <div className="flex items-center gap-2 mb-4">
@@ -152,7 +174,7 @@ const ProfilePage = () => {
   const getDefaultSubTab = (tab) => {
     switch (tab) {
       case 'about': return 'education';
-      case 'publications': return 'research';
+      case 'publications': return 'journal';
       case 'projects': return 'research-projects';
       case 'outreach': return 'events';
       case 'achievements': return 'awards';
@@ -227,22 +249,24 @@ const ProfilePage = () => {
   const getSubTabs = () => {
     switch (activeTab) {
       case 'about':
-        return [
-          { id: 'education', label: 'Education' },
-          { id: 'experience', label: 'Experience' },
-          { id: 'administration', label: 'Administration' }
-        ];
-      case 'publications':
-        return [
-          { id: 'research', label: 'Research Papers' },
-          { id: 'books', label: 'Published Books' }
-        ];
-      case 'projects':
-        return [
-          { id: 'research-projects', label: 'Research Projects' },
-          { id: 'patents', label: 'Patents' },
-          { id: 'consultancy', label: 'Consultancy Projects' }
-        ];
+      return [
+        { id: 'education', label: 'Education' },
+        { id: 'experience', label: 'Experience' },
+        { id: 'administration', label: 'Administration' }
+      ];
+    case 'publications':
+      return [
+        { id: 'journal', label: 'Journal Papers' },
+        { id: 'conference', label: 'Conference Papers' },
+        { id: 'monographs', label: 'Monographs' },
+        { id: 'books', label: 'Books' }
+      ];
+    case 'projects':
+      return [
+        { id: 'research-projects', label: 'Research Projects' },
+        { id: 'patents', label: 'Patents' },
+        { id: 'consultancy', label: 'Consultancy Projects' }
+      ];
       case 'outreach':
         return [
           { id: 'events', label: 'Events' },
@@ -259,6 +283,16 @@ const ProfilePage = () => {
         return [];
     }
   };
+
+// const renderContent = () => {
+  // if (loading) {
+  //   return (
+  //     <div className="flex items-center justify-center p-8">
+  //       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+  //     </div>
+  //   );
+  // }
+
   const renderContent = () => {
     if (loading) {
       return (
@@ -267,15 +301,26 @@ const ProfilePage = () => {
         </div>
       );
     }
-
+  
+    const renderSection = (items, renderItem) => {
+      if (!items || items.length === 0) {
+        return <NoDataDisplay />;
+      }
+      return (
+        <div className="grid gap-4 grid-cols-1">
+          {items.map(renderItem)}
+        </div>
+      );
+    };
+  
     switch (activeTab) {
       case 'about':
         return (
           <div className="space-y-6">
             {activeSubTab === 'education' && (
               <ContentSection title="Educational Qualifications" icon={GraduationCap}>
-                {data.qualifications.map((qual, index) => (
-                  <Card key={index}>
+                {renderSection(data.qualifications, (qual, index) => (
+                  <Card key={index} className="group transform  transition-all">
                     <h4 className="font-medium text-lg text-blue-900">{qual.degree}</h4>
                     <p className="text-gray-700 mt-1">{qual.college}</p>
                     <p className="text-gray-500 mt-1">{qual.year}</p>
@@ -283,11 +328,11 @@ const ProfilePage = () => {
                 ))}
               </ContentSection>
             )}
-
+  
             {activeSubTab === 'experience' && (
               <ContentSection title="Professional Experience" icon={Briefcase}>
-                {data.experience.map((exp, index) => (
-                  <Card key={index}>
+                {renderSection(data.experience, (exp, index) => (
+                  <Card key={index} className="group transform  transition-all">
                     <h4 className="font-medium text-lg text-blue-900">{exp.title}</h4>
                     <p className="text-gray-700 mt-1">{exp.description}</p>
                     <div className="flex items-center gap-2 mt-2 text-gray-500">
@@ -298,11 +343,11 @@ const ProfilePage = () => {
                 ))}
               </ContentSection>
             )}
-
+  
             {activeSubTab === 'administration' && (
               <ContentSection title="Administrative Roles" icon={Building}>
-                {data.adminPositions.map((pos, index) => (
-                  <Card key={index}>
+                {renderSection(data.adminPositions, (pos, index) => (
+                  <Card key={index} className="group transform  transition-all">
                     <h4 className="font-medium text-lg text-blue-900">{pos.title}</h4>
                     <p className="text-gray-700 mt-1">{pos.description}</p>
                     <div className="flex items-center gap-2 mt-2 text-gray-500">
@@ -315,14 +360,17 @@ const ProfilePage = () => {
             )}
           </div>
         );
-        case 'publications':
-          return (
-            <div className="space-y-6">
-              {activeSubTab === 'research' && (
-                <ContentSection title="Research Papers" icon={ScrollText}>
-                  {data.publications.map((pub, index) => (
-                    <Card key={index}>
-                      <h4 className="font-medium">{pub.title_paper}</h4>
+  
+      case 'publications':
+        return (
+          <div className="space-y-6">
+            {(activeSubTab === 'journal' || activeSubTab === 'conference') && (
+              <ContentSection title={`${activeSubTab === 'journal' ? 'Journal' : 'Conference'} Papers`} icon={ScrollText}>
+                {renderSection(
+                  data.publications.filter(pub => pub.rtype?.toLowerCase() === activeSubTab),
+                  (pub, index) => (
+                    <Card key={index} className="group transform  transition-all">
+                      <h4 className="font-medium text-blue-900">{pub.title_paper}</h4>
                       <p className="text-sm text-gray-600 mt-1">{pub.authors}</p>
                       <p className="text-sm text-gray-500 mt-1">
                         {pub.name}, {pub.volume_no}:{pub.page_no}, {pub.year}
@@ -338,50 +386,69 @@ const ProfilePage = () => {
                         </a>
                       )}
                     </Card>
-                  ))}
-                </ContentSection>
-              )}
+                  )
+                )}
+              </ContentSection>
+            )}
   
-              {activeSubTab === 'books' && (
-                <ContentSection title="Published Books" icon={BookCopy}>
-                  {data.books.map((book, index) => (
-                    <Card key={index}>
-                      <h4 className="font-medium">{book.title}</h4>
+            {(activeSubTab === 'monographs' || activeSubTab === 'books') && (
+              <ContentSection title={activeSubTab === 'monographs' ? 'Monographs' : 'Books'} icon={BookCopy}>
+                {renderSection(
+                  data.books.filter(book => activeSubTab === 'monographs' 
+                    ? book.p_type?.toLowerCase() === 'monograph'
+                    : book.p_type?.toLowerCase() !== 'monograph'
+                  ),
+                  (book, index) => (
+                    <Card key={index} className="group transform  transition-all">
+                      <h4 className="font-medium text-blue-900">{book.title}</h4>
                       <p className="text-sm text-gray-600">Authors: {book.authors}</p>
                       <p className="text-sm text-gray-600">Publisher: {book.publisher}</p>
                       <p className="text-sm text-gray-500">{book.pyear}</p>
                     </Card>
-                  ))}
-                </ContentSection>
-              )}
-            </div>
-          );
+                  )
+                )}
+              </ContentSection>
+            )}
+          </div>
+        );
   
       case 'projects':
         return (
           <div className="space-y-6">
-             {activeSubTab === 'research-projects' && (
+            {activeSubTab === 'research-projects' && (
               <ContentSection title="Research Projects" icon={Rocket}>
-                {data.projects.map((project, index) => (
-                  <Card key={index}>
-                    <h4 className="font-medium">{project.title}</h4>
+                {renderSection(data.projects, (project, index) => (
+                  <Card key={index} className="group transform  transition-all">
+                    <div className="flex justify-between items-start">
+                      <h4 className="font-medium text-blue-900">{project.title}</h4>
+                      {(project.ptype?.toLowerCase() === 'sponsored research' || 
+                        project.ptype?.toLowerCase() === 'sponsoered research') && (
+                        <span className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800">
+                          Sponsored
+                        </span>
+                      )}
+                    </div>
                     <p className="text-sm text-gray-600">PI: {project.pi}</p>
                     <p className="text-sm text-gray-600">Co-PI: {project.co_pi}</p>
-                    <p className="text-sm text-gray-500 mt-2">
-                      {new Date(project.start_date).toLocaleDateString()} - {
-                        project.finish_date 
-                          ? new Date(project.finish_date).toLocaleDateString()
-                          : 'Present'
-                      }
-                    </p>
+                    <div className="flex items-center gap-2 mt-2 text-gray-500">
+                      <CalendarRange className="w-4 h-4" />
+                      <span>
+                        {new Date(project.start_date).toLocaleDateString()} - {
+                          project.finish_date 
+                            ? new Date(project.finish_date).toLocaleDateString()
+                            : 'Present'
+                        }
+                      </span>
+                    </div>
                   </Card>
                 ))}
               </ContentSection>
             )}
+  
             {activeSubTab === 'patents' && (
               <ContentSection title="Patents" icon={Lightbulb}>
-                {data.patents.map((patent, index) => (
-                  <Card key={index}>
+                {renderSection(data.patents, (patent, index) => (
+                  <Card key={index} className="group transform  transition-all">
                     <div className="flex justify-between items-start">
                       <h4 className="font-medium text-lg text-blue-900">{patent.title}</h4>
                       <span className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800">
@@ -397,11 +464,11 @@ const ProfilePage = () => {
                 ))}
               </ContentSection>
             )}
-
+  
             {activeSubTab === 'consultancy' && (
               <ContentSection title="Consultancy Projects" icon={Briefcase}>
-                {data.consultancyProjects.map((project, index) => (
-                  <Card key={index}>
+                {renderSection(data.consultancyProjects, (project, index) => (
+                  <Card key={index} className="group transform  transition-all">
                     <div className="flex justify-between items-start">
                       <h4 className="font-medium text-lg text-blue-900">{project.title}</h4>
                       <span className={`px-2 py-1 text-xs rounded ${
@@ -435,14 +502,14 @@ const ProfilePage = () => {
             )}
           </div>
         );
-
+  
       case 'outreach':
         return (
           <div className="space-y-6">
             {activeSubTab === 'events' && (
               <ContentSection title="Events Organized" icon={CalendarRange}>
-                {data.organizedEvents.map((event, index) => (
-                  <Card key={index}>
+                {renderSection(data.organizedEvents, (event, index) => (
+                  <Card key={index} className="group transform  transition-all">
                     <h4 className="font-medium text-lg text-blue-900">{event.name}</h4>
                     <p className="text-gray-700 mt-1">Role: {event.role}</p>
                     <p className="text-gray-700">Venue: {event.venue}</p>
@@ -454,11 +521,11 @@ const ProfilePage = () => {
                 ))}
               </ContentSection>
             )}
-
+  
             {activeSubTab === 'visits' && (
-              <ContentSection title="International Visits" icon={GlobeIcon}>
-                {data.visits.map((visit, index) => (
-                  <Card key={index}>
+              <ContentSection title="International Visits" icon={Globe}>
+                {renderSection(data.visits, (visit, index) => (
+                  <Card key={index} className="group transform  transition-all">
                     <h4 className="font-medium text-lg text-blue-900">{visit.country}</h4>
                     <p className="text-gray-700 mt-1">
                       <Map className="w-4 h-4 inline mr-2" />
@@ -477,18 +544,16 @@ const ProfilePage = () => {
                 ))}
               </ContentSection>
             )}
+  
             {activeSubTab === 'conferences' && (
               <ContentSection title="Conferences Organised" icon={CalendarRange}>
-                {data.organizedConferences.map((conf, index) => (
-                  <Card key={index}>
-                    <h4 className="font-medium">{conf.name}</h4>
+                {renderSection(data.organizedConferences, (conf, index) => (
+                  <Card key={index} className="group transform  transition-all">
+                    <h4 className="font-medium text-blue-900">{conf.name}</h4>
                     <p className="text-sm text-gray-600">{conf.role}</p>
                     <div className="flex items-center gap-2 mt-2 text-gray-500">
                       <CalendarRange className="w-4 h-4" />
-                      <span>
-                        {new Date(conf.start_date).toLocaleDateString()
-                        }
-                      </span>
+                      <span>{new Date(conf.start_date).toLocaleDateString()}</span>
                     </div>
                     <p className="text-gray-700 mt-1">
                       <Map className="w-4 h-4 inline mr-2" />
@@ -498,10 +563,11 @@ const ProfilePage = () => {
                 ))}
               </ContentSection>
             )}
+  
             {activeSubTab === 'lectures' && (
               <ContentSection title="Expert Lectures" icon={Presentation}>
-                {data.expertLectures.map((lecture, index) => (
-                  <Card key={index}>
+                {renderSection(data.expertLectures, (lecture, index) => (
+                  <Card key={index} className="group transform  transition-all">
                     <h4 className="font-medium text-lg text-blue-900">{lecture.title}</h4>
                     <p className="text-gray-700 mt-1">Type: {lecture.l_type}</p>
                     <div className="flex items-center gap-2 mt-2 text-gray-500">
@@ -518,16 +584,16 @@ const ProfilePage = () => {
             )}
           </div>
         );
-
+  
       case 'achievements':
         return (
           <div className="space-y-6">
             {activeSubTab === 'awards' && (
               <ContentSection title="Awards & Achievements" icon={Trophy}>
-                {data.honors
-                  .filter(ach => ach.a_type === 'Award')
-                  .map((honor, index) => (
-                    <Card key={index}>
+                {renderSection(
+                  data.honors.filter(ach => ach.a_type === 'Award'),
+                  (honor, index) => (
+                    <Card key={index} className="group transform  transition-all">
                       <h4 className="font-medium text-lg text-blue-900">{honor.title}</h4>
                       <p className="text-gray-700 mt-1">{honor.description}</p>
                       <div className="flex items-center gap-2 mt-2 text-gray-500">
@@ -535,141 +601,144 @@ const ProfilePage = () => {
                         <span>{honor.period}</span>
                       </div>
                     </Card>
-                  ))}
+                  )
+                )}
               </ContentSection>
             )}
-
-            {activeSubTab === 'recognition' && (
-              <ContentSection title="Recognition" icon={Award}>
-                {data.achievements
-                  .filter(ach => ach.a_type === 'Publication')
-                  .map((achievement, index) => (
-                    <Card key={index}>
-                      <p className="text-gray-700 mt-1">{achievement.a_type}</p>
-                      <h4 className="font-medium text-lg text-blue-900">{achievement.details}</h4>
-                      <div className="flex items-center gap-2 mt-2 text-gray-500">
-                        <CalendarRange className="w-4 h-4" />
-                        <span>{achievement.a_year}</span>
-                      </div>
-                    </Card>
-                  ))}
-              </ContentSection>
-            )}
-          </div>
-        );
-
-        default:
-          return null;
-      }
-    };
   
-  return (
-    <div className="min-h-screen bg-gray-50 relative">
-      <BackgroundPattern />
-      <PageHeader 
-        breadCrumbs={[
-          { crumb: "Faculties", link: "/employee" },
-          { crumb: `${basicInfo.first_name} ${basicInfo.last_name}`, link: "#" }
-        ]} 
-        title="Faculties"
-      />
-      
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Profile Sidebar with enhanced styling */}
-          <div className="w-full lg:w-1/4">
-            <div className="bg-white rounded-xl shadow-sm p-8  top-8">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-transparent rounded-xl" />
-                <div className="flex flex-col items-center relative">
-                  <div className="w-32 h-32 border-4 border-white shadow-lg overflow-hidden mb-4">
-                    <img
-                      src={basicInfo.profile_picture || '/api/placeholder/150/150'}
-                      alt="Profile"
-                      className="w-full h-full object-cover"
-                    />
+  {activeSubTab === 'recognition' && (
+            <ContentSection title="Recognition" icon={Award}>
+              {renderSection(
+                data.achievements.filter(ach => ach.a_type === 'Publication'),
+                (achievement, index) => (
+                  <Card key={index} className="group transform  transition-all">
+                    <h4 className="font-medium text-lg text-blue-900">{achievement.details}</h4>
+                    <p className="text-gray-700 mt-1">{achievement.a_type}</p>
+                    <div className="flex items-center gap-2 mt-2 text-gray-500">
+                      <CalendarRange className="w-4 h-4" />
+                      <span>{achievement.a_year}</span>
+                    </div>
+                  </Card>
+                )
+              )}
+            </ContentSection>
+          )}
+        </div>
+      );
+
+    default:
+      return null;
+  }
+};
+
+
+    return (
+      <div className="min-h-screen bg-gray-50 relative">
+        <BackgroundPattern />
+        <PageHeader 
+          breadCrumbs={[
+            { crumb: "Faculties", link: "/employee" },
+            { crumb: `${basicInfo.first_name} ${basicInfo.last_name}`, link: "#" }
+          ]} 
+          title="Faculties"
+        />
+        
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Profile Sidebar with enhanced styling */}
+            <div className="w-full lg:w-1/4">
+              <div className="bg-white rounded-xl shadow-sm p-8  top-8">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-transparent rounded-xl" />
+                  <div className="flex flex-col items-center relative">
+                    <div className="w-32 h-32 border-4 border-white shadow-lg overflow-hidden mb-4">
+                      <img
+                        src={basicInfo.profile_picture || '/api/placeholder/150/150'}
+                        alt="Profile"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h1 className="text-xl font-medium text-center">
+                      {basicInfo.first_name} {basicInfo.last_name}
+                    </h1>
+                    <p className="text-gray-600 mb-4">{basicInfo.designation}</p>
+                    <div className="w-16 h-1 bg-blue-500 rounded-full mb-6" />
                   </div>
-                  <h1 className="text-xl font-medium text-center">
-                    {basicInfo.first_name} {basicInfo.last_name}
-                  </h1>
-                  <p className="text-gray-600 mb-4">{basicInfo.designation}</p>
-                  <div className="w-16 h-1 bg-blue-500 rounded-full mb-6" />
                 </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-gray-400" />
-                  <span className="text-sm text-gray-600">{basicInfo.email}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-gray-400" />
-                  <span className="text-sm text-gray-600">{basicInfo.contact}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-gray-400" />
-                  <span className="text-sm text-gray-600">{basicInfo.department}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <FileText className="w-5 h-5 text-gray-400" />
-                  <a href="#" className="text-sm text-blue-600 hover:text-blue-800">
-                    Download CV
-                  </a>
-                </div>
-              </div>
   
-              <SocialLinks linkedin={basicInfo.linkedin} github={basicInfo.github} />
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5 text-gray-400" />
+                    <span className="text-sm text-gray-600">{basicInfo.email}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-5 h-5 text-gray-400" />
+                    <span className="text-sm text-gray-600">{basicInfo.contact}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="w-5 h-5 text-gray-400" />
+                    <span className="text-sm text-gray-600">{basicInfo.department}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <FileText className="w-5 h-5 text-gray-400" />
+                    <a href="#" className="text-sm text-blue-600 hover:text-blue-800">
+                      Download CV
+                    </a>
+                  </div>
+                </div>
+    
+                <SocialLinks linkedin={basicInfo.linkedin} github={basicInfo.github} />
+              </div>
             </div>
-          </div>
-
-          {/* Main content area with enhanced styling */}
-          <div className="w-full lg:w-3/4">
-            <div className="bg-white rounded-xl shadow-sm">
-            <div className="border-b">
-                  <div className="flex overflow-x-auto">
-                    {tabs.map((tab) => (
-                      <TabButton
-                        key={tab.id}
-                        active={activeTab === tab.id}
-                        onClick={() => {
-                          setActiveTab(tab.id);
-                          setActiveSubTab(getSubTabs()[0]?.id);
-                        }}
-                        icon={tab.icon}
-                      >
-                        {tab.label}
-                      </TabButton>
-                    ))}
-                  </div>
-                </div>
   
-                {/* Sub Navigation */}
-                {getSubTabs().length > 0 && (
-                  <div className="p-4 border-b bg-gray-50">
-                    <div className="flex gap-2">
-                      {getSubTabs().map((subTab) => (
-                        <SubTabButton
-                          key={subTab.id}
-                          active={activeSubTab === subTab.id}
-                          onClick={() => setActiveSubTab(subTab.id)}
+            {/* Main content area with enhanced styling */}
+            <div className="w-full lg:w-3/4">
+              <div className="bg-white rounded-xl shadow-sm">
+              <div className="border-b">
+                    <div className="flex overflow-x-auto">
+                      {tabs.map((tab) => (
+                        <TabButton
+                          key={tab.id}
+                          active={activeTab === tab.id}
+                          onClick={() => {
+                            setActiveTab(tab.id);
+                            setActiveSubTab(getSubTabs()[0]?.id);
+                          }}
+                          icon={tab.icon}
                         >
-                          {subTab.label}
-                        </SubTabButton>
+                          {tab.label}
+                        </TabButton>
                       ))}
                     </div>
                   </div>
-                )}
-  
-                {/* Content Area */}
-                <div className="p-6">
-                  {renderContent()}
+    
+                  {/* Sub Navigation */}
+                  {getSubTabs().length > 0 && (
+                    <div className="p-4 border-b bg-gray-50">
+                      <div className="flex gap-2">
+                        {getSubTabs().map((subTab) => (
+                          <SubTabButton
+                            key={subTab.id}
+                            active={activeSubTab === subTab.id}
+                            onClick={() => setActiveSubTab(subTab.id)}
+                          >
+                            {subTab.label}
+                          </SubTabButton>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+    
+                  {/* Content Area */}
+                  <div className="p-6">
+                    {renderContent()}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    );
-  };
-  
-  export default ProfilePage;
+      );
+    };
+    
+    export default ProfilePage;

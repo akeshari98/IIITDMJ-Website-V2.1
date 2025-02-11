@@ -27,7 +27,9 @@ import {
   Images,
   ImagesIcon,
   Calendar,
-  Download
+  Download,
+  Dumbbell,
+  ImageIcon
 } from 'lucide-react';
 
 // Products Module
@@ -54,6 +56,8 @@ import MarqueeManager from './adminModules/marqueeModule';
 import ImportantAnnouncementsManager from './adminModules/redAnnouncementsModule';
 import TendersManger from './adminModules/tendersModule';
 import CalendarsManager from './adminModules/calendarsModule';
+import GymkhanaNotificationsManager from './adminModules/gymkhanaNotificationsModule';
+import FacultyPicManager from './adminModules/facultyPicModule';
 // Main Admin Portal Component
 const Page = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -70,6 +74,7 @@ const Page = () => {
     { id: 'doctors', name: 'PHC Doctors', icon: HeartPulse },
     { id: 'marquee', name: 'Marquee', icon: List },
     { id: 'ImportantAnnouncements', name: 'Important Announcements', icon: AlertCircle },
+    { id: 'GymkhanaNotifications', name: 'Gymkhana Notifications', icon: Dumbbell },
     { id: 'tenders', name: 'Tenders', icon: DollarSign },
     { id: 'calendars', name: 'Calendars', icon: Calendar },
     { id: 'slides', name: 'Home Page Slides', icon: Image},
@@ -79,6 +84,7 @@ const Page = () => {
     { id: 'events', name: 'Events', icon: LoaderPinwheel },
     { id: 'eventImages', name: 'Event Media', icon: ImagesIcon },
     { id: 'downloads', name: 'Downloads Page', icon: Download },
+    { id: 'facultyPic', name: 'Faculty Pictures', icon: ImageIcon },
   ];
   const [profileOpen, setProfileOpen] = useState(false);
   const renderModule = () => {
@@ -87,6 +93,8 @@ const Page = () => {
       //   return <ProductsModule />;
       case 'faculty':
         return <FacultyManager />;
+      case 'facultyPic':
+        return <FacultyPicManager />;
       case 'staff':
         return <StaffManager />;
       case 'doctors':
@@ -113,6 +121,8 @@ const Page = () => {
         return <MarqueeManager />;
       case 'ImportantAnnouncements':
         return <ImportantAnnouncementsManager />;
+      case 'GymkhanaNotifications':
+        return <GymkhanaNotificationsManager />;
       case 'tenders':
         return <TendersManger />;
       case 'calendars':

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../../../components/PageHeader";
 import { Newspaper } from "lucide-react";
-
+import axiosInstance from "../../../axios"
 const MainPage = () => {
   const links = [
     { name: "Various Clubs Working Under Gymkhana", href: "/" },
@@ -56,17 +56,41 @@ const MainPage = () => {
     },
   ];
 
-  const notifications = [
-    {
-      name: "Notification 1",
-      href: "https://www.iiitdmj.ac.in/students/downloads/Notifications/Notification%20regarding%20Convener%20and%20Co%20Convener%20of%20Student%20Senate%20-1(38921460593254).jpg",
-    },
-    {
-      name: "Notification 2",
-      href: "https://www.iiitdmj.ac.in/students/downloads/Notifications/Notification%20regarding%20Convener%20and%20Co%20Convener%20of%20Student%20Senate%20-1(38921460593254).jpg",
-    },
-  ];
-
+  // const notifications = [
+  //   {
+  //     name: "Notification 1",
+  //     href: "https://www.iiitdmj.ac.in/students/downloads/Notifications/Notification%20regarding%20Convener%20and%20Co%20Convener%20of%20Student%20Senate%20-1(38921460593254).jpg",
+  //   },
+  //   {
+  //     name: "Notification 2",
+  //     href: "https://www.iiitdmj.ac.in/students/downloads/Notifications/Notification%20regarding%20Convener%20and%20Co%20Convener%20of%20Student%20Senate%20-1(38921460593254).jpg",
+  //   },
+  // ];
+  const [notifications, setNotifications] = useState([]); 
+  const [error, setError] = useState(null);   
+  const [isLoading, setIsLoading] = useState(true);
+  
+  const fetchNotifs = async (showLoading = true) => {
+    if (showLoading) setIsLoading(true);
+    setError(null);
+  
+    try {
+      const response = await axiosInstance.get("GymkhanaNotifications/GymkhanaNotifications");
+      setNotifications(response.data); 
+      setIsLoading(false);
+    } catch (err) {
+      console.error("Error fetching GymkhanaNotifications:", err);
+      setError({
+        message: "Failed to fetch GymkhanaNotifications",
+        details: err.response?.data?.message || "Network error or server unavailable"
+      });
+      setIsLoading(false);
+    }
+  };   
+  
+  React.useEffect(() => {
+    fetchNotifs();
+  }, []);
   const [data, setData] = useState({ cardsData: [] });
   const [loading, setLoading] = useState(true);
 
@@ -293,7 +317,14 @@ const MainPage = () => {
                 <h2 className="text-xl font-bold text-gray-800 mb-4">Notifications</h2>
                 <ul className="space-y-2">
                   {notifications.map((notification, index) => (
-                    <li key={index}>{renderLink(notification)}</li>
+                    <li key={index}><a
+                    href={notification.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 transition-colors"
+                  >
+                    <span>{notification.title}</span>
+                  </a></li>
                   ))}
                 </ul>
               </section>

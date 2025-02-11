@@ -108,7 +108,7 @@ FROM
               department varchar, about varchar, interests varchar, 
               linkedin varchar, github varchar
           )
-LEFT JOIN "FacultyPic" AS fpp ON t.id = fpp.fac_id;
+LEFT JOIN "FacultyPics" AS fpp ON t.id = fpp.fac_id;
 `;
 
   const { rows } = await pool.query(query);
@@ -149,7 +149,7 @@ FROM
             ') 
     AS t(id int, first_name varchar, last_name varchar, designation varchar, email varchar, 
          contact varchar, address text, department varchar, about varchar, interests varchar)
-LEFT JOIN "FacultyPic" fpp ON t.id = fpp.fac_id;
+LEFT JOIN "FacultyPics" fpp ON t.id = fpp.fac_id;
   `;
 
   const { rows } = await pool.query(query);
@@ -368,7 +368,7 @@ FROM
     ) 
     AS t(id int, user_type varchar, first_name varchar, last_name varchar, email varchar, 
          address text, phone_no bigint)
-LEFT JOIN "FacultyPic" fpp ON t.id = fpp.fac_id
+LEFT JOIN "FacultyPics" fpp ON t.id = fpp.fac_id
     `;
     // console.log(res);
     const result = await pool.query(query);
